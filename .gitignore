@@ -1,1 +1,6 @@
+# Instance-specific files.
+/db.sqlite3
+
+# Swap and cache.
 *.swp
+__pycache__
