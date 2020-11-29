@@ -1,0 +1,3 @@
+[submodule "languagecontrol"]
+	path = languagecontrol
+	url = https://github.com/binary-is/languagecontrol

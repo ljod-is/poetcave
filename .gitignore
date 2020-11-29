@@ -5,3 +5,6 @@
 # Swap and cache.
 *.swp
 __pycache__
+
+# Translations.
+*.mo
