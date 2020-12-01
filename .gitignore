@@ -1,6 +1,6 @@
 # Instance-specific files.
 /db.sqlite3
-/poetrybox/local_settings.py
+/poetcave/local_settings.py
 
 # Swap and cache.
 *.swp
