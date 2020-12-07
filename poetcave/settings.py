@@ -115,6 +115,9 @@ LOCALE_PATHS = [
 
 STATIC_URL = '/static/'
 
+# User customization
+AUTH_USER_MODEL = 'core.User'
+
 # Registration stuff
 ACCOUNT_ACTIVATION_DAYS = 1
 
