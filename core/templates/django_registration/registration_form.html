@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block sign %}{% trans 'New user' %}{% endblock %}
+
+{% block content %}
+
+<form method="post" class="cmxform">
+{% csrf_token %}
+
+{{ form.non_field_errors }}
+
+<link href="http://www.ljod.is/css/cmxformTemplate.css" rel="stylesheet"> 
+<link href="http://www.ljod.is/css/cmxform.css" rel="stylesheet"> 
+
+Velkominn á skráningarblað ljóð.is. Ef þú fyllir út eftirfarandi form á fullnægjandi hátt eignast þú þitt eigið heimasvæði á ljóð.is. Þar gefst þér kostur á að skrifa og geyma ljóð og birta öðrum notendum þau þeirra sem þú ert ánægðastur með.<br /><br />
+
+Vinsamlegast vandaðu til verksins. Þetta eru meðal annars þær upplýsingar sem notendur ljóð.is berja augum. Allar þessar upplýsingar eru nauðsynlegar, t.d. til að geta haft upp á þér ef til þess kemur að bestu ljóðin verði gefin út á bók. Við þurfum jú að geta sent þér þitt eintak!
+
+<hr />
+
+<b>Aðgangsupplýsingar</b><br><br>
+
+<label for="id_username">Notendanafn</label> 
+<input id="id_username" name="username" class="required" maxlength="{{ form.username.max_length }}" value="{{ form.username.value|default:'' }}" />
+<label for="id_username" generated="true" class="error">{% for error in form.username.errors %}{{ error }}<br />{% endfor %}</label>
+<br>
+
+<label for="id_password1">Lykilorð</label> 
+<input id="id_password1" name="password1" type="password" class="required" />
+<label for="id_password1" generated="true" class="error">{% for error in form.password1.errors %}{{ error }}<br />{% endfor %}</label>
+<br />
+<label for="id_password2">Lykilorð aftur</label> 
+<input id="id_password2" name="password2" type="password" class="required" equalTo="#password" /> 
+<label for="id_password2" generated="true" class="error">{% for error in form.password2.errors %}{{ error }}<br />{% endfor %}</label>
+<hr>			
+<b>Upplýsingar fyrir vefinn</b>
+<br><br>
+<label for="poet_name">Nafn:</label> 
+<input type="text" size="30" name="poet_name" value="" class="required" minlength="3">
+<br>
+<label for="poet_name_thagufall">Nafn í þolfalli:</label>
+
+<input type="text" size="30" name="poet_name_thagufall" value="" class="required" minlength="">
+<br>Sjá <a href="http://bin.arnastofnun.is/">beygingarorðabók</a><br><br>
+<label for="poet_born">Fæðingarár:</label>
+<input type="text" size="4" name="poet_born" value="" digits="true" class="required" minlength="4" maxlength="4">
+<br><br>
+Ferilsskrá eða aðrar upplýsingar:
+		<script language="JavaScript">
+		function doStuff()
+		{
+			document.form_puki.textarea.value = document.commentForm.poet_info.value;
+			document.form_puki.submit();
+		}
+		</script>
+<textarea name="poet_info" cols="30" rows="3"></textarea><br />
+<input type="button" value="Villuprófa" onClick="doStuff();">
+<br><br>
+
+<hr>
+<b>Upplýsingar fyrir stjórnendur</b>
+<br><br>
+	
+	
+<label>Fullt nafn:</label>
+<input type="text" size="25" name="fullname" value="" class="required" minlength="4">		
+<br>
+
+<label for="id_email">Netfang:</label>
+<input type="text" size="25" id="id_email" name="email" class="required email" email="true" maxlength="{{ form.email.max_length }}" value="{{ form.email.value|default:'' }}" />
+<label for="id_email" generated="true" class="error">{% for error in form.email.errors %}{{ error }}<br />{% endfor %}</label>
+
+<br>
+<label>Heimilisfang:</label>
+<input type="text" size="25" name="address" value="" class="required" minlength="4">
+
+<br>
+<label>Póstnúmer:</label>
+<input type="text" size="3" name="postnr" value="" class="required">
+
+<br>
+<label>Staður/Land:</label>
+<input type="text" size="25" name="place" value=""  class="required">
+
+<br>
+<label>Sími:</label>
+<input type="text" size="7" name="phone" value=""  class="required" minlength="4"> (án bandstriks)
+
+<br /><br />
+<input type="submit" value="{% trans 'Register' %}" />
+
+</form>
+
+<hr />
+
+{{ form }}
+
+{% endblock %}

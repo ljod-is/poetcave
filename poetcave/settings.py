@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_registration',
     'languagecontrol',
 
     'core',
@@ -113,6 +114,9 @@ LOCALE_PATHS = [
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+# Registration stuff
+ACCOUNT_ACTIVATION_DAYS = 1
 
 # Import customizable settings.
 from poetcave.local_settings import *

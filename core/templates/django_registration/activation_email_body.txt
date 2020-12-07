@@ -1,0 +1,9 @@
+{% load i18n %}
+
+{% trans 'Someone, hopefully you, has signed up at our website using this email address.' %}
+
+{% trans 'Please click the following link in order to complete the registration:' %}
+
+{{ request.scheme }}://{{ request.get_host }}{% url 'django_registration_activate' activation_key %}
+
+{% trans 'If you are not familiar with having registered, you can safely ignore this email.' %}
