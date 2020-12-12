@@ -139,14 +139,30 @@
 									<img src="http://www.ljod.is/images/bordi_nav.gif" width="100" height="1"><br>
 									<img src="http://www.ljod.is/images/spaces.gif" height="7" border="0"><br>
 						
-																		<form action="http://www.ljod.is/index.php/user/login" method="post">									Notandi<br>
-									<input type="text" name="username" size="10"><br>
-									Lykilorð<br>
-									<input type="password" name="password" size="10"><br>
-									<input type="submit" value="Innskrá"><br>
-									[ <a href="http://www.ljod.is/index.php/ljod/gleymt_lykilord">Gleymt lykilorð</a></a> ]
-									</form><br>
-
+									{% if user.is_authenticated %}
+										<img src="http://www.ljod.is/images/spacer.gif" height="3" /><br />
+										<a href="http://www.ljod.is/index.php/ljod/bokamerki"><img src="http://www.ljod.is/images/nav_bokamerki.gif" /></a><br />
+										<img src="http://www.ljod.is/images/spacer.gif" height="3"><br />
+										<a href="{% url 'profile' %}"><img src="http://www.ljod.is/images/nav_eg.gif" /></a><br />
+										<img src="http://www.ljod.is/images/spacer.gif" height="3"><br />
+										<a href="http://www.ljod.is/index.php/ljod/my_poems"><img src="http://www.ljod.is/images/nav_account.gif"></a><br />
+										<img src="http://www.ljod.is/images/spacer.gif" height="3"><br />
+										<a href="{% url 'logout' %}"><img src="http://www.ljod.is/images/nav_utskra.gif" /></a>
+										<img src="http://www.ljod.is/images/spacer.gif" height="7"><br />
+										<img src="http://www.ljod.is/images/bordi_nav.gif" width="100" height="1"><br />
+										<img src="http://www.ljod.is/images/spacer.gif" height="7"><br />
+									{% else %}
+										<form action="{% url 'login' %}" method="post">
+										{% csrf_token %}
+										Notandi<br />
+										<input type="text" name="username" size="10"><br />
+										Lykilorð<br />
+										<input type="password" name="password" size="10" /><br />
+										<input type="submit" value="Innskrá" /><br />
+										[ <a href="http://www.ljod.is/index.php/ljod/gleymt_lykilord">Gleymt lykilorð</a> ]
+										</form>
+										<br />
+									{% endif %}
 											<div style="text-align: center;">Höfundar:</div><div style="text-align: justify; padding: 0px 16px 0px 16px;">
 
 									<a href="http://www.ljod.is/index.php/ljod/poem_collection/author/A">A</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/B">B</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/C">C</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/D">D</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/E">E</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/F">F</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/G">G</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/H">H</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/I">I</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/J">J</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/K">K</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/L">L</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/M">M</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/N">N</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/O">O</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/P">P</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/Q">Q</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/R">R</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/S">S</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/T">T</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/U">U</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/V">V</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/W">W</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/X">X</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/Y">Y</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/Z">Z</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/ae">Æ</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/thorn">Þ</a> <a href="http://www.ljod.is/index.php/ljod/poem_collection/author/ou">Ö</a> 

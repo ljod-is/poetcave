@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block sign %}{% trans 'I, me, my, mine.' %}{% endblock %}
+
+{% block content %}
+
+<form method="post" class="cmxform">
+{% csrf_token %}
+
+{{ form.non_field_errors }}
+
+<link href="http://www.ljod.is/css/cmxformTemplate.css" rel="stylesheet">
+<link href="http://www.ljod.is/css/cmxform.css" rel="stylesheet">
+
+<hr />
+
+<b>Aðgangsupplýsingar</b><br><br>
+
+<label for="id_password1">Lykilorð</label>
+<input id="id_password1" name="password1" type="password" class="required" />
+<label for="id_password1" generated="true" class="error">{% for error in form.password1.errors %}{{ error }}<br />{% endfor %}</label>
+<br />
+<label for="id_password2">Lykilorð aftur</label>
+<input id="id_password2" name="password2" type="password" class="required" equalTo="#password" />
+<label for="id_password2" generated="true" class="error">{% for error in form.password2.errors %}{{ error }}<br />{% endfor %}</label>
+<hr />
+
+<b>Upplýsingar fyrir vefinn</b>
+<br /><br />
+
+<label for="id_name">Nafn:</label>
+<input id="id_name" name="name" class="required" maxlength="{{ form.name.max_length }}" value="{{ form.name.value|default:'' }}" size="30" />
+<label for="id_name" generated="true" class="error">{% for error in form.name.errors %}{{ error }}<br />{% endfor %}</label>
+<br />
+
+<label for="id_name_dative">Nafn í þolfalli:</label>
+<input id="id_name_dative" name="name_dative" class="required" maxlength="{{ form.name_dative.max_length }}" value="{{ form.name_dative.value|default:'' }}" size="30" />
+<label for="id_name_dative" generated="true" class="error">{% for error in form.name_dative.errors %}{{ error }}<br />{% endfor %}</label>
+<br />Sjá <a target="_blank" href="http://bin.arnastofnun.is/">beygingarorðabók</a><br /><br />
+
+<label for="id_birth_year">Fæðingarár:</label>
+<input id="id_birth_year" name="birth_year" class="required" digits="true" minlength="4" maxlength="4" value="{{ form.birth_year.value|default:'' }}" size="4" />
+<label for="id_birth_year" generated="true" class="error">{% for error in form.birth_year.errors %}{{ error }}<br />{% endfor %}</label>
+<br /><br />
+
+Ferilsskrá eða aðrar upplýsingar:
+<textarea id="id_about" name="about" cols="30" rows="3">{{ form.about.value|default:'' }}</textarea><br />
+<label for="id_about" generated="true" class="error">{% for error in form.about.errors %}{{ error }}<br />{% endfor %}</label>
+<input type="button" value="Villuprófa">
+<br /><br />
+
+<hr />
+
+<b>Upplýsingar fyrir stjórnendur</b>
+<br /><br />
+
+<label for="id_contact_name">Fullt nafn:</label>
+<input id="id_contact_name" name="contact_name" class="required" maxlength="{{ form.contact_name.max_length }}" value="{{ form.contact_name.value|default:'' }}" size="25" />
+<label for="id_contact_name" generated="true" class="error">{% for error in form.contact_name.errors %}{{ error }}<br />{% endfor %}</label>
+<br />
+
+<label for="id_email">Netfang:</label>
+<input type="text" size="25" id="id_email" name="email" class="required email" email="true" maxlength="{{ form.email.max_length }}" value="{{ form.email.value|default:'' }}" />
+<label for="id_email" generated="true" class="error">{% for error in form.email.errors %}{{ error }}<br />{% endfor %}</label>
+<br />
+
+<label for="id_contact_address">Heimilisfang:</label>
+<input id="id_contact_address" name="contact_address" class="required" maxlength="{{ form.contact_address.max_length }}" value="{{ form.contact_address.value|default:'' }}" size="25" />
+<label for="id_contact_address" generated="true" class="error">{% for error in form.contact_address.errors %}{{ error }}<br />{% endfor %}</label>
+<br />
+
+<label for="id_contact_postal_code">Póstnúmer:</label>
+<input id="id_contact_postal_code" name="contact_postal_code" class="required" minlength="3" maxlength="{{ form.contact_postal_code.max_length }}" value="{{ form.contact_postal_code.value|default:'' }}" size="3" />
+<label for="id_contact_postal_code" generated="true" class="error">{% for error in form.contact_postal_code.errors %}{{ error }}<br />{% endfor %}</label>
+<br />
+
+<label for="id_contact_place">Staður/Land:</label>
+<input id="id_contact_place" name="contact_place" class="required" maxlength="{{ form.contact_place.max_length }}" value="{{ form.contact_place.value|default:'' }}" size="25" />
+<label for="id_contact_place" generated="true" class="error">{% for error in form.contact_place.errors %}{{ error }}<br />{% endfor %}</label>
+<br />
+
+<label for="id_contact_phone">Sími:</label>
+<input id="id_contact_phone" name="contact_phone" class="required" maxlength="{{ form.contact_phone.max_length }}" value="{{ form.contact_phone.value|default:'' }}" size="7" />
+(án bandstriks)
+<label for="id_contact_phone" generated="true" class="error">{% for error in form.contact_phone.errors %}{{ error }}<br />{% endfor %}</label>
+
+<br /><br />
+<input type="submit" value="{% trans 'Register' %}" />
+
+</form>
+
+<hr />
+
+{% endblock %}
