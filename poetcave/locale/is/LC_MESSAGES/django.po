@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-07 20:09+0000\n"
+"POT-Creation-Date: 2020-12-12 20:10+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);\n"
+
+#: core/templates/core/profile.html:4
+msgid "I, me, my, mine."
+msgstr "Ég, mig, mér, mín."
+
+#: core/templates/core/profile.html:89
+#: core/templates/django_registration/registration_form.html:98
+msgid "Register"
+msgstr "Skrá"
 
 #: core/templates/django_registration/activation_complete.html:6
 msgid "Registration was successful!"
@@ -31,12 +40,14 @@ msgid ""
 "Someone, hopefully you, has signed up at our website using this email "
 "address."
 msgstr ""
-"Einhver, sem er vonandi þú, hefur skráð sig á vefsetur okkar með þessu "
+"Einhver, vonandi þú, notaði þetta netfang til þess að skrá sig á vefinn "
+"okkar.Einhver, sem er vonandi þú, hefur skráð sig á vefsetur okkar með þessu "
 "netfangi."
 
 #: core/templates/django_registration/activation_email_body.txt:5
 msgid "Please click the following link in order to complete the registration:"
 msgstr ""
+"Vinsamlegast smelltu á eftirfarandi tengil til þess að klára skráninguna."
 "Vinsamlegast smellið á eftirfarandi tengil til þess að klára skráninguna."
 
 #: core/templates/django_registration/activation_email_body.txt:9
@@ -61,6 +72,10 @@ msgstr "Vinsamlegast athugaðu tölvupósthólf þitt til að klára skráningun
 msgid "New user"
 msgstr "Nýr notandi"
 
-#: core/templates/django_registration/registration_form.html:91
-msgid "Register"
-msgstr "Skrá"
+#: core/templates/registration/login.html:4
+msgid "Login"
+msgstr "Innskráning"
+
+#: core/templates/registration/login.html:10
+msgid "Log in"
+msgstr "Innskrá"
