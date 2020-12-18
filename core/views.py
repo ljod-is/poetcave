@@ -57,4 +57,4 @@ def profile(request):
         'password_form': password_form,
         'form': form,
     }
-    return render(request, 'core/profile.html', ctx)
+    return render(request, 'user/profile.html', ctx)
