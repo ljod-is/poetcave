@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-12 20:10+0000\n"
+"POT-Creation-Date: 2020-12-18 20:16+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgstr ""
 msgid "I, me, my, mine."
 msgstr "Ég, mig, mér, mín."
 
-#: core/templates/core/profile.html:89
+#: core/templates/core/profile.html:94
 #: core/templates/django_registration/registration_form.html:98
 msgid "Register"
 msgstr "Skrá"
@@ -72,10 +72,22 @@ msgstr "Vinsamlegast athugaðu tölvupósthólf þitt til að klára skráningun
 msgid "New user"
 msgstr "Nýr notandi"
 
+#: core/templates/registration/change_password_form.html:13
+msgid "Change Password"
+msgstr "Breyta lykilorði"
+
 #: core/templates/registration/login.html:4
 msgid "Login"
 msgstr "Innskráning"
 
-#: core/templates/registration/login.html:10
+#: core/templates/registration/login.html:13
 msgid "Log in"
 msgstr "Innskrá"
+
+#: core/views.py:37
+msgid "Password updated."
+msgstr "Lykilorð uppfært."
+
+#: core/views.py:49
+msgid "Profile updated."
+msgstr "Notandaupplýsingar uppfærðar."
