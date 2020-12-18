@@ -180,6 +180,13 @@
 											<td colspan="3"><img src="http://www.ljod.is/images/fyrirsogn_bordi.gif" width="175" height="1"></td> 
 										</tr> 
 									</table><br> 
+									{% if messages %}
+									<span class="message">
+										{% for message in messages %}
+											<p>{{ message }}</p>
+										{% endfor %}
+									</span>
+									{% endif %}
 									<span class="error"></span>
 	
 <table border="0" cellpadding="0" cellspacing="0"> 

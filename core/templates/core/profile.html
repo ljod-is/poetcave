@@ -8,6 +8,7 @@
 <form method="post" class="cmxform">
 {% csrf_token %}
 
+{{ password_form.non_field_errors }}
 {{ form.non_field_errors }}
 
 <link href="http://www.ljod.is/css/cmxformTemplate.css" rel="stylesheet">
@@ -17,13 +18,17 @@
 
 <b>Aðgangsupplýsingar</b><br><br>
 
-<label for="id_password1">Lykilorð</label>
-<input id="id_password1" name="password1" type="password" class="required" />
-<label for="id_password1" generated="true" class="error">{% for error in form.password1.errors %}{{ error }}<br />{% endfor %}</label>
+<label for="id_old_password">Gamalt lykilorð</label>
+<input id="id_old_password" name="old_password" type="password" class="required" />
+<label for="id_old_password" generated="true" class="error">{% for error in password_form.old_password.errors %}{{ error }}<br />{% endfor %}</label>
 <br />
-<label for="id_password2">Lykilorð aftur</label>
-<input id="id_password2" name="password2" type="password" class="required" equalTo="#password" />
-<label for="id_password2" generated="true" class="error">{% for error in form.password2.errors %}{{ error }}<br />{% endfor %}</label>
+<label for="id_new_password1">Lykilorð</label>
+<input id="id_new_password1" name="new_password1" type="password" class="required" />
+<label for="id_new_password1" generated="true" class="error">{% for error in password_form.new_password1.errors %}{{ error }}<br />{% endfor %}</label>
+<br />
+<label for="id_new_password2">Lykilorð aftur</label>
+<input id="id_new_password2" name="new_password2" type="password" class="required" equalTo="#id_new_password1" />
+<label for="id_new_password2" generated="true" class="error">{% for error in password_form.new_password2.errors %}{{ error }}<br />{% endfor %}</label>
 <hr />
 
 <b>Upplýsingar fyrir vefinn</b>
