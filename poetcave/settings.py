@@ -33,6 +33,7 @@ INSTALLED_APPS = [
     'languagecontrol',
 
     'core',
+    'poem',
 ]
 
 MIDDLEWARE = [

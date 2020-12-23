@@ -10,10 +10,6 @@ class RegistrationForm(BaseRegistrationForm):
             'email',
             'password1',
             'password2',
-            'name',
-            'name_dative',
-            'birth_year',
-            'about',
             'contact_name',
             'contact_address',
             'contact_postal_code',
@@ -26,12 +22,6 @@ class ProfileForm(forms.ModelForm):
         model = User
         fields = [
             'email',
-            #'password1',
-            #'password2',
-            'name',
-            'name_dative',
-            'birth_year',
-            'about',
             'contact_name',
             'contact_address',
             'contact_postal_code',

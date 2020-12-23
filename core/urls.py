@@ -3,10 +3,10 @@ from django.urls import include
 from django.urls import path
 from django.urls import reverse_lazy
 from django.views.generic.base import TemplateView
-from django_registration.backends.activation.views import RegistrationView
 from django_registration.backends.activation.views import ActivationView
 from core import views
 from core.forms import RegistrationForm
+from core.views import RegistrationView
 
 urlpatterns = [
     path('', views.main, name='main'),

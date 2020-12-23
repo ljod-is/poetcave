@@ -8,6 +8,7 @@
 <form method="post" class="cmxform">
 {% csrf_token %}
 
+{{ author_form.non_field_errors }}
 {{ form.non_field_errors }}
 
 <link href="http://www.ljod.is/css/cmxformTemplate.css" rel="stylesheet"> 
@@ -39,23 +40,23 @@ Vinsamlegast vandaðu til verksins. Þetta eru meðal annars þær upplýsingar 
 <br /><br />
 
 <label for="id_name">Nafn:</label>
-<input id="id_name" name="name" class="required" maxlength="{{ form.name.max_length }}" value="{{ form.name.value|default:'' }}" size="30" />
-<label for="id_name" generated="true" class="error">{% for error in form.name.errors %}{{ error }}<br />{% endfor %}</label>
+<input id="id_name" name="name" class="required" maxlength="{{ author_form.name.max_length }}" value="{{ author_form.name.value|default:'' }}" size="30" />
+<label for="id_name" generated="true" class="error">{% for error in author_form.name.errors %}{{ error }}<br />{% endfor %}</label>
 <br />
 
 <label for="id_name_dative">Nafn í þolfalli:</label>
-<input id="id_name_dative" name="name_dative" class="required" maxlength="{{ form.name_dative.max_length }}" value="{{ form.name_dative.value|default:'' }}" size="30" />
-<label for="id_name_dative" generated="true" class="error">{% for error in form.name_dative.errors %}{{ error }}<br />{% endfor %}</label>
+<input id="id_name_dative" name="name_dative" class="required" maxlength="{{ author_form.name_dative.max_length }}" value="{{ author_form.name_dative.value|default:'' }}" size="30" />
+<label for="id_name_dative" generated="true" class="error">{% for error in author_form.name_dative.errors %}{{ error }}<br />{% endfor %}</label>
 <br />Sjá <a target="_blank" href="http://bin.arnastofnun.is/">beygingarorðabók</a><br /><br />
 
 <label for="id_birth_year">Fæðingarár:</label>
-<input id="id_birth_year" name="birth_year" class="required" digits="true" minlength="4" maxlength="4" value="{{ form.birth_year.value|default:'' }}" size="4" />
-<label for="id_birth_year" generated="true" class="error">{% for error in form.birth_year.errors %}{{ error }}<br />{% endfor %}</label>
+<input id="id_birth_year" name="birth_year" class="required" digits="true" minlength="4" maxlength="4" value="{{ author_form.birth_year.value|default:'' }}" size="4" />
+<label for="id_birth_year" generated="true" class="error">{% for error in author_form.birth_year.errors %}{{ error }}<br />{% endfor %}</label>
 <br /><br />
 
 Ferilsskrá eða aðrar upplýsingar:
-<textarea id="id_about" name="about" cols="30" rows="3">{{ form.about.value|default:'' }}</textarea><br />
-<label for="id_about" generated="true" class="error">{% for error in form.about.errors %}{{ error }}<br />{% endfor %}</label>
+<textarea id="id_about" name="about" cols="30" rows="3">{{ author_form.about.value|default:'' }}</textarea><br />
+<label for="id_about" generated="true" class="error">{% for error in author_form.about.errors %}{{ error }}<br />{% endfor %}</label>
 <input type="button" value="Villuprófa">
 <br /><br />
 
