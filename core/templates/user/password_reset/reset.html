@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block sign %}{% trans 'Forgotten password' %}{% endblock %}
+
+{% block content %}
+
+<p>
+    {% blocktrans %}Since passwords are encoded in the database, we cannot send you your password by email.{% endblocktrans %}
+</p>
+<br />
+
+<p>
+    {% blocktrans %}However, we can create a new password and send it your email address. Please provide your email address below, press "Send" and your password should arrive shortly.{% endblocktrans %}
+</p>
+<br />
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">{% trans 'Send' %}</button>
+</form>
+{% endblock %}

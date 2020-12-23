@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block sign %}{% trans 'New password' %}{% endblock %}
+
+{% block content %}
+
+<p>{% trans 'Your password has been changed.' %}</p>
+<br />
+
+<p>{% trans 'You should now be able to login as usual.' %}</p>
+<br />
+
+{% endblock %}

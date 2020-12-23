@@ -64,6 +64,46 @@ urlpatterns = [
     # Logout.
     path('user/logout/', auth_views.LogoutView.as_view(), name='logout'),
 
+    # Reset password.
+    path(
+        'user/reset-password/',
+        auth_views.PasswordResetView.as_view(
+            template_name='user/password_reset/reset.html',
+            email_template_name='user/mail/password_reset_body.txt',
+            success_url = reverse_lazy('password_reset_requested')
+        ),
+        name='password_reset'
+    ),
+
+    # Password reset requested.
+    # NOTE: Django's native mechanism weirdly calls this "done" when there
+    # are at least two steps left. We call it "requested".
+    path(
+        'user/reset-password/requested/',
+        auth_views.PasswordResetDoneView.as_view(
+            template_name='user/password_reset/reset_requested.html'
+        ),
+        name='password_reset_requested'
+    ),
+
+    # Password request confirmed.
+    path(
+        'user/reset-password/confirm/<uidb64>/<token>/',
+        auth_views.PasswordResetConfirmView.as_view(
+            template_name='user/password_reset/reset_confirm.html'
+        ),
+        name='password_reset_confirm'
+    ),
+
+    # Password request and reset complete.
+    path(
+        'user/reset-password/complete/',
+        auth_views.PasswordResetCompleteView.as_view(
+            template_name='user/password_reset/reset_complete.html'
+        ),
+        name='password_reset_complete'
+    ),
+
     # User profile.
     path('user/profile/', views.profile, name='profile'),
 

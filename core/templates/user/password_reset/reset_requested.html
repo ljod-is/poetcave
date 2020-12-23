@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block sign %}{% trans 'Forgotten password' %}{% endblock %}
+
+{% block content %}
+
+<p>{% trans 'Your password has been changed and sent to you via email.' %}</p>
+<br />
+
+<p>{% trans 'For the sake of simplicity, the password is only composed of digits. Note that your password can be changed under "I" when logged in.' %}</p>
+<br />
+
+<p><strong>{% trans 'NOTE: If you do not receive the email, please check your spam folder before contacting us.' %}</strong></p>
+<br />
+
+{% endblock %}
