@@ -108,6 +108,8 @@ LOGOUT_REDIRECT_URL = reverse_lazy('main')
 
 LANGUAGE_CODE = 'is'
 TIME_ZONE = 'UTC'
+DATE_FORMAT = 'j. E Y'
+DATETIME_FORMAT = 'H:i, j. E Y'
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
