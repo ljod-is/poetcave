@@ -19,7 +19,7 @@
 <b>Aðgangsupplýsingar</b><br><br>
 
 <label for="id_old_password">Gamalt lykilorð</label>
-<input id="id_old_password" name="old_password" type="password" class="required" />
+<input id="id_old_password" name="old_password" type="password" class="required" autofocus="" />
 <label for="id_old_password" generated="true" class="error">{% for error in password_form.old_password.errors %}{{ error }}<br />{% endfor %}</label>
 <br />
 <label for="id_new_password1">Lykilorð</label>

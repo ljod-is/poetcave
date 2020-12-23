@@ -23,7 +23,7 @@ Vinsamlegast vandaðu til verksins. Þetta eru meðal annars þær upplýsingar 
 <b>Aðgangsupplýsingar</b><br><br>
 
 <label for="id_username">Notendanafn</label> 
-<input id="id_username" name="username" class="required" maxlength="{{ form.username.max_length }}" value="{{ form.username.value|default:'' }}" />
+<input id="id_username" name="username" class="required" maxlength="{{ form.username.max_length }}" value="{{ form.username.value|default:'' }}" autofocus="" />
 <label for="id_username" generated="true" class="error">{% for error in form.username.errors %}{{ error }}<br />{% endfor %}</label>
 <br>
 
