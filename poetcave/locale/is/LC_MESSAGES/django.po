@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-18 20:16+0000\n"
+"POT-Creation-Date: 2020-12-23 21:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,24 +18,21 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);\n"
 
-#: core/templates/core/profile.html:4
-msgid "I, me, my, mine."
-msgstr "Ég, mig, mér, mín."
+#: core/templates/base.html:164 core/templates/user/password_reset/reset.html:4
+#: core/templates/user/password_reset/reset_confirm.html:4
+#: core/templates/user/password_reset/reset_requested.html:4
+msgid "Forgotten password"
+msgstr "Gleymt lykilorð"
 
-#: core/templates/core/profile.html:94
-#: core/templates/django_registration/registration_form.html:98
-msgid "Register"
-msgstr "Skrá"
+#: core/templates/user/login.html:4
+msgid "Login"
+msgstr "Innskráning"
 
-#: core/templates/django_registration/activation_complete.html:6
-msgid "Registration was successful!"
-msgstr "Skráning tókst!"
+#: core/templates/user/login.html:13
+msgid "Log in"
+msgstr "Innskrá"
 
-#: core/templates/django_registration/activation_complete.html:8
-msgid "You can now log in using the form on the left side of the page."
-msgstr "Þú getur nú innskráð þig vinstra megin á síðunni."
-
-#: core/templates/django_registration/activation_email_body.txt:3
+#: core/templates/user/mail/activation_body.txt:3
 msgid ""
 "Someone, hopefully you, has signed up at our website using this email "
 "address."
@@ -44,50 +41,165 @@ msgstr ""
 "okkar.Einhver, sem er vonandi þú, hefur skráð sig á vefsetur okkar með þessu "
 "netfangi."
 
-#: core/templates/django_registration/activation_email_body.txt:5
+#: core/templates/user/mail/activation_body.txt:5
 msgid "Please click the following link in order to complete the registration:"
 msgstr ""
 "Vinsamlegast smelltu á eftirfarandi tengil til þess að klára skráninguna."
 "Vinsamlegast smellið á eftirfarandi tengil til þess að klára skráninguna."
 
-#: core/templates/django_registration/activation_email_body.txt:9
+#: core/templates/user/mail/activation_body.txt:9
 msgid ""
 "If you are not familiar with having registered, you can safely ignore this "
 "email."
 msgstr "Ef þú kannast ekki við þessa skráningu, geturðu hunsað þennan póst."
 
-#: core/templates/django_registration/activation_email_subject.txt:2
+#: core/templates/user/mail/activation_subject.txt:2
 msgid "Registration: Please confirm email"
 msgstr "Skráning: Vinsamlegast staðfesting netfang"
 
-#: core/templates/django_registration/registration_complete.html:6
-msgid "Thank you for registering!"
-msgstr "Takk fyrir að skrá þig!"
+#: core/templates/user/mail/password_reset_body.txt:3
+#, python-format
+msgid ""
+"You're receiving this email because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr ""
 
-#: core/templates/django_registration/registration_complete.html:8
-msgid "Please check your email to finish the registration process."
-msgstr "Vinsamlegast athugaðu tölvupósthólf þitt til að klára skráninguna."
+#: core/templates/user/mail/password_reset_body.txt:5
+msgid "Please go to the following page and choose a new password:"
+msgstr "Vinsamlegast opnaðu eftirfarandi síðu og veldu nýtt lykilorð:"
 
-#: core/templates/django_registration/registration_form.html:4
-msgid "New user"
-msgstr "Nýr notandi"
+#: core/templates/user/mail/password_reset_body.txt:9
+msgid "Your username, in case you’ve forgotten:"
+msgstr "Notandanafnið þitt, ef ske kynni að þú hafir gleymt því:"
 
-#: core/templates/registration/change_password_form.html:13
+#: core/templates/user/password_change.html:13
 msgid "Change Password"
 msgstr "Breyta lykilorði"
 
-#: core/templates/registration/login.html:4
-msgid "Login"
-msgstr "Innskráning"
+#: core/templates/user/password_reset/reset.html:9
+msgid ""
+"Since passwords are encoded in the database, we cannot send you your "
+"password by email."
+msgstr ""
+"Vegna þess að lykilorðin eru dulkóðuð í grunni er því miður ekki hægt að "
+"senda gleymd lykilorð í pósti."
 
-#: core/templates/registration/login.html:13
-msgid "Log in"
-msgstr "Innskrá"
+#: core/templates/user/password_reset/reset.html:14
+msgid ""
+"However, we can create a new password and send it your email address. Please "
+"provide your email address below, press \"Send\" and your password should "
+"arrive shortly."
+msgstr ""
+"Hinsvegar er hægt að breyta lykilorðinu og senda hið nýja til þín á "
+"netfangið sem þú skráðir þig upprunalega með. Setjið inn notandanafn og "
+"netfang hingað inn að neðan, smellið á \"Senda\", og nýja lykilorðið ætti að "
+"koma innan örfárra mínútna í mesta lagi."
 
-#: core/views.py:37
+#: core/templates/user/password_reset/reset.html:21
+msgid "Send"
+msgstr "Senda"
+
+#: core/templates/user/password_reset/reset_complete.html:4
+#, fuzzy
+#| msgid "Change Password"
+msgid "New password"
+msgstr "Breyta lykilorði"
+
+#: core/templates/user/password_reset/reset_complete.html:8
+msgid "Your password has been changed."
+msgstr "Lykilorðinu hefur verið breytt."
+
+#: core/templates/user/password_reset/reset_complete.html:11
+msgid "You should now be able to login as usual."
+msgstr "Þú ættir núna að geta innskráð þig eins og venjulega."
+
+#: core/templates/user/password_reset/reset_confirm.html:10
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr ""
+"Vinsamlegast settu nýja lykilorðið inn tvisvar þannig að það sé örugglega "
+"stimplað inn rétt."
+
+#: core/templates/user/password_reset/reset_confirm.html:16
+#, fuzzy
+#| msgid "Change Password"
+msgid "New password:"
+msgstr "Breyta lykilorði"
+
+#: core/templates/user/password_reset/reset_confirm.html:21
+#, fuzzy
+#| msgid "Forgotten password"
+msgid "Confirm password:"
+msgstr "Gleymt lykilorð"
+
+#: core/templates/user/password_reset/reset_confirm.html:24
+#, fuzzy
+#| msgid "Change Password"
+msgid "Change my password"
+msgstr "Breyta lykilorði"
+
+#: core/templates/user/password_reset/reset_confirm.html:29
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
+msgstr ""
+"Tengillinn til að endurnýja lykilorðið hefur þegar verið notaður. "
+"Vinsamlegast reyndu aftur að endurstilla lykilorðið."
+
+#: core/templates/user/password_reset/reset_requested.html:8
+msgid "Your password has been changed and sent to you via email."
+msgstr "Lykilorðinu hefur verið breytt, og það sent til þín í pósti."
+
+#: core/templates/user/password_reset/reset_requested.html:11
+msgid ""
+"For the sake of simplicity, the password is only composed of digits. Note "
+"that your password can be changed under \"I\" when logged in."
+msgstr ""
+"Lykilorðið er bara í tölustöfum til einföldunar. Athugið að hægt er að "
+"breyta lykilorðinu undir \"Ég\" þegar maður er innskráður á vefinn."
+
+#: core/templates/user/password_reset/reset_requested.html:14
+msgid ""
+"NOTE: If you do not receive the email, please check your spam folder before "
+"contacting us."
+msgstr ""
+"ATH: Ef þú sérð póstinn ekki, athugaðu þá vandlega hvort hann hafi lennt í "
+"ruslpóstvörn póstforrits þíns áður en þú hefur samband við okkur."
+
+#: core/templates/user/profile.html:4
+msgid "I, me, my, mine."
+msgstr "Ég, mig, mér, mín."
+
+#: core/templates/user/profile.html:94
+#: core/templates/user/registration/register.html:99
+msgid "Register"
+msgstr "Skrá"
+
+#: core/templates/user/registration/activation_complete.html:6
+msgid "Registration was successful!"
+msgstr "Skráning tókst!"
+
+#: core/templates/user/registration/activation_complete.html:8
+msgid "You can now log in using the form on the left side of the page."
+msgstr "Þú getur nú innskráð þig vinstra megin á síðunni."
+
+#: core/templates/user/registration/register.html:4
+msgid "New user"
+msgstr "Nýr notandi"
+
+#: core/templates/user/registration/registration_complete.html:6
+msgid "Thank you for registering!"
+msgstr "Takk fyrir að skrá þig!"
+
+#: core/templates/user/registration/registration_complete.html:8
+msgid "Please check your email to finish the registration process."
+msgstr "Vinsamlegast athugaðu tölvupósthólf þitt til að klára skráninguna."
+
+#: core/views.py:45
 msgid "Password updated."
 msgstr "Lykilorð uppfært."
 
-#: core/views.py:49
+#: core/views.py:58
 msgid "Profile updated."
 msgstr "Notandaupplýsingar uppfærðar."
