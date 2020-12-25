@@ -12,14 +12,14 @@
     <form method="post">
         {% csrf_token %}
         <div class="form-row field-password1">
-            {{ form.new_password1.errors }}
             <label for="id_new_password1">{% translate 'New password:' %}</label>
-            {{ form.new_password1 }}
+            <input type="password" id="id_new_password1" name="new_password1" autofocus="" />
+            <div for="id_new_password1" generated="true" class="error">{% for error in form.new_password1.errors %}{{ error }}<br />{% endfor %}</div>
         </div>
         <div class="form-row field-password2">
-            {{ form.new_password2.errors }}
             <label for="id_new_password2">{% translate 'Confirm password:' %}</label>
-            {{ form.new_password2 }}
+            <input type="password" id="id_new_password2" name="new_password2" />
+            <div for="id_new_password2" generated="true" class="error">{% for error in form.new_password2.errors %}{{ error }}<br />{% endfor %}</div>
         </div>
         <input type="submit" value="{% trans 'Change my password' %}">
     </form>

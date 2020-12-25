@@ -17,7 +17,12 @@
 
 <form method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    <p>
+        <label for="id_email">{% trans 'Email' %}:</label>
+        <input type="email" id="id_email" name="email" autocomplete="email" maxlength="{{ form.email.field.max_length }}" required=""  value="{{ form.email.value|default:'' }}" autofocus="">
+        <label for="id_email" generated="true" class="error">{% for error in form.email.errors %}{{ error }}<br />{% endfor %}</label>
+    </p>
     <button type="submit">{% trans 'Send' %}</button>
 </form>
+
 {% endblock %}
