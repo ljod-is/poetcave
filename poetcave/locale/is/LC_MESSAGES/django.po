@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-23 21:11+0000\n"
+"POT-Creation-Date: 2020-12-28 18:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);\n"
 
-#: core/templates/base.html:164 core/templates/user/password_reset/reset.html:4
+#: core/templates/base.html:166 core/templates/user/password_reset/reset.html:4
 #: core/templates/user/password_reset/reset_confirm.html:4
 #: core/templates/user/password_reset/reset_requested.html:4
 msgid "Forgotten password"
@@ -96,6 +96,10 @@ msgstr ""
 "koma innan örfárra mínútna í mesta lagi."
 
 #: core/templates/user/password_reset/reset.html:21
+msgid "Email"
+msgstr ""
+
+#: core/templates/user/password_reset/reset.html:25
 msgid "Send"
 msgstr "Senda"
 
@@ -121,13 +125,13 @@ msgstr ""
 "Vinsamlegast settu nýja lykilorðið inn tvisvar þannig að það sé örugglega "
 "stimplað inn rétt."
 
-#: core/templates/user/password_reset/reset_confirm.html:16
+#: core/templates/user/password_reset/reset_confirm.html:15
 #, fuzzy
 #| msgid "Change Password"
 msgid "New password:"
 msgstr "Breyta lykilorði"
 
-#: core/templates/user/password_reset/reset_confirm.html:21
+#: core/templates/user/password_reset/reset_confirm.html:20
 #, fuzzy
 #| msgid "Forgotten password"
 msgid "Confirm password:"
@@ -203,3 +207,23 @@ msgstr "Lykilorð uppfært."
 #: core/views.py:58
 msgid "Profile updated."
 msgstr "Notandaupplýsingar uppfærðar."
+
+#: poem/templates/author/admin.html:8
+msgid "Add poem"
+msgstr "Bæta við ljóði"
+
+#: poem/templates/author/admin.html:13
+msgid "Poem"
+msgstr "Ljóð"
+
+#: poem/templates/author/admin.html:14
+msgid "Visible"
+msgstr "Sýnilegt"
+
+#: poem/templates/author/admin.html:15
+msgid "Approved"
+msgstr "Samþykkt"
+
+#: poem/templates/author/admin.html:16
+msgid "Control"
+msgstr "Stjórn"
