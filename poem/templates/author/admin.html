@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block sign %}{{ author.name }}{% endblock %}
+
+{% block content %}
+
+[ <a href="#">{% trans 'Add poem' %}</a> ]
+<br /><br />
+
+<table>
+    <tr>
+        <th>{% trans 'Poem' %}</th>
+        <th class="center">{% trans 'Visible' %}</th>
+        <th class="center">{% trans 'Approved' %}</th>
+        <th class="center">{% trans 'Control' %}</th>
+    </tr>
+    {% for poem in author.poems.all %}
+        <tr>
+            <td><a href="#">{{ poem.name }}</a></td>
+            <td class="center">
+                {% if poem.public %}
+                    <img src="http://www.ljod.is/images/hak.png" />
+                {% else %}
+                    <img src="http://www.ljod.is/images/hak_tomt.png" />
+                {% endif %}
+            </td>
+            <td class="center">
+                {% if poem.approved %}
+                    <img src="http://www.ljod.is/images/hak.png" />
+                {% else %}
+                    <img src="http://www.ljod.is/images/hak_tomt.png" />
+                {% endif %}
+            </td>
+            <td class="control center">
+                [ <a href="#"> {% trans 'Eyða' %}</a>
+                | <a href="#"> {% trans 'Breyta' %}</a> ]
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock %}

@@ -1,9 +1,11 @@
 {% load i18n %}
+{% load static %}
 
 <html> 
 <head> 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
 <link href="http://www.ljod.is/css/poetry.css" rel="stylesheet"> 
+<link href="{% static 'core/css/legacy-imitation.css' %}" rel="stylesheet" />
 <title>Ljóð.is</title> 
 <link rel="stylesheet" href="http://www.ljod.is//cms/css/screen.css" type="text/css" media="screen" />
 <!--[if lt IE 7]>
@@ -147,7 +149,7 @@
 										<img src="http://www.ljod.is/images/spacer.gif" height="3"><br />
 										<a href="{% url 'profile' %}"><img src="http://www.ljod.is/images/nav_eg.gif" /></a><br />
 										<img src="http://www.ljod.is/images/spacer.gif" height="3"><br />
-										<a href="http://www.ljod.is/index.php/ljod/my_poems"><img src="http://www.ljod.is/images/nav_account.gif"></a><br />
+										<a href="{% url 'author_admin' user.author_id %}"><img src="http://www.ljod.is/images/nav_account.gif"></a><br />
 										<img src="http://www.ljod.is/images/spacer.gif" height="3"><br />
 										<a href="{% url 'logout' %}"><img src="http://www.ljod.is/images/nav_utskra.gif" /></a>
 										<img src="http://www.ljod.is/images/spacer.gif" height="7"><br />

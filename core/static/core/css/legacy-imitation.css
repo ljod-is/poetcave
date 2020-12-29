@@ -1,0 +1,14 @@
+/*
+This CSS file is to imitate the look and feel of the legacy website so that
+we can use modern HTML but still retain the old look and feel.
+
+When we get to the design phase, once we're feature-complete with regard to
+the old website, this file should be completely replaced.
+*/
+
+table { padding: 0px; margin: 0px; border-collapse: collapse; }
+table th { font-size: 10px; font-weight: bold; padding: 0px 3px 0px 3px; text-align: left; }
+table th:first-child { padding-left: 0px; }
+table td.control { padding-left: 20px; }
+
+.center { text-align: center; }

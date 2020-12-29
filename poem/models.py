@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.db import models
 
 class Author(models.Model):
@@ -8,3 +9,21 @@ class Author(models.Model):
 
     def __str__(self):
         return '%s (%d)' % (self.name, self.birth_year)
+
+
+class Poem(models.Model):
+    author = models.ForeignKey('poem.Author', related_name='poems', on_delete=models.CASCADE)
+
+    name = models.CharField(max_length=50, null=False, blank=False)
+    body = models.TextField(null=False, blank=False)
+    description = models.TextField(null=True, blank=True)
+
+    # Whether the author wants the poem shown publicly or not.
+    public = models.BooleanField(default=False)
+
+    approved = models.BooleanField(default=False)
+    approved_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL)
+    approved_timing = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return '%s - %s' % (self.name, self.author)
