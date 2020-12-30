@@ -5,7 +5,7 @@
 
 {% block content %}
 
-[ <a href="#">{% trans 'Add poem' %}</a> ]
+[ <a href="{% url 'poem_add' author.id %}">{% trans 'Add poem' %}</a> ]
 <br /><br />
 
 <table>

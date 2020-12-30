@@ -12,3 +12,12 @@ table th:first-child { padding-left: 0px; }
 table td.control { padding-left: 20px; }
 
 .center { text-align: center; }
+
+input, button {
+    border-width: 1px;
+
+}
+
+textarea {
+	border-width: 1px;
+}
