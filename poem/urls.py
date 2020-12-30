@@ -7,5 +7,6 @@ from poem import views
 
 urlpatterns = [
     path('author/<int:author_id>/admin/', views.author_admin, name='author_admin'),
-    path('author/<int:author_id>/poem/add/', views.poem_add, name='poem_add'),
+    path('author/<int:author_id>/poem/add/', views.poem_add_edit, name='poem_add'),
+    path('author/<int:author_id>/poem/edit/<int:poem_id>/', views.poem_add_edit, name='poem_edit'),
 ]

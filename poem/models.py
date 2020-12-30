@@ -11,6 +11,12 @@ class AuthorManager(models.Manager):
         return self.filter(user=user)
 
 
+class PoemManager(models.Manager):
+    def managed_by(self, user):
+        # NOTE: See note in `AuthorManager.managed_by`.
+        return self.filter(author__user=user)
+
+
 class Author(models.Model):
     objects = AuthorManager()
 
@@ -24,6 +30,8 @@ class Author(models.Model):
 
 
 class Poem(models.Model):
+    objects = PoemManager()
+
     author = models.ForeignKey('poem.Author', related_name='poems', on_delete=models.CASCADE)
 
     name = models.CharField(max_length=50, null=False, blank=False)

@@ -6,6 +6,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from poem.forms import PoemForm
 from poem.models import Author
+from poem.models import Poem
 
 # NOTE: In the future, it may become possible for a user to have access to multiple
 # authors, for example deceased authors whose works have fallen out of copyright.
@@ -31,16 +32,21 @@ def author_admin(request, author_id):
 
 
 @login_required
-def poem_add(request, author_id):
+def poem_add_edit(request, author_id, poem_id=None):
 
     try:
         author = Author.objects.managed_by(request.user).get(id=author_id)
     except Author.DoesNotExist:
         raise Http404
 
-    form = PoemForm()
+    if poem_id is not None:
+        poem = Poem.objects.managed_by(request.user).get(id=poem_id)
+    else:
+        poem = Poem()
+
+    form = PoemForm(instance=poem)
     if request.method == 'POST':
-        form = PoemForm(request.POST)
+        form = PoemForm(request.POST, instance=poem)
         if form.is_valid():
             poem = form.save(commit=False)
             poem.author_id = author.id
