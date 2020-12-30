@@ -58,3 +58,20 @@ def poem_add_edit(request, author_id, poem_id=None):
         'form': form,
     }
     return render(request, 'poem/add.html', ctx)
+
+
+@login_required
+def poem_delete(request, author_id, poem_id):
+
+    author = Author.objects.managed_by(request.user).get(id=author_id)
+    poem = Poem.objects.managed_by(request.user).get(id=poem_id)
+
+    if request.method == 'POST':
+        poem.delete()
+        return redirect(reverse('author_admin', args=(author.id,)))
+
+    ctx = {
+        'author': author,
+        'poem': poem,
+    }
+    return render(request, 'poem/delete.html', ctx)

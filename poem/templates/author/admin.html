@@ -33,7 +33,7 @@
                 {% endif %}
             </td>
             <td class="control center">
-                [ <a href="#"> {% trans 'Delete' %}</a>
+                [ <a href="{% url 'poem_delete' poem.author_id poem.id %}"> {% trans 'Delete' %}</a>
                 | <a href="{% url 'poem_edit' poem.author_id poem.id %}"> {% trans 'Edit' %}</a> ]
             </td>
         </tr>
