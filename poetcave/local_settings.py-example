@@ -8,6 +8,12 @@ SECRET_KEY = 'some-random-string'
 DEBUG = True
 ALLOWED_HOSTS = []
 
+# Database
+DATABASE_ENGINE = 'django.db.backends.mysql'
+DATABASE_NAME = 'poetcave'
+DATABASE_USER = 'poetcave'
+DATABASE_PASSWORD = 'some-random-string'
+
 # Email
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 #EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

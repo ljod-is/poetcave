@@ -69,17 +69,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'poetcave.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
@@ -131,3 +120,14 @@ ACCOUNT_ACTIVATION_DAYS = 1
 
 # Import customizable settings.
 from poetcave.local_settings import *
+
+# Database
+# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+DATABASES = {
+    'default': {
+        'ENGINE': DATABASE_ENGINE,
+        'NAME': DATABASE_NAME,
+        'USER': DATABASE_USER,
+        'PASSWORD': DATABASE_PASSWORD,
+    }
+}
