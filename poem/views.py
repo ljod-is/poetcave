@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
-from django.shortcuts import get_object_or_404
+from django.http import Http404
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -19,10 +19,10 @@ from poem.models import Author
 @login_required
 def author_admin(request, author_id):
 
-    if request.user.author_id != author_id:
-        raise PermissionDenied()
-
-    author = get_object_or_404(Author, id=author_id, user=request.user)
+    try:
+        author = Author.objects.managed_by(request.user).get(id=author_id)
+    except Author.DoesNotExist:
+        raise Http404
 
     ctx = {
         'author': author,
@@ -33,10 +33,10 @@ def author_admin(request, author_id):
 @login_required
 def poem_add(request, author_id):
 
-    if request.user.author_id != author_id:
-        raise PermissionDenied()
-
-    author = get_object_or_404(Author, id=author_id, user=request.user)
+    try:
+        author = Author.objects.managed_by(request.user).get(id=author_id)
+    except Author.DoesNotExist:
+        raise Http404
 
     form = PoemForm()
     if request.method == 'POST':

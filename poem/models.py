@@ -1,7 +1,19 @@
 from django.conf import settings
 from django.db import models
 
+
+class AuthorManager(models.Manager):
+    def managed_by(self, user):
+        # NOTE: This will probably change in the future, if we implement
+        # users' ability to control many authors. For now, we're assuming a
+        # one-to-one relationship between the user and author. This function
+        # currently exists to ease that transition, once it occurs.
+        return self.filter(user=user)
+
+
 class Author(models.Model):
+    objects = AuthorManager()
+
     name = models.CharField(max_length=100, null=False, blank=False)
     name_dative = models.CharField(max_length=100, null=False, blank=False)
     birth_year = models.SmallIntegerField(null=True, blank=True)
