@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-30 17:37+0000\n"
+"POT-Creation-Date: 2020-12-30 20:44+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -236,7 +236,7 @@ msgstr "Eyða"
 msgid "Edit"
 msgstr "Breyta"
 
-#: poem/templates/poem/add.html:4
+#: poem/templates/poem/add.html:4 poem/templates/poem/delete.html:4
 msgid "Homestead"
 msgstr "Heimasvæði"
 
@@ -256,10 +256,14 @@ msgstr "Umfjöllun (valfrjálst)"
 msgid "Show publicly on website (i.e. in poem collection)"
 msgstr "Sýna opinberlega á vefnum (t.d. í ljóðasafni)"
 
-#: poem/templates/poem/add.html:40
+#: poem/templates/poem/add.html:40 poem/templates/poem/delete.html:10
 msgid "OK"
 msgstr "Í lagi"
 
-#: poem/templates/poem/add.html:41
+#: poem/templates/poem/add.html:41 poem/templates/poem/delete.html:11
 msgid "Cancel"
 msgstr "Hætta við"
+
+#: poem/templates/poem/delete.html:9
+msgid "Are you sure you wish to delete this poem?"
+msgstr "Ertu viss um að þú viljir eyða þessu ljóði?"
