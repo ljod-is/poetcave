@@ -24,4 +24,5 @@ class User(AbstractUser):
     # field means that the User and corresponding Author are the same person.
     author = models.OneToOneField('poem.Author', null=True, related_name='user', on_delete=models.SET_NULL)
 
-    date_updated = models.DateTimeField(null=True, blank=True)
+    # `date_joined` field for creation is provided by parent model.
+    date_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
