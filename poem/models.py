@@ -22,8 +22,8 @@ class Author(models.Model):
 
     name = models.CharField(max_length=100, null=False, blank=False)
     name_dative = models.CharField(max_length=100, null=False, blank=False)
-    birth_year = models.SmallIntegerField(null=True, blank=True)
-    death_year = models.SmallIntegerField(null=True, blank=True)
+    year_born = models.SmallIntegerField(null=True, blank=True)
+    year_dead = models.SmallIntegerField(null=True, blank=True)
     about = models.TextField(null=True, blank=True)
 
     def __str__(self):

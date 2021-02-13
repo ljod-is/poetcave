@@ -8,7 +8,7 @@ class AuthorForm(forms.ModelForm):
         fields = [
             'name',
             'name_dative',
-            'birth_year',
+            'year_born',
             'about',
         ]
 
