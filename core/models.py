@@ -23,3 +23,5 @@ class User(AbstractUser):
     # relationship later, it will be a different field. The value in this
     # field means that the User and corresponding Author are the same person.
     author = models.OneToOneField('poem.Author', null=True, related_name='user', on_delete=models.SET_NULL)
+
+    date_updated = models.DateTimeField(null=True, blank=True)
