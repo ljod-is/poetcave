@@ -26,6 +26,9 @@ class Author(models.Model):
     year_dead = models.SmallIntegerField(null=True, blank=True)
     about = models.TextField(null=True, blank=True)
 
+    # `date_joined` field for creation is provided by parent model.
+    date_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
+
     def __str__(self):
         return '%s (%d)' % (self.name, self.birth_year)
 
