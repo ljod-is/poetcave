@@ -22,9 +22,6 @@ def dictfetchall(cursor):
 
 class Command(BaseCommand):
 
-    # Ignore users that are known to be exact duplicates.
-    SKIP_USERS = [4000]
-
     connection = None
 
 
@@ -33,10 +30,27 @@ class Command(BaseCommand):
         try:
             self.connection = connections['old']
 
+            self.remove_duplicates()
+
             self.import_users()
 
         except KeyboardInterrupt:
             quit(1)
+
+
+    def remove_duplicates(self):
+        # Rather than constantly keeping track of a duplicate in the database,
+        # we'll just remove it before dealing with the rest.
+        #
+        # Normally, we would analyze the database here and figure out
+        # duplicates programmatically, but we know there is only one instance,
+        # with the user ID 4000, so we'll hard-code this, seeing that this
+        # script is a one-off thing.
+        with self.connection.cursor() as cursor:
+            print('Deleting duplicate data...', end='', flush=True)
+            cursor.execute('DELETE FROM `cube_poets` WHERE `id` = 4147')
+            cursor.execute('DELETE FROM `users` WHERE `id` = 4000')
+            print(' done')
 
 
     def import_users(self):
@@ -59,11 +73,6 @@ class Command(BaseCommand):
             ''')
 
             for row in dictfetchall(cursor):
-
-                # Skip users known to be duplicates. Only the one with the ID
-                # 4000 (as explained above).
-                if row['id'] in self.SKIP_USERS:
-                    continue
 
                 # Create new user.
                 user = User()
