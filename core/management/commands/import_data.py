@@ -70,7 +70,7 @@ class Command(BaseCommand):
 
     def import_users(self):
 
-        existing_user_ids = ','.join([str(i) for i in User.objects.all().values_list('id', flat=True)])
+        existing_user_ids = ','.join([str(i) for i in User.objects.all().values_list('id', flat=True)]) or '0'
 
         with self.connection.cursor() as cursor:
             cursor.execute('''
@@ -129,7 +129,7 @@ class Command(BaseCommand):
 
     def import_authors(self):
 
-        existing_author_ids = ','.join([str(i) for i in Author.objects.all().values_list('id', flat=True)])
+        existing_author_ids = ','.join([str(i) for i in Author.objects.all().values_list('id', flat=True)]) or '0'
 
         with self.connection.cursor() as cursor:
             cursor.execute('''
