@@ -17,6 +17,7 @@ from django.utils import timezone
 from core.models import User
 
 from poem.models import Author
+from poem.models import Poem
 
 
 # A utility function for returning rows as a dictionary.
@@ -71,6 +72,8 @@ class Command(BaseCommand):
             self.import_users()
 
             self.import_authors()
+
+            self.import_poems()
 
         except KeyboardInterrupt:
             quit(1)
@@ -205,6 +208,89 @@ class Command(BaseCommand):
                         id=author.id
                     ).update(
                         date_updated=awarize(row['last_updated'])
+                    )
+
+                    print(' done')
+
+
+    def import_poems(self):
+
+        # Some poems are by authors that have been deleted, so we'll need to
+        # check for their existence.
+        author_ids = list(Author.objects.all().values_list('id', flat=True))
+
+        existing_poem_ids = ','.join([str(i) for i in Poem.objects.all().values_list('id', flat=True)]) or '0'
+
+        with self.connection.cursor() as cursor:
+            cursor.execute('''
+                SELECT
+                    `id`,
+                    `name`,
+                    `body`,
+                    `author`,
+                    `sent`,
+                    `about`,
+                    `accepted`,
+                    `visible`,
+                    `whyrejected`,
+                    `trashed`,
+                    `last_updated`
+                FROM
+                    `cube_poems`
+                WHERE
+                     `id` NOT IN (%s)
+            ''' % existing_poem_ids)
+
+            for row in dictfetchall(cursor):
+                poem = Poem()
+
+                poem.id = row['id']
+                poem.name = row['name']
+                poem.body = row['body']
+                poem.about = row['about']
+
+                poem.public = row['visible'] == '1'
+                # poem.public_timing data not available.
+                poem.trashed = row['trashed'] is not None
+                poem.trashed_timing = awarize(row['trashed'])
+
+                if row['accepted'] == '-1':
+                    poem.editorial_status = 'rejected'
+                elif row['accepted'] in ['0', '']:
+                    poem.editorial_status = 'pending'
+                elif row['accepted'] == '1':
+                    poem.editorial_status = 'approved'
+
+                # poem.editorial_user data not available.
+                # poem.editorial_timing data not available.
+                # poem.editorial_reason data not available.
+
+                if row['author'] is not None and row['author'] in author_ids:
+                    poem.author_id = row['author']
+
+                # I was here. Just successfully imported poems. Now to do a full import run.
+                # Database is clean and ready to go: ./manage.py import_data
+
+                with transaction.atomic():
+                    print('Saving poem "%s"...' % poem.name, end='', flush=True)
+                    poem.save()
+
+                    # Copy data about last update. This results in an extra
+                    # call to the database, but we do this to avoid the
+                    # triggering of `auto_now` for the field. It doesn't
+                    # matter, since this script will only be run once and then
+                    # never again.
+                    Poem.objects.filter(
+                        id=poem.id
+                    ).update(
+                        date_updated=awarize(row['last_updated'])
+                    )
+
+                    # Do the same for creation, since we have it.
+                    Poem.objects.filter(
+                        id=poem.id
+                    ).update(
+                        date_created=awarize(row['sent'])
                     )
 
                     print(' done')
