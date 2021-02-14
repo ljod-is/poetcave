@@ -44,7 +44,10 @@ class Author(models.Model):
     date_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
 
     def __str__(self):
-        return '%s (%d)' % (self.name, self.birth_year)
+        if self.year_born is not None:
+            return '%s (%d)' % (self.name, self.year_born)
+        else:
+            return self.name
 
 
 class Poem(models.Model):
