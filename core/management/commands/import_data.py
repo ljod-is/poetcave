@@ -6,6 +6,8 @@ feature-complete, this script should be deleted.
 There's a bit more hard-coding here than usual for this reason. This will
 never become general-purpose.
 '''
+from datetime import datetime
+
 from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import connections
@@ -27,10 +29,30 @@ def dictfetchall(cursor):
 def awarize(dt):
     if dt is None:
         return None
+    elif type(dt) is int:
+        return timezone.make_aware(datetime.utcfromtimestamp(dt))
     else:
         # This may provoke an exception which should be handled by the calling
         # function as usual.
         return timezone.make_aware(dt)
+
+
+# A utility function for figuring out what to do with crazy year data.
+def sanitize_year(year):
+    try:
+        result = int(year)
+
+        # When users give a two-digit year, we'll assume they mean
+        # 1900-and-that.
+        if len(str(result)) == 2:
+            result += 1900
+
+    except ValueError:
+        # This mean we ran into some weird value, and we're forced to say it's
+        # None. There are lots of strange values in the original database.
+        result = None
+
+    return result
 
 
 class Command(BaseCommand):
@@ -144,7 +166,7 @@ class Command(BaseCommand):
                     `u`.`id` AS `user_id`
                 FROM
                     `cube_poets` AS `p`
-                    INNER JOIN `users` AS `u` ON `u`.`poet` = `p`.`id`
+                    LEFT OUTER JOIN `users` AS `u` ON `u`.`poet` = `p`.`id`
                 WHERE
                     `p`.`id` NOT IN (%s)
             ''' % existing_author_ids)
@@ -156,30 +178,16 @@ class Command(BaseCommand):
                 # that we don't have to check if the row already exists.
                 author.id = row['id']
 
-                # Figure out what to do with crazy year data.
-                try:
-                    year_born = int(row['born'])
-
-                    # When users give a two-digit year, we'll assume they mean
-                    # 1900-and-that.
-                    if len(str(year_born)) == 2:
-                        year_born += 1900
-
-                except ValueError:
-                    # This mean we ran into some weird value, and we're forced
-                    # to say it's None. There are lots of strange values in
-                    # the original database.
-                    year_born = None
-
                 author.name = row['name']
                 author.name_dative = row['name_thagufall']
-                author.year_born = year_born
-                author.year_dead = row['dead'] or None
+                author.year_born = sanitize_year(row['born'])
+                author.year_dead = sanitize_year(row['dead'])
                 author.about = row['info']
 
                 # This is possible because we imported the users with their
                 # original ID.
-                author.user_id = row['user_id']
+                if row['user_id'] is not None:
+                    author.user_id = row['user_id']
 
                 print('Saving author "%s"...' % author.name, end='', flush=True)
                 author.save()
