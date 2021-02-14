@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.utils.translation import ugettext as _
 
 
 class AuthorManager(models.Manager):
@@ -53,18 +54,26 @@ class Author(models.Model):
 class Poem(models.Model):
     objects = PoemManager()
 
+    EDITORIAL_STATUS_CHOICES = (
+        ('pending', _('Pending')),
+        ('approved', _('Approved')),
+        ('rejected', _('Rejected')),
+    )
+
     author = models.ForeignKey('poem.Author', related_name='poems', on_delete=models.CASCADE)
 
     name = models.CharField(max_length=50, null=False, blank=False)
     body = models.TextField(null=False, blank=False)
-    description = models.TextField(null=True, blank=True)
+    about = models.TextField(null=True, blank=True)
 
-    # Whether the author wants the poem shown publicly or not.
+    # Wishes of the user.
     public = models.BooleanField(default=False)
+    public_timing = models.DateTimeField(null=True, blank=True)
 
-    approved = models.BooleanField(default=False)
-    approved_by = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL)
-    approved_timing = models.DateTimeField(auto_now=True)
+    editorial_status = models.CharField(max_length=20, choices=EDITORIAL_STATUS_CHOICES, default='pending')
+    editorial_user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL)
+    editorial_timing = models.DateTimeField(null=True, blank=True)
+    editorial_reason = models.TextField(null=True, blank=True)
 
     def __str__(self):
         return '%s - %s' % (self.name, self.author)

@@ -18,6 +18,6 @@ class PoemForm(forms.ModelForm):
         fields = [
             'name',
             'body',
-            'description',
+            'about',
             'public',
         ]
