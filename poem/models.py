@@ -26,6 +26,20 @@ class Author(models.Model):
     year_dead = models.SmallIntegerField(null=True, blank=True)
     about = models.TextField(null=True, blank=True)
 
+    # Author's associated user. This separation is done because there may be
+    # authors without associated users and possibly users without associated
+    # authors. It is also possible that a user may administer many authors in
+    # the future, or one author being managed by multiple users, such as
+    # historical authors whose work has fallen out of copyright.
+    #
+    # However, the overwhelming majority of authors and users will have
+    # exactly one of the other. For this reason, making this a
+    # ManyToManyField will complicate both development and performance,
+    # largely unnecessarily. If we want to create a ManyToManyField
+    # relationship later, it will be a different field. The value in this
+    # field means that the User and corresponding Author are the same person.
+    user = models.OneToOneField('core.User', null=True, related_name='author', on_delete=models.SET_NULL)
+
     # `date_joined` field for creation is provided by parent model.
     date_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
 
