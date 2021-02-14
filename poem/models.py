@@ -41,7 +41,6 @@ class Author(models.Model):
     # field means that the User and corresponding Author are the same person.
     user = models.OneToOneField('core.User', null=True, related_name='author', on_delete=models.SET_NULL)
 
-    # `date_joined` field for creation is provided by parent model.
     date_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
 
     def __str__(self):
@@ -60,20 +59,28 @@ class Poem(models.Model):
         ('rejected', _('Rejected')),
     )
 
-    author = models.ForeignKey('poem.Author', related_name='poems', on_delete=models.CASCADE)
+    author = models.ForeignKey('poem.Author', related_name='poems', null=True, on_delete=models.CASCADE)
 
-    name = models.CharField(max_length=50, null=False, blank=False)
+    # Poem contents.
+    name = models.CharField(max_length=150, null=False, blank=False)
     body = models.TextField(null=False, blank=False)
     about = models.TextField(null=True, blank=True)
 
-    # Wishes of the user.
+    # User decisions.
     public = models.BooleanField(default=False)
     public_timing = models.DateTimeField(null=True, blank=True)
+    trashed = models.BooleanField(default=False)
+    trashed_timing = models.DateTimeField(null=True, blank=True)
 
+    # Editorial decision.
     editorial_status = models.CharField(max_length=20, choices=EDITORIAL_STATUS_CHOICES, default='pending')
     editorial_user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL)
     editorial_timing = models.DateTimeField(null=True, blank=True)
     editorial_reason = models.TextField(null=True, blank=True)
+
+    # `date_joined` field for creation is provided by parent model.
+    date_created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    date_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
 
     def __str__(self):
         return '%s - %s' % (self.name, self.author)
