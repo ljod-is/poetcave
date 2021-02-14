@@ -13,11 +13,24 @@ from django.utils import timezone
 
 from core.models import User
 
+from poem.models import Author
+
 
 # A utility function for returning rows as a dictionary.
 def dictfetchall(cursor):
     columns = [col[0] for col in cursor.description]
     return [dict(zip(columns, row)) for row in cursor.fetchall()]
+
+
+# A utility function for returning a timezone-aware datetime if it's a
+# datetime object, but a None if it's None.
+def awarize(dt):
+    if dt is None:
+        return None
+    else:
+        # This may provoke an exception which should be handled by the calling
+        # function as usual.
+        return timezone.make_aware(dt)
 
 
 class Command(BaseCommand):
@@ -33,6 +46,8 @@ class Command(BaseCommand):
             self.remove_duplicates()
 
             self.import_users()
+
+            self.import_authors()
 
         except KeyboardInterrupt:
             quit(1)
@@ -78,7 +93,7 @@ class Command(BaseCommand):
                 user = User()
 
                 # We'll keep the ID, basically because we can. This also means
-                # that we don't have to check if the user already exists.
+                # that we don't have to check if the row already exists.
                 user.id = row['id']
 
                 # Technical details.
@@ -99,9 +114,76 @@ class Command(BaseCommand):
                 # to the database, but we do this to avoid the triggering of
                 # `auto_now` for the field. It doesn't matter, since this
                 # script will only be run once and then never again.
-                date_updated = row['last_updated']
-                if date_updated is not None:
-                    date_updated = timezone.make_aware(date_updated)
-                User.objects.filter(id=user.id).update(date_updated=date_updated)
+                User.objects.filter(
+                    id=user.id
+                ).update(
+                    date_updated=awarize(row['last_updated'])
+                )
+
+                print(' done')
+
+
+    def import_authors(self):
+
+        with self.connection.cursor() as cursor:
+            cursor.execute('''
+                SELECT
+                    `p`.`id`,
+                    `p`.`name`,
+                    `p`.`name_thagufall`,
+                    `p`.`born`,
+                    `p`.`dead`,
+                    `p`.`info`,
+                    `p`.`last_updated`,
+                    `u`.`id` AS `user_id`
+                FROM
+                    `cube_poets` AS `p`
+                    INNER JOIN `users` AS `u` ON `u`.`poet` = `p`.`id`
+            ''')
+
+            for row in dictfetchall(cursor):
+                author = Author()
+
+                # We'll keep the ID, basically because we can. This also means
+                # that we don't have to check if the row already exists.
+                author.id = row['id']
+
+                # Figure out what to do with crazy year data.
+                try:
+                    year_born = int(row['born'])
+
+                    # When users give a two-digit year, we'll assume they mean
+                    # 1900-and-that.
+                    if len(str(year_born)) == 2:
+                        year_born += 1900
+
+                except ValueError:
+                    # This mean we ran into some weird value, and we're forced
+                    # to say it's None. There are lots of strange values in
+                    # the original database.
+                    year_born = None
+
+                author.name = row['name']
+                author.name_dative = row['name_thagufall']
+                author.year_born = year_born
+                author.year_dead = row['dead'] or None
+                author.about = row['info']
+
+                # This is possible because we imported the users with their
+                # original ID.
+                author.user_id = row['user_id']
+
+                print('Saving author "%s"...' % author.name, end='', flush=True)
+                author.save()
+
+                # Copy data about last update. This results in an extra call
+                # to the database, but we do this to avoid the triggering of
+                # `auto_now` for the field. It doesn't matter, since this
+                # script will only be run once and then never again.
+                Author.objects.filter(
+                    id=author.id
+                ).update(
+                    date_updated=awarize(row['last_updated'])
+                )
 
                 print(' done')
