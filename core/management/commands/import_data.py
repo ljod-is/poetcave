@@ -250,7 +250,7 @@ class Command(BaseCommand):
                 poem.about = row['about']
 
                 poem.public = row['visible'] == '1'
-                # poem.public_timing data not available.
+                poem.public_timing = awarize(row['sent'])
                 poem.trashed = row['trashed'] is not None
                 poem.trashed_timing = awarize(row['trashed'])
 
