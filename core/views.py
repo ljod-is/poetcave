@@ -86,17 +86,16 @@ class RegistrationView(BaseRegistrationView):
                 with transaction.atomic():
                     # Trigger the underlying registration mechanism, which
                     # deals with sending the confirmation email and such.
-                    new_user = thing = self.register(form)
+                    new_user = self.register(form)
 
                     # Save the author data.
                     author = author_form.save()
 
-                    # And tie the user and author data together. The reason
-                    # we don't do this before the user creation is because we
-                    # want to inherit the underlying user creation process by
-                    # using the self.register method above.
-                    new_user.author_id = author.id
-                    new_user.save()
+                    # And tie the user and author data together. This is an
+                    # extra hit to the database, but apparently we can't
+                    # change the form data above before saving it.
+                    author.user_id = new_user.id
+                    author.save()
 
                     return redirect(self.get_success_url())
 

@@ -49,9 +49,9 @@ Vinsamlegast vandaðu til verksins. Þetta eru meðal annars þær upplýsingar 
 <label for="id_name_dative" generated="true" class="error">{% for error in author_form.name_dative.errors %}{{ error }}<br />{% endfor %}</label>
 <br />Sjá <a target="_blank" href="http://bin.arnastofnun.is/">beygingarorðabók</a><br /><br />
 
-<label for="id_birth_year">Fæðingarár:</label>
-<input id="id_birth_year" name="birth_year" class="required" digits="true" minlength="4" maxlength="4" value="{{ author_form.birth_year.value|default:'' }}" size="4" />
-<label for="id_birth_year" generated="true" class="error">{% for error in author_form.birth_year.errors %}{{ error }}<br />{% endfor %}</label>
+<label for="id_year_born">Fæðingarár:</label>
+<input id="id_year_born" name="year_born" class="required" digits="true" minlength="4" maxlength="4" value="{{ author_form.year_born.value|default:'' }}" size="4" />
+<label for="id_year_born" generated="true" class="error">{% for error in author_form.year_born.errors %}{{ error }}<br />{% endfor %}</label>
 <br /><br />
 
 Ferilsskrá eða aðrar upplýsingar:
