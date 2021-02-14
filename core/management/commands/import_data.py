@@ -11,6 +11,7 @@ from datetime import datetime
 from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import connections
+from django.db import transaction
 from django.utils import timezone
 
 from core.models import User
@@ -133,20 +134,22 @@ class Command(BaseCommand):
                 user.contact_place = row['place']
                 user.contact_phone = row['phone']
 
-                print('Saving user "%s"...' % user.username, end='', flush=True)
-                user.save()
+                with transaction.atomic():
+                    print('Saving user "%s"...' % user.username, end='', flush=True)
+                    user.save()
 
-                # Copy data about last update. This results in an extra call
-                # to the database, but we do this to avoid the triggering of
-                # `auto_now` for the field. It doesn't matter, since this
-                # script will only be run once and then never again.
-                User.objects.filter(
-                    id=user.id
-                ).update(
-                    date_updated=awarize(row['last_updated'])
-                )
+                    # Copy data about last update. This results in an extra
+                    # call to the database, but we do this to avoid the
+                    # triggering of `auto_now` for the field. It doesn't
+                    # matter, since this script will only be run once and then
+                    # never again.
+                    User.objects.filter(
+                        id=user.id
+                    ).update(
+                        date_updated=awarize(row['last_updated'])
+                    )
 
-                print(' done')
+                    print(' done')
 
 
     def import_authors(self):
@@ -189,17 +192,19 @@ class Command(BaseCommand):
                 if row['user_id'] is not None:
                     author.user_id = row['user_id']
 
-                print('Saving author "%s"...' % author.name, end='', flush=True)
-                author.save()
+                with transaction.atomic():
+                    print('Saving author "%s"...' % author.name, end='', flush=True)
+                    author.save()
 
-                # Copy data about last update. This results in an extra call
-                # to the database, but we do this to avoid the triggering of
-                # `auto_now` for the field. It doesn't matter, since this
-                # script will only be run once and then never again.
-                Author.objects.filter(
-                    id=author.id
-                ).update(
-                    date_updated=awarize(row['last_updated'])
-                )
+                    # Copy data about last update. This results in an extra
+                    # call to the database, but we do this to avoid the
+                    # triggering of `auto_now` for the field. It doesn't
+                    # matter, since this script will only be run once and then
+                    # never again.
+                    Author.objects.filter(
+                        id=author.id
+                    ).update(
+                        date_updated=awarize(row['last_updated'])
+                    )
 
-                print(' done')
+                    print(' done')
