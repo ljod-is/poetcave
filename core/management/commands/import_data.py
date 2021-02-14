@@ -70,6 +70,8 @@ class Command(BaseCommand):
 
     def import_users(self):
 
+        existing_user_ids = ','.join([str(i) for i in User.objects.all().values_list('id', flat=True)])
+
         with self.connection.cursor() as cursor:
             cursor.execute('''
                 SELECT
@@ -85,7 +87,9 @@ class Command(BaseCommand):
                     `last_updated`
                 FROM
                     `users`
-            ''')
+                WHERE
+                    `id` NOT IN (%s)
+            ''' % existing_user_ids)
 
             for row in dictfetchall(cursor):
 
@@ -125,6 +129,8 @@ class Command(BaseCommand):
 
     def import_authors(self):
 
+        existing_author_ids = ','.join([str(i) for i in Author.objects.all().values_list('id', flat=True)])
+
         with self.connection.cursor() as cursor:
             cursor.execute('''
                 SELECT
@@ -139,7 +145,9 @@ class Command(BaseCommand):
                 FROM
                     `cube_poets` AS `p`
                     INNER JOIN `users` AS `u` ON `u`.`poet` = `p`.`id`
-            ''')
+                WHERE
+                    `p`.`id` NOT IN (%s)
+            ''' % existing_author_ids)
 
             for row in dictfetchall(cursor):
                 author = Author()
