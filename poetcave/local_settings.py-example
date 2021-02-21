@@ -24,3 +24,6 @@ EMAIL_PORT = 25000
 EMAIL_USE_SSL = False
 EMAIL_USE_SSL = False
 DEFAULT_FROM_EMAIL = '%s <no-reply@%s>' % (INSTANCE_NAME, INSTANCE_DOMAIN)
+
+# Functionality configuration.
+NEWEST_COUNT = 25 # Number of "newest" poems.
