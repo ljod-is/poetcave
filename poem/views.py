@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.http import Http404
@@ -75,3 +76,41 @@ def poem_delete(request, author_id, poem_id):
         'poem': poem,
     }
     return render(request, 'poem/delete.html', ctx)
+
+
+def poems(request, listing_type=None, argument=None):
+
+    # Supported listing types.
+    supported_listing_types = [
+        'newest',
+        'previous-daypoems',
+        'by-author'
+    ]
+
+    # Sane defaults.
+    if listing_type is None:
+        # We don't like two URLs spouting the same content, so we'll redirect
+        # to the first supported listing type instead of setting the
+        # listing_type in code and continuing.
+        return redirect(reverse('poems', args=(supported_listing_types[0],)))
+
+    # Sanitize input.
+    if listing_type not in supported_listing_types:
+        raise Http404
+
+    # Get poems depending on listing type and optional arguments.
+    poems = []
+    if listing_type == 'newest':
+        poems = Poem.objects.filter(
+            editorial_status='approved'
+        ).order_by(
+            '-editorial_timing',
+            '-public_timing'
+        )[:25]
+
+    ctx = {
+        'NEWEST_COUNT': settings.NEWEST_COUNT,
+        'listing_type': listing_type,
+        'poems': poems,
+    }
+    return render(request, 'poem/poems.html', ctx)

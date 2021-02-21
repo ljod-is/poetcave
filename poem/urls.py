@@ -6,6 +6,9 @@ from poem import views
 # It requires us to implement a slug-mechanism, though.
 
 urlpatterns = [
+    path('poems/<str:listing_type>/<str:argument>/', views.poems, name='poems'),
+    path('poems/<str:listing_type>/', views.poems, name='poems'),
+    path('poems/', views.poems, name='poems'),
     path('author/<int:author_id>/admin/', views.author_admin, name='author_admin'),
     path('author/<int:author_id>/poem/add/', views.poem_add_edit, name='poem_add'),
     path('author/<int:author_id>/poem/edit/<int:poem_id>/', views.poem_add_edit, name='poem_edit'),
