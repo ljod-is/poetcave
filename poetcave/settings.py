@@ -106,6 +106,51 @@ LOCALE_PATHS = [
     BASE_DIR / 'poetcave' / 'locale',
 ]
 
+# Alphabet information
+ALPHABET = {
+    'is': {
+        'letters': [
+            'A',
+            'B',
+            'C',
+            'D',
+            'E',
+            'F',
+            'G',
+            'H',
+            'I',
+            'J',
+            'K',
+            'L',
+            'M',
+            'N',
+            'O',
+            'P',
+            'Q',
+            'R',
+            'S',
+            'T',
+            'U',
+            'V',
+            'W',
+            'X',
+            'Y',
+            'Z',
+            'Þ',
+            'Æ',
+            'Ö'
+        ],
+        'implies': {
+            'A': ['Á'],
+            'E': ['É'],
+            'I': ['Í'],
+            'O': ['Ó'],
+            'U': ['Ú'],
+            'Y': ['Ý'],
+        },
+    }
+}
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/

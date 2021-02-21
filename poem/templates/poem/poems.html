@@ -33,14 +33,23 @@
 
     {% if listing_type == 'newest' %}
         {% comment %}
-        We allow ourselves to deviate slightly from the original presentation
-        here. The original's phrase contains the words "twenty five", but our
+
+        Deviations from the original website:
+
+        1. The original's phrase contains the words "twenty five", but our
         configuration option is an integer. We'll use the integer in our
         version instead of the string version.
 
-        Also, untitled poems show up with their full URLs instead of their
-        empty names in the original, which is horrible, so we'll title and
-        italize them here.
+        2. Untitled poems show up with their full URLs instead of their empty
+        names in the original, so we call them "Untitled poem"s.
+
+        3. We fix the mistaken order in the original at the end of the
+        Icelandic alphabet, where "Æ Þ Ö" should be "Þ Æ Ö". This is done in
+        the settings.
+
+        4. The order of authors is more reasonable in our version, given that
+        the database is constructed with the proper charset and collation.
+
         {% endcomment %}
         {% blocktrans %}The {{ NEWEST_COUNT }} newest poems{% endblocktrans %}
         <br /><br />
@@ -56,6 +65,19 @@
             <br />
             &nbsp;&nbsp;&nbsp;
             {{ poem.author.name }}
+            <br />
+        {% endfor %}
+
+    {% elif listing_type == 'by-author' %}
+
+        {% for letter in letters %}
+            <a href="{% url 'poems' 'by-author' letter %}">{{ letter }}</a>
+        {% endfor %}
+        <br /><br />
+
+        {% for author in authors %}
+            <a href="{{ author.get_absolute_url }}">{{ author.name }}</a>
+            ({{ author.poem_count }})
             <br />
         {% endfor %}
 

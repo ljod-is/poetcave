@@ -3,7 +3,7 @@ from django.db import models
 from django.utils.translation import ugettext as _
 
 
-class AuthorManager(models.Manager):
+class AuthorQuerySet(models.QuerySet):
     def managed_by(self, user):
         # NOTE: This will probably change in the future, if we implement
         # users' ability to control many authors. For now, we're assuming a
@@ -11,15 +11,35 @@ class AuthorManager(models.Manager):
         # currently exists to ease that transition, once it occurs.
         return self.filter(user=user)
 
+    def by_initial(self, letter):
+        # Authors whose first initial match the given letter, accounting for
+        # culturally specific equivalents.
+
+        implies = settings.ALPHABET['is']['implies']
+
+        # Basic query, matching entries whose first letter matches the input.
+        q = models.Q(name__istartswith=letter)
+
+        if letter in implies:
+            for equiv in implies[letter]:
+                q |= models.Q(name__istartswith=equiv)
+
+        return self.filter(q)
+
+    def with_poem_counts(self):
+        # NOTE: It is the responsibility of the calling function to limit this
+        # according to context, for example with editorial_status='approved'.
+        return self.annotate(poem_count=models.Count('poems'))
+
 
 class PoemManager(models.Manager):
     def managed_by(self, user):
-        # NOTE: See note in `AuthorManager.managed_by`.
+        # NOTE: See note in `AuthorQuerySet.managed_by`.
         return self.filter(author__user=user)
 
 
 class Author(models.Model):
-    objects = AuthorManager()
+    objects = AuthorQuerySet.as_manager()
 
     name = models.CharField(max_length=100, null=False, blank=False)
     name_dative = models.CharField(max_length=100, null=False, blank=False)
@@ -48,6 +68,9 @@ class Author(models.Model):
             return '%s (%d)' % (self.name, self.year_born)
         else:
             return self.name
+
+    class Meta:
+        ordering = ['name', 'year_born']
 
 
 class Poem(models.Model):

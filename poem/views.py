@@ -80,6 +80,9 @@ def poem_delete(request, author_id, poem_id):
 
 def poems(request, listing_type=None, argument=None):
 
+    # Short-hands.
+    letters = settings.ALPHABET[settings.LANGUAGE_CODE]['letters']
+
     # Supported listing types.
     supported_listing_types = [
         'newest',
@@ -93,24 +96,37 @@ def poems(request, listing_type=None, argument=None):
         # to the first supported listing type instead of setting the
         # listing_type in code and continuing.
         return redirect(reverse('poems', args=(supported_listing_types[0],)))
+    elif listing_type == 'by-author' and argument is None:
+        return redirect(reverse('poems', args=('by-author', 'A')))
 
     # Sanitize input.
     if listing_type not in supported_listing_types:
         raise Http404
+    elif listing_type == 'by-author' and argument not in letters:
+        raise Http404
 
     # Get poems depending on listing type and optional arguments.
+    authors = []
     poems = []
     if listing_type == 'newest':
-        poems = Poem.objects.filter(
+        poems = Poem.objects.select_related(
+            'author'
+        ).filter(
             editorial_status='approved'
         ).order_by(
             '-editorial_timing',
             '-public_timing'
         )[:25]
+    elif listing_type == 'by-author':
+        authors = Author.objects.by_initial(argument).filter(
+            poems__editorial_status='approved'
+        ).with_poem_counts().order_by('name')
 
     ctx = {
         'NEWEST_COUNT': settings.NEWEST_COUNT,
+        'letters': letters,
         'listing_type': listing_type,
+        'authors': authors,
         'poems': poems,
     }
     return render(request, 'poem/poems.html', ctx)
