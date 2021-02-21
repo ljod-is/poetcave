@@ -265,11 +265,9 @@ class Command(BaseCommand):
                 # poem.editorial_timing data not available.
                 # poem.editorial_reason data not available.
 
+                # Only attribute poems to authors that actually exist.
                 if row['author'] is not None and row['author'] in author_ids:
                     poem.author_id = row['author']
-
-                # I was here. Just successfully imported poems. Now to do a full import run.
-                # Database is clean and ready to go: ./manage.py import_data
 
                 with transaction.atomic():
                     print('Saving poem "%s"...' % poem.name, end='', flush=True)
