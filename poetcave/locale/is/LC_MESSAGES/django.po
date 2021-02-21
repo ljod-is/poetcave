@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-12-30 20:44+0000\n"
+"POT-Creation-Date: 2021-02-21 17:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -176,7 +176,7 @@ msgid "I, me, my, mine."
 msgstr "Ég, mig, mér, mín."
 
 #: core/templates/user/profile.html:94
-#: core/templates/user/registration/register.html:99
+#: core/templates/user/registration/register.html:101
 msgid "Register"
 msgstr "Skrá"
 
@@ -208,6 +208,18 @@ msgstr "Lykilorð uppfært."
 msgid "Profile updated."
 msgstr "Notandaupplýsingar uppfærðar."
 
+#: poem/models.py:57
+msgid "Pending"
+msgstr ""
+
+#: poem/models.py:58 poem/templates/author/admin.html:15
+msgid "Approved"
+msgstr "Samþykkt"
+
+#: poem/models.py:59
+msgid "Rejected"
+msgstr ""
+
 #: poem/templates/author/admin.html:8
 msgid "Add poem"
 msgstr "Bæta við ljóði"
@@ -219,10 +231,6 @@ msgstr "Ljóð"
 #: poem/templates/author/admin.html:14
 msgid "Visible"
 msgstr "Sýnilegt"
-
-#: poem/templates/author/admin.html:15
-msgid "Approved"
-msgstr "Samþykkt"
 
 #: poem/templates/author/admin.html:16
 msgid "Control"
@@ -267,3 +275,29 @@ msgstr "Hætta við"
 #: poem/templates/poem/delete.html:9
 msgid "Are you sure you wish to delete this poem?"
 msgstr "Ertu viss um að þú viljir eyða þessu ljóði?"
+
+#: poem/templates/poem/poems.html:4
+msgid "Poem collection"
+msgstr "Ljóðasafn"
+
+#: poem/templates/poem/poems.html:9
+#, python-format
+msgid "Browse the last %(NEWEST_COUNT)s poems"
+msgstr "Skoða %(NEWEST_COUNT)s nýjustu ljóðin"
+
+#: poem/templates/poem/poems.html:14
+msgid "Browse previous daily poems"
+msgstr "Skoða eldri ljóð dagsins"
+
+#: poem/templates/poem/poems.html:19
+msgid "Browse by author"
+msgstr "Skoða eftir höfundi"
+
+#: poem/templates/poem/poems.html:46
+#, python-format
+msgid "The %(NEWEST_COUNT)s newest poems"
+msgstr "%(NEWEST_COUNT)s nýjustu ljóðin"
+
+#: poem/templates/poem/poems.html:54
+msgid "Untitled poem"
+msgstr "Ónefnt ljóð"
