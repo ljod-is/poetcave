@@ -141,7 +141,6 @@ class Poem(models.Model):
     editorial_timing = models.DateTimeField(null=True, blank=True)
     editorial_reason = models.TextField(null=True, blank=True)
 
-    # `date_joined` field for creation is provided by parent model.
     date_created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     date_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
 
