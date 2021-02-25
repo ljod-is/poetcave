@@ -15,10 +15,14 @@
 
 {% block side %}
 
-    <strong>{% trans 'More about the author' %}:</strong>
-    <br />
-    <br />
+    {% if author.about %}
 
-    {{ author.about|linebreaksbr }}
+        <strong>{% trans 'More about the author' %}:</strong>
+        <br />
+        <br />
+
+        {{ author.about|linebreaksbr }}
+
+    {% endif %}
 
 {% endblock %}
