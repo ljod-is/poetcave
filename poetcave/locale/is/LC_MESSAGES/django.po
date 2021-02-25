@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-21 17:24+0000\n"
+"POT-Creation-Date: 2021-02-25 16:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -104,10 +104,9 @@ msgid "Send"
 msgstr "Senda"
 
 #: core/templates/user/password_reset/reset_complete.html:4
-#, fuzzy
-#| msgid "Change Password"
+#: core/templates/user/password_reset/reset_confirm.html:15
 msgid "New password"
-msgstr "Breyta lykilorði"
+msgstr "Nýtt lykilorð"
 
 #: core/templates/user/password_reset/reset_complete.html:8
 msgid "Your password has been changed."
@@ -125,21 +124,11 @@ msgstr ""
 "Vinsamlegast settu nýja lykilorðið inn tvisvar þannig að það sé örugglega "
 "stimplað inn rétt."
 
-#: core/templates/user/password_reset/reset_confirm.html:15
-#, fuzzy
-#| msgid "Change Password"
-msgid "New password:"
-msgstr "Breyta lykilorði"
-
 #: core/templates/user/password_reset/reset_confirm.html:20
-#, fuzzy
-#| msgid "Forgotten password"
-msgid "Confirm password:"
-msgstr "Gleymt lykilorð"
+msgid "Confirm password"
+msgstr "Staðfesta lykilorð"
 
 #: core/templates/user/password_reset/reset_confirm.html:24
-#, fuzzy
-#| msgid "Change Password"
 msgid "Change my password"
 msgstr "Breyta lykilorði"
 
@@ -208,15 +197,15 @@ msgstr "Lykilorð uppfært."
 msgid "Profile updated."
 msgstr "Notandaupplýsingar uppfærðar."
 
-#: poem/models.py:57
+#: poem/models.py:89
 msgid "Pending"
 msgstr ""
 
-#: poem/models.py:58 poem/templates/author/admin.html:15
+#: poem/models.py:90 poem/templates/author/admin.html:15
 msgid "Approved"
 msgstr "Samþykkt"
 
-#: poem/models.py:59
+#: poem/models.py:91
 msgid "Rejected"
 msgstr ""
 
@@ -276,6 +265,10 @@ msgstr "Hætta við"
 msgid "Are you sure you wish to delete this poem?"
 msgstr "Ertu viss um að þú viljir eyða þessu ljóði?"
 
+#: poem/templates/poem/poem.html:39
+msgid "Poems by"
+msgstr "Ljóð eftir"
+
 #: poem/templates/poem/poems.html:4
 msgid "Poem collection"
 msgstr "Ljóðasafn"
@@ -293,11 +286,11 @@ msgstr "Skoða eldri ljóð dagsins"
 msgid "Browse by author"
 msgstr "Skoða eftir höfundi"
 
-#: poem/templates/poem/poems.html:46
+#: poem/templates/poem/poems.html:55
 #, python-format
 msgid "The %(NEWEST_COUNT)s newest poems"
 msgstr "%(NEWEST_COUNT)s nýjustu ljóðin"
 
-#: poem/templates/poem/poems.html:54
+#: poem/templates/poem/poems.html:63
 msgid "Untitled poem"
 msgstr "Ónefnt ljóð"
