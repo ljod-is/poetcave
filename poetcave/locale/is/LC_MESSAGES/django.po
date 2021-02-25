@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-25 18:04+0000\n"
+"POT-Creation-Date: 2021-02-25 20:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,6 +23,14 @@ msgstr ""
 #: core/templates/user/password_reset/reset_requested.html:4
 msgid "Forgotten password"
 msgstr "Gleymt lykilorð"
+
+#: core/templates/base.html:172
+msgid "Authors"
+msgstr "Höfundar"
+
+#: core/templates/base.html:183
+msgid "Users of ljóð.is"
+msgstr "Notendur ljóð.is"
 
 #: core/templates/user/login.html:4
 msgid "Login"
@@ -197,15 +205,15 @@ msgstr "Lykilorð uppfært."
 msgid "Profile updated."
 msgstr "Notandaupplýsingar uppfærðar."
 
-#: poem/models.py:119
+#: poem/models.py:120
 msgid "Pending"
 msgstr ""
 
-#: poem/models.py:120 poem/templates/author/admin.html:15
+#: poem/models.py:121 poem/templates/author/admin.html:15
 msgid "Approved"
 msgstr "Samþykkt"
 
-#: poem/models.py:121
+#: poem/models.py:122
 msgid "Rejected"
 msgstr ""
 
@@ -233,7 +241,7 @@ msgstr "Eyða"
 msgid "Edit"
 msgstr "Breyta"
 
-#: poem/templates/author/author.html:18
+#: poem/templates/author/author.html:20
 msgid "More about the author"
 msgstr "Meira um höfund"
 
