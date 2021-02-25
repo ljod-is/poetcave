@@ -27,10 +27,16 @@ class AuthorQuerySet(models.QuerySet):
 
         return self.filter(q)
 
-    def with_poem_counts(self):
-        # NOTE: It is the responsibility of the calling function to limit this
-        # according to context, for example with editorial_status='approved'.
-        return self.annotate(poem_count=models.Count('poems'))
+    def with_publicly_visible_poems(self):
+        # Limits authors to those who have published poems and provides an
+        # annotated value, `poem_count`, showing their number.
+        return self.filter(
+            poems__editorial_status='approved',
+            poems__public=True,
+            poems__trashed=False
+        ).annotate(
+            poem_count=models.Count('poems')
+        )
 
 
 class PoemQuerySet(models.QuerySet):

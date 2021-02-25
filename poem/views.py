@@ -111,13 +111,13 @@ def poems(request, listing_type=None, argument=None):
     if listing_type == 'newest':
         poems = Poem.objects.select_related(
             'author'
-        ).filter(
-            editorial_status='approved'
-        )[:25]
+        ).publicly_visible()[:25]
     elif listing_type == 'by-author':
-        authors = Author.objects.by_initial(argument).filter(
-            poems__editorial_status='approved'
-        ).with_poem_counts().order_by('name')
+        authors = Author.objects.with_publicly_visible_poems().by_initial(
+            argument
+        ).order_by(
+            'name'
+        )
 
     ctx = {
         'NEWEST_COUNT': settings.NEWEST_COUNT,
