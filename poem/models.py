@@ -52,6 +52,28 @@ class PoemQuerySet(models.QuerySet):
             trashed=False
         )
 
+    def search(self, search_string):
+        # TODO: This should probably become more sophisticated in the future.
+        # For now, we replicate the functionality of the original website,
+        # which is to check whether the search string occurs in its entirety
+        # anywhere in the following fields:
+        #
+        # * Poem name
+        # * Poem body
+        # * Poem's about-field
+        # * Author's name
+        # * Author's name in the accusative
+        # * Author's about-field
+
+        return self.filter(
+            models.Q(name__icontains=search_string)
+            | models.Q(body__icontains=search_string)
+            | models.Q(about__icontains=search_string)
+            | models.Q(author__name__icontains=search_string)
+            | models.Q(author__name_dative__icontains=search_string)
+            | models.Q(author__about__icontains=search_string)
+        )
+
 
 class Author(models.Model):
     objects = AuthorQuerySet.as_manager()
@@ -127,6 +149,8 @@ class Poem(models.Model):
         return '%s - %s' % (self.name, self.author)
 
     def get_absolute_url(self):
+        if self.author_id is None:
+            return ''
         return reverse('poem', args=(self.author_id, self.id))
 
     class Meta:

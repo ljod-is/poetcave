@@ -99,10 +99,12 @@ def poems(request, listing_type=None, argument=None):
     supported_listing_types = [
         'newest',
         'previous-daypoems',
-        'by-author'
+        'by-author',
+        'search',
     ]
 
     # Sane defaults.
+    search_string = ''
     if listing_type is None:
         # We don't like two URLs spouting the same content, so we'll redirect
         # to the first supported listing type instead of setting the
@@ -121,14 +123,21 @@ def poems(request, listing_type=None, argument=None):
     authors = []
     poems = []
     if listing_type == 'newest':
-        poems = Poem.objects.select_related(
+        poems = Poem.objects.publicly_visible().select_related(
             'author'
-        ).publicly_visible()[:25]
+        )[:25]
     elif listing_type == 'by-author':
         authors = Author.objects.with_publicly_visible_poems().by_initial(
             argument
         ).order_by(
             'name'
+        )
+    elif listing_type == 'search':
+        search_string = request.GET.get('q', '')
+        poems = Poem.objects.publicly_visible().select_related(
+            'author'
+        ).search(
+            search_string
         )
 
     ctx = {
@@ -137,6 +146,7 @@ def poems(request, listing_type=None, argument=None):
         'listing_type': listing_type,
         'authors': authors,
         'poems': poems,
+        'search_string': search_string,
     }
     return render(request, 'poem/poems.html', ctx)
 

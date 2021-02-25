@@ -1,6 +1,20 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% block javascript %}
+<script language="javascript" type="text/javascript">
+
+function search() {
+    var search_string = document.getElementById('search_string').value;
+    if (search_string) {
+        location.href = '/poems/search/?q=' + search_string;
+    }
+    return false;
+}
+
+</script>
+{% endblock %}
+
 {% block sign %}{% trans 'Poem collection' %}{% endblock %}
 
 {% block content %}
@@ -22,9 +36,9 @@
         
     <br /><br />
 
-    <form action="http://www.ljod.is/index.php/ljod/search_poems" method="post">
-    <input type="text" size="19" name="search_string" value="">
-    <input type="submit" value="Leita"><br>
+    <form onsubmit="return search();">
+    <input type="text" size="19" id="search_string" value="{{ search_string }}" autofocus="true" />
+    <button type="submit">{% trans 'Search' %}</button><br />
     </form>
 
 {% endblock %}
@@ -79,6 +93,17 @@
             <a href="{{ author.get_absolute_url }}">{{ author.name }}</a>
             ({{ author.poem_count }})
             <br />
+        {% endfor %}
+
+    {% elif listing_type == 'search' %}
+
+        {% for poem in poems %}
+            <a href="{{ poem.get_absolute_url }}">{{ poem.name }}</a>
+            eftir
+            <strong>{{ poem.author.name_dative }}</strong>
+            <br />
+        {% empty %}
+            {% trans 'Unfortunately there were no search results.' %}
         {% endfor %}
 
     {% endif %}
