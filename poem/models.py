@@ -84,6 +84,9 @@ class Author(models.Model):
         else:
             return self.name
 
+    def get_absolute_url(self):
+        return reverse('author', args=(self.id,))
+
     class Meta:
         ordering = ['name', 'year_born']
 

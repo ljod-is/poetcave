@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block sign %}{{ author.name }}{% endblock %}
+
+{% block content %}
+
+    {% for poem in poems reversed %}
+
+    <a href="{% url 'poem' poem.author_id poem.id %}">{{ poem.name }}</a><br />
+
+    {% endfor %}
+
+{% endblock %}
+
+{% block side %}
+
+    <strong>{% trans 'More about the author' %}:</strong>
+    <br />
+    <br />
+
+    {{ author.about|linebreaksbr }}
+
+{% endblock %}

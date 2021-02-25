@@ -78,6 +78,18 @@ def poem_delete(request, author_id, poem_id):
     return render(request, 'poem/delete.html', ctx)
 
 
+def author(request, author_id):
+
+    author = Author.objects.with_publicly_visible_poems().get(id=author_id)
+    poems = author.poems.publicly_visible()
+
+    ctx = {
+        'author': author,
+        'poems': poems,
+    }
+    return render(request, 'author/author.html', ctx)
+
+
 def poems(request, listing_type=None, argument=None):
 
     # Short-hands.
