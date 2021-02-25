@@ -22,7 +22,7 @@ In the first phase, we will simply recreate the website's functionality with the
 
 ### Poems and authors
 - [x] CRUD for poems.
-- [ ] Poem navigation and search.
+- [X] Poem navigation and search.
 - [ ] Daily poem displayed on front page.
 - [ ] Poem approval/rejection.
 - [ ] Bookmarks
