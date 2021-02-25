@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-25 16:11+0000\n"
+"POT-Creation-Date: 2021-02-25 16:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -197,15 +197,15 @@ msgstr "Lykilorð uppfært."
 msgid "Profile updated."
 msgstr "Notandaupplýsingar uppfærðar."
 
-#: poem/models.py:89
+#: poem/models.py:98
 msgid "Pending"
 msgstr ""
 
-#: poem/models.py:90 poem/templates/author/admin.html:15
+#: poem/models.py:99 poem/templates/author/admin.html:15
 msgid "Approved"
 msgstr "Samþykkt"
 
-#: poem/models.py:91
+#: poem/models.py:100
 msgid "Rejected"
 msgstr ""
 
@@ -232,6 +232,10 @@ msgstr "Eyða"
 #: poem/templates/author/admin.html:37
 msgid "Edit"
 msgstr "Breyta"
+
+#: poem/templates/author/author.html:18
+msgid "More about the author"
+msgstr "Meira um höfund"
 
 #: poem/templates/poem/add.html:4 poem/templates/poem/delete.html:4
 msgid "Homestead"
