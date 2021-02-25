@@ -45,11 +45,18 @@
     listed in a somewhat arbitrary order.
     {% endcomment %}
     {% for side_poem in author.poems.publicly_visible reversed %}
+
         {% if side_poem.id == poem.id %}
             {{ side_poem.name }}
         {% else %}
             <a href="{{ side_poem.get_absolute_url }}">{{ side_poem.name }}</a>
         {% endif %}
+
+        {% comment %}
+        TODO: Here should be shown the date that this poem was the
+        poem-of-the-day (if ever), once we've imported poemsof-the-day.
+        {% endcomment %}
+
         <br />
     {% endfor %}
 
