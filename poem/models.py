@@ -149,9 +149,7 @@ class Poem(models.Model):
         return '%s - %s' % (self.name, self.author)
 
     def get_absolute_url(self):
-        if self.author_id is None:
-            return ''
-        return reverse('poem', args=(self.author_id, self.id))
+        return reverse('poem', args=(self.id,))
 
     class Meta:
         ordering = ['-editorial_timing', '-public_timing']

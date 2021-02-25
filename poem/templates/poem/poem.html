@@ -19,8 +19,8 @@
 
     <div class="author">
 
-        <a href="{{ author.get_absolute_url }}">{{ author.name }}</a><br />
-        {{ author.year_born }} - {{ author.year_dead|default:'' }}
+        <a href="{{ poem.author.get_absolute_url }}">{{ poem.author.name }}</a><br />
+        {{ poem.author.year_born }} - {{ poem.author.year_dead|default:'' }}
 
     </div>
     <div class="author">
@@ -35,7 +35,7 @@
 
 {% block side %}
 
-    {% trans 'Poems by' %} <strong>{{ author.name_dative }}</strong>
+    {% trans 'Poems by' %} <strong>{{ poem.author.name_dative }}</strong>
     <br />
     <br />
 
@@ -44,7 +44,7 @@
     original didn't specify an order by a particular field, and thus were
     listed in a somewhat arbitrary order.
     {% endcomment %}
-    {% for side_poem in author.poems.publicly_visible reversed %}
+    {% for side_poem in poem.author.poems.publicly_visible reversed %}
 
         {% if side_poem.id == poem.id %}
             {{ side_poem.name }}

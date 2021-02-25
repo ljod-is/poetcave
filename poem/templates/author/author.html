@@ -7,7 +7,7 @@
 
     {% for poem in poems reversed %}
 
-    <a href="{% url 'poem' poem.author_id poem.id %}">{{ poem.name }}</a><br />
+    <a href="{{ poem.get_absolute_url }}">{{ poem.name }}</a><br />
 
     {% endfor %}
 

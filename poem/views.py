@@ -151,22 +151,19 @@ def poems(request, listing_type=None, argument=None):
     return render(request, 'poem/poems.html', ctx)
 
 
-def poem(request, author_id, poem_id):
+def poem(request, poem_id):
     try:
         # The requested poem.
-        poem = Poem.objects.select_related(
+        poem = Poem.objects.publicly_visible().select_related(
             'author'
-        ).publicly_visible(
         ).get(
-            id=poem_id,
-            author_id=author_id
+            id=poem_id
         )
 
     except Poem.DoesNotExist:
         raise Http404
 
     ctx = {
-        'author': poem.author,
         'poem': poem,
     }
     return render(request, 'poem/poem.html', ctx)
