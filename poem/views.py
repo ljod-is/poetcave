@@ -113,9 +113,6 @@ def poems(request, listing_type=None, argument=None):
             'author'
         ).filter(
             editorial_status='approved'
-        ).order_by(
-            '-editorial_timing',
-            '-public_timing'
         )[:25]
     elif listing_type == 'by-author':
         authors = Author.objects.by_initial(argument).filter(
@@ -130,3 +127,24 @@ def poems(request, listing_type=None, argument=None):
         'poems': poems,
     }
     return render(request, 'poem/poems.html', ctx)
+
+
+def poem(request, author_id, poem_id):
+    try:
+        # The requested poem.
+        poem = Poem.objects.select_related(
+            'author'
+        ).publicly_visible(
+        ).get(
+            id=poem_id,
+            author_id=author_id
+        )
+
+    except Poem.DoesNotExist:
+        raise Http404
+
+    ctx = {
+        'author': poem.author,
+        'poem': poem,
+    }
+    return render(request, 'poem/poem.html', ctx)

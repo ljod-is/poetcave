@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import ugettext as _
 
 
@@ -32,10 +33,18 @@ class AuthorQuerySet(models.QuerySet):
         return self.annotate(poem_count=models.Count('poems'))
 
 
-class PoemManager(models.Manager):
+class PoemQuerySet(models.QuerySet):
     def managed_by(self, user):
         # NOTE: See note in `AuthorQuerySet.managed_by`.
         return self.filter(author__user=user)
+
+    def publicly_visible(self):
+        # Poems fulfilling all conditions for a poem to be publicly visible.
+        return self.filter(
+            editorial_status='approved',
+            public=True,
+            trashed=False
+        )
 
 
 class Author(models.Model):
@@ -74,7 +83,7 @@ class Author(models.Model):
 
 
 class Poem(models.Model):
-    objects = PoemManager()
+    objects = PoemQuerySet.as_manager()
 
     EDITORIAL_STATUS_CHOICES = (
         ('pending', _('Pending')),
@@ -107,3 +116,9 @@ class Poem(models.Model):
 
     def __str__(self):
         return '%s - %s' % (self.name, self.author)
+
+    def get_absolute_url(self):
+        return reverse('poem', args=(self.author_id, self.id))
+
+    class Meta:
+        ordering = ['-editorial_timing', '-public_timing']
