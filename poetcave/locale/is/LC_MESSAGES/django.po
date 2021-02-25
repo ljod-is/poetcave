@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-02-25 16:57+0000\n"
+"POT-Creation-Date: 2021-02-25 18:04+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -197,15 +197,15 @@ msgstr "Lykilorð uppfært."
 msgid "Profile updated."
 msgstr "Notandaupplýsingar uppfærðar."
 
-#: poem/models.py:98
+#: poem/models.py:119
 msgid "Pending"
 msgstr ""
 
-#: poem/models.py:99 poem/templates/author/admin.html:15
+#: poem/models.py:120 poem/templates/author/admin.html:15
 msgid "Approved"
 msgstr "Samþykkt"
 
-#: poem/models.py:100
+#: poem/models.py:121
 msgid "Rejected"
 msgstr ""
 
@@ -273,28 +273,36 @@ msgstr "Ertu viss um að þú viljir eyða þessu ljóði?"
 msgid "Poems by"
 msgstr "Ljóð eftir"
 
-#: poem/templates/poem/poems.html:4
+#: poem/templates/poem/poems.html:18
 msgid "Poem collection"
 msgstr "Ljóðasafn"
 
-#: poem/templates/poem/poems.html:9
+#: poem/templates/poem/poems.html:23
 #, python-format
 msgid "Browse the last %(NEWEST_COUNT)s poems"
 msgstr "Skoða %(NEWEST_COUNT)s nýjustu ljóðin"
 
-#: poem/templates/poem/poems.html:14
+#: poem/templates/poem/poems.html:28
 msgid "Browse previous daily poems"
 msgstr "Skoða eldri ljóð dagsins"
 
-#: poem/templates/poem/poems.html:19
+#: poem/templates/poem/poems.html:33
 msgid "Browse by author"
 msgstr "Skoða eftir höfundi"
 
-#: poem/templates/poem/poems.html:55
+#: poem/templates/poem/poems.html:41
+msgid "Search"
+msgstr ""
+
+#: poem/templates/poem/poems.html:69
 #, python-format
 msgid "The %(NEWEST_COUNT)s newest poems"
 msgstr "%(NEWEST_COUNT)s nýjustu ljóðin"
 
-#: poem/templates/poem/poems.html:63
+#: poem/templates/poem/poems.html:77
 msgid "Untitled poem"
 msgstr "Ónefnt ljóð"
+
+#: poem/templates/poem/poems.html:107
+msgid "Unfortunately there were no search results."
+msgstr "Því miður skilaði leitin engum árangri."
