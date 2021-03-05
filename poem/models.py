@@ -152,3 +152,15 @@ class Poem(models.Model):
 
     class Meta:
         ordering = ['-editorial_timing', '-public_timing']
+
+
+class DayPoem(models.Model):
+    poem = models.ForeignKey('Poem', on_delete=models.CASCADE)
+    day = models.DateField()
+
+    editorial_user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL)
+    editorial_timing = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+
+    class Meta:
+        unique_together = ['poem', 'day']
+        ordering = ['-editorial_timing', '-poem__editorial_timing', '-poem__public_timing']

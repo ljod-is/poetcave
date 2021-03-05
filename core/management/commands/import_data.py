@@ -7,6 +7,7 @@ There's a bit more hard-coding here than usual for this reason. This will
 never become general-purpose.
 '''
 from datetime import datetime
+from datetime import date
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
@@ -17,6 +18,7 @@ from django.utils import timezone
 from core.models import User
 
 from poem.models import Author
+from poem.models import DayPoem
 from poem.models import Poem
 
 
@@ -36,7 +38,10 @@ def awarize(dt):
     else:
         # This may provoke an exception which should be handled by the calling
         # function as usual.
-        return timezone.make_aware(dt)
+        if type(dt) is date:
+            return timezone.make_aware(datetime(dt.year, dt.month, dt.day))
+        else:
+            return timezone.make_aware(dt)
 
 
 # A utility function for figuring out what to do with crazy year data.
@@ -75,6 +80,8 @@ class Command(BaseCommand):
 
             self.import_poems()
 
+            self.import_day_poem()
+
         except KeyboardInterrupt:
             quit(1)
 
@@ -87,10 +94,20 @@ class Command(BaseCommand):
         # duplicates programmatically, but we know there is only one instance,
         # with the user ID 4000, so we'll hard-code this, seeing that this
         # script is a one-off thing.
+        #
+        # We also delete certain garbage data, for example day-poems with a
+        # poem ID of 0 and those with a nonsensical date.
         with self.connection.cursor() as cursor:
-            print('Deleting duplicate data...', end='', flush=True)
+            print('Deleting duplicate data and other garbage...', end='', flush=True)
+
+            # Duplicate user/poet.
             cursor.execute('DELETE FROM `cube_poets` WHERE `id` = 4147')
             cursor.execute('DELETE FROM `users` WHERE `id` = 4000')
+
+            # DayPoem garbage.
+            cursor.execute('DELETE FROM `cube_poems_daypoem` WHERE `poem` = 0')
+            cursor.execute('DELETE FROM `cube_poems_daypoem` WHERE `day` < "2000-01-01"')
+
             print(' done')
 
 
@@ -292,3 +309,33 @@ class Command(BaseCommand):
                     )
 
                     print(' done')
+
+    def import_day_poem(self):
+
+        existing_daypoems = "'%s'" % "','".join([
+            '%s:%s' % (v['poem_id'], v['day'].strftime('%Y-%m-%d')) for v in DayPoem.objects.all().values('poem_id', 'day')
+        ])
+
+        with self.connection.cursor() as cursor:
+            cursor.execute('''
+                SELECT DISTINCT
+                    `d`.`poem`,
+                    `d`.`day`
+                FROM
+                    `cube_poems_daypoem` AS `d`
+                    INNER JOIN `cube_poems` AS `p` ON `p`.`id` = `d`.`poem`
+                WHERE
+                     CONCAT(`d`.`poem`, ':', `d`.`day`) NOT IN (%s)
+                ORDER BY
+                    `d`.`day`
+            ''' % existing_daypoems)
+
+            for row in dictfetchall(cursor):
+
+                daypoem = DayPoem()
+                daypoem.poem_id = int(row['poem'])
+                daypoem.day = awarize(row['day'])
+
+                print('Saving daypoem for %s...' % row['day'], end='', flush=True)
+                daypoem.save()
+                print(' done')
