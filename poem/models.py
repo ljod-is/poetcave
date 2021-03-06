@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.db.models import Prefetch
 from django.urls import reverse
 from django.utils.translation import ugettext as _
 
@@ -72,6 +73,18 @@ class PoemQuerySet(models.QuerySet):
             | models.Q(author__name__icontains=search_string)
             | models.Q(author__name_dative__icontains=search_string)
             | models.Q(author__about__icontains=search_string)
+        )
+
+
+class DayPoemQuerySet(models.QuerySet):
+    def prefetch_visible_poems(self):
+        # Prefetches and limits daypoems' poems to those that are visible.
+        # This should conform to the conditions in
+        # `PoemQuerySet.publicly_visible` above.
+        return self.prefetch_related('poem').filter(
+            poem__editorial_status='approved',
+            poem__public=True,
+            poem__trashed=False
         )
 
 
@@ -155,6 +168,8 @@ class Poem(models.Model):
 
 
 class DayPoem(models.Model):
+    objects = DayPoemQuerySet.as_manager()
+
     poem = models.ForeignKey('Poem', on_delete=models.CASCADE)
     day = models.DateField()
 

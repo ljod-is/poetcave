@@ -1,3 +1,4 @@
+from datetime import timedelta
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
@@ -5,8 +6,10 @@ from django.http import Http404
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.urls import reverse
+from django.utils import timezone
 from poem.forms import PoemForm
 from poem.models import Author
+from poem.models import DayPoem
 from poem.models import Poem
 
 # NOTE: In the future, it may become possible for a user to have access to multiple
@@ -96,6 +99,40 @@ def poems_newest(request):
     ctx = {
         'poems': poems,
         'listing_type': 'newest',
+    }
+    return render(request, 'poem/poems.html', ctx)
+
+
+def poems_daypoems(request, year=None):
+
+    # Get the years in which there were daypoems.
+    years = [d.year for d in DayPoem.objects.dates('day', 'year')]
+
+    # Redirect to the most recently available year if we don't have anything
+    # specified, to reflect the location properly in the URL.
+    if year is None:
+        return redirect(reverse('poems_daypoems', args=[years[-1]]))
+
+    # Make sure that we have the requested year.
+    if year not in years:
+        raise Http404
+
+    # Find beginning and end of year.
+    today = timezone.now().replace(hour=0, minute=0, second=0, microsecond=0)
+    year_begin = today.replace(year=year, month=1, day=1)
+    year_end = year_begin.replace(year=year+1) - timedelta(seconds=1)
+
+    # Get daypoems of the selected year, prefetching poems.
+    daypoems = DayPoem.objects.prefetch_visible_poems().filter(
+        day__gte=year_begin,
+        day__lte=year_end
+    )
+
+    ctx = {
+        'years': years,
+        'year': year,
+        'daypoems': daypoems,
+        'listing_type': 'daypoems',
     }
     return render(request, 'poem/poems.html', ctx)
 

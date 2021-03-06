@@ -8,6 +8,8 @@ from poem import views
 urlpatterns = [
     path('poem/<int:poem_id>/', views.poem, name='poem'),
     path('poems/newest/', views.poems_newest, name='poems_newest'),
+    path('poems/daypoems/<int:year>/', views.poems_daypoems, name='poems_daypoems'),
+    path('poems/daypoems/', views.poems_daypoems, name='poems_daypoems'),
     path('poems/by-author/<str:letter>/', views.poems_by_author, name='poems_by_author'),
     path('poems/by-author/', views.poems_by_author, name='poems_by_author'),
     path('poems/search/', views.poems_search, name='poems_search'),

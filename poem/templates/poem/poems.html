@@ -24,7 +24,7 @@ function search() {
     </a>
     <br /><br />
 
-    <a href="#">
+    <a href="{% url 'poems_daypoems' %}">
         {% trans 'Browse previous daily poems' %}
     </a>
     <br /><br />
@@ -82,6 +82,26 @@ function search() {
             <br />
         {% endfor %}
 
+    {% elif listing_type == 'daypoems' %}
+
+        {% trans 'Year' %}:
+        {% for other_year in years reversed %}
+            {% if other_year == year %}{{ other_year }}{% else %}<a href="{% url 'poems_daypoems' other_year %}">{{ other_year }}</a>{% endif %}{% if not forloop.last %},{% endif %}
+        {% endfor %}
+
+        <br />
+
+        {% for daypoem in daypoems %}
+            {% ifchanged daypoem.day %}
+                <br />
+                <strong>{{ daypoem.day }}</strong>
+                <br />
+            {% endifchanged %}
+
+            &nbsp;&nbsp;&nbsp;
+            {% include 'poem/stub/poem.in-listing.html' with poem=daypoem.poem %}
+        {% endfor %}
+
     {% elif listing_type == 'by-author' %}
 
         {% for letter in letters %}
@@ -98,10 +118,7 @@ function search() {
     {% elif listing_type == 'search' %}
 
         {% for poem in poems %}
-            <a href="{{ poem.get_absolute_url }}">{{ poem.name }}</a>
-            eftir
-            <strong>{{ poem.author.name_dative }}</strong>
-            <br />
+            {% include 'poem/stub/poem.in-listing.html' %}
         {% empty %}
             {% trans 'Unfortunately there were no search results.' %}
         {% endfor %}

@@ -1,0 +1,6 @@
+{% load i18n %}
+
+<a href="{{ poem.get_absolute_url }}">{{ poem.name }}</a>
+{% trans 'by' %}
+<strong>{{ poem.author.name_dative }}</strong>
+<br />
