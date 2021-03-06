@@ -90,65 +90,63 @@ def author(request, author_id):
     return render(request, 'author/author.html', ctx)
 
 
-def poems(request, listing_type=None, argument=None):
+def poems_newest(request):
+    poems = Poem.objects.publicly_visible().select_related('author')[:25]
+
+    ctx = {
+        'poems': poems,
+        'listing_type': 'newest',
+    }
+    return render(request, 'poem/poems.html', ctx)
+
+
+def poems_by_author(request, letter=None):
 
     # Short-hands.
     letters = settings.ALPHABET[settings.LANGUAGE_CODE]['letters']
 
-    # Supported listing types.
-    supported_listing_types = [
-        'newest',
-        'previous-daypoems',
-        'by-author',
-        'search',
-    ]
-
-    # Sane defaults.
-    search_string = ''
-    if listing_type is None:
-        # We don't like two URLs spouting the same content, so we'll redirect
-        # to the first supported listing type instead of setting the
-        # listing_type in code and continuing.
-        return redirect(reverse('poems', args=(supported_listing_types[0],)))
-    elif listing_type == 'by-author' and argument is None:
-        return redirect(reverse('poems', args=('by-author', 'A')))
+    # Default to first letter.
+    if letter is None:
+        return redirect(reverse('poems_by_author', args=(letters[0],)))
 
     # Sanitize input.
-    if listing_type not in supported_listing_types:
-        raise Http404
-    elif listing_type == 'by-author' and argument not in letters:
+    if letter not in letters:
         raise Http404
 
-    # Get poems depending on listing type and optional arguments.
-    authors = []
-    poems = []
-    if listing_type == 'newest':
-        poems = Poem.objects.publicly_visible().select_related(
-            'author'
-        )[:25]
-    elif listing_type == 'by-author':
-        authors = Author.objects.with_publicly_visible_poems().by_initial(
-            argument
-        ).order_by(
-            'name'
-        )
-    elif listing_type == 'search':
-        search_string = request.GET.get('q', '')
-        poems = Poem.objects.publicly_visible().select_related(
-            'author'
-        ).search(
-            search_string
-        )
+    authors = Author.objects.with_publicly_visible_poems().by_initial(
+        letter
+    ).order_by(
+        'name'
+    )
 
     ctx = {
-        'NEWEST_COUNT': settings.NEWEST_COUNT,
         'letters': letters,
-        'listing_type': listing_type,
         'authors': authors,
-        'poems': poems,
-        'search_string': search_string,
+        'listing_type': 'by-author',
     }
     return render(request, 'poem/poems.html', ctx)
+
+
+def poems_search(request):
+
+    search_string = request.GET.get('q', '')
+
+    poems = Poem.objects.publicly_visible().select_related(
+        'author'
+    ).search(
+        search_string
+    )
+
+    ctx = {
+        'poems': poems,
+        'search_string': search_string,
+        'listing_type': 'search',
+    }
+    return render(request, 'poem/poems.html', ctx)
+
+
+def poems(request):
+    return redirect(reverse('poems_newest'))
 
 
 def poem(request, poem_id):

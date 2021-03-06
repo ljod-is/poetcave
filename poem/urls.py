@@ -7,7 +7,10 @@ from poem import views
 
 urlpatterns = [
     path('poem/<int:poem_id>/', views.poem, name='poem'),
-    path('poems/<str:listing_type>/<str:argument>/', views.poems, name='poems'),
+    path('poems/newest/', views.poems_newest, name='poems_newest'),
+    path('poems/by-author/<str:letter>/', views.poems_by_author, name='poems_by_author'),
+    path('poems/by-author/', views.poems_by_author, name='poems_by_author'),
+    path('poems/search/', views.poems_search, name='poems_search'),
     path('poems/<str:listing_type>/', views.poems, name='poems'),
     path('poems/', views.poems, name='poems'),
     path('author/<int:author_id>/admin/', views.author_admin, name='author_admin'),

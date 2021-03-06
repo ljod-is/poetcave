@@ -19,17 +19,17 @@ function search() {
 
 {% block content %}
 
-    <a href="{% url 'poems' 'newest' %}">
+    <a href="{% url 'poems_newest' %}">
         {% blocktrans %}Browse the last {{ NEWEST_COUNT }} poems{% endblocktrans %}
     </a>
     <br /><br />
 
-    <a href="{% url 'poems' 'previous-daypoems' %}">
+    <a href="#">
         {% trans 'Browse previous daily poems' %}
     </a>
     <br /><br />
             
-    <a href="{% url 'poems' 'by-author' %}">
+    <a href="{% url 'poems_by_author' %}">
         {% trans 'Browse by author' %}
     </a>
     <br /><br />
@@ -85,7 +85,7 @@ function search() {
     {% elif listing_type == 'by-author' %}
 
         {% for letter in letters %}
-            <a href="{% url 'poems' 'by-author' letter %}">{{ letter }}</a>
+            <a href="{% url 'poems_by_author' letter %}">{{ letter }}</a>
         {% endfor %}
         <br /><br />
 
