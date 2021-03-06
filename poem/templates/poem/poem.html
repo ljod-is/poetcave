@@ -5,31 +5,7 @@
 
 {% block content %}
 
-    <div class="poem">
-        {{ poem.body|linebreaksbr }}
-        {% comment %}
-        This weirdly placed space is only needed for consistency with the old
-        website. May be deleted upon redesign.
-        {% endcomment %}
-        &nbsp;
-    </div>
-
-    <br />
-    <br />
-
-    <div class="author">
-
-        <a href="{{ poem.author.get_absolute_url }}">{{ poem.author.name }}</a><br />
-        {{ poem.author.year_born }} - {{ poem.author.year_dead|default:'' }}
-
-    </div>
-    <div class="author">
-
-        <br />
-        {{ poem.about }}
-
-    </div>
-
+    {% include 'poem/stub/poem.display.html' %}
 
 {% endblock %}
 

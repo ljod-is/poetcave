@@ -8,11 +8,19 @@ from django.db import transaction
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.translation import ugettext as _
 from django_registration.backends.activation.views import RegistrationView as BaseRegistrationView
 from poem.forms import AuthorForm
+from poem.models import Poem
 
 def main(request):
+
+    # Check for daily poem.
+    poem = Poem.objects.filter(daypoems__day=timezone.now().date()).first()
+    if poem is not None:
+        return render(request, 'poem/daypoem.html', {'poem': poem })
+
     return render(request, 'core/main.html')
 
 

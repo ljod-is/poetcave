@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block sign %}{{ poem.name }}{% endblock %}
+
+{% block content %}
+
+    {% include 'poem/stub/poem.display.html' %}
+
+{% endblock %}

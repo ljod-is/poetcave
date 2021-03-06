@@ -77,7 +77,7 @@
 								<td bgcolor="#FFFFFF" align="left" valign="top"><img src="http://www.ljod.is/images/spacer.gif" width="5" height="6"></td> 
 							</tr> 
 							<tr> 
-								<td><A HREF="http://www.ljod.is/"><img src="http://www.ljod.is/images/logo_stort.gif"  border="0"><img src="http://www.ljod.is/images/08_stort.gif" border="0"></A></td> 
+								<td><a href="{% url 'main' %}"><img src="http://www.ljod.is/images/logo_stort.gif"  border="0"><img src="http://www.ljod.is/images/08_stort.gif" border="0"></a></td>
 							</tr> 
 							<tr> 
 								<td class="date">{% now 'DATE_FORMAT' %}</td>
@@ -123,7 +123,7 @@
 								<td style="text-align: center; vertical-align: top; width: 100;"> 
 									<img src="http://www.ljod.is/images/bordi_nav.gif" width="100" height="1"><br> 
 									<img src="http://www.ljod.is/images/spacer.gif" height="8"><br> 
-									<a href="http://www.ljod.is/index.php/ljod"><img src="http://www.ljod.is/images/nav_ljod.gif" border="0"></a><br> 
+									<a href="{% url 'main' %}"><img src="http://www.ljod.is/images/nav_ljod.gif" border="0"></a><br>
 									<img src="http://www.ljod.is/images/spacer.gif" height="3"><br> 
 									<a href="{% url 'poems' %}"><img src="http://www.ljod.is/images/nav_ljodasafn.gif" border="0"></a><br />
 									<img src="http://www.ljod.is/images/spacer.gif" height="3"><br> 

@@ -170,7 +170,7 @@ class Poem(models.Model):
 class DayPoem(models.Model):
     objects = DayPoemQuerySet.as_manager()
 
-    poem = models.ForeignKey('Poem', on_delete=models.CASCADE)
+    poem = models.ForeignKey('Poem', related_name='daypoems', on_delete=models.CASCADE)
     day = models.DateField()
 
     editorial_user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL)
