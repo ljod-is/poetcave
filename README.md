@@ -40,7 +40,7 @@ In the first phase, we will simply recreate the website's functionality with the
 - [x] Users
 - [x] Authors
 - [x] Poems
-- [ ] Daily poems
+- [x] Daily poems
 - [ ] Bookmarks
 - [ ] News
 - [ ] Private paths
