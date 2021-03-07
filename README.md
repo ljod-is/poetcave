@@ -41,7 +41,7 @@ In the first phase, we will simply recreate the website's functionality with the
 - [x] Authors
 - [x] Poems
 - [x] Daily poems
-- [ ] Bookmarks
+- [x] Bookmarks
 - [ ] News
 - [ ] Private paths
 

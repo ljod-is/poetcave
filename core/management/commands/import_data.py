@@ -13,11 +13,13 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.db import connections
 from django.db import transaction
+from django.db.models import Count
 from django.utils import timezone
 
 from core.models import User
 
 from poem.models import Author
+from poem.models import Bookmark
 from poem.models import DayPoem
 from poem.models import Poem
 
@@ -82,6 +84,8 @@ class Command(BaseCommand):
 
             self.import_day_poem()
 
+            self.import_bookmarks()
+
         except KeyboardInterrupt:
             quit(1)
 
@@ -107,6 +111,9 @@ class Command(BaseCommand):
             # DayPoem garbage.
             cursor.execute('DELETE FROM `cube_poems_daypoem` WHERE `poem` = 0')
             cursor.execute('DELETE FROM `cube_poems_daypoem` WHERE `day` < "2000-01-01"')
+
+            # Bookmark garbage.
+            cursor.execute('DELETE FROM `bookmarks` WHERE `poem_id` = 0 OR `user_id` = 0')
 
             print(' done')
 
@@ -338,4 +345,42 @@ class Command(BaseCommand):
 
                 print('Saving daypoem for %s...' % row['day'], end='', flush=True)
                 daypoem.save()
+                print(' done')
+
+    def import_bookmarks(self):
+
+        existing_bookmarks = "'%s'" % "','".join([
+            '%s:%s' % (b['user_id'], b['poem_id']) for b in Bookmark.objects.all().values('poem_id', 'user_id')
+        ])
+
+        with self.connection.cursor() as cursor:
+            cursor.execute('''
+                SELECT
+                    `b`.`user_id`,
+                    `b`.`poem_id`
+                FROM
+                    `bookmarks` AS `b`
+                INNER JOIN
+                    `users` AS `u` ON (
+                        `u`.`id` = `b`.`user_id`
+                    )
+                INNER JOIN
+                    `cube_poems` AS `p` ON (
+                        `p`.`id` = `b`.`poem_id`
+                    )
+                WHERE
+                    CONCAT(`b`.`user_id`, ':', `b`.`poem_id`) NOT IN (%s)
+            ''' % existing_bookmarks)
+
+            for row in dictfetchall(cursor):
+                bookmark = Bookmark()
+                bookmark.user_id = row['user_id']
+                bookmark.poem_id = row['poem_id']
+
+                print(
+                    'Saving bookmark (user_id %d, poem_id %d)...' % (row['user_id'], row['poem_id']),
+                    end='',
+                    flush=True
+                )
+                bookmark.save()
                 print(' done')

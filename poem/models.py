@@ -179,3 +179,8 @@ class DayPoem(models.Model):
     class Meta:
         unique_together = ['poem', 'day']
         ordering = ['-editorial_timing', '-poem__editorial_timing', '-poem__public_timing']
+
+
+class Bookmark(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='bookmarks', on_delete=models.CASCADE)
+    poem = models.ForeignKey('poem.Poem', related_name='bookmarks', on_delete=models.CASCADE)
