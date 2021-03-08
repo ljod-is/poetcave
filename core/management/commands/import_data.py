@@ -115,6 +115,30 @@ class Command(BaseCommand):
             # Bookmark garbage.
             cursor.execute('DELETE FROM `bookmarks` WHERE `poem_id` = 0 OR `user_id` = 0')
 
+            # Bookmark duplicates.
+            cursor.execute('''
+                SELECT
+                    `id`,
+                    `user_id`,
+                    `poem_id`
+                FROM
+                    `bookmarks`
+                ORDER BY
+                    `user_id`,
+                    `poem_id`
+            ''')
+            last_user_id = None
+            last_poem_id = None
+            bookmarks_to_delete = [0]
+            for row in dictfetchall(cursor):
+                if row['user_id'] == last_user_id and row['poem_id'] == last_poem_id:
+                    bookmarks_to_delete.append(row['id'])
+                last_user_id = row['user_id']
+                last_poem_id = row['poem_id']
+            cursor.execute(
+                'DELETE FROM `bookmarks` WHERE `id` IN (%s)' % ','.join(str(v) for v in bookmarks_to_delete)
+            )
+
             print(' done')
 
 
