@@ -24,8 +24,8 @@ In the first phase, we will simply recreate the website's functionality with the
 - [x] CRUD for poems.
 - [X] Poem navigation and search.
 - [x] Daily poem displayed on front page.
+- [x] Bookmarks
 - [ ] Poem approval/rejection.
-- [ ] Bookmarks
 
 ### Critiques
 - [ ] CRUD for critiques.
