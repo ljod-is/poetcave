@@ -84,7 +84,7 @@ def poem_delete(request, author_id, poem_id):
 def author(request, author_id):
 
     author = Author.objects.with_publicly_visible_poems().get(id=author_id)
-    poems = author.poems.publicly_visible()
+    poems = author.poems.filter(publicly_visible=True)
 
     ctx = {
         'author': author,
@@ -94,7 +94,7 @@ def author(request, author_id):
 
 
 def poems_newest(request):
-    poems = Poem.objects.publicly_visible().select_related('author')[:25]
+    poems = Poem.objects.select_related('author').filter(publicly_visible=True)[:25]
 
     ctx = {
         'poems': poems,
@@ -168,8 +168,10 @@ def poems_search(request):
 
     search_string = request.GET.get('q', '')
 
-    poems = Poem.objects.publicly_visible().select_related(
+    poems = Poem.objects.select_related(
         'author'
+    ).filter(
+        publicly_visible=True
     ).search(
         search_string
     )
@@ -189,16 +191,20 @@ def poems(request):
 def poem(request, poem_id):
     try:
         # The requested poem.
-        poem = Poem.objects.publicly_visible().select_related(
+        poem = Poem.objects.select_related(
             'author'
         ).get(
-            id=poem_id
+            id=poem_id,
+            publicly_visible=True
         )
 
     except Poem.DoesNotExist:
         raise Http404
 
+    poems = poem.author.poems.filter(publicly_visible=True)
+
     ctx = {
         'poem': poem,
+        'poems': poems,
     }
     return render(request, 'poem/poem.html', ctx)

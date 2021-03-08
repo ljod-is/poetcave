@@ -20,7 +20,7 @@
     original didn't specify an order by a particular field, and thus were
     listed in a somewhat arbitrary order.
     {% endcomment %}
-    {% for side_poem in poem.author.poems.publicly_visible reversed %}
+    {% for side_poem in poems reversed %}
 
         {% if side_poem.id == poem.id %}
             {{ side_poem.name }}

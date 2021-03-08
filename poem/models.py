@@ -32,9 +32,7 @@ class AuthorQuerySet(models.QuerySet):
         # Limits authors to those who have published poems and provides an
         # annotated value, `poem_count`, showing their number.
         return self.filter(
-            poems__editorial_status='approved',
-            poems__public=True,
-            poems__trashed=False
+            publicly_visible=True
         ).annotate(
             poem_count=models.Count('poems')
         )
@@ -44,14 +42,6 @@ class PoemQuerySet(models.QuerySet):
     def managed_by(self, user):
         # NOTE: See note in `AuthorQuerySet.managed_by`.
         return self.filter(author__user=user)
-
-    def publicly_visible(self):
-        # Poems fulfilling all conditions for a poem to be publicly visible.
-        return self.filter(
-            editorial_status='approved',
-            public=True,
-            trashed=False
-        )
 
     def search(self, search_string):
         # TODO: This should probably become more sophisticated in the future.
@@ -154,6 +144,9 @@ class Poem(models.Model):
     editorial_timing = models.DateTimeField(null=True, blank=True)
     editorial_reason = models.TextField(null=True, blank=True)
 
+    # Automatically updated when model is saved.
+    publicly_visible = models.BooleanField(default=False)
+
     date_created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     date_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
 
@@ -162,6 +155,13 @@ class Poem(models.Model):
 
     def get_absolute_url(self):
         return reverse('poem', args=(self.id,))
+
+    def save(self, *args, **kwargs):
+
+        # Check if poem fulfills conditions for being publicly visible.
+        self.publicly_visible = self.editorial_status == 'approved' and self.public == True and self.trashed == False
+
+        super(Poem, self).save(*args, **kwargs)
 
     class Meta:
         ordering = ['-editorial_timing', '-public_timing']
