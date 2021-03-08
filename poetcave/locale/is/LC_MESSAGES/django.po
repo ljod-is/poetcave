@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-06 11:11+0000\n"
+"POT-Creation-Date: 2021-03-08 19:00+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -197,23 +197,23 @@ msgstr "Takk fyrir að skrá þig!"
 msgid "Please check your email to finish the registration process."
 msgstr "Vinsamlegast athugaðu tölvupósthólf þitt til að klára skráninguna."
 
-#: core/views.py:45
+#: core/views.py:53
 msgid "Password updated."
 msgstr "Lykilorð uppfært."
 
-#: core/views.py:58
+#: core/views.py:66
 msgid "Profile updated."
 msgstr "Notandaupplýsingar uppfærðar."
 
-#: poem/models.py:133
+#: poem/models.py:123
 msgid "Pending"
 msgstr ""
 
-#: poem/models.py:134 poem/templates/author/admin.html:15
+#: poem/models.py:124 poem/templates/author/admin.html:15
 msgid "Approved"
 msgstr "Samþykkt"
 
-#: poem/models.py:135
+#: poem/models.py:125
 msgid "Rejected"
 msgstr ""
 
@@ -244,6 +244,18 @@ msgstr "Breyta"
 #: poem/templates/author/author.html:20
 msgid "More about the author"
 msgstr "Meira um höfund"
+
+#: poem/templates/bookmark/bookmarks.html:7
+msgid "Are you sure you want to delete the bookmark for this poem?"
+msgstr "Ertu viss um að þú viljir eyða bókamerkinu fyrir þetta ljóð?"
+
+#: poem/templates/bookmark/bookmarks.html:23
+msgid "Bookmarks"
+msgstr "Bókamerki"
+
+#: poem/templates/bookmark/bookmarks.html:33
+msgid "DELETE"
+msgstr "EYÐA"
 
 #: poem/templates/poem/add.html:4 poem/templates/poem/delete.html:4
 msgid "Homestead"
@@ -277,7 +289,7 @@ msgstr "Hætta við"
 msgid "Are you sure you wish to delete this poem?"
 msgstr "Ertu viss um að þú viljir eyða þessu ljóði?"
 
-#: poem/templates/poem/poem.html:39
+#: poem/templates/poem/poem.html:14
 msgid "Poems by"
 msgstr "Ljóð eftir"
 
@@ -315,10 +327,14 @@ msgstr "Ónefnt ljóð"
 msgid "Year"
 msgstr "Ár"
 
-#: poem/templates/poem/poems.html:105
-msgid "by"
-msgstr "eftir"
-
-#: poem/templates/poem/poems.html:132
+#: poem/templates/poem/poems.html:124
 msgid "Unfortunately there were no search results."
 msgstr "Því miður skilaði leitin engum árangri."
+
+#: poem/templates/poem/stub/poem.display.html:29
+msgid "Place bookmark"
+msgstr "Setja bókamerki"
+
+#: poem/templates/poem/stub/poem.in-listing.html:4
+msgid "by"
+msgstr "eftir"
