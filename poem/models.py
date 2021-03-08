@@ -32,7 +32,7 @@ class AuthorQuerySet(models.QuerySet):
         # Limits authors to those who have published poems and provides an
         # annotated value, `poem_count`, showing their number.
         return self.filter(
-            publicly_visible=True
+            poems__publicly_visible=True
         ).annotate(
             poem_count=models.Count('poems')
         )
