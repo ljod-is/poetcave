@@ -9,6 +9,7 @@ from django.urls import reverse
 from django.utils import timezone
 from poem.forms import PoemForm
 from poem.models import Author
+from poem.models import Bookmark
 from poem.models import DayPoem
 from poem.models import Poem
 
@@ -79,6 +80,51 @@ def poem_delete(request, author_id, poem_id):
         'poem': poem,
     }
     return render(request, 'poem/delete.html', ctx)
+
+
+@login_required
+def bookmarks(request):
+
+    bookmarks = Bookmark.objects.select_related(
+        'poem'
+    ).filter(
+        user_id=request.user.id,
+        poem__publicly_visible=True
+    )
+
+    ctx = {
+        'bookmarks': bookmarks,
+    }
+    return render(request, 'bookmark/bookmarks.html', ctx)
+
+
+@login_required
+def bookmark_add(request, poem_id):
+
+    try:
+        poem = Poem.objects.get(id=poem_id, publicly_visible=True)
+    except Poem.DoesNotExist:
+        raise Http404
+
+    Bookmark.objects.get_or_create(
+        user=request.user,
+        poem=poem
+    )
+
+    return redirect(reverse('bookmarks'))
+
+
+@login_required
+def bookmark_delete(request, poem_id):
+    try:
+        Bookmark.objects.get(
+            user_id=request.user.id,
+            poem_id=poem_id
+        ).delete()
+    except Poem.DoesNotExist:
+        raise Http404
+
+    return redirect(reverse('bookmarks'))
 
 
 def author(request, author_id):

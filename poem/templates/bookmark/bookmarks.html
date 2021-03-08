@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block javascript %}
+<script language="javascript" type="text/javascript">
+
+var DELETE_BOOKMARK_WARNING = "{% trans 'Are you sure you want to delete the bookmark for this poem?' %}";
+
+function deleteBookmark(poem_id, name) {
+
+    var warning = DELETE_BOOKMARK_WARNING;
+
+    warning += '\n\n' + name;
+
+    if (confirm(warning)) {
+        location.href = '/bookmark/delete/' + poem_id.toString() + '/';
+    }
+}
+
+</script>
+{% endblock %}
+
+{% block sign %}{% trans 'Bookmarks' %}{% endblock %}
+
+{% block content %}
+
+<table cellspacing="10" style="border-collapse: separate;">
+{% for bookmark in bookmarks %}
+    {% with bookmark.poem as poem %}
+    <tr>
+        <td><a href="{{ poem.get_absolute_url }}">{{ poem.name }}</a></td>
+        <td>{{ poem.author.name }}</td>
+        <td>[<a href="#" onclick="deleteBookmark({{ poem.id }}, '{{ poem.name|escape }}');">{% trans 'DELETE' %}</a>]</td>
+    </tr>
+    {% endwith %}
+{% endfor %}
+</table>
+
+{% endblock %}

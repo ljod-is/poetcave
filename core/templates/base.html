@@ -145,7 +145,7 @@
 						
 									{% if user.is_authenticated %}
 										<img src="http://www.ljod.is/images/spacer.gif" height="3" /><br />
-										<a href="http://www.ljod.is/index.php/ljod/bokamerki"><img src="http://www.ljod.is/images/nav_bokamerki.gif" /></a><br />
+										<a href="{% url 'bookmarks' %}"><img src="http://www.ljod.is/images/nav_bokamerki.gif" /></a><br />
 										<img src="http://www.ljod.is/images/spacer.gif" height="3"><br />
 										<a href="{% url 'profile' %}"><img src="http://www.ljod.is/images/nav_eg.gif" /></a><br />
 										<img src="http://www.ljod.is/images/spacer.gif" height="3"><br />

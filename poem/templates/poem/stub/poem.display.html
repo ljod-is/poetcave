@@ -1,3 +1,5 @@
+{% load i18n %}
+
 <div class="poem">
     {{ poem.body|linebreaksbr }}
     {% comment %}
@@ -22,3 +24,5 @@
     {{ poem.about }}
 
 </div>
+
+[<a href="{% url 'bookmark_add' poem.id %}">{% trans 'Place bookmark' %}</a>]
