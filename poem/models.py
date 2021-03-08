@@ -184,3 +184,6 @@ class DayPoem(models.Model):
 class Bookmark(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='bookmarks', on_delete=models.CASCADE)
     poem = models.ForeignKey('poem.Poem', related_name='bookmarks', on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ['user', 'poem']
