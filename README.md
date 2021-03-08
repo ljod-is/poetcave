@@ -47,7 +47,6 @@ In the first phase, we will simply recreate the website's functionality with the
 
 ### Other
 - [ ] Static pages (FAQ, about, etc.)
-- [ ] Links
 
 ## Decisions
 
@@ -55,5 +54,4 @@ These are decisions that need to be made in order to implement certain functiona
 
 - [ ] Poem approval process.
 - [ ] Critique approval process.
-- [ ] What are "links" for and who governs them?
 - [ ] Who decides the daily poem?
