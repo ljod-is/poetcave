@@ -1,2 +1,4 @@
 django
 django_registration
+python-frontmatter
+markdown2

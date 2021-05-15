@@ -1,3 +1,5 @@
+import frontmatter
+import os
 from core.forms import ProfileForm
 from core.forms import RegistrationForm
 from django.contrib.auth import update_session_auth_hash
@@ -5,14 +7,17 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
 from django.db import transaction
+from django.http import Http404
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import ugettext as _
 from django_registration.backends.activation.views import RegistrationView as BaseRegistrationView
+from markdown2 import markdown
 from poem.forms import AuthorForm
 from poem.models import Poem
+
 
 def main(request):
 
@@ -22,6 +27,37 @@ def main(request):
         return render(request, 'poem/daypoem.html', {'poem': poem })
 
     return render(request, 'core/main.html')
+
+
+def about(request, page=None):
+
+    PAGE_DIR = 'core/templates/core/about'
+
+    # Default to "index.md".
+    if page is None:
+        page = 'index'
+
+    # We don't trust your kind of input around here.
+    known_pages = os.listdir(PAGE_DIR)
+    if '%s.md' % page not in known_pages:
+        raise Http404
+
+    with open('%s/%s.md' % (PAGE_DIR, page)) as f:
+        # Read file.
+        body = f.read()
+        fm = frontmatter.loads(body)
+
+        # Get frontmatter data.
+        sign = fm.get('title')
+
+        # Get markdown data.
+        content = markdown(fm.content)
+
+    ctx = {
+        'sign': sign,
+        'content': content,
+    }
+    return render(request, 'core/about.html', ctx)
 
 
 @login_required

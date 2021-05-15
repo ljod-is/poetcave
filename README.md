@@ -46,7 +46,7 @@ In the first phase, we will simply recreate the website's functionality with the
 - [ ] Private paths
 
 ### Other
-- [ ] Static pages (FAQ, about, etc.)
+- [x] Static pages (FAQ, about, etc.)
 
 ## Decisions
 

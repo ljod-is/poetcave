@@ -11,6 +11,10 @@ from core.views import RegistrationView
 urlpatterns = [
     path('', views.main, name='main'),
 
+    # Static pages rendered via markdown templates.
+    path('about/<str:page>/', views.about, name='about'),
+    path('about/', views.about, name='about'),
+
     # Registration entry page.
     path(
         'register/',
