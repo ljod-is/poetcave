@@ -13,14 +13,8 @@ table td.control { padding-left: 20px; }
 
 .center { text-align: center; }
 
-input, button {
-    border-width: 1px;
-
-}
-
-textarea {
-	border-width: 1px;
-}
+input, button { border-width: 1px; }
+textarea { border-width: 1px; }
 
 .markdown h1 { font-family: Verdana; font-size: 10px; padding: 0px; margin: 0px; }
 .markdown p { padding-bottom: 13px; }
