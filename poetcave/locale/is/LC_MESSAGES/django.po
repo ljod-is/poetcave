@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-03-08 19:00+0000\n"
+"POT-Creation-Date: 2021-05-15 18:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,10 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);\n"
+
+#: core/forms.py:15
+msgid "Email address is already in use."
+msgstr "Netfang þegar í notkun."
 
 #: core/templates/base.html:166 core/templates/user/password_reset/reset.html:4
 #: core/templates/user/password_reset/reset_confirm.html:4
@@ -197,11 +201,11 @@ msgstr "Takk fyrir að skrá þig!"
 msgid "Please check your email to finish the registration process."
 msgstr "Vinsamlegast athugaðu tölvupósthólf þitt til að klára skráninguna."
 
-#: core/views.py:53
+#: core/views.py:89
 msgid "Password updated."
 msgstr "Lykilorð uppfært."
 
-#: core/views.py:66
+#: core/views.py:102
 msgid "Profile updated."
 msgstr "Notandaupplýsingar uppfærðar."
 
