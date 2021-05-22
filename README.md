@@ -45,6 +45,13 @@ In the first phase, we will simply recreate the website's functionality with the
 - [ ] News
 - [ ] Private paths
 
+### Superuser administration
+- [ ] Poems
+- [ ] Authors
+- [ ] Users
+- [ ] Critiques
+- [ ] Terms and conditions
+
 ### Other
 - [x] Static pages (FAQ, about, etc.)
 
