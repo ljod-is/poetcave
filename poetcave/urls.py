@@ -21,7 +21,5 @@ urlpatterns = [
     path('', include('core.urls')),
     path('', include('poem.urls')),
 
-    # Disabled until actual flow is decided.
-    # Possibly removed entirely in the future.
-    #path('admin/', admin.site.urls),
+    path('admin/', admin.site.urls),
 ]
