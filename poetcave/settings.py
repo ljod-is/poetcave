@@ -186,3 +186,4 @@ DATABASES = {
         'PASSWORD': DATABASE_PASSWORD
     },
 }
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
