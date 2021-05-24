@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load md2 %}
+
+{% block sign %}{{ form.initial.terms.0.name }}{% endblock %}
+
+{% block content %}
+
+    {{ form.errors }}
+
+    <div class="markdown">
+    {% for terms in form.initial.terms %}
+
+        {% if terms.info %}
+            <h1>{% trans 'Changes since previous terms' %}</h1>
+            {{ terms.info|safe }}
+            <h1>{% trans 'Full text of new terms' %}</h1>
+        {% endif %}
+
+        {{ terms.text|markdown }}
+
+    {% endfor %}
+
+    <br />
+
+    <form method="post" action="{% url 'tc_accept_page' %}">
+        {% csrf_token %}
+        {{ form.terms }}
+        {{ form.returnTo }}
+        <button type="submit">{% trans 'Accept' %}</button>
+        <button type="button" href="{% url 'logout' %}">{% trans 'Reject' %}</button>
+    </form>
+    </div>
+
+    <br />
+
+    {% blocktrans %}For comments or questions regarding privacy or our terms and conditions, please email send us an email at <a href="mailto:{{ CONTACT_EMAIL }}">{{ CONTACT_EMAIL }}</a>.{% endblocktrans %}
+
+{% endblock %}

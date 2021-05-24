@@ -3,6 +3,9 @@ INSTANCE_NAME = 'PoetCave'
 INSTANCE_DOMAIN = 'poetcave.org'
 INSTANCE_WEB = 'https://www.%s' % INSTANCE_DOMAIN
 
+# Contact-related
+CONTACT_EMAIL = 'poetcave@poetcave.org'
+
 # Security and development
 SECRET_KEY = 'some-random-string'
 DEBUG = True

@@ -7,6 +7,7 @@ from django_registration.backends.activation.views import ActivationView
 from core import views
 from core.forms import RegistrationForm
 from core.views import RegistrationView
+from termsandconditions.views import AcceptTermsView
 
 urlpatterns = [
     path('', views.main, name='main'),
@@ -120,4 +121,20 @@ urlpatterns = [
     #    ),
     #    name='password_change'
     #),
+
+    # Terms and conditions.
+    path(
+        'terms/accept/',
+        AcceptTermsView.as_view(
+            template_name='termsandconditions/terms.html'
+        ),
+        name='tc_accept_page'
+    ),
+    path(
+        'terms/accept/<slug:slug>/',
+        AcceptTermsView.as_view(
+            template_name='termsandconditions/terms.html'
+        ),
+        name='tc_accept_specific_page'
+    ),
 ]

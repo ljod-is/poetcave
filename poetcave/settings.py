@@ -29,11 +29,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'django_registration',
-    'languagecontrol',
-
     'core',
     'poem',
+
+    'termsandconditions',
+    'django_markdown2',
+    'django_registration',
+    'languagecontrol',
 ]
 
 MIDDLEWARE = [
@@ -46,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'termsandconditions.middleware.TermsAndConditionsRedirectMiddleware',
 ]
 
 ROOT_URLCONF = 'poetcave.urls'
@@ -187,3 +190,10 @@ DATABASES = {
     },
 }
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+# Terms and conditions
+# See: https://django-termsandconditions.readthedocs.io/en/latest/#terms-and-conditions-middleware
+ACCEPT_TERMS_PATH = '/terms/accept/'
+TERMS_EXCLUDE_URL_PREFIX_LIST = ['/admin/']
+TERMS_EXCLUDE_URL_LIST = ['/terms/required/', '/user/logout/']
+TERMS_EXCLUDE_URL_CONTAINS_LIST = []

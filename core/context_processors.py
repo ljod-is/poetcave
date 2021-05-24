@@ -4,4 +4,5 @@ def globals(request):
     return {
         'letters': settings.ALPHABET[settings.LANGUAGE_CODE]['letters'],
         'NEWEST_COUNT': settings.NEWEST_COUNT,
+        'CONTACT_EMAIL': settings.CONTACT_EMAIL,
     }
