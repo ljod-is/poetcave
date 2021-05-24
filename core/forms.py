@@ -32,6 +32,12 @@ class RegistrationForm(BaseRegistrationForm):
         ]
 
 class ProfileForm(forms.ModelForm):
+
+    def clean_email(self):
+        # Make email unchangeable. If we make it changeable in the future,
+        # there should be a mechanism for verifying the new address.
+        return self.instance.email;
+
     class Meta:
         model = User
         fields = [

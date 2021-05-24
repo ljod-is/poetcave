@@ -66,7 +66,7 @@ Ferilsskrá eða aðrar upplýsingar:
 <br />
 
 <label for="id_email">Netfang:</label>
-<input type="text" size="25" id="id_email" name="email" class="required email" email="true" maxlength="{{ form.email.max_length }}" value="{{ form.email.value|default:'' }}" />
+<input type="text" size="25" id="id_email" name="email" class="required email" email="true" maxlength="{{ form.email.max_length }}" value="{{ form.email.value|default:'' }}" disabled="true" />
 <label for="id_email" generated="true" class="error">{% for error in form.email.errors %}{{ error }}<br />{% endfor %}</label>
 <br />
 
