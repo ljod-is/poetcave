@@ -164,11 +164,6 @@ def user_delete_confirm(request):
 
 
 @login_required
-def retrieve_data(request):
-    return render(request, 'user/retrieve_data.html')
-
-
-@login_required
 def retrieve_data_download(request):
 
     # Plan:
