@@ -123,6 +123,7 @@ urlpatterns = [
     #),
 
     # Delete user.
+    path('user/delete/', views.user_delete, name='user_delete'),
     path('user/delete/confirm/', views.user_delete_confirm, name='user_delete_confirm'),
 
     # Retrieve personal data.

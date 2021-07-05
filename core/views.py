@@ -157,6 +157,11 @@ class RegistrationView(BaseRegistrationView):
 
 
 @login_required
+def user_delete(request):
+    return render(request, 'user/delete.html')
+
+
+@login_required
 def user_delete_confirm(request):
     request.user.author.delete()
     request.user.delete()
@@ -289,5 +294,6 @@ def retrieve_data_download(request):
 @login_required
 def reject_terms(request):
     ctx = {
+        'rejecting_terms': True,
     }
-    return render(request, 'termsandconditions/reject.html', ctx)
+    return render(request, 'user/delete.html', ctx)

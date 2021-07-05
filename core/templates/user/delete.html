@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block sign %}{% trans 'Confirm account deletion' %}{% endblock %}
+
+{% block content %}
+
+{% if rejecting_terms %}
+    {% blocktrans %}Please note that we are unable and unwilling to host your data unless you approve of how we handle your information. As a result, an inevitable consequence of the rejection of our terms and conditions is the deletion of your account, including all of its data.{% endblocktrans %}
+    <br /><br />
+{% endif %}
+
+{% trans 'In order to keep a copy of your data before we delete it, you can press the button below.' %}
+<br /><br />
+
+<button type="button" href="{% url 'retrieve_data_download' %}">{% trans 'Download personal data' %}</button>
+<br /><br />
+
+{% trans 'Once you are absolutely, positively certain that you wish to delete your account, please press the confirmation button below.' %}
+<br /><br />
+
+<strong>{% trans 'It is not possible to undo this action. Once you have pressed the following button, your data is gone from our site forever and ever.' %}</strong>
+<br /><br />
+
+<button type="button" href="{% url 'user_delete_confirm' %}">
+{% if rejecting_terms %}
+    {% trans 'Reject terms and delete account' %}
+{% else %}
+    {% trans 'Delete account' %}
+{% endif %}
+</button>
+
+{% endblock %}
