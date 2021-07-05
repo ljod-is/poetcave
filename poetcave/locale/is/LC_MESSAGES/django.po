@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-05 16:26+0000\n"
+"POT-Creation-Date: 2021-07-05 16:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -36,57 +36,6 @@ msgstr "Höfundar"
 msgid "Users of ljóð.is"
 msgstr "Notendur ljóð.is"
 
-#: core/templates/termsandconditions/reject.html:4
-msgid "Confirm account deletion"
-msgstr "Staðfesta eyðingu aðgangs"
-
-#: core/templates/termsandconditions/reject.html:8
-msgid ""
-"Please note that we are unable and unwilling to host your data unless you "
-"approve of how we handle your information. As a result, an inevitable "
-"consequence of the rejection of our terms and conditions is the deletion of "
-"your account, including all of its data."
-msgstr ""
-"Vinsamlegast athugið að við hvorki getum né viljum hýsa upplýsingarnar þínar "
-"nema þú samþykkir hvernig við förum með þær. Óhjákvæmileg afleiðing þess að "
-"samþykkja ekki notkunarskilmála okkar er því eyðing aðgangsins og þar með "
-"allra gagna sem á honum eru."
-
-#: core/templates/termsandconditions/reject.html:11
-msgid ""
-"In order to keep a copy of your data before we delete it, you can press the "
-"button below."
-msgstr ""
-"Til þess að halda eftir eintaki af gögnunum þínum áður en við eyðum þeim "
-"geturðu ýtt á eftirfarandi takka."
-
-#: core/templates/termsandconditions/reject.html:14
-#: core/templates/user/profile.html:118
-msgid "Download personal data"
-msgstr "Niðurhala persónugögnum"
-
-#: core/templates/termsandconditions/reject.html:17
-msgid ""
-"Once you are absolutely, positively certain that you wish to reject our "
-"terms and conditions, and delete your account as a result, please press the "
-"confirmation button below."
-msgstr ""
-"Þegar þú ert algerlega, fullkomlega viss um að þú viljir hafna "
-"notkunarskilmálunum og eyða þar með aðgangi þínum, vinsamlegast smelltu á "
-"takkann hér fyrir neðan."
-
-#: core/templates/termsandconditions/reject.html:20
-msgid ""
-"It is not possible to undo this action. Once you have pressed the following "
-"button, your data is gone from our site forever and ever."
-msgstr ""
-"Þessa aðgerð er ekki hægt að taka til baka. Þegar þú hefur ýtt á "
-"eftirfarandi takka eru gögnin þín farin af vefsetri okkar að eilífu."
-
-#: core/templates/termsandconditions/reject.html:23
-msgid "Reject terms and delete account"
-msgstr "Hafna skilmálum og eyða aðgangi"
-
 #: core/templates/termsandconditions/terms.html:16
 msgid "Changes since previous terms"
 msgstr "Breytingar frá síðustu skilmálum"
@@ -112,6 +61,58 @@ msgid ""
 msgstr ""
 "Athugasemdum eða spurningum varðandi persónuvernd eða notkunarskilmála má "
 "beina á netfangið <a href=\"mailto:%(CONTACT_EMAIL)s\">%(CONTACT_EMAIL)s</a>."
+
+#: core/templates/user/delete.html:4
+msgid "Confirm account deletion"
+msgstr "Staðfesta eyðingu aðgangs"
+
+#: core/templates/user/delete.html:9
+msgid ""
+"Please note that we are unable and unwilling to host your data unless you "
+"approve of how we handle your information. As a result, an inevitable "
+"consequence of the rejection of our terms and conditions is the deletion of "
+"your account, including all of its data."
+msgstr ""
+"Vinsamlegast athugið að við hvorki getum né viljum hýsa upplýsingarnar þínar "
+"nema þú samþykkir hvernig við förum með þær. Óhjákvæmileg afleiðing þess að "
+"samþykkja ekki notkunarskilmála okkar er því eyðing aðgangsins og þar með "
+"allra gagna sem á honum eru."
+
+#: core/templates/user/delete.html:13
+msgid ""
+"In order to keep a copy of your data before we delete it, you can press the "
+"button below."
+msgstr ""
+"Til þess að halda eftir eintaki af gögnunum þínum áður en við eyðum þeim "
+"geturðu ýtt á eftirfarandi takka."
+
+#: core/templates/user/delete.html:16 core/templates/user/profile.html:118
+msgid "Download personal data"
+msgstr "Niðurhala persónugögnum"
+
+#: core/templates/user/delete.html:19
+msgid ""
+"Once you are absolutely, positively certain that you wish to delete your "
+"account, please press the confirmation button below."
+msgstr ""
+"Þegar þú ert algerlega, fullkomlega viss um að þú viljir eyða aðgangi þínum, "
+"vinsamlegast smelltu á takkann hér fyrir neðan."
+
+#: core/templates/user/delete.html:22
+msgid ""
+"It is not possible to undo this action. Once you have pressed the following "
+"button, your data is gone from our site forever and ever."
+msgstr ""
+"Þessa aðgerð er ekki hægt að taka til baka. Þegar þú hefur ýtt á "
+"eftirfarandi takka eru gögnin þín farin af vefsetri okkar að eilífu."
+
+#: core/templates/user/delete.html:27
+msgid "Reject terms and delete account"
+msgstr "Hafna skilmálum og eyða aðgangi"
+
+#: core/templates/user/delete.html:29 core/templates/user/profile.html:120
+msgid "Delete account"
+msgstr "Eyða aðgangi"
 
 #: core/templates/user/login.html:4
 msgid "Login"
@@ -262,10 +263,6 @@ msgstr "Skrá"
 msgid "Terms and conditions"
 msgstr "Notkunarskilmálar"
 
-#: core/templates/user/profile.html:120
-msgid "Delete account"
-msgstr "Eyða aðgangi"
-
 #: core/templates/user/registration/activation_complete.html:6
 msgid "Registration was successful!"
 msgstr "Skráning tókst!"
@@ -285,19 +282,6 @@ msgstr "Takk fyrir að skrá þig!"
 #: core/templates/user/registration/registration_complete.html:8
 msgid "Please check your email to finish the registration process."
 msgstr "Vinsamlegast athugaðu tölvupósthólf þitt til að klára skráninguna."
-
-#: core/templates/user/retrieve_data.html:4
-msgid "Retrieve data"
-msgstr "Sækja gögn"
-
-#: core/templates/user/retrieve_data.html:8
-msgid "Please press the button below to download your data."
-msgstr ""
-"Vinsamlegast smelltu á takkann fyrir neðan til að niðurhala gögnunum þínum."
-
-#: core/templates/user/retrieve_data.html:12
-msgid "Download"
-msgstr "Niðurhala"
 
 #: core/views.py:95
 msgid "Password updated."
