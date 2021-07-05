@@ -49,8 +49,8 @@ In the first phase, we will simply recreate the website's functionality with the
 - [x] Poems
 - [x] Authors
 - [x] Users
-- [ ] Critiques
 - [x] Terms and conditions
+- [ ] Critiques
 
 ### Other
 - [x] Static pages (FAQ, about, etc.)
