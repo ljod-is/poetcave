@@ -14,10 +14,10 @@ In the first phase, we will simply recreate the website's functionality with the
 - [x] Registration.
 - [x] Login/logout.
 - [x] Forgotten-password.
+- [x] Terms and conditions.
+- [x] Personal data download.
+- [x] Account deletion.
 - [ ] Private paths (i.e. https://ljod.is/some-username)
-- [ ] Terms and conditions.
-- [ ] Personal data download.
-- [ ] Account deletion.
 - [ ] Combining of accounts sharing an email address.
 
 ### Poems and authors
@@ -46,11 +46,11 @@ In the first phase, we will simply recreate the website's functionality with the
 - [ ] Private paths
 
 ### Superuser administration
-- [ ] Poems
-- [ ] Authors
-- [ ] Users
+- [x] Poems
+- [x] Authors
+- [x] Users
 - [ ] Critiques
-- [ ] Terms and conditions
+- [x] Terms and conditions
 
 ### Other
 - [x] Static pages (FAQ, about, etc.)
