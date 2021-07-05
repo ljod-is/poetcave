@@ -195,5 +195,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 # See: https://django-termsandconditions.readthedocs.io/en/latest/#terms-and-conditions-middleware
 ACCEPT_TERMS_PATH = '/terms/accept/'
 TERMS_EXCLUDE_URL_PREFIX_LIST = ['/admin/']
-TERMS_EXCLUDE_URL_LIST = ['/terms/required/', '/user/logout/']
+TERMS_EXCLUDE_URL_LIST = [
+    '/terms/reject/',
+    '/terms/required/',
+    '/user/delete/confirm/',
+    '/user/logout/',
+    '/user/retrieve-data/download/',
+]
 TERMS_EXCLUDE_URL_CONTAINS_LIST = []

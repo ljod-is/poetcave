@@ -122,6 +122,9 @@ urlpatterns = [
     #    name='password_change'
     #),
 
+    # Delete user.
+    path('user/delete/confirm/', views.user_delete_confirm, name='user_delete_confirm'),
+
     # Retrieve personal data.
     path('user/retrieve-data/download/', views.retrieve_data_download, name='retrieve_data_download'),
     path('user/retrieve-data/', views.retrieve_data, name='retrieve_data'),
@@ -140,5 +143,10 @@ urlpatterns = [
             template_name='termsandconditions/terms.html'
         ),
         name='tc_accept_specific_page'
+    ),
+    path(
+        'terms/reject/',
+        views.reject_terms,
+        name='tc_reject_page'
     ),
 ]

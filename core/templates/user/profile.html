@@ -101,6 +101,8 @@ Ferilsskrá eða aðrar upplýsingar:
 
 {% block side %}
 
+<a href="{% url 'tc_accept_specific_page' 'notkunarskilmalar' %}">{% trans 'Terms and conditions' %}</a><br /><br />
+
 <a href="{% url 'retrieve_data' %}">{% trans 'Download personal data' %}</a><br /><br />
 
 {% endblock %}

@@ -157,6 +157,13 @@ class RegistrationView(BaseRegistrationView):
 
 
 @login_required
+def user_delete_confirm(request):
+    request.user.author.delete()
+    request.user.delete()
+    return redirect(reverse('logout'))
+
+
+@login_required
 def retrieve_data(request):
     return render(request, 'user/retrieve_data.html')
 
@@ -282,3 +289,10 @@ def retrieve_data_download(request):
     response = HttpResponse(package_data, content_type='application/zip')
     response['Content-Disposition'] = 'attachment; filename=%s.zip' % package_name
     return response
+
+
+@login_required
+def reject_terms(request):
+    ctx = {
+    }
+    return render(request, 'termsandconditions/reject.html', ctx)
