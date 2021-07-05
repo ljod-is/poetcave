@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-05-15 18:14+0000\n"
+"POT-Creation-Date: 2021-07-05 16:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,6 +35,83 @@ msgstr "Höfundar"
 #: core/templates/base.html:183
 msgid "Users of ljóð.is"
 msgstr "Notendur ljóð.is"
+
+#: core/templates/termsandconditions/reject.html:4
+msgid "Confirm account deletion"
+msgstr "Staðfesta eyðingu aðgangs"
+
+#: core/templates/termsandconditions/reject.html:8
+msgid ""
+"Please note that we are unable and unwilling to host your data unless you "
+"approve of how we handle your information. As a result, an inevitable "
+"consequence of the rejection of our terms and conditions is the deletion of "
+"your account, including all of its data."
+msgstr ""
+"Vinsamlegast athugið að við hvorki getum né viljum hýsa upplýsingarnar þínar "
+"nema þú samþykkir hvernig við förum með þær. Óhjákvæmileg afleiðing þess að "
+"samþykkja ekki notkunarskilmála okkar er því eyðing aðgangsins og þar með "
+"allra gagna sem á honum eru."
+
+#: core/templates/termsandconditions/reject.html:11
+msgid ""
+"In order to keep a copy of your data before we delete it, you can press the "
+"button below."
+msgstr ""
+"Til þess að halda eftir eintaki af gögnunum þínum áður en við eyðum þeim "
+"geturðu ýtt á eftirfarandi takka."
+
+#: core/templates/termsandconditions/reject.html:14
+#: core/templates/user/profile.html:118
+msgid "Download personal data"
+msgstr "Niðurhala persónugögnum"
+
+#: core/templates/termsandconditions/reject.html:17
+msgid ""
+"Once you are absolutely, positively certain that you wish to reject our "
+"terms and conditions, and delete your account as a result, please press the "
+"confirmation button below."
+msgstr ""
+"Þegar þú ert algerlega, fullkomlega viss um að þú viljir hafna "
+"notkunarskilmálunum og eyða þar með aðgangi þínum, vinsamlegast smelltu á "
+"takkann hér fyrir neðan."
+
+#: core/templates/termsandconditions/reject.html:20
+msgid ""
+"It is not possible to undo this action. Once you have pressed the following "
+"button, your data is gone from our site forever and ever."
+msgstr ""
+"Þessa aðgerð er ekki hægt að taka til baka. Þegar þú hefur ýtt á "
+"eftirfarandi takka eru gögnin þín farin af vefsetri okkar að eilífu."
+
+#: core/templates/termsandconditions/reject.html:23
+msgid "Reject terms and delete account"
+msgstr "Hafna skilmálum og eyða aðgangi"
+
+#: core/templates/termsandconditions/terms.html:16
+msgid "Changes since previous terms"
+msgstr "Breytingar frá síðustu skilmálum"
+
+#: core/templates/termsandconditions/terms.html:18
+msgid "Full text of new terms"
+msgstr "Fullur texti nýrra skilmála"
+
+#: core/templates/termsandconditions/terms.html:31
+msgid "Accept"
+msgstr "Samþykkja"
+
+#: core/templates/termsandconditions/terms.html:32
+msgid "Reject"
+msgstr "Hafna"
+
+#: core/templates/termsandconditions/terms.html:38
+#, python-format
+msgid ""
+"For comments or questions regarding privacy or our terms and conditions, "
+"please email send us an email at <a href=\"mailto:%(CONTACT_EMAIL)s\">"
+"%(CONTACT_EMAIL)s</a>."
+msgstr ""
+"Athugasemdum eða spurningum varðandi persónuvernd eða notkunarskilmála má "
+"beina á netfangið <a href=\"mailto:%(CONTACT_EMAIL)s\">%(CONTACT_EMAIL)s</a>."
 
 #: core/templates/user/login.html:4
 msgid "Login"
@@ -107,7 +184,7 @@ msgstr ""
 "netfang hingað inn að neðan, smellið á \"Senda\", og nýja lykilorðið ætti að "
 "koma innan örfárra mínútna í mesta lagi."
 
-#: core/templates/user/password_reset/reset.html:21
+#: core/templates/user/password_reset/reset.html:21 core/views.py:205
 msgid "Email"
 msgstr ""
 
@@ -181,6 +258,14 @@ msgstr "Ég, mig, mér, mín."
 msgid "Register"
 msgstr "Skrá"
 
+#: core/templates/user/profile.html:116
+msgid "Terms and conditions"
+msgstr "Notkunarskilmálar"
+
+#: core/templates/user/profile.html:120
+msgid "Delete account"
+msgstr "Eyða aðgangi"
+
 #: core/templates/user/registration/activation_complete.html:6
 msgid "Registration was successful!"
 msgstr "Skráning tókst!"
@@ -201,17 +286,104 @@ msgstr "Takk fyrir að skrá þig!"
 msgid "Please check your email to finish the registration process."
 msgstr "Vinsamlegast athugaðu tölvupósthólf þitt til að klára skráninguna."
 
-#: core/views.py:89
+#: core/templates/user/retrieve_data.html:4
+msgid "Retrieve data"
+msgstr "Sækja gögn"
+
+#: core/templates/user/retrieve_data.html:8
+msgid "Please press the button below to download your data."
+msgstr ""
+"Vinsamlegast smelltu á takkann fyrir neðan til að niðurhala gögnunum þínum."
+
+#: core/templates/user/retrieve_data.html:12
+msgid "Download"
+msgstr "Niðurhala"
+
+#: core/views.py:95
 msgid "Password updated."
 msgstr "Lykilorð uppfært."
 
-#: core/views.py:102
+#: core/views.py:108
 msgid "Profile updated."
 msgstr "Notandaupplýsingar uppfærðar."
 
+#: core/views.py:204
+msgid "Username"
+msgstr "Notandanafn"
+
+#: core/views.py:206
+msgid "Name"
+msgstr "Nafn"
+
+#: core/views.py:207
+msgid "Address"
+msgstr "Heimilisfang"
+
+#: core/views.py:208
+msgid "Postal code"
+msgstr "Póstnúmer"
+
+#: core/views.py:209
+msgid "Place"
+msgstr "Staður"
+
+#: core/views.py:210
+msgid "Phone"
+msgstr "Sími"
+
+#: core/views.py:211
+msgid "Last updated"
+msgstr "Síðast uppfært"
+
+#: core/views.py:212
+msgid "Author name"
+msgstr "Höfundanafn"
+
+#: core/views.py:213
+msgid "Author name (accusative)"
+msgstr "Höfundanafn (þolfalli)"
+
+#: core/views.py:214
+msgid "Author birth-year"
+msgstr "Höfundur fæddist"
+
+#: core/views.py:215
+msgid "Author death-year"
+msgstr "Höfundur lést"
+
+#: core/views.py:216
+msgid "About"
+msgstr "Um"
+
+#: core/views.py:237
+msgid "User data"
+msgstr "Notandagögn"
+
+#: core/views.py:241
+msgid "Poems"
+msgstr "Ljóð"
+
+#: core/views.py:276
+msgid "Poem metadata"
+msgstr "Lýsigögn ljóða"
+
+#: poem/admin.py:18
+msgid "Material"
+msgstr ""
+
+#: poem/admin.py:26
+msgid "User decisions"
+msgstr ""
+
+#: poem/admin.py:34
+#, fuzzy
+#| msgid "Edit"
+msgid "Editorial"
+msgstr "Breyta"
+
 #: poem/models.py:123
 msgid "Pending"
-msgstr ""
+msgstr "Í bið"
 
 #: poem/models.py:124 poem/templates/author/admin.html:15
 msgid "Approved"
@@ -219,7 +391,7 @@ msgstr "Samþykkt"
 
 #: poem/models.py:125
 msgid "Rejected"
-msgstr ""
+msgstr "Hafnað"
 
 #: poem/templates/author/admin.html:8
 msgid "Add poem"
