@@ -122,6 +122,10 @@ urlpatterns = [
     #    name='password_change'
     #),
 
+    # Retrieve personal data.
+    path('user/retrieve-data/download/', views.retrieve_data_download, name='retrieve_data_download'),
+    path('user/retrieve-data/', views.retrieve_data, name='retrieve_data'),
+
     # Terms and conditions.
     path(
         'terms/accept/',

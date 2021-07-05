@@ -98,3 +98,9 @@ Ferilsskrá eða aðrar upplýsingar:
 <hr />
 
 {% endblock %}
+
+{% block side %}
+
+<a href="{% url 'retrieve_data' %}">{% trans 'Download personal data' %}</a><br /><br />
+
+{% endblock %}
