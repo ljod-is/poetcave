@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
 from django.db import transaction
+from django.db.models import Q
 from django.http import Http404
 from django.http import HttpResponse
 from django.shortcuts import redirect
@@ -19,6 +20,7 @@ from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import ugettext as _
 from django_registration.backends.activation.views import RegistrationView as BaseRegistrationView
+from core.models import User
 from markdown2 import markdown
 from poem.forms import AuthorForm
 from poem.models import Poem
@@ -33,6 +35,39 @@ def main(request):
         return render(request, 'poem/daypoem.html', {'poem': poem })
 
     return render(request, 'core/main.html')
+
+
+def team(request):
+
+    # These are looked up separately because they are probably displayed
+    # differently in the interface and so just returning one `users` list and
+    # determining which is which in the interface would just convolute the
+    # template code instead of this bit.
+    superusers = User.objects.filter(is_superuser=True)
+    moderators = User.objects.filter(is_moderator=True)
+
+    ctx = {
+        'superusers': superusers,
+        'moderators': moderators,
+    }
+    return render(request, 'core/team/team.html', ctx)
+
+
+def user(request, username):
+
+    try:
+        # Only users with privileges are viewable here.
+        user = User.objects.filter(
+            Q(is_superuser=True)
+            | Q(is_moderator=True)
+        ).get(username=username)
+    except User.DoesNotExist:
+        raise Http404
+
+    ctx = {
+        'user': user,
+    }
+    return render(request, 'core/team/user.html', ctx)
 
 
 def about(request, page=None):

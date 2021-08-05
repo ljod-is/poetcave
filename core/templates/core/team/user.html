@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+
+{% trans 'Name' %}: {{ user.contact_name }}<br /><br />
+
+{% trans 'Status' %}:
+{% if user.is_superuser %}
+    <strong>{% trans 'Administrator' %}</strong>
+{% elif user.is_moderator %}
+    <strong>{% trans 'Moderator' %}</strong>
+{% endif %}
+
+{% endblock %}

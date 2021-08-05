@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+
+{% blocktrans %}If you have comments, questions or complaints about moderation or administrative issues regarding the website, please do not contact these individuals directly but rather direct your issue to the following address:{% endblocktrans %}<br /><br />
+
+<a href="mailto:{{ CONTACT_EMAIL }}">{{ CONTACT_EMAIL }}</a>
+
+<h3>{% trans 'Moderators' %}</h3>
+
+{% blocktrans %}Moderators help maintain the website by reviewing poems that users have requested to be published publicly and either approving or rejecting them.{% endblocktrans %}<br /><br />
+
+{% for user in moderators %}
+    &nbsp;&nbsp;&nbsp;&nbsp;{% include 'core/team/stub-user.html' %}<br /><br />
+{% endfor %}
+
+<h3>{% trans 'Administrators' %}</h3>
+
+{% blocktrans %}Administrators manage the website, troubleshoot problems that users may have and manage moderators.{% endblocktrans %}<br /><br />
+
+{% for user in superusers %}
+    &nbsp;&nbsp;&nbsp;&nbsp;{% include 'core/team/stub-user.html' %}<br /><br />
+{% endfor %}
+
+{% endblock %}

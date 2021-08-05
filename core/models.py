@@ -1,5 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.urls import reverse
 
 class User(AbstractUser):
     # Fields beginning with `contact_` are only intende for use by
@@ -12,3 +13,9 @@ class User(AbstractUser):
 
     # `date_joined` field for creation is provided by parent model.
     date_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
+
+    # Moderators approve or reject poems.
+    is_moderator = models.BooleanField(default=False)
+
+    def get_absolute_url(self):
+        return reverse('user', args=(self.username,))

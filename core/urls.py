@@ -12,6 +12,11 @@ from termsandconditions.views import AcceptTermsView
 urlpatterns = [
     path('', views.main, name='main'),
 
+    # Administrators, moderators and such, so that people can contact them and
+    # see who is responsible for the web and its contents.
+    path('team/', views.team, name='team'),
+    path('team/user/<str:username>/', views.user, name='user'),
+
     # Static pages rendered via markdown templates.
     path('about/<str:page>/', views.about, name='about'),
     path('about/', views.about, name='about'),

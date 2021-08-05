@@ -6,5 +6,5 @@ admin.site.unregister(Group)
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ['username', 'author', 'email', 'contact_name', 'is_superuser']
+    list_display = ['username', 'author', 'email', 'contact_name', 'is_moderator', 'is_superuser']
     search_fields = ['username', 'author__name', 'email', 'contact_name']
