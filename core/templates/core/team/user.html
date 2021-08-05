@@ -3,6 +3,8 @@
 
 {% block content %}
 
+<a href="{% url 'team' %}">{% trans 'Contact us' %}</a><br /><br />
+
 {% trans 'Name' %}: {{ user.contact_name }}<br /><br />
 
 {% trans 'Status' %}:
