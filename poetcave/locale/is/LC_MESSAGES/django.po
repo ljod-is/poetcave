@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-05 16:36+0000\n"
+"POT-Creation-Date: 2021-08-05 15:25+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -35,6 +35,56 @@ msgstr "Höfundar"
 #: core/templates/base.html:183
 msgid "Users of ljóð.is"
 msgstr "Notendur ljóð.is"
+
+#: core/templates/core/team/team.html:6
+msgid ""
+"If you have comments, questions or complaints about moderation or "
+"administrative issues regarding the website, please do not contact these "
+"individuals directly but rather direct your issue to the following address:"
+msgstr ""
+"Ef þú vilt koma áleiðis ábendingum, spurningum eða kvörtunum yfir ritstjórn "
+"eða umsjón vefsins, vinsamlegast ekki hafa samband við þessa einstaklinga "
+"beint heldur beindu erindi þínu á eftirfarandi netfang:"
+
+#: core/templates/core/team/team.html:10
+msgid "Moderators"
+msgstr "Ritstjórn"
+
+#: core/templates/core/team/team.html:12
+msgid ""
+"Moderators help maintain the website by reviewing poems that users have "
+"requested to be published publicly and either approving or rejecting them."
+msgstr ""
+"Ritstjórn aðstoðar við umsjón vefsins með því að yfirfara og samþykkja til "
+"birtingar ljóð sem notendur senda inn."
+
+#: core/templates/core/team/team.html:18
+msgid "Administrators"
+msgstr "Umsjón"
+
+#: core/templates/core/team/team.html:20
+msgid ""
+"Administrators manage the website, troubleshoot problems that users may have "
+"and manage moderators."
+msgstr ""
+"Umsjónarmenn hafa umsjón með vefnum, bregðast við vandamálum sem notendur "
+"lenda í og ákveða ritstjórn."
+
+#: core/templates/core/team/user.html:6 core/views.py:241
+msgid "Name"
+msgstr "Nafn"
+
+#: core/templates/core/team/user.html:8
+msgid "Status"
+msgstr "Staða"
+
+#: core/templates/core/team/user.html:10
+msgid "Administrator"
+msgstr "Umsjónarmaður"
+
+#: core/templates/core/team/user.html:12
+msgid "Moderator"
+msgstr "Ritstjóri"
 
 #: core/templates/termsandconditions/terms.html:16
 msgid "Changes since previous terms"
@@ -86,7 +136,7 @@ msgstr ""
 "Til þess að halda eftir eintaki af gögnunum þínum áður en við eyðum þeim "
 "geturðu ýtt á eftirfarandi takka."
 
-#: core/templates/user/delete.html:16 core/templates/user/profile.html:118
+#: core/templates/user/delete.html:16 core/templates/user/profile.html:106
 msgid "Download personal data"
 msgstr "Niðurhala persónugögnum"
 
@@ -110,7 +160,7 @@ msgstr ""
 msgid "Reject terms and delete account"
 msgstr "Hafna skilmálum og eyða aðgangi"
 
-#: core/templates/user/delete.html:29 core/templates/user/profile.html:120
+#: core/templates/user/delete.html:29 core/templates/user/profile.html:108
 msgid "Delete account"
 msgstr "Eyða aðgangi"
 
@@ -185,7 +235,7 @@ msgstr ""
 "netfang hingað inn að neðan, smellið á \"Senda\", og nýja lykilorðið ætti að "
 "koma innan örfárra mínútna í mesta lagi."
 
-#: core/templates/user/password_reset/reset.html:21 core/views.py:205
+#: core/templates/user/password_reset/reset.html:21 core/views.py:240
 msgid "Email"
 msgstr ""
 
@@ -259,7 +309,7 @@ msgstr "Ég, mig, mér, mín."
 msgid "Register"
 msgstr "Skrá"
 
-#: core/templates/user/profile.html:116
+#: core/templates/user/profile.html:104
 msgid "Terms and conditions"
 msgstr "Notkunarskilmálar"
 
@@ -283,71 +333,67 @@ msgstr "Takk fyrir að skrá þig!"
 msgid "Please check your email to finish the registration process."
 msgstr "Vinsamlegast athugaðu tölvupósthólf þitt til að klára skráninguna."
 
-#: core/views.py:95
+#: core/views.py:130
 msgid "Password updated."
 msgstr "Lykilorð uppfært."
 
-#: core/views.py:108
+#: core/views.py:143
 msgid "Profile updated."
 msgstr "Notandaupplýsingar uppfærðar."
 
-#: core/views.py:204
+#: core/views.py:239
 msgid "Username"
 msgstr "Notandanafn"
 
-#: core/views.py:206
-msgid "Name"
-msgstr "Nafn"
-
-#: core/views.py:207
+#: core/views.py:242
 msgid "Address"
 msgstr "Heimilisfang"
 
-#: core/views.py:208
+#: core/views.py:243
 msgid "Postal code"
 msgstr "Póstnúmer"
 
-#: core/views.py:209
+#: core/views.py:244
 msgid "Place"
 msgstr "Staður"
 
-#: core/views.py:210
+#: core/views.py:245
 msgid "Phone"
 msgstr "Sími"
 
-#: core/views.py:211
+#: core/views.py:246
 msgid "Last updated"
 msgstr "Síðast uppfært"
 
-#: core/views.py:212
+#: core/views.py:247
 msgid "Author name"
 msgstr "Höfundanafn"
 
-#: core/views.py:213
+#: core/views.py:248
 msgid "Author name (accusative)"
 msgstr "Höfundanafn (þolfalli)"
 
-#: core/views.py:214
+#: core/views.py:249
 msgid "Author birth-year"
 msgstr "Höfundur fæddist"
 
-#: core/views.py:215
+#: core/views.py:250
 msgid "Author death-year"
 msgstr "Höfundur lést"
 
-#: core/views.py:216
+#: core/views.py:251
 msgid "About"
 msgstr "Um"
 
-#: core/views.py:237
+#: core/views.py:272
 msgid "User data"
 msgstr "Notandagögn"
 
-#: core/views.py:241
+#: core/views.py:276
 msgid "Poems"
 msgstr "Ljóð"
 
-#: core/views.py:276
+#: core/views.py:311
 msgid "Poem metadata"
 msgstr "Lýsigögn ljóða"
 
@@ -360,10 +406,8 @@ msgid "User decisions"
 msgstr ""
 
 #: poem/admin.py:34
-#, fuzzy
-#| msgid "Edit"
 msgid "Editorial"
-msgstr "Breyta"
+msgstr "Ritstjórn"
 
 #: poem/models.py:123
 msgid "Pending"
