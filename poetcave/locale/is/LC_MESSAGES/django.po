@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-05 15:36+0000\n"
+"POT-Creation-Date: 2021-08-06 09:32+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,17 +22,66 @@ msgstr ""
 msgid "Email address is already in use."
 msgstr "Netfang þegar í notkun."
 
-#: core/templates/base.html:168 core/templates/user/password_reset/reset.html:4
+#: core/templates/base.html:129
+msgid "Daily poem"
+msgstr "Ljóð dagsins"
+
+#: core/templates/base.html:130 poem/templates/poem/poems.html:18
+msgid "Poem collection"
+msgstr "Ljóðasafn"
+
+#: core/templates/base.html:131
+msgid "Reviews"
+msgstr "Umsagnir"
+
+#: core/templates/base.html:137
+msgid "FAQ"
+msgstr "Spurt og svarað"
+
+#: core/templates/base.html:138 core/templates/core/team/user.html:6
+msgid "Contact us"
+msgstr "Hafðu samband"
+
+#: core/templates/base.html:139
+msgid "Mailing list"
+msgstr "Póstlisti"
+
+#: core/templates/base.html:140
+msgid "Links"
+msgstr "Tenglar"
+
+#: core/templates/base.html:141
+msgid "New account"
+msgstr "Nýskráning"
+
+#: core/templates/base.html:147 poem/templates/bookmark/bookmarks.html:23
+msgid "Bookmarks"
+msgstr "Bókamerki"
+
+#: core/templates/base.html:148
+msgid "Me"
+msgstr "Ég"
+
+#: core/templates/base.html:149 poem/templates/poem/add.html:4
+#: poem/templates/poem/delete.html:4
+msgid "Homestead"
+msgstr "Heimasvæði"
+
+#: core/templates/base.html:150
+msgid "Logout"
+msgstr "Útskrá"
+
+#: core/templates/base.html:159 core/templates/user/password_reset/reset.html:4
 #: core/templates/user/password_reset/reset_confirm.html:4
 #: core/templates/user/password_reset/reset_requested.html:4
 msgid "Forgotten password"
 msgstr "Gleymt lykilorð"
 
-#: core/templates/base.html:174
+#: core/templates/base.html:169
 msgid "Authors"
 msgstr "Höfundar"
 
-#: core/templates/base.html:185
+#: core/templates/base.html:180
 msgid "Users of ljóð.is"
 msgstr "Notendur ljóð.is"
 
@@ -69,10 +118,6 @@ msgid ""
 msgstr ""
 "Umsjónarmenn hafa umsjón með vefnum, bregðast við vandamálum sem notendur "
 "lenda í og ákveða ritstjórn."
-
-#: core/templates/core/team/user.html:6
-msgid "Contact us"
-msgstr "Hafðu samband"
 
 #: core/templates/core/team/user.html:8 core/views.py:241
 msgid "Name"
@@ -457,17 +502,9 @@ msgstr "Meira um höfund"
 msgid "Are you sure you want to delete the bookmark for this poem?"
 msgstr "Ertu viss um að þú viljir eyða bókamerkinu fyrir þetta ljóð?"
 
-#: poem/templates/bookmark/bookmarks.html:23
-msgid "Bookmarks"
-msgstr "Bókamerki"
-
 #: poem/templates/bookmark/bookmarks.html:33
 msgid "DELETE"
 msgstr "EYÐA"
-
-#: poem/templates/poem/add.html:4 poem/templates/poem/delete.html:4
-msgid "Homestead"
-msgstr "Heimasvæði"
 
 #: poem/templates/poem/add.html:13
 msgid "Title"
@@ -500,10 +537,6 @@ msgstr "Ertu viss um að þú viljir eyða þessu ljóði?"
 #: poem/templates/poem/poem.html:14
 msgid "Poems by"
 msgstr "Ljóð eftir"
-
-#: poem/templates/poem/poems.html:18
-msgid "Poem collection"
-msgstr "Ljóðasafn"
 
 #: poem/templates/poem/poems.html:23
 #, python-format
