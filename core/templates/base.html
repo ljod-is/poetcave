@@ -142,13 +142,20 @@
 
                                         </div>
 
-                                        <div class="nav-section">
                                         {% if user.is_authenticated %}
-                                            <a href="{% url 'bookmarks' %}">{% trans 'Bookmarks' %}</a>
-                                            <a href="{% url 'profile' %}">{% trans 'Me' %}</a>
-                                            <a href="{% url 'author_admin' user.author.id %}">{% trans 'Homestead' %}</a>
-                                            <a href="{% url 'logout' %}">{% trans 'Logout' %}</a>
-                                        {% else %}
+                                            <div class="nav-section">
+                                                <a href="{% url 'bookmarks' %}">{% trans 'Bookmarks' %}</a>
+                                                <a href="{% url 'profile' %}">{% trans 'Me' %}</a>
+                                                <a href="{% url 'author_admin' user.author.id %}">{% trans 'Homestead' %}</a>
+                                                <a href="{% url 'logout' %}">{% trans 'Logout' %}</a>
+                                            </div>
+                                        {% endif %}
+
+                                    </div>
+
+                                    <div class="nav-section">
+
+                                        {% if not user.is_authenticated %}
                                             <form action="{% url 'login' %}" method="post">
                                             {% csrf_token %}
                                             Notandi<br />
@@ -160,11 +167,7 @@
                                             </form>
                                             <br />
                                         {% endif %}
-                                        </div>
 
-                                    </div>
-
-                                    <div class="nav-section">
                                         <div style="text-align: center;">
                                             {% trans 'Authors' %}:
                                         </div>
