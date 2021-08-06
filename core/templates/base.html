@@ -121,69 +121,7 @@
                         <table border="0" cellpadding="0" cellspacing="0">
                             <tr>
                                 <td style="text-align: center; vertical-align: top; width: 100;">
-
-                                    <div class="nav-links">
-
-                                        <div class="nav-section">
-
-                                            <a href="{% url 'main' %}">{% trans 'Daily poem' %}</a>
-                                            <a href="{% url 'poems' %}">{% trans 'Poem collection' %}</a>
-                                            <a href="http://www.ljod.is/index.php/page/page_list/umsagnir">{% trans 'Reviews' %}</a>
-
-                                        </div>
-
-                                        <div class="nav-section">
-
-                                            <a href="{% url 'about' %}">{% trans 'FAQ' %}</a>
-                                            <a href="{% url 'team' %}">{% trans 'Contact us' %}</a>
-                                            <a href="/lists/">{% trans 'Mailing list' %}</a>
-                                            <a href="#">{% trans 'Links' %}</a>
-                                            <a href="{% url 'register' %}">{% trans 'New account' %}</a>
-
-                                        </div>
-
-                                        {% if user.is_authenticated %}
-                                            <div class="nav-section">
-                                                <a href="{% url 'bookmarks' %}">{% trans 'Bookmarks' %}</a>
-                                                <a href="{% url 'profile' %}">{% trans 'Me' %}</a>
-                                                <a href="{% url 'author_admin' user.author.id %}">{% trans 'Homestead' %}</a>
-                                                <a href="{% url 'logout' %}">{% trans 'Logout' %}</a>
-                                            </div>
-                                        {% endif %}
-
-                                    </div>
-
-                                    <div class="nav-section">
-
-                                        {% if not user.is_authenticated %}
-                                            <form action="{% url 'login' %}" method="post">
-                                            {% csrf_token %}
-                                            Notandi<br />
-                                            <input type="text" name="username" size="10"><br />
-                                            Lykilorð<br />
-                                            <input type="password" name="password" size="10" /><br />
-                                            <input type="submit" value="Innskrá" /><br />
-                                            [ <a href="{% url 'password_reset' %}">{% trans 'Forgotten password' %}</a> ]
-                                            </form>
-                                            <br />
-                                        {% endif %}
-
-                                        <div style="text-align: center;">
-                                            {% trans 'Authors' %}:
-                                        </div>
-                                        <div style="text-align: justify; padding: 0px 16px 0px 16px;">
-                                            {% for letter in letters %}
-                                                <a href="{% url 'poems_by_author' letter %}">{{ letter }}</a>
-                                            {% endfor %}
-                                            <br />
-                                            <br />
-                                        </div>
-
-                                        <div class="smalltext">
-                                            <b>©</b>{% trans 'Users of ljóð.is' %}
-                                        </div>
-                                    </div>
-
+                                    {% include 'left-navigation.html' %}
                                 </td>
                                 <td style="vertical-align: top; width: 400; padding: 0px 0px 0px 90px;margin-bottom:0px;">
                                     <table width="175" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
