@@ -24,6 +24,16 @@ from poem.models import DayPoem
 from poem.models import Poem
 
 
+# These are hard-coded because this script is a one-shot thing, and these are
+# the only ones who will have superuser access in the beginning. Superusers
+# can manage users. Moderators manage poems, but those are defined in the
+# database as `admin`, which we will turn into `is_moderator=True`.
+superusers = [
+    'david',
+    'helgihg',
+]
+
+
 # A utility function for returning rows as a dictionary.
 def dictfetchall(cursor):
     columns = [col[0] for col in cursor.description]
@@ -158,6 +168,7 @@ class Command(BaseCommand):
                     `place`,
                     `phone`,
                     `shortdescr`,
+                    `admin`,
                     `last_updated`
                 FROM
                     `users`
@@ -177,6 +188,8 @@ class Command(BaseCommand):
                 # Technical details.
                 user.username = row['user']
                 user.email = row['email']
+                user.is_superuser = user.is_staff = row['user'] in superusers
+                user.is_moderator = int(row['admin']) > 0
 
                 # Personal details.
                 user.contact_name = row['fullname']
