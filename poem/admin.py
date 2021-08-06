@@ -11,8 +11,8 @@ class AuthorAdmin(admin.ModelAdmin):
 
 @admin.register(Poem)
 class PoemAdmin(admin.ModelAdmin):
-    list_display = ['name', 'author', 'trashed', 'public', 'editorial_status', 'publicly_visible']
-    list_filter = ['trashed', 'public', 'publicly_visible', 'editorial_status']
+    list_display = ['name', 'author', 'editorial_status']
+    list_filter = ['editorial_status']
     search_fields = ['name', 'body', 'about', 'author__name']
     fieldsets = [
         [_('Material'), {
@@ -37,7 +37,6 @@ class PoemAdmin(admin.ModelAdmin):
                 'editorial_user',
                 'editorial_timing',
                 'editorial_reason',
-                'publicly_visible'
             ],
         }],
     ]

@@ -89,7 +89,7 @@ def bookmarks(request):
         'poem'
     ).filter(
         user_id=request.user.id,
-        poem__publicly_visible=True
+        poem__editorial_status='approved'
     )
 
     ctx = {
@@ -102,7 +102,7 @@ def bookmarks(request):
 def bookmark_add(request, poem_id):
 
     try:
-        poem = Poem.objects.get(id=poem_id, publicly_visible=True)
+        poem = Poem.objects.get(id=poem_id, editorial_status='approved')
     except Poem.DoesNotExist:
         raise Http404
 
@@ -129,8 +129,8 @@ def bookmark_delete(request, poem_id):
 
 def author(request, author_id):
 
-    author = Author.objects.with_publicly_visible_poems().get(id=author_id)
-    poems = author.poems.filter(publicly_visible=True)
+    author = Author.objects.with_approved_poems().get(id=author_id)
+    poems = author.poems.filter(editorial_status='approved')
 
     ctx = {
         'author': author,
@@ -140,7 +140,7 @@ def author(request, author_id):
 
 
 def poems_newest(request):
-    poems = Poem.objects.select_related('author').filter(publicly_visible=True)[:25]
+    poems = Poem.objects.select_related('author').filter(editorial_status='approved')[:25]
 
     ctx = {
         'poems': poems,
@@ -169,7 +169,8 @@ def poems_daypoems(request, year=None):
     year_end = year_begin.replace(year=year+1) - timedelta(seconds=1)
 
     # Get daypoems of the selected year, prefetching poems.
-    daypoems = DayPoem.objects.prefetch_visible_poems().filter(
+    daypoems = DayPoem.objects.prefetch_related('poem').filter(
+        poem__editorial_status='approved',
         day__gte=year_begin,
         day__lte=year_end
     )
@@ -196,7 +197,7 @@ def poems_by_author(request, letter=None):
     if letter not in letters:
         raise Http404
 
-    authors = Author.objects.with_publicly_visible_poems().by_initial(
+    authors = Author.objects.with_approved_poems().by_initial(
         letter
     ).order_by(
         'name'
@@ -217,7 +218,7 @@ def poems_search(request):
     poems = Poem.objects.select_related(
         'author'
     ).filter(
-        publicly_visible=True
+        editorial_status='approved'
     ).search(
         search_string
     )
@@ -241,13 +242,13 @@ def poem(request, poem_id):
             'author'
         ).get(
             id=poem_id,
-            publicly_visible=True
+            editorial_status='approved'
         )
 
     except Poem.DoesNotExist:
         raise Http404
 
-    poems = poem.author.poems.filter(publicly_visible=True)
+    poems = poem.author.poems.filter(editorial_status='approved')
 
     ctx = {
         'poem': poem,

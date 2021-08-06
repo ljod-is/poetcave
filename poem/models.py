@@ -28,11 +28,11 @@ class AuthorQuerySet(models.QuerySet):
 
         return self.filter(q)
 
-    def with_publicly_visible_poems(self):
+    def with_approved_poems(self):
         # Limits authors to those who have published poems and provides an
         # annotated value, `poem_count`, showing their number.
         return self.filter(
-            poems__publicly_visible=True
+            poems__editorial_status='approved'
         ).annotate(
             poem_count=models.Count('poems')
         )
@@ -63,18 +63,6 @@ class PoemQuerySet(models.QuerySet):
             | models.Q(author__name__icontains=search_string)
             | models.Q(author__name_dative__icontains=search_string)
             | models.Q(author__about__icontains=search_string)
-        )
-
-
-class DayPoemQuerySet(models.QuerySet):
-    def prefetch_visible_poems(self):
-        # Prefetches and limits daypoems' poems to those that are visible.
-        # This should conform to the conditions in
-        # `PoemQuerySet.publicly_visible` above.
-        return self.prefetch_related('poem').filter(
-            poem__editorial_status='approved',
-            poem__public=True,
-            poem__trashed=False
         )
 
 
@@ -120,9 +108,22 @@ class Poem(models.Model):
     objects = PoemQuerySet.as_manager()
 
     EDITORIAL_STATUS_CHOICES = (
-        ('pending', _('Pending')),
-        ('approved', _('Approved')),
+
+        # User is still working on poem.
+        ('unpublished', _('Unpublished')),
+
+        # User has trashed the poem.
+        ('trashed', _('Trashed')),
+
+        # User has published but poem is pending approval.
+        ('pending', _('Pending approval')),
+
+        # Poem has been reviewed and rejected by moderator.
         ('rejected', _('Rejected')),
+
+        # Poem has been approved by moderator and is visible on website.
+        ('approved', _('Approved')),
+
     )
 
     author = models.ForeignKey('poem.Author', related_name='poems', null=True, on_delete=models.CASCADE)
@@ -132,20 +133,11 @@ class Poem(models.Model):
     body = models.TextField(null=False, blank=False)
     about = models.TextField(null=True, blank=True)
 
-    # User decisions.
-    public = models.BooleanField(default=False)
-    public_timing = models.DateTimeField(null=True, blank=True)
-    trashed = models.BooleanField(default=False)
-    trashed_timing = models.DateTimeField(null=True, blank=True)
-
-    # Editorial decision.
-    editorial_status = models.CharField(max_length=20, choices=EDITORIAL_STATUS_CHOICES, default='pending')
+    # Editorial status.
+    editorial_status = models.CharField(max_length=20, choices=EDITORIAL_STATUS_CHOICES, default='unpublished')
     editorial_user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL)
     editorial_timing = models.DateTimeField(null=True, blank=True)
     editorial_reason = models.TextField(null=True, blank=True)
-
-    # Automatically updated when model is saved.
-    publicly_visible = models.BooleanField(default=False)
 
     date_created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     date_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
@@ -156,20 +148,11 @@ class Poem(models.Model):
     def get_absolute_url(self):
         return reverse('poem', args=(self.id,))
 
-    def save(self, *args, **kwargs):
-
-        # Check if poem fulfills conditions for being publicly visible.
-        self.publicly_visible = self.editorial_status == 'approved' and self.public == True and self.trashed == False
-
-        super(Poem, self).save(*args, **kwargs)
-
     class Meta:
-        ordering = ['-editorial_timing', '-public_timing']
+        ordering = ['-editorial_timing']
 
 
 class DayPoem(models.Model):
-    objects = DayPoemQuerySet.as_manager()
-
     poem = models.ForeignKey('Poem', related_name='daypoems', on_delete=models.CASCADE)
     day = models.DateField()
 
@@ -178,7 +161,7 @@ class DayPoem(models.Model):
 
     class Meta:
         unique_together = ['poem', 'day']
-        ordering = ['-editorial_timing', '-poem__editorial_timing', '-poem__public_timing']
+        ordering = ['-editorial_timing', '-poem__editorial_timing']
 
 
 class Bookmark(models.Model):

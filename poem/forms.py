@@ -19,5 +19,4 @@ class PoemForm(forms.ModelForm):
             'name',
             'body',
             'about',
-            'public',
         ]

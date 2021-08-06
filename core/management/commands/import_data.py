@@ -310,20 +310,29 @@ class Command(BaseCommand):
                 poem.body = row['body']
                 poem.about = row['about']
 
-                poem.public = row['visible'] == '1'
-                poem.public_timing = awarize(row['sent'])
-                poem.trashed = row['trashed'] is not None
-                poem.trashed_timing = awarize(row['trashed'])
-
+                # Figure out what we can about the editorial status. The new
+                # way of storing this information is different from the
+                # original website, since we want to minimize the use of
+                # different variables to designate the poem's current status
+                # in the system.
                 if row['accepted'] == '-1':
                     poem.editorial_status = 'rejected'
-                elif row['accepted'] in ['0', '']:
-                    poem.editorial_status = 'pending'
                 elif row['accepted'] == '1':
                     poem.editorial_status = 'approved'
+                    poem.editorial_timing = awarize(row['sent'])
+                else:
+                    if row['trashed'] is not None:
+                        poem.editorial_status = 'trashed'
+                        poem.editorial_timing = awarize(row['trashed'])
+                    elif row['visible'] == '1':
+                        poem.editorial_status = 'pending'
+                        poem.editorial_timing = awarize(row['sent'])
+                    else:
+                        poem.editorial_status = 'unpublished'
+                        poem.editorial_timing = awarize(row['sent'])
 
+                # poem.editorial_timing data sometimes available (see above).
                 # poem.editorial_user data not available.
-                # poem.editorial_timing data not available.
                 # poem.editorial_reason data not available.
 
                 # Only attribute poems to authors that actually exist.
