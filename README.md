@@ -54,7 +54,7 @@ In the first phase, we will simply recreate the website's functionality with the
 
 ### Other
 - [x] Static pages (FAQ, about, etc.)
-- [ ] List of superusers and moderators.
+- [x] List of superusers and moderators.
 
 ## Decisions
 
