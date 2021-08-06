@@ -19,3 +19,27 @@ textarea { border-width: 1px; }
 .markdown h1 { font-family: Verdana; font-size: 10px; padding: 0px; margin: 0px; }
 .markdown h2 { font-family: Verdana; font-size: 10px; padding: 0px; margin: 0px; font-weight: normal; font-style: italic; }
 .markdown p { padding-bottom: 13px; }
+
+/* Left-side navigation */
+
+.nav-section {
+    border-top: 1px solid #999999;
+    padding: 8px 0px 4px 0px;
+}
+
+.nav-links a {
+    background-image: url(/static/core/img/legacy-imitation/nav-link-background.png);
+    background-repeat: no-repeat;
+    display: block;
+    font-family: sans-serif;
+    font-size: 8px;
+    font-weight: bold;
+
+    text-align: left;
+    color: #ffffff;
+    text-decoration: none;
+    height: 12px;
+
+    margin: 0px 0px 1px 0px;
+    padding: 1px 0px 1px 21px;
+}

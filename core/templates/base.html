@@ -121,68 +121,64 @@
 						<table border="0" cellpadding="0" cellspacing="0"> 
 							<tr> 
 								<td style="text-align: center; vertical-align: top; width: 100;"> 
-									<img src="http://www.ljod.is/images/bordi_nav.gif" width="100" height="1"><br> 
-									<img src="http://www.ljod.is/images/spacer.gif" height="8"><br> 
-									<a href="{% url 'main' %}"><img src="http://www.ljod.is/images/nav_ljod.gif" border="0"></a><br>
-									<img src="http://www.ljod.is/images/spacer.gif" height="3"><br> 
-									<a href="{% url 'poems' %}"><img src="http://www.ljod.is/images/nav_ljodasafn.gif" border="0"></a><br />
-									<img src="http://www.ljod.is/images/spacer.gif" height="3"><br> 
-									<a href="http://www.ljod.is/index.php/page/page_list/umsagnir"><img src="http://www.ljod.is/images/nav_umsagnir.gif" border="0"></a><br> 
-									<img src="http://www.ljod.is/images/spacer.gif" height="7"><br> 
-									<img src="http://www.ljod.is/images/bordi_nav.gif" width="100" height="1"><br> 
-									<img src="http://www.ljod.is/images/spacer.gif" height="7"><br> 
-									<a href="{% url 'about' %}"><img src="http://www.ljod.is/images/nav_faq.gif" border="0"></a><br> 
-									<img src="http://www.ljod.is/images/spacer.gif" height="3"><br>
-									<a href="{% url 'team' %}"><img src="http://www.ljod.is/images/nav_hafdusamband.gif" border="0"></a><br>
-									<img src="http://www.ljod.is/images/spacer.gif" height="3"><br> 
-									<a href="/lists/"><img src="http://www.ljod.is/images/nav_postlisti.gif" border="0"></a><br> 
-									<img src="http://www.ljod.is/images/spacer.gif" height="3"><br> 
-									<a href="#"><img src="http://www.ljod.is/images/nav_linkar.gif" border="0"></a><br>
-									<img src="http://www.ljod.is/images/spacer.gif" height="3"><br> 
-									<a href="{% url 'register' %}"><img src="http://www.ljod.is/images/nav_nyskraning.gif" border="0"></a><br>
-									<img src="http://www.ljod.is/images/spacer.gif" height="3"><br> 
-									<img src="http://www.ljod.is/images/spacer.gif" height="3"><br> 
-									<img src="http://www.ljod.is/images/bordi_nav.gif" width="100" height="1"><br>
-									<img src="http://www.ljod.is/images/spaces.gif" height="7" border="0"><br>
-						
-									{% if user.is_authenticated %}
-										<img src="http://www.ljod.is/images/spacer.gif" height="3" /><br />
-										<a href="{% url 'bookmarks' %}"><img src="http://www.ljod.is/images/nav_bokamerki.gif" /></a><br />
-										<img src="http://www.ljod.is/images/spacer.gif" height="3"><br />
-										<a href="{% url 'profile' %}"><img src="http://www.ljod.is/images/nav_eg.gif" /></a><br />
-										<img src="http://www.ljod.is/images/spacer.gif" height="3"><br />
-										<a href="{% url 'author_admin' user.author.id %}"><img src="http://www.ljod.is/images/nav_account.gif"></a><br />
-										<img src="http://www.ljod.is/images/spacer.gif" height="3"><br />
-										<a href="{% url 'logout' %}"><img src="http://www.ljod.is/images/nav_utskra.gif" /></a>
-										<img src="http://www.ljod.is/images/spacer.gif" height="7"><br />
-										<img src="http://www.ljod.is/images/bordi_nav.gif" width="100" height="1"><br />
-										<img src="http://www.ljod.is/images/spacer.gif" height="7"><br />
-									{% else %}
-										<form action="{% url 'login' %}" method="post">
-										{% csrf_token %}
-										Notandi<br />
-										<input type="text" name="username" size="10"><br />
-										Lykilorð<br />
-										<input type="password" name="password" size="10" /><br />
-										<input type="submit" value="Innskrá" /><br />
-										[ <a href="{% url 'password_reset' %}">{% trans 'Forgotten password' %}</a> ]
-										</form>
-										<br />
-									{% endif %}
 
-                                    <div style="text-align: center;">
-                                        {% trans 'Authors' %}:
-                                    </div>
-                                    <div style="text-align: justify; padding: 0px 16px 0px 16px;">
-                                        {% for letter in letters %}
-                                            <a href="{% url 'poems_by_author' letter %}">{{ letter }}</a>
-                                        {% endfor %}
-                                        <br />
-                                        <br />
+                                    <div class="nav-links">
+
+                                        <div class="nav-section">
+
+                                            <a href="{% url 'main' %}">{% trans 'Daily poem' %}</a>
+                                            <a href="{% url 'poems' %}">{% trans 'Poem collection' %}</a>
+                                            <a href="http://www.ljod.is/index.php/page/page_list/umsagnir">{% trans 'Reviews' %}</a>
+
+                                        </div>
+
+                                        <div class="nav-section">
+
+                                            <a href="{% url 'about' %}">{% trans 'FAQ' %}</a>
+                                            <a href="{% url 'team' %}">{% trans 'Contact us' %}</a>
+                                            <a href="/lists/">{% trans 'Mailing list' %}</a>
+                                            <a href="#">{% trans 'Links' %}</a>
+                                            <a href="{% url 'register' %}">{% trans 'New account' %}</a>
+
+                                        </div>
+
+                                        <div class="nav-section">
+                                        {% if user.is_authenticated %}
+                                            <a href="{% url 'bookmarks' %}">{% trans 'Bookmarks' %}</a>
+                                            <a href="{% url 'profile' %}">{% trans 'Me' %}</a>
+                                            <a href="{% url 'author_admin' user.author.id %}">{% trans 'Homestead' %}</a>
+                                            <a href="{% url 'logout' %}">{% trans 'Logout' %}</a>
+                                        {% else %}
+                                            <form action="{% url 'login' %}" method="post">
+                                            {% csrf_token %}
+                                            Notandi<br />
+                                            <input type="text" name="username" size="10"><br />
+                                            Lykilorð<br />
+                                            <input type="password" name="password" size="10" /><br />
+                                            <input type="submit" value="Innskrá" /><br />
+                                            [ <a href="{% url 'password_reset' %}">{% trans 'Forgotten password' %}</a> ]
+                                            </form>
+                                            <br />
+                                        {% endif %}
+                                        </div>
+
                                     </div>
 
-                                    <div class="smalltext">
-                                        <b>©</b>{% trans 'Users of ljóð.is' %}
+                                    <div class="nav-section">
+                                        <div style="text-align: center;">
+                                            {% trans 'Authors' %}:
+                                        </div>
+                                        <div style="text-align: justify; padding: 0px 16px 0px 16px;">
+                                            {% for letter in letters %}
+                                                <a href="{% url 'poems_by_author' letter %}">{{ letter }}</a>
+                                            {% endfor %}
+                                            <br />
+                                            <br />
+                                        </div>
+
+                                        <div class="smalltext">
+                                            <b>©</b>{% trans 'Users of ljóð.is' %}
+                                        </div>
                                     </div>
 
 								</td>
