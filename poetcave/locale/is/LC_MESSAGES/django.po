@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-06 09:32+0000\n"
+"POT-Creation-Date: 2021-08-09 12:22+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,69 +21,6 @@ msgstr ""
 #: core/forms.py:15
 msgid "Email address is already in use."
 msgstr "Netfang þegar í notkun."
-
-#: core/templates/base.html:129
-msgid "Daily poem"
-msgstr "Ljóð dagsins"
-
-#: core/templates/base.html:130 poem/templates/poem/poems.html:18
-msgid "Poem collection"
-msgstr "Ljóðasafn"
-
-#: core/templates/base.html:131
-msgid "Reviews"
-msgstr "Umsagnir"
-
-#: core/templates/base.html:137
-msgid "FAQ"
-msgstr "Spurt og svarað"
-
-#: core/templates/base.html:138 core/templates/core/team/user.html:6
-msgid "Contact us"
-msgstr "Hafðu samband"
-
-#: core/templates/base.html:139
-msgid "Mailing list"
-msgstr "Póstlisti"
-
-#: core/templates/base.html:140
-msgid "Links"
-msgstr "Tenglar"
-
-#: core/templates/base.html:141
-msgid "New account"
-msgstr "Nýskráning"
-
-#: core/templates/base.html:147 poem/templates/bookmark/bookmarks.html:23
-msgid "Bookmarks"
-msgstr "Bókamerki"
-
-#: core/templates/base.html:148
-msgid "Me"
-msgstr "Ég"
-
-#: core/templates/base.html:149 poem/templates/poem/add.html:4
-#: poem/templates/poem/delete.html:4
-msgid "Homestead"
-msgstr "Heimasvæði"
-
-#: core/templates/base.html:150
-msgid "Logout"
-msgstr "Útskrá"
-
-#: core/templates/base.html:159 core/templates/user/password_reset/reset.html:4
-#: core/templates/user/password_reset/reset_confirm.html:4
-#: core/templates/user/password_reset/reset_requested.html:4
-msgid "Forgotten password"
-msgstr "Gleymt lykilorð"
-
-#: core/templates/base.html:169
-msgid "Authors"
-msgstr "Höfundar"
-
-#: core/templates/base.html:180
-msgid "Users of ljóð.is"
-msgstr "Notendur ljóð.is"
 
 #: core/templates/core/team/team.html:6
 msgid ""
@@ -119,11 +56,15 @@ msgstr ""
 "Umsjónarmenn hafa umsjón með vefnum, bregðast við vandamálum sem notendur "
 "lenda í og ákveða ritstjórn."
 
+#: core/templates/core/team/user.html:6 core/templates/left-navigation.html:16
+msgid "Contact us"
+msgstr "Hafðu samband"
+
 #: core/templates/core/team/user.html:8 core/views.py:241
 msgid "Name"
 msgstr "Nafn"
 
-#: core/templates/core/team/user.html:10
+#: core/templates/core/team/user.html:10 poem/templates/author/admin.html:14
 msgid "Status"
 msgstr "Staða"
 
@@ -134,6 +75,67 @@ msgstr "Umsjónarmaður"
 #: core/templates/core/team/user.html:14
 msgid "Moderator"
 msgstr "Ritstjóri"
+
+#: core/templates/left-navigation.html:7
+msgid "Daily poem"
+msgstr "Ljóð dagsins"
+
+#: core/templates/left-navigation.html:8 poem/templates/poem/poems.html:18
+msgid "Poem collection"
+msgstr "Ljóðasafn"
+
+#: core/templates/left-navigation.html:9
+msgid "Reviews"
+msgstr "Umsagnir"
+
+#: core/templates/left-navigation.html:15
+msgid "FAQ"
+msgstr "Spurt og svarað"
+
+#: core/templates/left-navigation.html:17
+msgid "Mailing list"
+msgstr "Póstlisti"
+
+#: core/templates/left-navigation.html:18
+msgid "Links"
+msgstr "Tenglar"
+
+#: core/templates/left-navigation.html:19
+msgid "New account"
+msgstr "Nýskráning"
+
+#: core/templates/left-navigation.html:25
+#: poem/templates/bookmark/bookmarks.html:23
+msgid "Bookmarks"
+msgstr "Bókamerki"
+
+#: core/templates/left-navigation.html:26
+msgid "Me"
+msgstr "Ég"
+
+#: core/templates/left-navigation.html:27 poem/templates/poem/delete.html:4
+#: poem/templates/poem/poem.side.control.html:3
+msgid "Homestead"
+msgstr "Heimasvæði"
+
+#: core/templates/left-navigation.html:28
+msgid "Logout"
+msgstr "Útskrá"
+
+#: core/templates/left-navigation.html:44
+#: core/templates/user/password_reset/reset.html:4
+#: core/templates/user/password_reset/reset_confirm.html:4
+#: core/templates/user/password_reset/reset_requested.html:4
+msgid "Forgotten password"
+msgstr "Gleymt lykilorð"
+
+#: core/templates/left-navigation.html:50
+msgid "Authors"
+msgstr "Höfundar"
+
+#: core/templates/left-navigation.html:61
+msgid "Users of ljóð.is"
+msgstr "Notendur ljóð.is"
 
 #: core/templates/termsandconditions/terms.html:16
 msgid "Changes since previous terms"
@@ -185,7 +187,7 @@ msgstr ""
 "Til þess að halda eftir eintaki af gögnunum þínum áður en við eyðum þeim "
 "geturðu ýtt á eftirfarandi takka."
 
-#: core/templates/user/delete.html:16 core/templates/user/profile.html:106
+#: core/templates/user/delete.html:16 core/templates/user/profile.html:107
 msgid "Download personal data"
 msgstr "Niðurhala persónugögnum"
 
@@ -209,7 +211,7 @@ msgstr ""
 msgid "Reject terms and delete account"
 msgstr "Hafna skilmálum og eyða aðgangi"
 
-#: core/templates/user/delete.html:29 core/templates/user/profile.html:108
+#: core/templates/user/delete.html:29 core/templates/user/profile.html:109
 msgid "Delete account"
 msgstr "Eyða aðgangi"
 
@@ -349,16 +351,16 @@ msgstr ""
 "ATH: Ef þú sérð póstinn ekki, athugaðu þá vandlega hvort hann hafi lennt í "
 "ruslpóstvörn póstforrits þíns áður en þú hefur samband við okkur."
 
-#: core/templates/user/profile.html:4
+#: core/templates/user/profile.html:5
 msgid "I, me, my, mine."
 msgstr "Ég, mig, mér, mín."
 
-#: core/templates/user/profile.html:94
-#: core/templates/user/registration/register.html:101
+#: core/templates/user/profile.html:95
+#: core/templates/user/registration/register.html:102
 msgid "Register"
 msgstr "Skrá"
 
-#: core/templates/user/profile.html:104
+#: core/templates/user/profile.html:105
 msgid "Terms and conditions"
 msgstr "Notkunarskilmálar"
 
@@ -370,7 +372,7 @@ msgstr "Skráning tókst!"
 msgid "You can now log in using the form on the left side of the page."
 msgstr "Þú getur nú innskráð þig vinstra megin á síðunni."
 
-#: core/templates/user/registration/register.html:4
+#: core/templates/user/registration/register.html:5
 msgid "New user"
 msgstr "Nýr notandi"
 
@@ -458,41 +460,33 @@ msgstr ""
 msgid "Editorial"
 msgstr "Ritstjórn"
 
-#: poem/models.py:123
-msgid "Pending"
-msgstr "Í bið"
+#: poem/models.py:127
+msgid "Unpublished"
+msgstr "Óútgefið"
 
-#: poem/models.py:124 poem/templates/author/admin.html:15
-msgid "Approved"
-msgstr "Samþykkt"
+#: poem/models.py:130
+msgid "Trashed"
+msgstr "Í ruslafötu"
 
-#: poem/models.py:125
+#: poem/models.py:133
+msgid "Pending approval"
+msgstr "Bíður samþykktar"
+
+#: poem/models.py:136
 msgid "Rejected"
 msgstr "Hafnað"
 
-#: poem/templates/author/admin.html:8
+#: poem/models.py:139
+msgid "Approved"
+msgstr "Samþykkt"
+
+#: poem/templates/author/admin.html:8 poem/templates/poem/add.html:4
 msgid "Add poem"
 msgstr "Bæta við ljóði"
 
 #: poem/templates/author/admin.html:13
 msgid "Poem"
 msgstr "Ljóð"
-
-#: poem/templates/author/admin.html:14
-msgid "Visible"
-msgstr "Sýnilegt"
-
-#: poem/templates/author/admin.html:16
-msgid "Control"
-msgstr "Stjórn"
-
-#: poem/templates/author/admin.html:36
-msgid "Delete"
-msgstr "Eyða"
-
-#: poem/templates/author/admin.html:37
-msgid "Edit"
-msgstr "Breyta"
 
 #: poem/templates/author/author.html:20
 msgid "More about the author"
@@ -506,6 +500,10 @@ msgstr "Ertu viss um að þú viljir eyða bókamerkinu fyrir þetta ljóð?"
 msgid "DELETE"
 msgstr "EYÐA"
 
+#: poem/templates/poem/add.html:4
+msgid "Edit poem"
+msgstr "Breyta ljóði"
+
 #: poem/templates/poem/add.html:13
 msgid "Title"
 msgstr "Titill"
@@ -518,15 +516,12 @@ msgstr "Texti"
 msgid "Description (optional)"
 msgstr "Umfjöllun (valfrjálst)"
 
-#: poem/templates/poem/add.html:35
-msgid "Show publicly on website (i.e. in poem collection)"
-msgstr "Sýna opinberlega á vefnum (t.d. í ljóðasafni)"
-
-#: poem/templates/poem/add.html:40 poem/templates/poem/delete.html:10
+#: poem/templates/poem/add.html:34 poem/templates/poem/delete.html:17
 msgid "OK"
 msgstr "Í lagi"
 
-#: poem/templates/poem/add.html:41 poem/templates/poem/delete.html:11
+#: poem/templates/poem/add.html:35 poem/templates/poem/delete.html:18
+#: poem/templates/poem/unpublish.html:15
 msgid "Cancel"
 msgstr "Hætta við"
 
@@ -534,7 +529,147 @@ msgstr "Hætta við"
 msgid "Are you sure you wish to delete this poem?"
 msgstr "Ertu viss um að þú viljir eyða þessu ljóði?"
 
-#: poem/templates/poem/poem.html:14
+#: poem/templates/poem/delete.html:11
+msgid "You should be absolutely certain! This action cannot be undone!"
+msgstr ""
+"Þú ættir að vera algerlega viss! Það er ekki hægt að taka þessa ákvörðun til "
+"baka!"
+
+#: poem/templates/poem/poem.side.control.html:7
+msgid "This poem is by <strong>you</strong>."
+msgstr "Þetta ljóð er eftir <strong>þig</strong>."
+
+#: poem/templates/poem/poem.side.control.html:12
+msgid "It is currently <strong>unpublished</strong>."
+msgstr "Það er enn <strong>óútgefið</strong>."
+
+#: poem/templates/poem/poem.side.control.html:16
+msgid ""
+"When you choose to publish it, it will be reviewed by an editor before being "
+"displayed on the website."
+msgstr ""
+"Þegar þú ákveður að gefa það út, verður það yfirfarið af ritstjórn áður en "
+"það er birt á vefnum."
+
+#: poem/templates/poem/poem.side.control.html:20
+msgid "Publish"
+msgstr "Gefa út"
+
+#: poem/templates/poem/poem.side.control.html:24
+msgid ""
+"You can also <strong>edit</strong> or <strong>delete</strong> it if you wish."
+msgstr ""
+"Þú getur einnig <strong>breytt</strong> eða <strong>eytt</strong> því ef þú "
+"vilt."
+
+#: poem/templates/poem/poem.side.control.html:28
+#: poem/templates/poem/poem.side.control.html:83
+msgid "Edit"
+msgstr "Breyta"
+
+#: poem/templates/poem/poem.side.control.html:29
+#: poem/templates/poem/poem.side.control.html:84
+#: poem/templates/poem/poem.side.control.html:108
+msgid "Delete"
+msgstr "Eyða"
+
+#: poem/templates/poem/poem.side.control.html:33
+msgid "It is currently <strong>awaiting approval</strong> by an editor."
+msgstr "Í augnablikinu <strong>bíður það samþykktar</strong> af ritstjórn."
+
+#: poem/templates/poem/poem.side.control.html:37
+msgid ""
+"If you wish to change or delete it, you must first unpublish it. You can "
+"then edit it and submit it for publication again."
+msgstr ""
+"Ef þú vilt breyta eða eyða því, þarftu fyrst að afturkalla útgáfuna. Þannig "
+"geturðu breytt því og gefið það aftur út."
+
+#: poem/templates/poem/poem.side.control.html:41
+#: poem/templates/poem/poem.side.control.html:96
+#: poem/templates/poem/unpublish.html:14
+msgid "Unpublish"
+msgstr "Afturkalla"
+
+#: poem/templates/poem/poem.side.control.html:47
+msgid ""
+"It has unfortunately been <strong>rejected</strong> during our editorial "
+"process with the following message:"
+msgstr ""
+"Því miður var því <strong>hafnað</strong> við yfirlestur ritstjórnar með "
+"eftirfarandi skilaboðum:"
+
+#: poem/templates/poem/poem.side.control.html:59
+msgid "You may edit it and try publishing it again, if you wish."
+msgstr "Þú getur breytt því og reynt að gefa það út aftur, ef þú vilt."
+
+#: poem/templates/poem/poem.side.control.html:65
+msgid ""
+"It was unfortunately <strong>rejected</strong> at a time when we did not "
+"require editors to explain why."
+msgstr ""
+"Því miður var því <strong>hafnað</strong> við yfirlestur ritstjórnar áður en "
+"kveðið var á um að sú ákvörðun skyldi alltaf útskýrð."
+
+#: poem/templates/poem/poem.side.control.html:69
+msgid ""
+"In such cases, the reason was typically the poem being in a different "
+"language than the website is intended for, or bad spelling. But honestly, we "
+"just don't know."
+msgstr ""
+"Í slíkum tilfellum eru líklegustu ástæðurnar þær að ljóðið sé á öðru "
+"tungumáli en því sem vefnum er ætlað, eða stafsetningarvillur. Raunin er sú "
+"að við vitum það ekki."
+
+#: poem/templates/poem/poem.side.control.html:73
+#, python-format
+msgid ""
+"Please feel free to contact us at <a href=\"mailto:%(CONTACT_EMAIL)s:\">"
+"%(CONTACT_EMAIL)s</a> if those reasons don't make sense. We will be happy to "
+"investigate further."
+msgstr ""
+"Vinsamlegast hafðu samband við okkur á netfangið <a href=\"mailto:"
+"%(CONTACT_EMAIL)s:\">%(CONTACT_EMAIL)s</a> ef þér þykja þessar ástæður "
+"ósennilegar. Við erum algerlega reiðubúin til að skoða málið frekar."
+
+#: poem/templates/poem/poem.side.control.html:77
+msgid "Alternatively, you can edit your poem and try publishing it again."
+msgstr "Að öðrum kosti geturðu breytt ljóðinu og reynt að gefa það út aftur."
+
+#: poem/templates/poem/poem.side.control.html:88
+msgid ""
+"It has been <strong>approved</strong> and is <strong>publicly visible</"
+"strong>."
+msgstr ""
+"Það hefur verið <strong>samþykkt</strong> og er <strong>birt opinberlega</"
+"strong>."
+
+#: poem/templates/poem/poem.side.control.html:92
+msgid "If you wish to edit or delete it, you must first unpublish it."
+msgstr "Ef þú vilt breyta því eða eyða, þarftu fyrst að afturkalla útgáfuna."
+
+#: poem/templates/poem/poem.side.control.html:100
+msgid "This poem as been <strong>trashed</strong> (hopefully by you)."
+msgstr ""
+"Þetta ljóð hefur verið <strong>sett í ruslið</strong> (vonandi af þér)."
+
+#: poem/templates/poem/poem.side.control.html:104
+msgid ""
+"Please confirm by <strong>deleting</strong> it, or <strong>untrashing</"
+"strong> it otherwise."
+msgstr ""
+"Vinsamlegast staðfestu með því að <strong>eyða</strong> því, en "
+"<strong>endurheimtu</strong> það ellegar."
+
+#: poem/templates/poem/poem.side.control.html:109
+msgid "Untrash"
+msgstr "Endurheimta"
+
+#: poem/templates/poem/poem.side.more-from-author.html:3
+msgid "Place bookmark"
+msgstr "Setja bókamerki"
+
+#: poem/templates/poem/poem.side.more-from-author.html:6
 msgid "Poems by"
 msgstr "Ljóð eftir"
 
@@ -572,10 +707,23 @@ msgstr "Ár"
 msgid "Unfortunately there were no search results."
 msgstr "Því miður skilaði leitin engum árangri."
 
-#: poem/templates/poem/stub/poem.display.html:29
-msgid "Place bookmark"
-msgstr "Setja bókamerki"
-
 #: poem/templates/poem/stub/poem.in-listing.html:4
 msgid "by"
 msgstr "eftir"
+
+#: poem/templates/poem/unpublish.html:4
+msgid "Unpublish poem"
+msgstr "Afturkalla útgáfu"
+
+#: poem/templates/poem/unpublish.html:9
+msgid "Are you sure you wish to unpublish this poem?"
+msgstr "Ertu viss um að þú viljir afkalla útgáfu þessa ljóðs?"
+
+#~ msgid "Visible"
+#~ msgstr "Sýnilegt"
+
+#~ msgid "Control"
+#~ msgstr "Stjórn"
+
+#~ msgid "Show publicly on website (i.e. in poem collection)"
+#~ msgstr "Sýna opinberlega á vefnum (t.d. í ljóðasafni)"
