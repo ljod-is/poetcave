@@ -1,0 +1,90 @@
+@charset "utf-8";
+/*
+ * CSS Document
+ * Written by Ryan Yonzon
+ * http://ryan.rawswift.com/
+ */
+ 
+html, body {
+	margin:0px; /* FF hack: or we'll have double scrollbar showing on the browser */
+	overflow:hidden; /* hide browser's main scrollbar */
+}
+
+#main_container {
+	width:100%;
+	background-color:#FFFFFF; /* DO NOT REMOVE THIS; or you'll have issue w/ the scrollbar, when the mouse pointer is on a white space */
+	
+	height:100%;	/* this will make sure that the height will extend at the bottom */
+	overflow:auto;	/* will have a scrollbar at our content containier */
+	position:absolute; /* container div must be absolute, for our fixed bar to work */
+}
+
+	#main_container .content_wrapper {
+		margin-left:auto;
+		margin-right:auto;
+		width:90%;
+	}
+	
+	#main_container .spacer { /* spacer w/ fixed height; give space to the content and fixed bar */
+		height:30px;
+	}
+
+#nav_menu_wrapper { /* this will ba used as a wrapper for the nav_menu so we can center it (nav_menu). especially for IE */
+	height:30px; /* fix bar's height */
+	width:100%; /* use 100% of width */
+	
+	/* the code below will PUT the bar at the bottom */	
+	bottom:0px;
+	position:absolute;
+	
+	/* hide scrollbar for this wrapper */
+	overflow:hidden;
+}
+
+	#nav_menu_wrapper .nav_menu { /* the menu itself */
+		height:30px; /* fix bar's height */
+		width:900px; /* fixed width */
+
+		/* center this div */
+		margin-left:auto;
+		margin-right:auto;	
+		
+		/* add effect */
+		background-color:#EEEEEE;
+		border:#666666 solid 1px;
+	}
+	
+	/*
+	 * menu links and link effects
+	 */
+		#nav_menu_wrapper .nav_menu ul {
+			margin-top:5px;
+			list-style:none;
+		}
+		
+		#nav_menu_wrapper .nav_menu li {
+			display:inline;
+		}
+		
+		#nav_menu_wrapper .nav_menu li a {
+			padding-top:3px;
+			padding-bottom:5px;
+			padding-left:9px;			
+			padding-right:9px;
+		}
+		
+		#nav_menu_wrapper .nav_menu a:link, #nav_menu_wrapper .nav_menu a:visited {
+			font-family:Verdana, Arial, Helvetica, sans-serif;
+			font-size:12px;
+			color:#333333;
+			text-decoration:none;
+			background-color:#EEEEEE;
+		}
+
+		#nav_menu_wrapper .nav_menu a:hover {
+			font-family:Verdana, Arial, Helvetica, sans-serif;
+			font-size:12px;
+			color:#FFFFFF;
+			text-decoration:none;
+			background-color:#0099FF;
+		}

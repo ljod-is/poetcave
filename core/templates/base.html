@@ -4,13 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="http://www.ljod.is/css/poetry.css" rel="stylesheet">
+<link href="{% static 'oldsite/css/poetry.css' %}" rel="stylesheet">
 <link href="{% static 'core/css/legacy-imitation.css' %}" rel="stylesheet" />
 <title>Ljóð.is</title>
-<link rel="stylesheet" href="http://www.ljod.is//cms/css/screen.css" type="text/css" media="screen" />
-<!--[if lt IE 7]>
-<link rel="stylesheet" href="http://www.ljod.is//cms/css/screen_ie.css" type="text/css" media="screen" />
-<![endif]-->
+<link rel="stylesheet" href="{% static 'oldsite/cms/css/screen.css' %}" type="text/css" media="screen" />
 <style type="text/css">
 .dialog {
     background: #f0f0f0;
@@ -28,10 +25,10 @@
 
 
 </head>
-<body background="http://www.ljod.is/images/alki.gif">
+<body background="{% static 'oldsite/images/alki.gif' %}">
 
 <!-- main container starts here -->
-<div id="main_container" style="background-image:url('http://www.ljod.is/images/alki.gif');">
+<div id="main_container" style="background-image:url('{% static 'oldsite/images/alki.gif' %}');">
 
     <!-- content wrapper starts here -->
     <div class="content_wrapper">
@@ -44,19 +41,19 @@
                     <td valign="top" width="190">
                         <table width="190"border="0" cellspacing="0" cellpadding="0">
                             <tr>
-                                <td bgcolor="#999999"><img src="http://www.ljod.is/images/spacer.gif" width="6" height="10"></td>
+                                <td bgcolor="#999999"><img src="{% static 'oldsite/images/spacer.gif' %}" width="6" height="10"></td>
                             </tr>
                             <tr>
-                                <td bgcolor="#FFFFFF"><img src="http://www.ljod.is/images/spacer.gif" width="6" height="10"></td>
+                                <td bgcolor="#FFFFFF"><img src="{% static 'oldsite/images/spacer.gif' %}" width="6" height="10"></td>
                             </tr>
                             <tr>
-                                <td bgcolor="#999999"><img src="http://www.ljod.is/images/spacer.gif" width="6" height="5"></td>
+                                <td bgcolor="#999999"><img src="{% static 'oldsite/images/spacer.gif' %}" width="6" height="5"></td>
                             </tr>
                             <tr>
-                                <td bgcolor="#FFFFFF"><img src="http://www.ljod.is/images/spacer.gif" width="5" height="5"></td>
+                                <td bgcolor="#FFFFFF"><img src="{% static 'oldsite/images/spacer.gif' %}" width="5" height="5"></td>
                             </tr>
                             <tr>
-                                <td bgcolor="#999999"><img src="http://www.ljod.is/images/spacer.gif" width="6" height="5"></td>
+                                <td bgcolor="#999999"><img src="{% static 'oldsite/images/spacer.gif' %}" width="6" height="5"></td>
                             </tr>
                             <tr>
                                 <td>
@@ -71,13 +68,13 @@
                     <td width="175"  height="110"   align="center" valign="top">
                         <table width="175" border="0" cellspacing="0" cellpadding="0">
                             <tr>
-                                <td bgcolor="#999999"><img src="http://www.ljod.is/images/spacer.gif" width="6" height="10"></td>
+                                <td bgcolor="#999999"><img src="{% static 'oldsite/images/spacer.gif' %}" width="6" height="10"></td>
                             </tr>
                             <tr>
-                                <td bgcolor="#FFFFFF" align="left" valign="top"><img src="http://www.ljod.is/images/spacer.gif" width="5" height="6"></td>
+                                <td bgcolor="#FFFFFF" align="left" valign="top"><img src="{% static 'oldsite/images/spacer.gif' %}" width="5" height="6"></td>
                             </tr>
                             <tr>
-                                <td><a href="{% url 'main' %}"><img src="http://www.ljod.is/images/logo_stort.gif"  border="0"><img src="http://www.ljod.is/images/08_stort.gif" border="0"></a></td>
+                                <td><a href="{% url 'main' %}"><img src="{% static 'oldsite/images/logo_stort.gif' %}"  border="0"><img src="{% static 'oldsite/images/08_stort.gif' %}" border="0"></a></td>
                             </tr>
                             <tr>
                                 <td class="date">{% now 'DATE_FORMAT' %}</td>
@@ -96,10 +93,10 @@
                     <td width="100%" align="left" valign="top">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
-                                <td bgcolor="#999999" colspan="2"><img src="http://www.ljod.is/images/spacer.gif" width="6" height="10"></td>
+                                <td bgcolor="#999999" colspan="2"><img src="{% static 'oldsite/images/spacer.gif' %}" width="6" height="10"></td>
                             </tr>
                             <tr>
-                              <td bgcolor="#FFFFFF" colspan="2"><img src="http://www.ljod.is/images/spacer.gif" width="5" height="6"></td>
+                              <td bgcolor="#FFFFFF" colspan="2"><img src="{% static 'oldsite/images/spacer.gif' %}" width="5" height="6"></td>
                             </tr>
                             <tr>
 
@@ -110,7 +107,7 @@
                           </tr>
 
                       </table>
-                      <a href="http://www.leturprent.is/"><img src="http://www.ljod.is/leturprent.jpg" style="margin-left:300px;margin-top:10px;"></a>
+                      <a href="http://www.leturprent.is/"><img src="{% static 'oldsite/leturprent.jpg' %}" style="margin-left:300px;margin-top:10px;"></a>
                     </td>
 
 
@@ -126,15 +123,15 @@
                                 <td style="vertical-align: top; width: 400; padding: 0px 0px 0px 90px;margin-bottom:0px;">
                                     <table width="175" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
                                         <tr>
-                                            <td colspan="3"><img src="http://www.ljod.is/images/fyrirsogn_bordi.gif" width="175" height="1"></td>
+                                            <td colspan="3"><img src="{% static 'oldsite/images/fyrirsogn_bordi.gif' %}" width="175" height="1"></td>
                                         </tr>
                                         <tr>
-                                            <td width="12" align="left" valign="middle"><img src="http://www.ljod.is/images/fyrirsogn_kassi.gif" width="10" height="12"></td>
+                                            <td width="12" align="left" valign="middle"><img src="{% static 'oldsite/images/fyrirsogn_kassi.gif' %}" width="10" height="12"></td>
                                             <td class="boxtext" width="151">{% block sign %}Ljóð.is{% endblock %}</td>
-                                            <td width="12" align="right"><img src="http://www.ljod.is/images/fyrirsogn_kassi.gif" width="10" height="12"></td>
+                                            <td width="12" align="right"><img src="{% static 'oldsite/images/fyrirsogn_kassi.gif' %}" width="10" height="12"></td>
                                         </tr>
                                         <tr valign="top">
-                                            <td colspan="3"><img src="http://www.ljod.is/images/fyrirsogn_bordi.gif" width="175" height="1"></td>
+                                            <td colspan="3"><img src="{% static 'oldsite/images/fyrirsogn_bordi.gif' %}" width="175" height="1"></td>
                                         </tr>
                                     </table><br>
                                     {% if messages %}

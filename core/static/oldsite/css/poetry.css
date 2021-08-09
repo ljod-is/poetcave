@@ -1,0 +1,122 @@
+body, td, div,P {
+	color: #505050;
+	font-size: 10px;
+	font-family: Verdana;
+	padding: 0px 0px 0px 0px;
+	margin: 0px 0px 0px 0px;
+}
+
+a {
+	color: #7b5029;
+}
+
+form {
+	margin: 0px 0px 0px 0px;
+}
+
+input {
+	border-width: 1px;
+}
+
+textarea {
+	border-width: 1px;
+}
+
+input.button {
+	font-size: 10px;
+	font-weight: bold;
+	border-style: solid;
+	border-width: 1px;
+	border-color: #000000;
+	background: #999999;
+	color: #ffffff;
+}
+
+.smalltext {
+	font-size: 9px;
+}
+
+.small {
+}
+
+.date {
+	background: #999999;
+	text-align: center;
+	padding: 1px 1px 2px 1px;
+	color: #ffffff;
+	font-size: 10;
+	font-weight: bold;
+}
+
+.nav {
+	color: #ffffff;
+	background: #999999;
+	font-family: Verdana;
+	font-size: 9px;
+	padding: 1px 1px 0px 0px;
+}
+.author {
+	font-style: italic;
+	text-align: right;
+}
+
+.poem {
+}
+
+.boxtext {
+	text-align: center;
+	font-weight: bold;
+	color: #7b5029;
+	padding: 2px 2px 2px 2px;
+}
+
+.error {
+	color: #dd0000;
+}
+
+.calendarday {
+	width: 25px;
+	height: 15px;
+	text-align: center;
+	background: #c0c0c0;
+	color: #000000;
+}
+a.calendarday {
+	color: #000000;
+}
+
+.calendardayselected {
+	width: 25px;
+	height: 15px;
+	text-align: center;
+	background: #a0a0a0;
+	color: #000000;
+}
+a.calendardayselected {
+	color: #000000;
+}
+
+.calendartoday {
+	width: 25px;
+	height: 15px;
+	text-align: center;
+	background: #303030;
+	color: #c0c0c0;
+}
+.calendartoday {
+	color: #c0c0c0;
+}
+
+.calendarempty {
+	background: #e0e0e0;
+}
+
+.calendarweekday {
+	text-align: center;
+	background: #000000;
+	color: #f0f0f0;
+	padding: 0px 2px 0px 2px;
+}
+.einkaslod {
+line-height : 12pt;
+}
