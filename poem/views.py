@@ -46,6 +46,12 @@ def poem_add_edit(request, author_id, poem_id=None):
 
     if poem_id is not None:
         poem = Poem.objects.managed_by(request.user).get(id=poem_id)
+
+        # We retain these for checking if the name or body have been updated.
+        # We need this information later to determine whether to change the
+        # editorial status as a result of a previous rejection.
+        old_name = poem.name
+        old_body = poem.body
     else:
         poem = Poem()
 
@@ -53,10 +59,31 @@ def poem_add_edit(request, author_id, poem_id=None):
     if request.method == 'POST':
         form = PoemForm(request.POST, instance=poem)
         if form.is_valid():
+
+            # We don't commit yet because we need to do more things first.
             poem = form.save(commit=False)
+
+            # Check if the poem was previously rejected, but the user is now
+            # editing the content. In that case, we'll set the editorial
+            # status as 'unpublished' again, so that the user can try
+            # publishing it again with the changes in place.
+            if (poem_id is not None
+                and poem.editorial_status == 'rejected'
+                and (
+                    old_name != poem.name
+                    or old_body != poem.body
+                )
+            ):
+                poem.set_editorial_status('unpublished', request.user)
+
+            # Force the correct author.
             poem.author_id = author.id
+
+            # Finally commit.
             poem.save()
-            return redirect(reverse('author_admin', args=(author.id,)))
+
+            # Redirect to poem.
+            return redirect(reverse('poem', args=(poem.id,)))
 
     ctx = {
         'author': author,
@@ -80,6 +107,58 @@ def poem_delete(request, author_id, poem_id):
         'poem': poem,
     }
     return render(request, 'poem/delete.html', ctx)
+
+
+@login_required
+def poem_publish(request, author_id, poem_id):
+
+    try:
+        poem = Poem.objects.managed_by(request.user).get(id=poem_id)
+    except Poem.DoesNotExist:
+        raise PermissionDenied
+
+    if poem.editorial_status == 'unpublished':
+        poem.set_editorial_status('pending', request.user)
+        poem.save()
+
+    return redirect(reverse('poem', args=(poem_id,)))
+
+
+@login_required
+def poem_unpublish(request, author_id, poem_id):
+
+    try:
+        poem = Poem.objects.managed_by(request.user).get(id=poem_id)
+    except Poem.DoesNotExist:
+        raise PermissionDenied
+
+    if request.method == 'POST':
+        if poem.editorial_status in ['pending', 'approved']:
+            poem.set_editorial_status('unpublished', request.user)
+            poem.save()
+
+            return redirect(reverse('poem', args=(poem_id,)))
+
+    ctx = {
+        'poem': poem,
+    }
+
+    return render(request, 'poem/unpublish.html', ctx)
+
+
+@login_required
+def poem_untrash(request, author_id, poem_id):
+
+    try:
+        poem = Poem.objects.managed_by(request.user).get(id=poem_id)
+    except Poem.DoesNotExist:
+        raise PermissionDenied
+
+    if poem.editorial_status == 'trashed':
+        poem.set_editorial_status('unpublished', request.user)
+        poem.save()
+
+    return redirect(reverse('poem', args=(poem_id,)))
 
 
 @login_required
@@ -237,18 +316,13 @@ def poems(request):
 
 def poem(request, poem_id):
     try:
-        # The requested poem.
-        poem = Poem.objects.select_related(
-            'author'
-        ).get(
-            id=poem_id,
-            editorial_status='approved'
-        )
-
+        # The specific poem being requested.
+        poem = Poem.objects.select_related('author').visible_to(request.user).get(id=poem_id)
     except Poem.DoesNotExist:
         raise Http404
 
-    poems = poem.author.poems.filter(editorial_status='approved')
+    # Other poems by the same author.
+    poems = poem.author.poems.visible_to(request.user)
 
     ctx = {
         'poem': poem,

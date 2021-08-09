@@ -8,34 +8,15 @@
 [ <a href="{% url 'poem_add' author.id %}">{% trans 'Add poem' %}</a> ]
 <br /><br />
 
-<table>
+<table style="width: 250px;">
     <tr>
         <th>{% trans 'Poem' %}</th>
-        <th class="center">{% trans 'Visible' %}</th>
-        <th class="center">{% trans 'Approved' %}</th>
-        <th class="center">{% trans 'Control' %}</th>
+        <th style="text-align: right;">{% trans 'Status' %}</th>
     </tr>
     {% for poem in author.poems.all %}
         <tr>
-            <td><a href="{% url 'poem_edit' poem.author_id poem.id %}">{{ poem.name }}</a></td>
-            <td class="center">
-                {% if poem.public %}
-                    <img src="http://www.ljod.is/images/hak.png" />
-                {% else %}
-                    <img src="http://www.ljod.is/images/hak_tomt.png" />
-                {% endif %}
-            </td>
-            <td class="center">
-                {% if poem.approved %}
-                    <img src="http://www.ljod.is/images/hak.png" />
-                {% else %}
-                    <img src="http://www.ljod.is/images/hak_tomt.png" />
-                {% endif %}
-            </td>
-            <td class="control center">
-                [ <a href="{% url 'poem_delete' poem.author_id poem.id %}"> {% trans 'Delete' %}</a>
-                | <a href="{% url 'poem_edit' poem.author_id poem.id %}"> {% trans 'Edit' %}</a> ]
-            </td>
+            <td><a href="{% url 'poem' poem.id %}">{{ poem.name }}</a></td>
+            <td style="text-align: right;">{{ poem.get_editorial_status_display }}</td>
         </tr>
     {% endfor %}
 </table>

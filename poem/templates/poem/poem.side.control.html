@@ -1,0 +1,111 @@
+{% load i18n %}
+
+[ <a href="{% url 'author_admin' poem.author_id %}">{% trans 'Homestead' %}</a> ]
+<br />
+<br />
+
+{% trans 'This poem is by <strong>you</strong>.' %}
+<br /><br />
+
+{% if poem.editorial_status == 'unpublished' %}
+
+    {% trans 'It is currently <strong>unpublished</strong>.' %}
+    <br />
+    <br />
+
+    {% trans 'When you choose to publish it, it will be reviewed by an editor before being displayed on the website.' %}
+    <br />
+    <br />
+
+    <button type="button" href="{% url 'poem_publish' poem.author_id poem.id %}">{% trans 'Publish' %}</button>
+    <br />
+    <br />
+
+    {% trans 'You can also <strong>edit</strong> or <strong>delete</strong> it if you wish.' %}
+    <br />
+    <br />
+
+    <button type="button" href="{% url 'poem_edit' poem.author_id poem.id %}">{% trans 'Edit' %}</button>
+    <button type="button" href="{% url 'poem_delete' poem.author_id poem.id %}">{% trans 'Delete' %}</button>
+
+{% elif poem.editorial_status == 'pending' %}
+
+    {% trans 'It is currently <strong>awaiting approval</strong> by an editor.' %}
+    <br />
+    <br />
+
+    {% trans 'If you wish to change or delete it, you must first unpublish it. You can then edit it and submit it for publication again.' %}
+    <br />
+    <br />
+
+    <button type="button" href="{% url 'poem_unpublish' poem.author_id poem.id %}">{% trans 'Unpublish' %}</button>
+
+{% elif poem.editorial_status == 'rejected' %}
+
+    {% if poem.editorial_reason %}
+
+        {% trans 'It has unfortunately been <strong>rejected</strong> during our editorial process with the following message:' %}
+        <br />
+        <br />
+
+        <div style="border: 1px dotted #999999; padding: 12px 12px 12px 12px;">
+            <p><em>„{{ poem.editorial_reason }}“</em></p>
+            <p style="text-align: right;">
+            - {% include 'core/team/stub-user.html' with user=poem.editorial_user %}
+            </p>
+        </div>
+        <br />
+
+        {% trans 'You may edit it and try publishing it again, if you wish.' %}
+        <br />
+        <br />
+
+    {% else %}
+
+        {% trans 'It was unfortunately <strong>rejected</strong> at a time when we did not require editors to explain why.' %}
+        <br />
+        <br />
+
+        {% blocktrans %}In such cases, the reason was typically the poem being in a different language than the website is intended for, or bad spelling. But honestly, we just don't know.{% endblocktrans %}
+        <br />
+        <br />
+
+        {% blocktrans %}Please feel free to contact us at <a href="mailto:{{ CONTACT_EMAIL }}:">{{ CONTACT_EMAIL }}</a> if those reasons don't make sense. We will be happy to investigate further.{% endblocktrans %}
+        <br />
+        <br />
+
+        {% trans 'Alternatively, you can edit your poem and try publishing it again.' %}
+        <br />
+        <br />
+
+    {% endif %}
+
+    <button type="button" href="{% url 'poem_edit' poem.author_id poem.id %}">{% trans 'Edit' %}</button>
+    <button type="button" href="{% url 'poem_delete' poem.author_id poem.id %}">{% trans 'Delete' %}</button>
+
+{% elif poem.editorial_status == 'approved' %}
+
+    {% trans 'It has been <strong>approved</strong> and is <strong>publicly visible</strong>.' %}
+    <br />
+    <br />
+
+    {% trans 'If you wish to edit or delete it, you must first unpublish it.' %}
+    <br />
+    <br />
+
+    <button type="button" href="{% url 'poem_unpublish' poem.author_id poem.id %}">{% trans 'Unpublish' %}</button>
+
+{% elif poem.editorial_status == 'trashed' %}
+
+    {% trans 'This poem as been <strong>trashed</strong> (hopefully by you).' %}
+    <br />
+    <br />
+
+    {% trans 'Please confirm by <strong>deleting</strong> it, or <strong>untrashing</strong> it otherwise.' %}
+    <br />
+    <br />
+
+    <button type="button" href="{% url 'poem_delete' poem.author_id poem.id %}">{% trans 'Delete' %}</button>
+    <button type="button" href="{% url 'poem_untrash' poem.author_id poem.id %}">{% trans 'Untrash' %}</button>
+
+{% endif %}

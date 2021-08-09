@@ -4,6 +4,8 @@ PoetCave is the Django-based recreation of the website [Ljóð.is](https://ljod.
 
 In the first phase, we will simply recreate the website's functionality with the intent of getting it functional again. This means that we will begin by imitating arguably bad design decisions made earlier. Such decisions may then be reversed or amended in latter phases.
 
+Features that differ from the original are only different because they must be updated to fit a new paradigm. One example of that is how a poem's status is handled. This is fundamentally different between the old version and the new, so some changes in that area will already be visible to users once Phase 1 is completed.
+
 # Phase 1
 
 *"CRUD" stands for Create/Read/Update/Delete and refers to the ability to apply those operations on the entity in question.*

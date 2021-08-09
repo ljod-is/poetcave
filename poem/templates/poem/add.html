@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{% block sign %}{% trans 'Homestead' %}{% endblock %}
+{% block sign %}{% if form.instance.id %}{% trans 'Edit poem' %}{% else %}{% trans 'Add poem' %}{% endif %}{% endblock %}
 
 {% block content %}
 
@@ -29,16 +29,10 @@
             <label for="id_description" class="error">{% for error in form.description.errors %}{{ error }}<br />{% endfor %}</label>
         </td>
     </tr>
-        <tr>
-            <td>
-                <input type="checkbox" name="public" id="id_public" {% if form.public.value %}checked="true"{% endif %} />
-                {% trans 'Show publicly on website (i.e. in poem collection)' %}
-            </td>
-        </tr>
     <tr>
         <td colspan="2" class="center">
             <button type="submit">{% trans 'OK' %}</button>
-            <button type="button" href="{% url 'author_admin' author.id %}" value="{% trans 'Cancel' %}">{% trans 'Cancel' %}</button>
+            <button type="button" href="{% if form.instance.id %}{% url 'poem' form.instance.id %}{% else %}{% url 'author_admin' author.id %}{% endif %}" value="{% trans 'Cancel' %}">{% trans 'Cancel' %}</button>
         </td>
     </tr>
 </table>

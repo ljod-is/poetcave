@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block sign %}{% trans 'Unpublish poem' %}{% endblock %}
+
+{% block content %}
+<form method="post">
+{% csrf_token %}
+<h3>{% trans 'Are you sure you wish to unpublish this poem?' %}</h3>
+
+{{ poem }}
+<br /><br />
+
+<button type="submit">{% trans 'Unpublish' %}</button>
+<button type="button" href="{% url 'poem' poem.id %}">{% trans 'Cancel' %}</button>
+</form>
+{% endblock %}

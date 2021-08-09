@@ -11,29 +11,10 @@
 
 {% block side %}
 
-    {% trans 'Poems by' %} <strong>{{ poem.author.name_dative }}</strong>
-    <br />
-    <br />
-
-    {% comment %}
-    NOTE: The poem order differs from the original website, because the
-    original didn't specify an order by a particular field, and thus were
-    listed in a somewhat arbitrary order.
-    {% endcomment %}
-    {% for side_poem in poems reversed %}
-
-        {% if side_poem.id == poem.id %}
-            {{ side_poem.name }}
-        {% else %}
-            <a href="{{ side_poem.get_absolute_url }}">{{ side_poem.name }}</a>
-        {% endif %}
-
-        {% comment %}
-        TODO: Here should be shown the date that this poem was the
-        poem-of-the-day (if ever), once we've imported poemsof-the-day.
-        {% endcomment %}
-
-        <br />
-    {% endfor %}
+    {% if user.author == poem.author %}
+        {% include 'poem/poem.side.control.html' %}
+    {% else %}
+        {% include 'poem/poem.side.more-from-author.html' %}
+    {% endif %}
 
 {% endblock %}

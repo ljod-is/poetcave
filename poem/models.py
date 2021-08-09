@@ -1,7 +1,9 @@
 from django.conf import settings
 from django.db import models
 from django.db.models import Prefetch
+from django.db.models import Q
 from django.urls import reverse
+from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -42,6 +44,18 @@ class PoemQuerySet(models.QuerySet):
     def managed_by(self, user):
         # NOTE: See note in `AuthorQuerySet.managed_by`.
         return self.filter(author__user=user)
+
+    # Limits poems to those that are visible to the given user. Those are
+    # poems that the user is the author of, and those that have been approved.
+    def visible_to(self, user):
+        # NOTE: See note in `AuthorQuerySet.managed_by`.
+        if user.is_authenticated:
+            return self.filter(
+                Q(author__user=user)
+                | Q(editorial_status='approved')
+            )
+        else:
+            return self.filter(editorial_status='approved')
 
     def search(self, search_string):
         # TODO: This should probably become more sophisticated in the future.
@@ -134,6 +148,8 @@ class Poem(models.Model):
     about = models.TextField(null=True, blank=True)
 
     # Editorial status.
+    # NOTE: These should not be updated directly, but rather by using the
+    # model's `set_editorial_status()`.
     editorial_status = models.CharField(max_length=20, choices=EDITORIAL_STATUS_CHOICES, default='unpublished')
     editorial_user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL)
     editorial_timing = models.DateTimeField(null=True, blank=True)
@@ -142,6 +158,23 @@ class Poem(models.Model):
     date_created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     date_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
 
+    # This function should be used to set `editorial_status` and related
+    # fields. They should not be edited directly by the code.
+    def set_editorial_status(self, editorial_status, editorial_user, editorial_reason=None):
+
+        # Required for this to make sense.
+        self.editorial_status = editorial_status
+        self.editorial_user = editorial_user
+
+        # Remember when this status was set.
+        self.editorial_timing = timezone.now()
+
+        # When no reason is given, and this function is called, we'll want to
+        # reset the `editorial_reason` with the default None value. If a
+        # reason is given, we'll want to store it, so this functions both for
+        # remembering the reason and forgetting it when appropriate.
+        self.editorial_reason = editorial_reason
+
     def __str__(self):
         return '%s - %s' % (self.name, self.author)
 
@@ -149,7 +182,7 @@ class Poem(models.Model):
         return reverse('poem', args=(self.id,))
 
     class Meta:
-        ordering = ['-editorial_timing']
+        ordering = ['-editorial_status', '-editorial_timing']
 
 
 class DayPoem(models.Model):

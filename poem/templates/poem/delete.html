@@ -7,7 +7,14 @@
 <form method="post">
 {% csrf_token %}
 <h3>{% trans 'Are you sure you wish to delete this poem?' %}</h3>
+
+<strong>{% trans 'You should be absolutely certain! This action cannot be undone!' %}</strong>
+<br /><br />
+
+{{ poem }}
+<br /><br />
+
 <button type="submit">{% trans 'OK' %}</button>
-<button type="button" href="{% url 'author_admin' author.id %}">{% trans 'Cancel' %}</button>
+<button type="button" href="{% url 'poem' poem.id %}">{% trans 'Cancel' %}</button>
 </form>
 {% endblock %}
