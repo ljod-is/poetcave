@@ -28,7 +28,7 @@ def author_admin(request, author_id):
     try:
         author = Author.objects.managed_by(request.user).get(id=author_id)
     except Author.DoesNotExist:
-        raise Http404
+        raise PermissionDenied
 
     ctx = {
         'author': author,
@@ -42,7 +42,7 @@ def poem_add_edit(request, author_id, poem_id=None):
     try:
         author = Author.objects.managed_by(request.user).get(id=author_id)
     except Author.DoesNotExist:
-        raise Http404
+        raise PermissionDenied
 
     if poem_id is not None:
         poem = Poem.objects.managed_by(request.user).get(id=poem_id)
