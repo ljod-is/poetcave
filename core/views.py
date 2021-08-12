@@ -286,10 +286,6 @@ def retrieve_data_download(request):
         # Write poems' metadata.
         poems_meta_fields = [
             'about',
-            'public',
-            'public_timing',
-            'trashed',
-            'trashed_timing',
             'editorial_status',
             'editorial_user',
             'editorial_timing',
@@ -306,6 +302,8 @@ def retrieve_data_download(request):
                     fieldvalue = fieldvalue.strftime('%Y-%m-%d.%H-%M-%S')
                 if type(fieldvalue) is str:
                     fieldvalue = fieldvalue
+                if type(fieldvalue) is User:
+                    fieldvalue = fieldvalue.username
                 poem_meta[fieldname] = fieldvalue
             poems_meta[poem.name] = poem_meta
         with open(os.path.join(package_dir, '%s.json' % _('Poem metadata')), 'w') as f:
