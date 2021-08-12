@@ -51,7 +51,7 @@
         <div style="border: 1px dotted #999999; padding: 12px 12px 12px 12px;">
             <p><em>„{{ poem.editorial_reason }}“</em></p>
             <p style="text-align: right;">
-            - {% include 'core/team/stub-user.html' with user=poem.editorial_user %}
+            - {% include 'core/user/stub/list-item.html' with user=poem.editorial_user %}
             </p>
         </div>
         <br />

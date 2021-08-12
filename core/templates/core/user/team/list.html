@@ -12,7 +12,7 @@
 {% blocktrans %}Moderators help maintain the website by reviewing poems that users have requested to be published publicly and either approving or rejecting them.{% endblocktrans %}<br /><br />
 
 {% for user in moderators %}
-    &nbsp;&nbsp;&nbsp;&nbsp;{% include 'core/team/stub-user.html' %}<br /><br />
+    &nbsp;&nbsp;&nbsp;&nbsp;{% include 'core/user/stub/list-item.html' %}<br /><br />
 {% endfor %}
 
 <h3>{% trans 'Administrators' %}</h3>
@@ -20,7 +20,7 @@
 {% blocktrans %}Administrators manage the website, troubleshoot problems that users may have and manage moderators.{% endblocktrans %}<br /><br />
 
 {% for user in superusers %}
-    &nbsp;&nbsp;&nbsp;&nbsp;{% include 'core/team/stub-user.html' %}<br /><br />
+    &nbsp;&nbsp;&nbsp;&nbsp;{% include 'core/user/stub/list-item.html' %}<br /><br />
 {% endfor %}
 
 {% endblock %}

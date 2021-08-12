@@ -33,7 +33,7 @@ def author_admin(request, author_id):
     ctx = {
         'author': author,
     }
-    return render(request, 'author/admin.html', ctx)
+    return render(request, 'poem/control/list.html', ctx)
 
 
 @login_required
@@ -89,7 +89,7 @@ def poem_add_edit(request, author_id, poem_id=None):
         'author': author,
         'form': form,
     }
-    return render(request, 'poem/add.html', ctx)
+    return render(request, 'poem/control/add.html', ctx)
 
 
 @login_required
@@ -106,7 +106,7 @@ def poem_delete(request, author_id, poem_id):
         'author': author,
         'poem': poem,
     }
-    return render(request, 'poem/delete.html', ctx)
+    return render(request, 'poem/control/delete.html', ctx)
 
 
 @login_required
@@ -143,7 +143,7 @@ def poem_unpublish(request, author_id, poem_id):
         'poem': poem,
     }
 
-    return render(request, 'poem/unpublish.html', ctx)
+    return render(request, 'poem/control/unpublish.html', ctx)
 
 
 @login_required
@@ -215,7 +215,7 @@ def author(request, author_id):
         'author': author,
         'poems': poems,
     }
-    return render(request, 'author/author.html', ctx)
+    return render(request, 'poem/author.html', ctx)
 
 
 def poems_newest(request):

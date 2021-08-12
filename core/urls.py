@@ -26,7 +26,7 @@ urlpatterns = [
         'register/',
         RegistrationView.as_view(
             form_class=RegistrationForm,
-            template_name='user/registration/register.html',
+            template_name='core/user/registration/register.html',
             email_body_template = 'user/mail/activation_body.txt',
             email_subject_template = 'user/mail/activation_subject.txt',
             success_url=reverse_lazy('registration_complete')
@@ -38,7 +38,7 @@ urlpatterns = [
     path(
         'register/complete/',
         TemplateView.as_view(
-            template_name='user/registration/registration_complete.html'
+            template_name='core/user/registration/registration_complete.html'
         ),
         name='registration_complete',
     ),
@@ -56,7 +56,7 @@ urlpatterns = [
     path(
         'register/activation-complete/',
         TemplateView.as_view(
-            template_name='user/registration/activation_complete.html'
+            template_name='core/user/registration/activation_complete.html'
         ),
         name="activation_complete",
     ),
@@ -65,7 +65,7 @@ urlpatterns = [
     path(
         'user/login/',
         auth_views.LoginView.as_view(
-            template_name='user/login.html',
+            template_name='core/user/login.html',
             redirect_authenticated_user=True
         ),
         name='login'
@@ -78,8 +78,8 @@ urlpatterns = [
     path(
         'user/reset-password/',
         auth_views.PasswordResetView.as_view(
-            template_name='user/password_reset/reset.html',
-            email_template_name='user/mail/password_reset_body.txt',
+            template_name='core/user/password_reset/reset.html',
+            email_template_name='core/user/mail/password_reset_body.txt',
             success_url = reverse_lazy('password_reset_requested')
         ),
         name='password_reset'
@@ -91,7 +91,7 @@ urlpatterns = [
     path(
         'user/reset-password/requested/',
         auth_views.PasswordResetDoneView.as_view(
-            template_name='user/password_reset/reset_requested.html'
+            template_name='core/user/password_reset/reset_requested.html'
         ),
         name='password_reset_requested'
     ),
@@ -100,7 +100,7 @@ urlpatterns = [
     path(
         'user/reset-password/confirm/<uidb64>/<token>/',
         auth_views.PasswordResetConfirmView.as_view(
-            template_name='user/password_reset/reset_confirm.html'
+            template_name='core/user/password_reset/reset_confirm.html'
         ),
         name='password_reset_confirm'
     ),
@@ -109,7 +109,7 @@ urlpatterns = [
     path(
         'user/reset-password/complete/',
         auth_views.PasswordResetCompleteView.as_view(
-            template_name='user/password_reset/reset_complete.html'
+            template_name='core/user/password_reset/reset_complete.html'
         ),
         name='password_reset_complete'
     ),
@@ -121,7 +121,7 @@ urlpatterns = [
     #path(
     #    'user/change-password/',
     #    auth_views.PasswordChangeView.as_view(
-    #        template_name='user/password_change.html',
+    #        template_name='core/user/password_change.html',
     #        success_url = reverse_lazy('profile')
     #    ),
     #    name='password_change'

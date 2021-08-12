@@ -12,9 +12,9 @@
 {% block side %}
 
     {% if user.author == poem.author %}
-        {% include 'poem/poem.side.control.html' %}
+        {% include 'poem/side.control.html' %}
     {% else %}
-        {% include 'poem/poem.side.more-from-author.html' %}
+        {% include 'poem/side.more-from-author.html' %}
     {% endif %}
 
 {% endblock %}

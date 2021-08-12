@@ -50,7 +50,7 @@ def team(request):
         'superusers': superusers,
         'moderators': moderators,
     }
-    return render(request, 'core/team/team.html', ctx)
+    return render(request, 'core/user/team/list.html', ctx)
 
 
 def user(request, username):
@@ -67,7 +67,7 @@ def user(request, username):
     ctx = {
         'user': user,
     }
-    return render(request, 'core/team/user.html', ctx)
+    return render(request, 'core/user/team/user.html', ctx)
 
 
 def about(request, page=None):
@@ -152,7 +152,7 @@ def profile(request):
         'author_form': author_form,
         'form': form,
     }
-    return render(request, 'user/profile.html', ctx)
+    return render(request, 'core/user/profile.html', ctx)
 
 
 # Our custom registration form, that accounts for the Author object needing
@@ -188,12 +188,12 @@ class RegistrationView(BaseRegistrationView):
             'author_form': author_form,
             'form': form,
         }
-        return render(request, 'user/registration/register.html', ctx)
+        return render(request, 'core/user/registration/register.html', ctx)
 
 
 @login_required
 def user_delete(request):
-    return render(request, 'user/delete.html')
+    return render(request, 'core/user/delete.html')
 
 
 @login_required
@@ -329,4 +329,4 @@ def reject_terms(request):
     ctx = {
         'rejecting_terms': True,
     }
-    return render(request, 'user/delete.html', ctx)
+    return render(request, 'core/user/delete.html', ctx)
