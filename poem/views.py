@@ -23,20 +23,6 @@ from poem.models import Poem
 # `author_slug` after having implemented a slug mechanism for authors.
 
 @login_required
-def author_admin(request, author_id):
-
-    try:
-        author = Author.objects.managed_by(request.user).get(id=author_id)
-    except Author.DoesNotExist:
-        raise PermissionDenied
-
-    ctx = {
-        'author': author,
-    }
-    return render(request, 'poem/control/list.html', ctx)
-
-
-@login_required
 def poem_add_edit(request, author_id, poem_id=None):
 
     try:
@@ -100,7 +86,7 @@ def poem_delete(request, author_id, poem_id):
 
     if request.method == 'POST':
         poem.delete()
-        return redirect(reverse('author_admin', args=(author.id,)))
+        return redirect(reverse('author', args=(author.id,)))
 
     ctx = {
         'author': author,
@@ -207,9 +193,12 @@ def bookmark_delete(request, poem_id):
 
 
 def author(request, author_id):
+    try:
+        author = Author.objects.get(id=author_id)
+    except Author.DoesNotExist:
+        raise Http404
 
-    author = Author.objects.with_approved_poems().get(id=author_id)
-    poems = author.poems.filter(editorial_status='approved')
+    poems = Poem.objects.visible_to(request.user).filter(author_id=author_id)
 
     ctx = {
         'author': author,

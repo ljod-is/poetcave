@@ -5,11 +5,23 @@
 
 {% block content %}
 
-    {% for poem in poems reversed %}
+    {% if user.author == author %}
+        <button type="button" href="{% url 'poem_add' author.id %}">{% trans 'Add poem' %}</button>
+        <br />
+        <br />
+    {% endif %}
 
-    <a href="{{ poem.get_absolute_url }}">{{ poem.name }}</a><br />
+    <table style="width: 250px;">
+        {% for poem in poems reversed %}
+            <tr>
+                <td><a href="{{ poem.get_absolute_url }}">{{ poem.name }}</a></td>
+                {% if user.author == author%}
+                    <td style="text-align: right;">{{ poem.get_editorial_status_display }}</td>
+                {% endif %}
+            </tr>
+        {% endfor %}
+    </table>
 
-    {% endfor %}
 
 {% endblock %}
 

@@ -24,7 +24,7 @@
         <div class="nav-section">
             <a href="{% url 'bookmarks' %}">{% trans 'Bookmarks' %}</a>
             <a href="{% url 'profile' %}">{% trans 'Me' %}</a>
-            <a href="{% url 'author_admin' user.author.id %}">{% trans 'Homestead' %}</a>
+            <a href="{% url 'author' user.author.id %}">{% trans 'Homestead' %}</a>
             <a href="{% url 'logout' %}">{% trans 'Logout' %}</a>
         </div>
     {% endif %}
