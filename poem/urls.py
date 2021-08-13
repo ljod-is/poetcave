@@ -6,6 +6,12 @@ from poem import views
 # It requires us to implement a slug-mechanism, though.
 
 urlpatterns = [
+    path('poem/add/author/<int:author_id>/', views.poem_add_edit, name='poem_add'),
+    path('poem/edit/<int:poem_id>/', views.poem_add_edit, name='poem_edit'),
+    path('poem/delete/<int:poem_id>/', views.poem_delete, name='poem_delete'),
+    path('poem/publish/<int:poem_id>/', views.poem_publish, name='poem_publish'),
+    path('poem/unpublish/<int:poem_id>/', views.poem_unpublish, name='poem_unpublish'),
+    path('poem/untrash/<int:poem_id>/', views.poem_untrash, name='poem_untrash'),
     path('poem/<int:poem_id>/', views.poem, name='poem'),
     path('poems/author/<int:author_id>/', views.author, name='author'),
     path('poems/newest/', views.poems_newest, name='poems_newest'),
@@ -16,12 +22,6 @@ urlpatterns = [
     path('poems/search/', views.poems_search, name='poems_search'),
     path('poems/<str:listing_type>/', views.poems, name='poems'),
     path('poems/', views.poems, name='poems'),
-    path('author/<int:author_id>/poem/add/', views.poem_add_edit, name='poem_add'),
-    path('author/<int:author_id>/poem/edit/<int:poem_id>/', views.poem_add_edit, name='poem_edit'),
-    path('author/<int:author_id>/poem/delete/<int:poem_id>/', views.poem_delete, name='poem_delete'),
-    path('author/<int:author_id>/poem/publish/<int:poem_id>/', views.poem_publish, name='poem_publish'),
-    path('author/<int:author_id>/poem/unpublish/<int:poem_id>/', views.poem_unpublish, name='poem_unpublish'),
-    path('author/<int:author_id>/poem/untrash/<int:poem_id>/', views.poem_untrash, name='poem_untrash'),
     path('bookmarks/', views.bookmarks, name='bookmarks'),
     path('bookmark/add/<int:poem_id>/', views.bookmark_add, name='bookmark_add'),
     path('bookmark/delete/<int:poem_id>/', views.bookmark_delete, name='bookmark_delete'),

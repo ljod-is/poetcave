@@ -23,15 +23,24 @@ from poem.models import Poem
 # `author_slug` after having implemented a slug mechanism for authors.
 
 @login_required
-def poem_add_edit(request, author_id, poem_id=None):
+def poem_add_edit(request, author_id=None, poem_id=None):
 
-    try:
-        author = Author.objects.managed_by(request.user).get(id=author_id)
-    except Author.DoesNotExist:
-        raise PermissionDenied
+    # If adding a poem...
+    if author_id is not None:
+        try:
+            author = Author.objects.managed_by(request.user).get(id=author_id)
+        except Author.DoesNotExist:
+            raise PermissionDenied
 
-    if poem_id is not None:
-        poem = Poem.objects.managed_by(request.user).get(id=poem_id)
+        poem = Poem()
+        poem.author_id = author.id
+    # If editing a poem...
+    elif poem_id is not None:
+        poem = Poem.objects.select_related('author').managed_by(request.user).get(id=poem_id)
+
+        # Needed to consistently send the author to the template regardless of
+        # whether we're adding oer editing.
+        author = poem.author
 
         # We retain these for checking if the name or body have been updated.
         # We need this information later to determine whether to change the
@@ -39,7 +48,9 @@ def poem_add_edit(request, author_id, poem_id=None):
         old_name = poem.name
         old_body = poem.body
     else:
-        poem = Poem()
+        # Urlconf shouldn't let this happen.
+        raise Http404
+
 
     form = PoemForm(instance=poem)
     if request.method == 'POST':
@@ -62,9 +73,6 @@ def poem_add_edit(request, author_id, poem_id=None):
             ):
                 poem.set_editorial_status('unpublished', request.user)
 
-            # Force the correct author.
-            poem.author_id = author.id
-
             # Finally commit.
             poem.save()
 
@@ -79,24 +87,23 @@ def poem_add_edit(request, author_id, poem_id=None):
 
 
 @login_required
-def poem_delete(request, author_id, poem_id):
+def poem_delete(request, poem_id):
 
-    author = Author.objects.managed_by(request.user).get(id=author_id)
     poem = Poem.objects.managed_by(request.user).get(id=poem_id)
 
     if request.method == 'POST':
+        author_id = poem.author_id
         poem.delete()
-        return redirect(reverse('author', args=(author.id,)))
+        return redirect(reverse('author', args=(author_id,)))
 
     ctx = {
-        'author': author,
         'poem': poem,
     }
     return render(request, 'poem/control/delete.html', ctx)
 
 
 @login_required
-def poem_publish(request, author_id, poem_id):
+def poem_publish(request, poem_id):
 
     try:
         poem = Poem.objects.managed_by(request.user).get(id=poem_id)
@@ -111,7 +118,7 @@ def poem_publish(request, author_id, poem_id):
 
 
 @login_required
-def poem_unpublish(request, author_id, poem_id):
+def poem_unpublish(request, poem_id):
 
     try:
         poem = Poem.objects.managed_by(request.user).get(id=poem_id)
@@ -133,7 +140,7 @@ def poem_unpublish(request, author_id, poem_id):
 
 
 @login_required
-def poem_untrash(request, author_id, poem_id):
+def poem_untrash(request, poem_id):
 
     try:
         poem = Poem.objects.managed_by(request.user).get(id=poem_id)
