@@ -15,8 +15,8 @@
         {% for poem in poems reversed %}
             <tr>
                 <td><a href="{{ poem.get_absolute_url }}">{{ poem.name }}</a></td>
-                {% if user.author == author%}
-                    <td style="text-align: right;">{{ poem.get_editorial_status_display }}</td>
+                {% if user.author == author %}
+                    <td style="text-align: right;">{{ poem.editorial }}</td>
                 {% endif %}
             </tr>
         {% endfor %}

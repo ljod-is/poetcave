@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.db import models
+from django.db import transaction
 from django.db.models import Prefetch
 from django.db.models import Q
 from django.urls import reverse
@@ -34,7 +35,7 @@ class AuthorQuerySet(models.QuerySet):
         # Limits authors to those who have published poems and provides an
         # annotated value, `poem_count`, showing their number.
         return self.filter(
-            poems__editorial_status='approved'
+            poems__editorial__status='approved'
         ).annotate(
             poem_count=models.Count('poems')
         )
@@ -52,10 +53,10 @@ class PoemQuerySet(models.QuerySet):
         if user.is_authenticated:
             return self.filter(
                 Q(author__user=user)
-                | Q(editorial_status='approved')
+                | Q(editorial__status='approved')
             )
         else:
-            return self.filter(editorial_status='approved')
+            return self.filter(editorial__status='approved')
 
     def search(self, search_string):
         # TODO: This should probably become more sophisticated in the future.
@@ -121,6 +122,79 @@ class Author(models.Model):
 class Poem(models.Model):
     objects = PoemQuerySet.as_manager()
 
+    author = models.ForeignKey('poem.Author', related_name='poems', null=True, on_delete=models.CASCADE)
+
+    # Poem contents.
+    name = models.CharField(max_length=150, null=False, blank=False)
+    body = models.TextField(null=False, blank=False)
+    about = models.TextField(null=True, blank=True)
+
+    # Current editorial status. Note that the `editorial_history` is produced
+    # by the foreign key to `poem` in the EditorialDecision model. This should
+    # always be the newest object found in `editorial_history`, and is here
+    # for convenience, so that we don't constantly have to deal with a long
+    # list of objects when we almost always only care about the newest entry.
+    #
+    # NOTE: This should not be updated directly, but rather by using the
+    # model's `set_editorial_status()`.
+    editorial = models.OneToOneField('EditorialDecision', related_name='current_poem', null=True, on_delete=models.SET_NULL)
+
+    date_created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    date_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
+
+    # This function should be used to set `editorial` and populate
+    # `editorial_history` on a `poem`.
+    def set_editorial_status(self, editorial_status, editorial_user, editorial_reason=None):
+
+        editorial = EditorialDecision()
+
+        editorial.status = editorial_status
+        editorial.user = editorial_user
+        editorial.timing = timezone.now()
+        editorial.reason = editorial_reason
+
+        with transaction.atomic():
+            # Save te editorial decision, so that it becomes of the history,
+            # linked to `editorial_history` on the `poem`'s side.
+            editorial.poem = self
+            editorial.save()
+
+            # Save the editorial decision as the current one to the `poem`,
+            # for easy access.
+            self.editorial = editorial
+            self.save()
+
+    def __str__(self):
+        return '%s - %s' % (self.name, self.author)
+
+    def get_absolute_url(self):
+        return reverse('poem', args=(self.id,))
+
+    class Meta:
+        ordering = ['-editorial__status', '-editorial__timing']
+
+
+class DayPoem(models.Model):
+    poem = models.ForeignKey('Poem', related_name='daypoems', on_delete=models.CASCADE)
+    day = models.DateField()
+
+    editorial_user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL)
+    editorial_timing = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+
+    class Meta:
+        unique_together = ['poem', 'day']
+        ordering = ['-editorial_timing', '-poem__editorial__timing']
+
+
+class Bookmark(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='bookmarks', on_delete=models.CASCADE)
+    poem = models.ForeignKey('poem.Poem', related_name='bookmarks', on_delete=models.CASCADE)
+
+    class Meta:
+        unique_together = ['user', 'poem']
+
+
+class EditorialDecision(models.Model):
     EDITORIAL_STATUS_CHOICES = (
 
         # User is still working on poem.
@@ -140,66 +214,15 @@ class Poem(models.Model):
 
     )
 
-    author = models.ForeignKey('poem.Author', related_name='poems', null=True, on_delete=models.CASCADE)
+    poem = models.ForeignKey('poem.Poem', related_name='editorial_history', on_delete=models.CASCADE)
 
-    # Poem contents.
-    name = models.CharField(max_length=150, null=False, blank=False)
-    body = models.TextField(null=False, blank=False)
-    about = models.TextField(null=True, blank=True)
-
-    # Editorial status.
-    # NOTE: These should not be updated directly, but rather by using the
-    # model's `set_editorial_status()`.
-    editorial_status = models.CharField(max_length=20, choices=EDITORIAL_STATUS_CHOICES, default='unpublished')
-    editorial_user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL)
-    editorial_timing = models.DateTimeField(null=True, blank=True)
-    editorial_reason = models.TextField(null=True, blank=True)
-
-    date_created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-    date_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
-
-    # This function should be used to set `editorial_status` and related
-    # fields. They should not be edited directly by the code.
-    def set_editorial_status(self, editorial_status, editorial_user, editorial_reason=None):
-
-        # Required for this to make sense.
-        self.editorial_status = editorial_status
-        self.editorial_user = editorial_user
-
-        # Remember when this status was set.
-        self.editorial_timing = timezone.now()
-
-        # When no reason is given, and this function is called, we'll want to
-        # reset the `editorial_reason` with the default None value. If a
-        # reason is given, we'll want to store it, so this functions both for
-        # remembering the reason and forgetting it when appropriate.
-        self.editorial_reason = editorial_reason
+    status = models.CharField(max_length=20, choices=EDITORIAL_STATUS_CHOICES, default='unpublished')
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL)
+    timing = models.DateTimeField(null=True, blank=True)
+    reason = models.TextField(null=True, blank=True)
 
     def __str__(self):
-        return '%s - %s' % (self.name, self.author)
-
-    def get_absolute_url(self):
-        return reverse('poem', args=(self.id,))
+        return self.get_status_display()
 
     class Meta:
-        ordering = ['-editorial_status', '-editorial_timing']
-
-
-class DayPoem(models.Model):
-    poem = models.ForeignKey('Poem', related_name='daypoems', on_delete=models.CASCADE)
-    day = models.DateField()
-
-    editorial_user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL)
-    editorial_timing = models.DateTimeField(auto_now_add=True, null=True, blank=True)
-
-    class Meta:
-        unique_together = ['poem', 'day']
-        ordering = ['-editorial_timing', '-poem__editorial_timing']
-
-
-class Bookmark(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name='bookmarks', on_delete=models.CASCADE)
-    poem = models.ForeignKey('poem.Poem', related_name='bookmarks', on_delete=models.CASCADE)
-
-    class Meta:
-        unique_together = ['user', 'poem']
+        ordering = ['-timing']

@@ -286,10 +286,10 @@ def retrieve_data_download(request):
         # Write poems' metadata.
         poems_meta_fields = [
             'about',
-            'editorial_status',
-            'editorial_user',
-            'editorial_timing',
-            'editorial_reason',
+            'editorial__status',
+            'editorial__user',
+            'editorial__timing',
+            'editorial__reason',
             'date_created',
             'date_updated',
         ]

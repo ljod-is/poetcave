@@ -7,7 +7,7 @@
 {% trans 'This poem is by <strong>you</strong>.' %}
 <br /><br />
 
-{% if poem.editorial_status == 'unpublished' %}
+{% if poem.editorial.status == 'unpublished' %}
 
     {% trans 'It is currently <strong>unpublished</strong>.' %}
     <br />
@@ -28,7 +28,7 @@
     <button type="button" href="{% url 'poem_edit' poem.id %}">{% trans 'Edit' %}</button>
     <button type="button" href="{% url 'poem_delete' poem.id %}">{% trans 'Delete' %}</button>
 
-{% elif poem.editorial_status == 'pending' %}
+{% elif poem.editorial.status == 'pending' %}
 
     {% trans 'It is currently <strong>awaiting approval</strong> by an editor.' %}
     <br />
@@ -40,18 +40,18 @@
 
     <button type="button" href="{% url 'poem_unpublish' poem.id %}">{% trans 'Unpublish' %}</button>
 
-{% elif poem.editorial_status == 'rejected' %}
+{% elif poem.editorial.status == 'rejected' %}
 
-    {% if poem.editorial_reason %}
+    {% if poem.editorial.reason %}
 
         {% trans 'It has unfortunately been <strong>rejected</strong> during our editorial process with the following message:' %}
         <br />
         <br />
 
         <div style="border: 1px dotted #999999; padding: 12px 12px 12px 12px;">
-            <p><em>„{{ poem.editorial_reason }}“</em></p>
+            <p><em>„{{ poem.editorial.reason }}“</em></p>
             <p style="text-align: right;">
-            - {% include 'core/user/stub/list-item.html' with user=poem.editorial_user %}
+            - {% include 'core/user/stub/list-item.html' with user=poem.editorial.user %}
             </p>
         </div>
         <br />
@@ -83,7 +83,7 @@
     <button type="button" href="{% url 'poem_edit' poem.id %}">{% trans 'Edit' %}</button>
     <button type="button" href="{% url 'poem_delete' poem.id %}">{% trans 'Delete' %}</button>
 
-{% elif poem.editorial_status == 'approved' %}
+{% elif poem.editorial.status == 'approved' %}
 
     {% trans 'It has been <strong>approved</strong> and is <strong>publicly visible</strong>.' %}
     <br />
@@ -95,7 +95,7 @@
 
     <button type="button" href="{% url 'poem_unpublish' poem.id %}">{% trans 'Unpublish' %}</button>
 
-{% elif poem.editorial_status == 'trashed' %}
+{% elif poem.editorial.status == 'trashed' %}
 
     {% trans 'This poem as been <strong>trashed</strong> (hopefully by you).' %}
     <br />

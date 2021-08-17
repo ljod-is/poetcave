@@ -60,15 +60,22 @@ def poem_add_edit(request, author_id=None, poem_id=None):
             # We don't commit yet because we need to do more things first.
             poem = form.save(commit=False)
 
-            # Check if the poem was previously rejected, but the user is now
-            # editing the content. In that case, we'll set the editorial
-            # status as 'unpublished' again, so that the user can try
-            # publishing it again with the changes in place.
-            if (poem_id is not None
-                and poem.editorial_status == 'rejected'
-                and (
-                    old_name != poem.name
-                    or old_body != poem.body
+            # The editorial status should automatically be set to
+            # "unpublished" in two situations.
+            #
+            # 1. As the default editorial status for a new poem.
+            #
+            # 2. If the poem was previously rejected, but the user is now
+            # editing the content. That way, the user can try publishing it
+            # after having edited it according to the message accompanying the
+            # rejection.
+            if (poem.editorial is None
+                or (
+                    poem.editorial.status == 'rejected'
+                    and (
+                        old_name != poem.name
+                        or old_body != poem.body
+                    )
                 )
             ):
                 poem.set_editorial_status('unpublished', request.user)
@@ -110,7 +117,7 @@ def poem_publish(request, poem_id):
     except Poem.DoesNotExist:
         raise PermissionDenied
 
-    if poem.editorial_status == 'unpublished':
+    if poem.editorial.status == 'unpublished':
         poem.set_editorial_status('pending', request.user)
         poem.save()
 
@@ -126,7 +133,7 @@ def poem_unpublish(request, poem_id):
         raise PermissionDenied
 
     if request.method == 'POST':
-        if poem.editorial_status in ['pending', 'approved']:
+        if poem.editorial.status in ['pending', 'approved']:
             poem.set_editorial_status('unpublished', request.user)
             poem.save()
 
@@ -147,7 +154,7 @@ def poem_untrash(request, poem_id):
     except Poem.DoesNotExist:
         raise PermissionDenied
 
-    if poem.editorial_status == 'trashed':
+    if poem.editorial.status == 'trashed':
         poem.set_editorial_status('unpublished', request.user)
         poem.save()
 
@@ -161,7 +168,7 @@ def bookmarks(request):
         'poem'
     ).filter(
         user_id=request.user.id,
-        poem__editorial_status='approved'
+        poem__editorial__status='approved'
     )
 
     ctx = {
@@ -174,7 +181,7 @@ def bookmarks(request):
 def bookmark_add(request, poem_id):
 
     try:
-        poem = Poem.objects.get(id=poem_id, editorial_status='approved')
+        poem = Poem.objects.get(id=poem_id, editorial__status='approved')
     except Poem.DoesNotExist:
         raise Http404
 
@@ -215,7 +222,7 @@ def author(request, author_id):
 
 
 def poems_newest(request):
-    poems = Poem.objects.select_related('author').filter(editorial_status='approved')[:25]
+    poems = Poem.objects.select_related('author').filter(editorial__status='approved')[:25]
 
     ctx = {
         'poems': poems,
@@ -245,7 +252,7 @@ def poems_daypoems(request, year=None):
 
     # Get daypoems of the selected year, prefetching poems.
     daypoems = DayPoem.objects.prefetch_related('poem').filter(
-        poem__editorial_status='approved',
+        poem__editorial__status='approved',
         day__gte=year_begin,
         day__lte=year_end
     )
@@ -293,7 +300,7 @@ def poems_search(request):
     poems = Poem.objects.select_related(
         'author'
     ).filter(
-        editorial_status='approved'
+        editorial__status='approved'
     ).search(
         search_string
     )

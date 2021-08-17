@@ -11,8 +11,8 @@ class AuthorAdmin(admin.ModelAdmin):
 
 @admin.register(Poem)
 class PoemAdmin(admin.ModelAdmin):
-    list_display = ['name', 'author', 'editorial_status']
-    list_filter = ['editorial_status']
+    list_display = ['name', 'author', 'editorial']
+    list_filter = ['editorial__status']
     search_fields = ['name', 'body', 'about', 'author__name']
     fieldsets = [
         [_('Material'), {
@@ -23,20 +23,10 @@ class PoemAdmin(admin.ModelAdmin):
                 'author'
             ],
         }],
-        [_('User decisions'), {
-            'fields': [
-                'public',
-                'public_timing',
-                'trashed',
-                'trashed_timing'
-            ]
-        }],
-        [_('Editorial'), {
-            'fields': [
-                'editorial_status',
-                'editorial_user',
-                'editorial_timing',
-                'editorial_reason',
-            ],
-        }],
     ]
+
+    def get_queryset(self, request):
+        return super(PoemAdmin, self).get_queryset(request).select_related(
+            'author',
+            'editorial'
+        )

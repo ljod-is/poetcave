@@ -21,6 +21,7 @@ from core.models import User
 from poem.models import Author
 from poem.models import Bookmark
 from poem.models import DayPoem
+from poem.models import EditorialDecision
 from poem.models import Poem
 
 
@@ -315,21 +316,22 @@ class Command(BaseCommand):
                 # original website, since we want to minimize the use of
                 # different variables to designate the poem's current status
                 # in the system.
+                editorial = EditorialDecision()
                 if row['accepted'] == '-1':
-                    poem.editorial_status = 'rejected'
+                    editorial.status = 'rejected'
                 elif row['accepted'] == '1':
-                    poem.editorial_status = 'approved'
-                    poem.editorial_timing = awarize(row['sent'])
+                    editorial.status = 'approved'
+                    editorial.timing = awarize(row['sent'])
                 else:
                     if row['trashed'] is not None:
-                        poem.editorial_status = 'trashed'
-                        poem.editorial_timing = awarize(row['trashed'])
+                        editorial.status = 'trashed'
+                        editorial.timing = awarize(row['trashed'])
                     elif row['visible'] == '1':
-                        poem.editorial_status = 'pending'
-                        poem.editorial_timing = awarize(row['sent'])
+                        editorial.status = 'pending'
+                        editorial.timing = awarize(row['sent'])
                     else:
-                        poem.editorial_status = 'unpublished'
-                        poem.editorial_timing = awarize(row['sent'])
+                        editorial.status = 'unpublished'
+                        editorial.timing = awarize(row['sent'])
 
                 # poem.editorial_timing data sometimes available (see above).
                 # poem.editorial_user data not available.
@@ -341,6 +343,17 @@ class Command(BaseCommand):
 
                 with transaction.atomic():
                     print('Saving poem "%s"...' % poem.name, end='', flush=True)
+                    poem.save()
+
+                    # Set the editorial decision, for the history.
+                    editorial.poem = poem
+                    editorial.save()
+
+                    # This should always be the most recent editorial
+                    # decision, but we only have one now, which will always be
+                    # the latest one. We need to save the `poem` again because
+                    # the editorial won't exist until the poem exists.
+                    poem.editorial = editorial
                     poem.save()
 
                     # Copy data about last update. This results in an extra
