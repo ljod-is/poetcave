@@ -93,7 +93,7 @@
     <br />
     <br />
 
-    <button type="button" href="{% url 'poem_unpublish' poem.author_id poem.id %}">{% trans 'Unpublish' %}</button>
+    <button type="button" href="{% url 'poem_unpublish' poem.id %}">{% trans 'Unpublish' %}</button>
 
 {% elif poem.editorial_status == 'trashed' %}
 
