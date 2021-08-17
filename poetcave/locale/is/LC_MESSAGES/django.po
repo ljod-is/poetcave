@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-09 12:22+0000\n"
+"POT-Creation-Date: 2021-08-17 14:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,237 @@ msgstr ""
 msgid "Email address is already in use."
 msgstr "Netfang þegar í notkun."
 
-#: core/templates/core/team/team.html:6
+#: core/templates/core/user/delete.html:4
+msgid "Confirm account deletion"
+msgstr "Staðfesta eyðingu aðgangs"
+
+#: core/templates/core/user/delete.html:9
+msgid ""
+"Please note that we are unable and unwilling to host your data unless you "
+"approve of how we handle your information. As a result, an inevitable "
+"consequence of the rejection of our terms and conditions is the deletion of "
+"your account, including all of its data."
+msgstr ""
+"Vinsamlegast athugið að við hvorki getum né viljum hýsa upplýsingarnar þínar "
+"nema þú samþykkir hvernig við förum með þær. Óhjákvæmileg afleiðing þess að "
+"samþykkja ekki notkunarskilmála okkar er því eyðing aðgangsins og þar með "
+"allra gagna sem á honum eru."
+
+#: core/templates/core/user/delete.html:13
+msgid ""
+"In order to keep a copy of your data before we delete it, you can press the "
+"button below."
+msgstr ""
+"Til þess að halda eftir eintaki af gögnunum þínum áður en við eyðum þeim "
+"geturðu ýtt á eftirfarandi takka."
+
+#: core/templates/core/user/delete.html:16
+#: core/templates/core/user/profile.html:107
+msgid "Download personal data"
+msgstr "Niðurhala persónugögnum"
+
+#: core/templates/core/user/delete.html:19
+msgid ""
+"Once you are absolutely, positively certain that you wish to delete your "
+"account, please press the confirmation button below."
+msgstr ""
+"Þegar þú ert algerlega, fullkomlega viss um að þú viljir eyða aðgangi þínum, "
+"vinsamlegast smelltu á takkann hér fyrir neðan."
+
+#: core/templates/core/user/delete.html:22
+msgid ""
+"It is not possible to undo this action. Once you have pressed the following "
+"button, your data is gone from our site forever and ever."
+msgstr ""
+"Þessa aðgerð er ekki hægt að taka til baka. Þegar þú hefur ýtt á "
+"eftirfarandi takka eru gögnin þín farin af vefsetri okkar að eilífu."
+
+#: core/templates/core/user/delete.html:27
+msgid "Reject terms and delete account"
+msgstr "Hafna skilmálum og eyða aðgangi"
+
+#: core/templates/core/user/delete.html:29
+#: core/templates/core/user/profile.html:109
+msgid "Delete account"
+msgstr "Eyða aðgangi"
+
+#: core/templates/core/user/login.html:4
+msgid "Login"
+msgstr "Innskráning"
+
+#: core/templates/core/user/login.html:13
+msgid "Log in"
+msgstr "Innskrá"
+
+#: core/templates/core/user/mail/activation_body.txt:3
+msgid ""
+"Someone, hopefully you, has signed up at our website using this email "
+"address."
+msgstr ""
+"Einhver, vonandi þú, notaði þetta netfang til þess að skrá sig á vefinn "
+"okkar.Einhver, sem er vonandi þú, hefur skráð sig á vefsetur okkar með þessu "
+"netfangi."
+
+#: core/templates/core/user/mail/activation_body.txt:5
+msgid "Please click the following link in order to complete the registration:"
+msgstr ""
+"Vinsamlegast smelltu á eftirfarandi tengil til þess að klára skráninguna."
+"Vinsamlegast smellið á eftirfarandi tengil til þess að klára skráninguna."
+
+#: core/templates/core/user/mail/activation_body.txt:9
+msgid ""
+"If you are not familiar with having registered, you can safely ignore this "
+"email."
+msgstr "Ef þú kannast ekki við þessa skráningu, geturðu hunsað þennan póst."
+
+#: core/templates/core/user/mail/activation_subject.txt:2
+msgid "Registration: Please confirm email"
+msgstr "Skráning: Vinsamlegast staðfesting netfang"
+
+#: core/templates/core/user/mail/password_reset_body.txt:3
+#, python-format
+msgid ""
+"You're receiving this email because you requested a password reset for your "
+"user account at %(site_name)s."
+msgstr ""
+
+#: core/templates/core/user/mail/password_reset_body.txt:5
+msgid "Please go to the following page and choose a new password:"
+msgstr "Vinsamlegast opnaðu eftirfarandi síðu og veldu nýtt lykilorð:"
+
+#: core/templates/core/user/mail/password_reset_body.txt:9
+msgid "Your username, in case you’ve forgotten:"
+msgstr "Notandanafnið þitt, ef ske kynni að þú hafir gleymt því:"
+
+#: core/templates/core/user/password_change.html:13
+msgid "Change Password"
+msgstr "Breyta lykilorði"
+
+#: core/templates/core/user/password_reset/reset.html:4
+#: core/templates/core/user/password_reset/reset_confirm.html:4
+#: core/templates/core/user/password_reset/reset_requested.html:4
+#: core/templates/left-navigation.html:51
+msgid "Forgotten password"
+msgstr "Gleymt lykilorð"
+
+#: core/templates/core/user/password_reset/reset.html:9
+msgid ""
+"Since passwords are encoded in the database, we cannot send you your "
+"password by email."
+msgstr ""
+"Vegna þess að lykilorðin eru dulkóðuð í grunni er því miður ekki hægt að "
+"senda gleymd lykilorð í pósti."
+
+#: core/templates/core/user/password_reset/reset.html:14
+msgid ""
+"However, we can create a new password and send it your email address. Please "
+"provide your email address below, press \"Send\" and your password should "
+"arrive shortly."
+msgstr ""
+"Hinsvegar er hægt að breyta lykilorðinu og senda hið nýja til þín á "
+"netfangið sem þú skráðir þig upprunalega með. Setjið inn notandanafn og "
+"netfang hingað inn að neðan, smellið á \"Senda\", og nýja lykilorðið ætti að "
+"koma innan örfárra mínútna í mesta lagi."
+
+#: core/templates/core/user/password_reset/reset.html:21 core/views.py:240
+msgid "Email"
+msgstr ""
+
+#: core/templates/core/user/password_reset/reset.html:25
+msgid "Send"
+msgstr "Senda"
+
+#: core/templates/core/user/password_reset/reset_complete.html:4
+#: core/templates/core/user/password_reset/reset_confirm.html:15
+msgid "New password"
+msgstr "Nýtt lykilorð"
+
+#: core/templates/core/user/password_reset/reset_complete.html:8
+msgid "Your password has been changed."
+msgstr "Lykilorðinu hefur verið breytt."
+
+#: core/templates/core/user/password_reset/reset_complete.html:11
+msgid "You should now be able to login as usual."
+msgstr "Þú ættir núna að geta innskráð þig eins og venjulega."
+
+#: core/templates/core/user/password_reset/reset_confirm.html:10
+msgid ""
+"Please enter your new password twice so we can verify you typed it in "
+"correctly."
+msgstr ""
+"Vinsamlegast settu nýja lykilorðið inn tvisvar þannig að það sé örugglega "
+"stimplað inn rétt."
+
+#: core/templates/core/user/password_reset/reset_confirm.html:20
+msgid "Confirm password"
+msgstr "Staðfesta lykilorð"
+
+#: core/templates/core/user/password_reset/reset_confirm.html:24
+msgid "Change my password"
+msgstr "Breyta lykilorði"
+
+#: core/templates/core/user/password_reset/reset_confirm.html:29
+msgid ""
+"The password reset link was invalid, possibly because it has already been "
+"used.  Please request a new password reset."
+msgstr ""
+"Tengillinn til að endurnýja lykilorðið hefur þegar verið notaður. "
+"Vinsamlegast reyndu aftur að endurstilla lykilorðið."
+
+#: core/templates/core/user/password_reset/reset_requested.html:8
+msgid "Your password has been changed and sent to you via email."
+msgstr "Lykilorðinu hefur verið breytt, og það sent til þín í pósti."
+
+#: core/templates/core/user/password_reset/reset_requested.html:11
+msgid ""
+"For the sake of simplicity, the password is only composed of digits. Note "
+"that your password can be changed under \"I\" when logged in."
+msgstr ""
+"Lykilorðið er bara í tölustöfum til einföldunar. Athugið að hægt er að "
+"breyta lykilorðinu undir \"Ég\" þegar maður er innskráður á vefinn."
+
+#: core/templates/core/user/password_reset/reset_requested.html:14
+msgid ""
+"NOTE: If you do not receive the email, please check your spam folder before "
+"contacting us."
+msgstr ""
+"ATH: Ef þú sérð póstinn ekki, athugaðu þá vandlega hvort hann hafi lennt í "
+"ruslpóstvörn póstforrits þíns áður en þú hefur samband við okkur."
+
+#: core/templates/core/user/profile.html:5
+msgid "I, me, my, mine."
+msgstr "Ég, mig, mér, mín."
+
+#: core/templates/core/user/profile.html:95
+#: core/templates/core/user/registration/register.html:102
+msgid "Register"
+msgstr "Skrá"
+
+#: core/templates/core/user/profile.html:105
+msgid "Terms and conditions"
+msgstr "Notkunarskilmálar"
+
+#: core/templates/core/user/registration/activation_complete.html:6
+msgid "Registration was successful!"
+msgstr "Skráning tókst!"
+
+#: core/templates/core/user/registration/activation_complete.html:8
+msgid "You can now log in using the form on the left side of the page."
+msgstr "Þú getur nú innskráð þig vinstra megin á síðunni."
+
+#: core/templates/core/user/registration/register.html:5
+msgid "New user"
+msgstr "Nýr notandi"
+
+#: core/templates/core/user/registration/registration_complete.html:6
+msgid "Thank you for registering!"
+msgstr "Takk fyrir að skrá þig!"
+
+#: core/templates/core/user/registration/registration_complete.html:8
+msgid "Please check your email to finish the registration process."
+msgstr "Vinsamlegast athugaðu tölvupósthólf þitt til að klára skráninguna."
+
+#: core/templates/core/user/team/list.html:6
 msgid ""
 "If you have comments, questions or complaints about moderation or "
 "administrative issues regarding the website, please do not contact these "
@@ -32,11 +262,11 @@ msgstr ""
 "eða umsjón vefsins, vinsamlegast ekki hafa samband við þessa einstaklinga "
 "beint heldur beindu erindi þínu á eftirfarandi netfang:"
 
-#: core/templates/core/team/team.html:10
+#: core/templates/core/user/team/list.html:10
 msgid "Moderators"
 msgstr "Ritstjórn"
 
-#: core/templates/core/team/team.html:12
+#: core/templates/core/user/team/list.html:12
 msgid ""
 "Moderators help maintain the website by reviewing poems that users have "
 "requested to be published publicly and either approving or rejecting them."
@@ -44,11 +274,11 @@ msgstr ""
 "Ritstjórn aðstoðar við umsjón vefsins með því að yfirfara og samþykkja til "
 "birtingar ljóð sem notendur senda inn."
 
-#: core/templates/core/team/team.html:18
+#: core/templates/core/user/team/list.html:18
 msgid "Administrators"
 msgstr "Umsjón"
 
-#: core/templates/core/team/team.html:20
+#: core/templates/core/user/team/list.html:20
 msgid ""
 "Administrators manage the website, troubleshoot problems that users may have "
 "and manage moderators."
@@ -56,23 +286,24 @@ msgstr ""
 "Umsjónarmenn hafa umsjón með vefnum, bregðast við vandamálum sem notendur "
 "lenda í og ákveða ritstjórn."
 
-#: core/templates/core/team/user.html:6 core/templates/left-navigation.html:16
+#: core/templates/core/user/team/user.html:6
+#: core/templates/left-navigation.html:16
 msgid "Contact us"
 msgstr "Hafðu samband"
 
-#: core/templates/core/team/user.html:8 core/views.py:241
+#: core/templates/core/user/team/user.html:8 core/views.py:241
 msgid "Name"
 msgstr "Nafn"
 
-#: core/templates/core/team/user.html:10 poem/templates/author/admin.html:14
+#: core/templates/core/user/team/user.html:10
 msgid "Status"
 msgstr "Staða"
 
-#: core/templates/core/team/user.html:12
+#: core/templates/core/user/team/user.html:12
 msgid "Administrator"
 msgstr "Umsjónarmaður"
 
-#: core/templates/core/team/user.html:14
+#: core/templates/core/user/team/user.html:14
 msgid "Moderator"
 msgstr "Ritstjóri"
 
@@ -113,8 +344,9 @@ msgstr "Bókamerki"
 msgid "Me"
 msgstr "Ég"
 
-#: core/templates/left-navigation.html:27 poem/templates/poem/delete.html:4
-#: poem/templates/poem/poem.side.control.html:3
+#: core/templates/left-navigation.html:27
+#: poem/templates/poem/control/delete.html:4
+#: poem/templates/poem/side.control.html:3
 msgid "Homestead"
 msgstr "Heimasvæði"
 
@@ -122,18 +354,15 @@ msgstr "Heimasvæði"
 msgid "Logout"
 msgstr "Útskrá"
 
-#: core/templates/left-navigation.html:44
-#: core/templates/user/password_reset/reset.html:4
-#: core/templates/user/password_reset/reset_confirm.html:4
-#: core/templates/user/password_reset/reset_requested.html:4
-msgid "Forgotten password"
-msgstr "Gleymt lykilorð"
+#: core/templates/left-navigation.html:33
+msgid "Moderate poems"
+msgstr "Samþykkja ljóð"
 
-#: core/templates/left-navigation.html:50
+#: core/templates/left-navigation.html:57
 msgid "Authors"
 msgstr "Höfundar"
 
-#: core/templates/left-navigation.html:61
+#: core/templates/left-navigation.html:68
 msgid "Users of ljóð.is"
 msgstr "Notendur ljóð.is"
 
@@ -150,6 +379,7 @@ msgid "Accept"
 msgstr "Samþykkja"
 
 #: core/templates/termsandconditions/terms.html:32
+#: poem/templates/poem/moderate.html:50
 msgid "Reject"
 msgstr "Hafna"
 
@@ -162,227 +392,6 @@ msgid ""
 msgstr ""
 "Athugasemdum eða spurningum varðandi persónuvernd eða notkunarskilmála má "
 "beina á netfangið <a href=\"mailto:%(CONTACT_EMAIL)s\">%(CONTACT_EMAIL)s</a>."
-
-#: core/templates/user/delete.html:4
-msgid "Confirm account deletion"
-msgstr "Staðfesta eyðingu aðgangs"
-
-#: core/templates/user/delete.html:9
-msgid ""
-"Please note that we are unable and unwilling to host your data unless you "
-"approve of how we handle your information. As a result, an inevitable "
-"consequence of the rejection of our terms and conditions is the deletion of "
-"your account, including all of its data."
-msgstr ""
-"Vinsamlegast athugið að við hvorki getum né viljum hýsa upplýsingarnar þínar "
-"nema þú samþykkir hvernig við förum með þær. Óhjákvæmileg afleiðing þess að "
-"samþykkja ekki notkunarskilmála okkar er því eyðing aðgangsins og þar með "
-"allra gagna sem á honum eru."
-
-#: core/templates/user/delete.html:13
-msgid ""
-"In order to keep a copy of your data before we delete it, you can press the "
-"button below."
-msgstr ""
-"Til þess að halda eftir eintaki af gögnunum þínum áður en við eyðum þeim "
-"geturðu ýtt á eftirfarandi takka."
-
-#: core/templates/user/delete.html:16 core/templates/user/profile.html:107
-msgid "Download personal data"
-msgstr "Niðurhala persónugögnum"
-
-#: core/templates/user/delete.html:19
-msgid ""
-"Once you are absolutely, positively certain that you wish to delete your "
-"account, please press the confirmation button below."
-msgstr ""
-"Þegar þú ert algerlega, fullkomlega viss um að þú viljir eyða aðgangi þínum, "
-"vinsamlegast smelltu á takkann hér fyrir neðan."
-
-#: core/templates/user/delete.html:22
-msgid ""
-"It is not possible to undo this action. Once you have pressed the following "
-"button, your data is gone from our site forever and ever."
-msgstr ""
-"Þessa aðgerð er ekki hægt að taka til baka. Þegar þú hefur ýtt á "
-"eftirfarandi takka eru gögnin þín farin af vefsetri okkar að eilífu."
-
-#: core/templates/user/delete.html:27
-msgid "Reject terms and delete account"
-msgstr "Hafna skilmálum og eyða aðgangi"
-
-#: core/templates/user/delete.html:29 core/templates/user/profile.html:109
-msgid "Delete account"
-msgstr "Eyða aðgangi"
-
-#: core/templates/user/login.html:4
-msgid "Login"
-msgstr "Innskráning"
-
-#: core/templates/user/login.html:13
-msgid "Log in"
-msgstr "Innskrá"
-
-#: core/templates/user/mail/activation_body.txt:3
-msgid ""
-"Someone, hopefully you, has signed up at our website using this email "
-"address."
-msgstr ""
-"Einhver, vonandi þú, notaði þetta netfang til þess að skrá sig á vefinn "
-"okkar.Einhver, sem er vonandi þú, hefur skráð sig á vefsetur okkar með þessu "
-"netfangi."
-
-#: core/templates/user/mail/activation_body.txt:5
-msgid "Please click the following link in order to complete the registration:"
-msgstr ""
-"Vinsamlegast smelltu á eftirfarandi tengil til þess að klára skráninguna."
-"Vinsamlegast smellið á eftirfarandi tengil til þess að klára skráninguna."
-
-#: core/templates/user/mail/activation_body.txt:9
-msgid ""
-"If you are not familiar with having registered, you can safely ignore this "
-"email."
-msgstr "Ef þú kannast ekki við þessa skráningu, geturðu hunsað þennan póst."
-
-#: core/templates/user/mail/activation_subject.txt:2
-msgid "Registration: Please confirm email"
-msgstr "Skráning: Vinsamlegast staðfesting netfang"
-
-#: core/templates/user/mail/password_reset_body.txt:3
-#, python-format
-msgid ""
-"You're receiving this email because you requested a password reset for your "
-"user account at %(site_name)s."
-msgstr ""
-
-#: core/templates/user/mail/password_reset_body.txt:5
-msgid "Please go to the following page and choose a new password:"
-msgstr "Vinsamlegast opnaðu eftirfarandi síðu og veldu nýtt lykilorð:"
-
-#: core/templates/user/mail/password_reset_body.txt:9
-msgid "Your username, in case you’ve forgotten:"
-msgstr "Notandanafnið þitt, ef ske kynni að þú hafir gleymt því:"
-
-#: core/templates/user/password_change.html:13
-msgid "Change Password"
-msgstr "Breyta lykilorði"
-
-#: core/templates/user/password_reset/reset.html:9
-msgid ""
-"Since passwords are encoded in the database, we cannot send you your "
-"password by email."
-msgstr ""
-"Vegna þess að lykilorðin eru dulkóðuð í grunni er því miður ekki hægt að "
-"senda gleymd lykilorð í pósti."
-
-#: core/templates/user/password_reset/reset.html:14
-msgid ""
-"However, we can create a new password and send it your email address. Please "
-"provide your email address below, press \"Send\" and your password should "
-"arrive shortly."
-msgstr ""
-"Hinsvegar er hægt að breyta lykilorðinu og senda hið nýja til þín á "
-"netfangið sem þú skráðir þig upprunalega með. Setjið inn notandanafn og "
-"netfang hingað inn að neðan, smellið á \"Senda\", og nýja lykilorðið ætti að "
-"koma innan örfárra mínútna í mesta lagi."
-
-#: core/templates/user/password_reset/reset.html:21 core/views.py:240
-msgid "Email"
-msgstr ""
-
-#: core/templates/user/password_reset/reset.html:25
-msgid "Send"
-msgstr "Senda"
-
-#: core/templates/user/password_reset/reset_complete.html:4
-#: core/templates/user/password_reset/reset_confirm.html:15
-msgid "New password"
-msgstr "Nýtt lykilorð"
-
-#: core/templates/user/password_reset/reset_complete.html:8
-msgid "Your password has been changed."
-msgstr "Lykilorðinu hefur verið breytt."
-
-#: core/templates/user/password_reset/reset_complete.html:11
-msgid "You should now be able to login as usual."
-msgstr "Þú ættir núna að geta innskráð þig eins og venjulega."
-
-#: core/templates/user/password_reset/reset_confirm.html:10
-msgid ""
-"Please enter your new password twice so we can verify you typed it in "
-"correctly."
-msgstr ""
-"Vinsamlegast settu nýja lykilorðið inn tvisvar þannig að það sé örugglega "
-"stimplað inn rétt."
-
-#: core/templates/user/password_reset/reset_confirm.html:20
-msgid "Confirm password"
-msgstr "Staðfesta lykilorð"
-
-#: core/templates/user/password_reset/reset_confirm.html:24
-msgid "Change my password"
-msgstr "Breyta lykilorði"
-
-#: core/templates/user/password_reset/reset_confirm.html:29
-msgid ""
-"The password reset link was invalid, possibly because it has already been "
-"used.  Please request a new password reset."
-msgstr ""
-"Tengillinn til að endurnýja lykilorðið hefur þegar verið notaður. "
-"Vinsamlegast reyndu aftur að endurstilla lykilorðið."
-
-#: core/templates/user/password_reset/reset_requested.html:8
-msgid "Your password has been changed and sent to you via email."
-msgstr "Lykilorðinu hefur verið breytt, og það sent til þín í pósti."
-
-#: core/templates/user/password_reset/reset_requested.html:11
-msgid ""
-"For the sake of simplicity, the password is only composed of digits. Note "
-"that your password can be changed under \"I\" when logged in."
-msgstr ""
-"Lykilorðið er bara í tölustöfum til einföldunar. Athugið að hægt er að "
-"breyta lykilorðinu undir \"Ég\" þegar maður er innskráður á vefinn."
-
-#: core/templates/user/password_reset/reset_requested.html:14
-msgid ""
-"NOTE: If you do not receive the email, please check your spam folder before "
-"contacting us."
-msgstr ""
-"ATH: Ef þú sérð póstinn ekki, athugaðu þá vandlega hvort hann hafi lennt í "
-"ruslpóstvörn póstforrits þíns áður en þú hefur samband við okkur."
-
-#: core/templates/user/profile.html:5
-msgid "I, me, my, mine."
-msgstr "Ég, mig, mér, mín."
-
-#: core/templates/user/profile.html:95
-#: core/templates/user/registration/register.html:102
-msgid "Register"
-msgstr "Skrá"
-
-#: core/templates/user/profile.html:105
-msgid "Terms and conditions"
-msgstr "Notkunarskilmálar"
-
-#: core/templates/user/registration/activation_complete.html:6
-msgid "Registration was successful!"
-msgstr "Skráning tókst!"
-
-#: core/templates/user/registration/activation_complete.html:8
-msgid "You can now log in using the form on the left side of the page."
-msgstr "Þú getur nú innskráð þig vinstra megin á síðunni."
-
-#: core/templates/user/registration/register.html:5
-msgid "New user"
-msgstr "Nýr notandi"
-
-#: core/templates/user/registration/registration_complete.html:6
-msgid "Thank you for registering!"
-msgstr "Takk fyrir að skrá þig!"
-
-#: core/templates/user/registration/registration_complete.html:8
-msgid "Please check your email to finish the registration process."
-msgstr "Vinsamlegast athugaðu tölvupósthólf þitt til að klára skráninguna."
 
 #: core/views.py:130
 msgid "Password updated."
@@ -444,7 +453,7 @@ msgstr "Notandagögn"
 msgid "Poems"
 msgstr "Ljóð"
 
-#: core/views.py:311
+#: core/views.py:309
 msgid "Poem metadata"
 msgstr "Lýsigögn ljóða"
 
@@ -452,45 +461,25 @@ msgstr "Lýsigögn ljóða"
 msgid "Material"
 msgstr ""
 
-#: poem/admin.py:26
-msgid "User decisions"
-msgstr ""
-
-#: poem/admin.py:34
-msgid "Editorial"
-msgstr "Ritstjórn"
-
-#: poem/models.py:127
+#: poem/models.py:201
 msgid "Unpublished"
 msgstr "Óútgefið"
 
-#: poem/models.py:130
+#: poem/models.py:204
 msgid "Trashed"
 msgstr "Í ruslafötu"
 
-#: poem/models.py:133
+#: poem/models.py:207
 msgid "Pending approval"
 msgstr "Bíður samþykktar"
 
-#: poem/models.py:136
+#: poem/models.py:210
 msgid "Rejected"
 msgstr "Hafnað"
 
-#: poem/models.py:139
+#: poem/models.py:213
 msgid "Approved"
 msgstr "Samþykkt"
-
-#: poem/templates/author/admin.html:8 poem/templates/poem/add.html:4
-msgid "Add poem"
-msgstr "Bæta við ljóði"
-
-#: poem/templates/author/admin.html:13
-msgid "Poem"
-msgstr "Ljóð"
-
-#: poem/templates/author/author.html:20
-msgid "More about the author"
-msgstr "Meira um höfund"
 
 #: poem/templates/bookmark/bookmarks.html:7
 msgid "Are you sure you want to delete the bookmark for this poem?"
@@ -500,178 +489,97 @@ msgstr "Ertu viss um að þú viljir eyða bókamerkinu fyrir þetta ljóð?"
 msgid "DELETE"
 msgstr "EYÐA"
 
-#: poem/templates/poem/add.html:4
+#: poem/templates/poem/author.html:9 poem/templates/poem/control/add.html:4
+msgid "Add poem"
+msgstr "Bæta við ljóði"
+
+#: poem/templates/poem/author.html:32
+msgid "More about the author"
+msgstr "Meira um höfund"
+
+#: poem/templates/poem/control/add.html:4
 msgid "Edit poem"
 msgstr "Breyta ljóði"
 
-#: poem/templates/poem/add.html:13
+#: poem/templates/poem/control/add.html:13
 msgid "Title"
 msgstr "Titill"
 
-#: poem/templates/poem/add.html:20
+#: poem/templates/poem/control/add.html:20
 msgid "Body"
 msgstr "Texti"
 
-#: poem/templates/poem/add.html:27
+#: poem/templates/poem/control/add.html:27
 msgid "Description (optional)"
 msgstr "Umfjöllun (valfrjálst)"
 
-#: poem/templates/poem/add.html:34 poem/templates/poem/delete.html:17
+#: poem/templates/poem/control/add.html:34
+#: poem/templates/poem/control/delete.html:17
 msgid "OK"
 msgstr "Í lagi"
 
-#: poem/templates/poem/add.html:35 poem/templates/poem/delete.html:18
-#: poem/templates/poem/unpublish.html:15
+#: poem/templates/poem/control/add.html:35
+#: poem/templates/poem/control/delete.html:18
+#: poem/templates/poem/control/unpublish.html:15
+#: poem/templates/poem/moderate.html:65
 msgid "Cancel"
 msgstr "Hætta við"
 
-#: poem/templates/poem/delete.html:9
+#: poem/templates/poem/control/delete.html:9
 msgid "Are you sure you wish to delete this poem?"
 msgstr "Ertu viss um að þú viljir eyða þessu ljóði?"
 
-#: poem/templates/poem/delete.html:11
+#: poem/templates/poem/control/delete.html:11
 msgid "You should be absolutely certain! This action cannot be undone!"
 msgstr ""
 "Þú ættir að vera algerlega viss! Það er ekki hægt að taka þessa ákvörðun til "
 "baka!"
 
-#: poem/templates/poem/poem.side.control.html:7
-msgid "This poem is by <strong>you</strong>."
-msgstr "Þetta ljóð er eftir <strong>þig</strong>."
+#: poem/templates/poem/control/unpublish.html:4
+msgid "Unpublish poem"
+msgstr "Afturkalla útgáfu"
 
-#: poem/templates/poem/poem.side.control.html:12
-msgid "It is currently <strong>unpublished</strong>."
-msgstr "Það er enn <strong>óútgefið</strong>."
+#: poem/templates/poem/control/unpublish.html:9
+msgid "Are you sure you wish to unpublish this poem?"
+msgstr "Ertu viss um að þú viljir afkalla útgáfu þessa ljóðs?"
 
-#: poem/templates/poem/poem.side.control.html:16
-msgid ""
-"When you choose to publish it, it will be reviewed by an editor before being "
-"displayed on the website."
-msgstr ""
-"Þegar þú ákveður að gefa það út, verður það yfirfarið af ritstjórn áður en "
-"það er birt á vefnum."
-
-#: poem/templates/poem/poem.side.control.html:20
-msgid "Publish"
-msgstr "Gefa út"
-
-#: poem/templates/poem/poem.side.control.html:24
-msgid ""
-"You can also <strong>edit</strong> or <strong>delete</strong> it if you wish."
-msgstr ""
-"Þú getur einnig <strong>breytt</strong> eða <strong>eytt</strong> því ef þú "
-"vilt."
-
-#: poem/templates/poem/poem.side.control.html:28
-#: poem/templates/poem/poem.side.control.html:83
-msgid "Edit"
-msgstr "Breyta"
-
-#: poem/templates/poem/poem.side.control.html:29
-#: poem/templates/poem/poem.side.control.html:84
-#: poem/templates/poem/poem.side.control.html:108
-msgid "Delete"
-msgstr "Eyða"
-
-#: poem/templates/poem/poem.side.control.html:33
-msgid "It is currently <strong>awaiting approval</strong> by an editor."
-msgstr "Í augnablikinu <strong>bíður það samþykktar</strong> af ritstjórn."
-
-#: poem/templates/poem/poem.side.control.html:37
-msgid ""
-"If you wish to change or delete it, you must first unpublish it. You can "
-"then edit it and submit it for publication again."
-msgstr ""
-"Ef þú vilt breyta eða eyða því, þarftu fyrst að afturkalla útgáfuna. Þannig "
-"geturðu breytt því og gefið það aftur út."
-
-#: poem/templates/poem/poem.side.control.html:41
-#: poem/templates/poem/poem.side.control.html:96
-#: poem/templates/poem/unpublish.html:14
+#: poem/templates/poem/control/unpublish.html:14
+#: poem/templates/poem/side.control.html:41
+#: poem/templates/poem/side.control.html:96
 msgid "Unpublish"
 msgstr "Afturkalla"
 
-#: poem/templates/poem/poem.side.control.html:47
+#: poem/templates/poem/moderate.html:47
+msgid "Approve"
+msgstr "Samþykkja"
+
+#: poem/templates/poem/moderate.html:59
+msgid "Please briefly explain why this poem is to be rejected."
+msgstr "Vinsamlegast útskýrðu stuttlega hvers vegna þessu ljóði er hafnað."
+
+#: poem/templates/poem/moderate.html:60
 msgid ""
-"It has unfortunately been <strong>rejected</strong> during our editorial "
-"process with the following message:"
+"The author will receive this and will be able to change the poem and submit "
+"it again."
 msgstr ""
-"Því miður var því <strong>hafnað</strong> við yfirlestur ritstjórnar með "
-"eftirfarandi skilaboðum:"
+"Höfundurinn mun fá skýringuna og getur breytt ljóðinu til að reyna aftur að "
+"fá það útgefið."
 
-#: poem/templates/poem/poem.side.control.html:59
-msgid "You may edit it and try publishing it again, if you wish."
-msgstr "Þú getur breytt því og reynt að gefa það út aftur, ef þú vilt."
+#: poem/templates/poem/moderate.html:61
+msgid "Please be as respectful and understanding as possible."
+msgstr "Vinsamlegast sýndu alla þá nærgætni og skilning sem þú getur."
 
-#: poem/templates/poem/poem.side.control.html:65
-msgid ""
-"It was unfortunately <strong>rejected</strong> at a time when we did not "
-"require editors to explain why."
-msgstr ""
-"Því miður var því <strong>hafnað</strong> við yfirlestur ritstjórnar áður en "
-"kveðið var á um að sú ákvörðun skyldi alltaf útskýrð."
+#: poem/templates/poem/moderate.html:64
+msgid "Confirm rejection"
+msgstr "Staðfesta höfnun"
 
-#: poem/templates/poem/poem.side.control.html:69
-msgid ""
-"In such cases, the reason was typically the poem being in a different "
-"language than the website is intended for, or bad spelling. But honestly, we "
-"just don't know."
-msgstr ""
-"Í slíkum tilfellum eru líklegustu ástæðurnar þær að ljóðið sé á öðru "
-"tungumáli en því sem vefnum er ætlað, eða stafsetningarvillur. Raunin er sú "
-"að við vitum það ekki."
+#: poem/templates/poem/moderate.html:66
+msgid "You must provide a reason for the rejection."
+msgstr "Þú verður að gefa upp ástæðu fyrir höfnun."
 
-#: poem/templates/poem/poem.side.control.html:73
-#, python-format
-msgid ""
-"Please feel free to contact us at <a href=\"mailto:%(CONTACT_EMAIL)s:\">"
-"%(CONTACT_EMAIL)s</a> if those reasons don't make sense. We will be happy to "
-"investigate further."
-msgstr ""
-"Vinsamlegast hafðu samband við okkur á netfangið <a href=\"mailto:"
-"%(CONTACT_EMAIL)s:\">%(CONTACT_EMAIL)s</a> ef þér þykja þessar ástæður "
-"ósennilegar. Við erum algerlega reiðubúin til að skoða málið frekar."
-
-#: poem/templates/poem/poem.side.control.html:77
-msgid "Alternatively, you can edit your poem and try publishing it again."
-msgstr "Að öðrum kosti geturðu breytt ljóðinu og reynt að gefa það út aftur."
-
-#: poem/templates/poem/poem.side.control.html:88
-msgid ""
-"It has been <strong>approved</strong> and is <strong>publicly visible</"
-"strong>."
-msgstr ""
-"Það hefur verið <strong>samþykkt</strong> og er <strong>birt opinberlega</"
-"strong>."
-
-#: poem/templates/poem/poem.side.control.html:92
-msgid "If you wish to edit or delete it, you must first unpublish it."
-msgstr "Ef þú vilt breyta því eða eyða, þarftu fyrst að afturkalla útgáfuna."
-
-#: poem/templates/poem/poem.side.control.html:100
-msgid "This poem as been <strong>trashed</strong> (hopefully by you)."
-msgstr ""
-"Þetta ljóð hefur verið <strong>sett í ruslið</strong> (vonandi af þér)."
-
-#: poem/templates/poem/poem.side.control.html:104
-msgid ""
-"Please confirm by <strong>deleting</strong> it, or <strong>untrashing</"
-"strong> it otherwise."
-msgstr ""
-"Vinsamlegast staðfestu með því að <strong>eyða</strong> því, en "
-"<strong>endurheimtu</strong> það ellegar."
-
-#: poem/templates/poem/poem.side.control.html:109
-msgid "Untrash"
-msgstr "Endurheimta"
-
-#: poem/templates/poem/poem.side.more-from-author.html:3
-msgid "Place bookmark"
-msgstr "Setja bókamerki"
-
-#: poem/templates/poem/poem.side.more-from-author.html:6
-msgid "Poems by"
-msgstr "Ljóð eftir"
+#: poem/templates/poem/moderate.html:80
+msgid "Number of poems pending review"
+msgstr "Fjöldi ljóða sem bíða yfirlestrar"
 
 #: poem/templates/poem/poems.html:23
 #, python-format
@@ -688,7 +596,7 @@ msgstr "Skoða eftir höfundi"
 
 #: poem/templates/poem/poems.html:41
 msgid "Search"
-msgstr ""
+msgstr "Leita"
 
 #: poem/templates/poem/poems.html:69
 #, python-format
@@ -707,17 +615,147 @@ msgstr "Ár"
 msgid "Unfortunately there were no search results."
 msgstr "Því miður skilaði leitin engum árangri."
 
+#: poem/templates/poem/side.control.html:7
+msgid "This poem is by <strong>you</strong>."
+msgstr "Þetta ljóð er eftir <strong>þig</strong>."
+
+#: poem/templates/poem/side.control.html:12
+msgid "It is currently <strong>unpublished</strong>."
+msgstr "Það er enn <strong>óútgefið</strong>."
+
+#: poem/templates/poem/side.control.html:16
+msgid ""
+"When you choose to publish it, it will be reviewed by an editor before being "
+"displayed on the website."
+msgstr ""
+"Þegar þú ákveður að gefa það út, verður það yfirfarið af ritstjórn áður en "
+"það er birt á vefnum."
+
+#: poem/templates/poem/side.control.html:20
+msgid "Publish"
+msgstr "Gefa út"
+
+#: poem/templates/poem/side.control.html:24
+msgid ""
+"You can also <strong>edit</strong> or <strong>delete</strong> it if you wish."
+msgstr ""
+"Þú getur einnig <strong>breytt</strong> eða <strong>eytt</strong> því ef þú "
+"vilt."
+
+#: poem/templates/poem/side.control.html:28
+#: poem/templates/poem/side.control.html:83
+msgid "Edit"
+msgstr "Breyta"
+
+#: poem/templates/poem/side.control.html:29
+#: poem/templates/poem/side.control.html:84
+#: poem/templates/poem/side.control.html:108
+msgid "Delete"
+msgstr "Eyða"
+
+#: poem/templates/poem/side.control.html:33
+msgid "It is currently <strong>awaiting approval</strong> by an editor."
+msgstr "Í augnablikinu <strong>bíður það samþykktar</strong> af ritstjórn."
+
+#: poem/templates/poem/side.control.html:37
+msgid ""
+"If you wish to change or delete it, you must first unpublish it. You can "
+"then edit it and submit it for publication again."
+msgstr ""
+"Ef þú vilt breyta eða eyða því, þarftu fyrst að afturkalla útgáfuna. Þannig "
+"geturðu breytt því og gefið það aftur út."
+
+#: poem/templates/poem/side.control.html:47
+msgid ""
+"It has unfortunately been <strong>rejected</strong> during our editorial "
+"process with the following message:"
+msgstr ""
+"Því miður var því <strong>hafnað</strong> við yfirlestur ritstjórnar með "
+"eftirfarandi skilaboðum:"
+
+#: poem/templates/poem/side.control.html:59
+msgid "You may edit it and try publishing it again, if you wish."
+msgstr "Þú getur breytt því og reynt að gefa það út aftur, ef þú vilt."
+
+#: poem/templates/poem/side.control.html:65
+msgid ""
+"It was unfortunately <strong>rejected</strong> at a time when we did not "
+"require editors to explain why."
+msgstr ""
+"Því miður var því <strong>hafnað</strong> við yfirlestur ritstjórnar áður en "
+"kveðið var á um að sú ákvörðun skyldi alltaf útskýrð."
+
+#: poem/templates/poem/side.control.html:69
+msgid ""
+"In such cases, the reason was typically the poem being in a different "
+"language than the website is intended for, or bad spelling. But honestly, we "
+"just don't know."
+msgstr ""
+"Í slíkum tilfellum eru líklegustu ástæðurnar þær að ljóðið sé á öðru "
+"tungumáli en því sem vefnum er ætlað, eða stafsetningarvillur. Raunin er sú "
+"að við vitum það ekki."
+
+#: poem/templates/poem/side.control.html:73
+#, python-format
+msgid ""
+"Please feel free to contact us at <a href=\"mailto:%(CONTACT_EMAIL)s:\">"
+"%(CONTACT_EMAIL)s</a> if those reasons don't make sense. We will be happy to "
+"investigate further."
+msgstr ""
+"Vinsamlegast hafðu samband við okkur á netfangið <a href=\"mailto:"
+"%(CONTACT_EMAIL)s:\">%(CONTACT_EMAIL)s</a> ef þér þykja þessar ástæður "
+"ósennilegar. Við erum algerlega reiðubúin til að skoða málið frekar."
+
+#: poem/templates/poem/side.control.html:77
+msgid "Alternatively, you can edit your poem and try publishing it again."
+msgstr "Að öðrum kosti geturðu breytt ljóðinu og reynt að gefa það út aftur."
+
+#: poem/templates/poem/side.control.html:88
+msgid ""
+"It has been <strong>approved</strong> and is <strong>publicly visible</"
+"strong>."
+msgstr ""
+"Það hefur verið <strong>samþykkt</strong> og er <strong>birt opinberlega</"
+"strong>."
+
+#: poem/templates/poem/side.control.html:92
+msgid "If you wish to edit or delete it, you must first unpublish it."
+msgstr "Ef þú vilt breyta því eða eyða, þarftu fyrst að afturkalla útgáfuna."
+
+#: poem/templates/poem/side.control.html:100
+msgid "This poem as been <strong>trashed</strong> (hopefully by you)."
+msgstr ""
+"Þetta ljóð hefur verið <strong>sett í ruslið</strong> (vonandi af þér)."
+
+#: poem/templates/poem/side.control.html:104
+msgid ""
+"Please confirm by <strong>deleting</strong> it, or <strong>untrashing</"
+"strong> it otherwise."
+msgstr ""
+"Vinsamlegast staðfestu með því að <strong>eyða</strong> því, en "
+"<strong>endurheimtu</strong> það ellegar."
+
+#: poem/templates/poem/side.control.html:109
+msgid "Untrash"
+msgstr "Endurheimta"
+
+#: poem/templates/poem/side.more-from-author.html:3
+msgid "Place bookmark"
+msgstr "Setja bókamerki"
+
+#: poem/templates/poem/side.more-from-author.html:6
+msgid "Poems by"
+msgstr "Ljóð eftir"
+
 #: poem/templates/poem/stub/poem.in-listing.html:4
 msgid "by"
 msgstr "eftir"
 
-#: poem/templates/poem/unpublish.html:4
-msgid "Unpublish poem"
-msgstr "Afturkalla útgáfu"
+#~ msgid "Editorial"
+#~ msgstr "Ritstjórn"
 
-#: poem/templates/poem/unpublish.html:9
-msgid "Are you sure you wish to unpublish this poem?"
-msgstr "Ertu viss um að þú viljir afkalla útgáfu þessa ljóðs?"
+#~ msgid "Poem"
+#~ msgstr "Ljóð"
 
 #~ msgid "Visible"
 #~ msgstr "Sýnilegt"
