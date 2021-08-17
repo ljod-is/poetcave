@@ -20,14 +20,14 @@ Features that differ from the original are only different because they must be u
 - [x] Personal data download.
 - [x] Account deletion.
 - [ ] Private paths (i.e. https://ljod.is/some-username)
-- [ ] Combining of accounts sharing an email address.
 
 ### Poems and authors
 - [x] CRUD for poems.
 - [X] Poem navigation and search.
 - [x] Daily poem displayed on front page.
 - [x] Bookmarks
-- [ ] Poem approval/rejection.
+- [x] Poem approval/rejection.
+- [ ] Send email to author upon editorial decision.
 
 ### Critiques
 - [ ] CRUD for critiques.
@@ -57,11 +57,3 @@ Features that differ from the original are only different because they must be u
 ### Other
 - [x] Static pages (FAQ, about, etc.)
 - [x] List of superusers and moderators.
-
-## Decisions
-
-These are decisions that need to be made in order to implement certain functionality.
-
-- [ ] Poem approval process.
-- [ ] Critique approval process.
-- [ ] Who decides the daily poem?
