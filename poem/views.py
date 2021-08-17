@@ -2,6 +2,7 @@ from datetime import timedelta
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
+from django.db import transaction
 from django.http import Http404
 from django.shortcuts import redirect
 from django.shortcuts import render
@@ -57,31 +58,30 @@ def poem_add_edit(request, author_id=None, poem_id=None):
         form = PoemForm(request.POST, instance=poem)
         if form.is_valid():
 
-            # We don't commit yet because we need to do more things first.
-            poem = form.save(commit=False)
+            with transaction.atomic():
 
-            # The editorial status should automatically be set to
-            # "unpublished" in two situations.
-            #
-            # 1. As the default editorial status for a new poem.
-            #
-            # 2. If the poem was previously rejected, but the user is now
-            # editing the content. That way, the user can try publishing it
-            # after having edited it according to the message accompanying the
-            # rejection.
-            if (poem.editorial is None
-                or (
-                    poem.editorial.status == 'rejected'
-                    and (
-                        old_name != poem.name
-                        or old_body != poem.body
+                # First, save the poem.
+                poem = form.save()
+
+                # The editorial status should automatically be set to
+                # "unpublished" in two situations.
+                #
+                # 1. As the default editorial status for a new poem.
+                #
+                # 2. If the poem was previously rejected, but the user is now
+                # editing the content. That way, the user can try publishing
+                # it after having edited it according to the message
+                # accompanying the rejection.
+                if (poem.editorial is None
+                    or (
+                        poem.editorial.status == 'rejected'
+                        and (
+                            old_name != poem.name
+                            or old_body != poem.body
+                        )
                     )
-                )
-            ):
-                poem.set_editorial_status('unpublished', request.user)
-
-            # Finally commit.
-            poem.save()
+                ):
+                    poem.set_editorial_status('unpublished', request.user)
 
             # Redirect to poem.
             return redirect(reverse('poem', args=(poem.id,)))
