@@ -1,6 +1,13 @@
 {% load i18n %}
 
 <div class="poem">
+
+    {% if not skip_name %}
+        <strong>{{ poem.name }}</strong>
+        <br />
+        <br />
+    {% endif %}
+
     {{ poem.body|linebreaksbr }}
     {% comment %}
     This weirdly placed space is only needed for consistency with the old

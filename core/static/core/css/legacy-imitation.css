@@ -2,6 +2,10 @@
 This CSS file is to imitate the look and feel of the legacy website so that
 we can use modern HTML but still retain the old look and feel.
 
+It also contains styling for things that are either new or changed from the
+original design, such as the poem approval process. Such things need
+re-designing anyway.
+
 When we get to the design phase, once we're feature-complete with regard to
 the old website, this file should be completely replaced.
 */
@@ -43,3 +47,7 @@ textarea { border-width: 1px; }
     margin: 0px 0px 1px 0px;
     padding: 1px 0px 1px 21px;
 }
+
+.poem-moderate-control form { display: inline; }
+.poem-moderate-control textarea { width: 100%; }
+.poem-moderate-control .rejection-reason-required-error { display: none; }

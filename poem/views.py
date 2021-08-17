@@ -3,6 +3,7 @@ from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
 from django.db import transaction
+from django.forms import ValidationError
 from django.http import Http404
 from django.shortcuts import redirect
 from django.shortcuts import render
@@ -311,6 +312,50 @@ def poems_search(request):
         'listing_type': 'search',
     }
     return render(request, 'poem/poems.html', ctx)
+
+
+@login_required
+def poems_moderate(request):
+    if not request.user.is_moderator:
+        raise PermissionDenied
+
+    if request.method == 'POST':
+        poem_id = request.POST.get('poem_id', None)
+        status = request.POST.get('status', None)
+
+        # Manage `poem_id`, making sure it's a proper ID (and an integer).
+        try:
+            poem = Poem.objects.get(id=int(poem_id), editorial__status='pending')
+        except:
+            # It basically doesn't matter what goes wrong here; it will be
+            # because there is something wrong with the ID.
+            raise ValidationError('poem_id must be a valid ID of a poem pending approval.')
+
+        if status == 'approved':
+            # Yay! A new poem on our website! \o/
+            poem.set_editorial_status('approved', request.user)
+        elif status == 'rejected':
+            # Hopefully the reason is good.
+            reason = request.POST.get('reason', '')
+            poem.set_editorial_status('rejected', request.user, reason)
+        else:
+            raise ValidationError('Invalid status received.')
+
+        # Redirect so that browser won't want to re-post on reload.
+        return redirect(reverse('poems_moderate'))
+
+    poems = Poem.objects.filter(
+        editorial__status='pending'
+    ).exclude(
+        author=None
+    ).select_related(
+        'author'
+    )
+
+    ctx = {
+        'poems': poems,
+    }
+    return render(request, 'poem/moderate.html', ctx)
 
 
 def poems(request):

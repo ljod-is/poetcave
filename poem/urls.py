@@ -14,6 +14,7 @@ urlpatterns = [
     path('poem/untrash/<int:poem_id>/', views.poem_untrash, name='poem_untrash'),
     path('poem/<int:poem_id>/', views.poem, name='poem'),
     path('poems/author/<int:author_id>/', views.author, name='author'),
+    path('poems/moderate/', views.poems_moderate, name='poems_moderate'),
     path('poems/newest/', views.poems_newest, name='poems_newest'),
     path('poems/daypoems/<int:year>/', views.poems_daypoems, name='poems_daypoems'),
     path('poems/daypoems/', views.poems_daypoems, name='poems_daypoems'),

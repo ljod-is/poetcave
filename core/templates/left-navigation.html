@@ -27,6 +27,13 @@
             <a href="{% url 'author' user.author.id %}">{% trans 'Homestead' %}</a>
             <a href="{% url 'logout' %}">{% trans 'Logout' %}</a>
         </div>
+
+        {% if user.is_moderator %}
+            <div class="nav-section">
+                <a href="{% url 'poems_moderate' %}">{% trans 'Moderate poems' %}</a>
+            </div>
+        {% endif %}
+
     {% endif %}
 
 </div>
