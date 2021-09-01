@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-17 14:52+0000\n"
+"POT-Creation-Date: 2021-09-01 20:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -379,7 +379,7 @@ msgid "Accept"
 msgstr "Samþykkja"
 
 #: core/templates/termsandconditions/terms.html:32
-#: poem/templates/poem/moderate.html:50
+#: poem/templates/poem/moderate.html:57
 msgid "Reject"
 msgstr "Hafna"
 
@@ -521,7 +521,7 @@ msgstr "Í lagi"
 #: poem/templates/poem/control/add.html:35
 #: poem/templates/poem/control/delete.html:18
 #: poem/templates/poem/control/unpublish.html:15
-#: poem/templates/poem/moderate.html:65
+#: poem/templates/poem/moderate.html:76
 msgid "Cancel"
 msgstr "Hætta við"
 
@@ -549,15 +549,23 @@ msgstr "Ertu viss um að þú viljir afkalla útgáfu þessa ljóðs?"
 msgid "Unpublish"
 msgstr "Afturkalla"
 
-#: poem/templates/poem/moderate.html:47
+#: poem/templates/poem/moderate.html:45
+msgid "Number of poems pending review"
+msgstr "Fjöldi ljóða sem bíða yfirlestrar"
+
+#: poem/templates/poem/moderate.html:54
 msgid "Approve"
 msgstr "Samþykkja"
 
-#: poem/templates/poem/moderate.html:59
+#: poem/templates/poem/moderate.html:61
+msgid "Select another"
+msgstr "Velja annað"
+
+#: poem/templates/poem/moderate.html:70
 msgid "Please briefly explain why this poem is to be rejected."
 msgstr "Vinsamlegast útskýrðu stuttlega hvers vegna þessu ljóði er hafnað."
 
-#: poem/templates/poem/moderate.html:60
+#: poem/templates/poem/moderate.html:71
 msgid ""
 "The author will receive this and will be able to change the poem and submit "
 "it again."
@@ -565,21 +573,17 @@ msgstr ""
 "Höfundurinn mun fá skýringuna og getur breytt ljóðinu til að reyna aftur að "
 "fá það útgefið."
 
-#: poem/templates/poem/moderate.html:61
+#: poem/templates/poem/moderate.html:72
 msgid "Please be as respectful and understanding as possible."
 msgstr "Vinsamlegast sýndu alla þá nærgætni og skilning sem þú getur."
 
-#: poem/templates/poem/moderate.html:64
+#: poem/templates/poem/moderate.html:75
 msgid "Confirm rejection"
 msgstr "Staðfesta höfnun"
 
-#: poem/templates/poem/moderate.html:66
+#: poem/templates/poem/moderate.html:77
 msgid "You must provide a reason for the rejection."
 msgstr "Þú verður að gefa upp ástæðu fyrir höfnun."
-
-#: poem/templates/poem/moderate.html:80
-msgid "Number of poems pending review"
-msgstr "Fjöldi ljóða sem bíða yfirlestrar"
 
 #: poem/templates/poem/poems.html:23
 #, python-format
