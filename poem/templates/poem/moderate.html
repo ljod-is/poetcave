@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load i18n %}
 
+{% block sign %}{{ poem.name }}{% endblock %}
+
 {% block javascript %}
 <script language="javascript" type="text/javascript">
 $(document).ready(function() {
@@ -33,50 +35,51 @@ $(document).ready(function() {
 
 {% block content %}
 
-    {% for poem in poems reversed %}
-
-        {% include 'poem/stub/poem.display.html' %}
-
-        <div class="poem-moderate-control">
-
-            <div>
-                <form method="post">
-                {% csrf_token %}
-                <input type="hidden" name="poem_id" value="{{ poem.id }}" />
-                <input type="hidden" name="status" value="approved" />
-                <button type="submit">{% trans 'Approve' %}</button>
-                </form>
-
-                <button type="button" class="reject-button" data-poem-id="{{ poem.id }}">{% trans 'Reject' %}</button>
-            </div>
-
-            <div>
-                <br />
-                <form method="post" class="moderate-rejection-form" data-poem-id="{{ poem.id }}" style="display: none;">
-                {% csrf_token %}
-                <input type="hidden" name="poem_id" value="{{ poem.id }}" />
-                <input type="hidden" name="status" value="rejected" />
-                <strong>{% trans 'Please briefly explain why this poem is to be rejected.' %}</strong>
-                {% trans 'The author will receive this and will be able to change the poem and submit it again.' %}
-                <strong>{% trans 'Please be as respectful and understanding as possible.' %}</strong>
-                <textarea name="reason"></textarea>
-                <br />
-                <button type="submit">{% trans 'Confirm rejection' %}</button>
-                <button type="button" class="cancel-rejection-button" data-poem-id="{{ poem.id }}">{% trans 'Cancel' %}</button>
-                <div class="rejection-reason-required-error error">{% trans 'You must provide a reason for the rejection.' %}</div>
-                </form>
-            </div>
-
-        </div>
-
-        <hr />
-
-    {% endfor %}
+    {% include 'poem/stub/poem.display.html' %}
 
 {% endblock %}
 
 {% block side %}
 
-    {% trans 'Number of poems pending review' %}: {{ poems.count }}
+    <div class="poem-moderate-control">
+
+        <div>
+            {% trans 'Number of poems pending review' %}: {{ poem_count }}
+            <br /><br />
+        </div>
+
+        <div>
+            <form method="post">
+            {% csrf_token %}
+            <input type="hidden" name="poem_id" value="{{ poem.id }}" />
+            <input type="hidden" name="status" value="approved" />
+            <button type="submit">{% trans 'Approve' %}</button>
+            </form>
+
+            <button type="button" class="reject-button" data-poem-id="{{ poem.id }}">{% trans 'Reject' %}</button>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;
+
+            <button type="button" href="">{% trans 'Select another' %}</button>
+        </div>
+
+        <div>
+            <br />
+            <form method="post" class="moderate-rejection-form" data-poem-id="{{ poem.id }}" style="display: none;">
+            {% csrf_token %}
+            <input type="hidden" name="poem_id" value="{{ poem.id }}" />
+            <input type="hidden" name="status" value="rejected" />
+            <strong>{% trans 'Please briefly explain why this poem is to be rejected.' %}</strong>
+            {% trans 'The author will receive this and will be able to change the poem and submit it again.' %}
+            <strong>{% trans 'Please be as respectful and understanding as possible.' %}</strong>
+            <textarea name="reason"></textarea>
+            <br />
+            <button type="submit">{% trans 'Confirm rejection' %}</button>
+            <button type="button" class="cancel-rejection-button" data-poem-id="{{ poem.id }}">{% trans 'Cancel' %}</button>
+            <div class="rejection-reason-required-error error">{% trans 'You must provide a reason for the rejection.' %}</div>
+            </form>
+        </div>
+
+    </div>
 
 {% endblock %}

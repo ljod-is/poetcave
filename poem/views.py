@@ -326,6 +326,13 @@ def poems_moderate(request):
         # Manage `poem_id`, making sure it's a proper ID (and an integer).
         try:
             poem = Poem.objects.get(id=int(poem_id), editorial__status='pending')
+        except Poem.DoesNotExist:
+            # This will only happen when requesting a poem that does not
+            # exist, or one that has been handled by another moderator by
+            # coincidence in the time period it took this moderator to read
+            # it over and decide. In either case, we'll want to simply reload
+            # the page and fetch a new random poem to moderate.
+            return redirect(reverse('poems_moderate'))
         except:
             # It basically doesn't matter what goes wrong here; it will be
             # because there is something wrong with the ID.
@@ -344,16 +351,26 @@ def poems_moderate(request):
         # Redirect so that browser won't want to re-post on reload.
         return redirect(reverse('poems_moderate'))
 
-    poems = Poem.objects.filter(
+    # The randomness factor is to reduce the likelyhood of two moderators
+    # working on the same poem at the same time. We're just utilizing the
+    # same query for checking the count of poems left, and fetching a random
+    # one of them.
+    poems = poem = Poem.objects.filter(
         editorial__status='pending'
     ).exclude(
         author=None
     ).select_related(
         'author'
+    ).order_by(
+        '?'
     )
 
+    # Get the poem that we'll want the moderator's opinion on.
+    poem = poems.first()
+
     ctx = {
-        'poems': poems,
+        'poem_count': poems.count(),
+        'poem': poem,
     }
     return render(request, 'poem/moderate.html', ctx)
 
