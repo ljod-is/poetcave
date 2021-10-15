@@ -2,5 +2,6 @@ django
 django_registration
 django-termsandconditions
 django-markdown2
+django-mdmail
 python-frontmatter
 markdown2

@@ -80,6 +80,7 @@ urlpatterns = [
         auth_views.PasswordResetView.as_view(
             template_name='core/user/password_reset/reset.html',
             email_template_name='core/user/mail/password_reset_body.txt',
+            html_email_template_name='core/user/mail/password_reset_body.html',
             success_url = reverse_lazy('password_reset_requested')
         ),
         name='password_reset'
