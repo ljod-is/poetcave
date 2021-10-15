@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-09-01 20:05+0000\n"
+"POT-Creation-Date: 2021-10-15 19:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -89,8 +89,7 @@ msgid ""
 "Someone, hopefully you, has signed up at our website using this email "
 "address."
 msgstr ""
-"Einhver, vonandi þú, notaði þetta netfang til þess að skrá sig á vefinn "
-"okkar.Einhver, sem er vonandi þú, hefur skráð sig á vefsetur okkar með þessu "
+"Einhver, sem er vonandi þú, hefur skráð sig á vefsetur okkar með þessu "
 "netfangi."
 
 #: core/templates/core/user/mail/activation_body.txt:5
@@ -109,18 +108,28 @@ msgstr "Ef þú kannast ekki við þessa skráningu, geturðu hunsað þennan p�
 msgid "Registration: Please confirm email"
 msgstr "Skráning: Vinsamlegast staðfesting netfang"
 
-#: core/templates/core/user/mail/password_reset_body.txt:3
+#: core/templates/core/user/mail/password_reset_body.html:78
+#: core/templates/core/user/mail/password_reset_body.txt:5
 #, python-format
 msgid ""
 "You're receiving this email because you requested a password reset for your "
 "user account at %(site_name)s."
 msgstr ""
 
-#: core/templates/core/user/mail/password_reset_body.txt:5
+#: core/templates/core/user/mail/password_reset_body.html:81
+#: core/templates/core/user/mail/password_reset_body.txt:7
 msgid "Please go to the following page and choose a new password:"
 msgstr "Vinsamlegast opnaðu eftirfarandi síðu og veldu nýtt lykilorð:"
 
+#: core/templates/core/user/mail/password_reset_body.html:85
 #: core/templates/core/user/mail/password_reset_body.txt:9
+#, fuzzy
+#| msgid "New password"
+msgid "Reset password"
+msgstr "Nýtt lykilorð"
+
+#: core/templates/core/user/mail/password_reset_body.html:89
+#: core/templates/core/user/mail/password_reset_body.txt:11
 msgid "Your username, in case you’ve forgotten:"
 msgstr "Notandanafnið þitt, ef ske kynni að þú hafir gleymt því:"
 
@@ -379,7 +388,7 @@ msgid "Accept"
 msgstr "Samþykkja"
 
 #: core/templates/termsandconditions/terms.html:32
-#: poem/templates/poem/moderate.html:57
+#: poem/templates/poem/moderate.html:59
 msgid "Reject"
 msgstr "Hafna"
 
@@ -521,7 +530,7 @@ msgstr "Í lagi"
 #: poem/templates/poem/control/add.html:35
 #: poem/templates/poem/control/delete.html:18
 #: poem/templates/poem/control/unpublish.html:15
-#: poem/templates/poem/moderate.html:76
+#: poem/templates/poem/moderate.html:78
 msgid "Cancel"
 msgstr "Hætta við"
 
@@ -549,23 +558,23 @@ msgstr "Ertu viss um að þú viljir afkalla útgáfu þessa ljóðs?"
 msgid "Unpublish"
 msgstr "Afturkalla"
 
-#: poem/templates/poem/moderate.html:45
+#: poem/templates/poem/moderate.html:47
 msgid "Number of poems pending review"
 msgstr "Fjöldi ljóða sem bíða yfirlestrar"
 
-#: poem/templates/poem/moderate.html:54
+#: poem/templates/poem/moderate.html:56
 msgid "Approve"
 msgstr "Samþykkja"
 
-#: poem/templates/poem/moderate.html:61
+#: poem/templates/poem/moderate.html:63
 msgid "Select another"
 msgstr "Velja annað"
 
-#: poem/templates/poem/moderate.html:70
+#: poem/templates/poem/moderate.html:72
 msgid "Please briefly explain why this poem is to be rejected."
 msgstr "Vinsamlegast útskýrðu stuttlega hvers vegna þessu ljóði er hafnað."
 
-#: poem/templates/poem/moderate.html:71
+#: poem/templates/poem/moderate.html:73
 msgid ""
 "The author will receive this and will be able to change the poem and submit "
 "it again."
@@ -573,15 +582,15 @@ msgstr ""
 "Höfundurinn mun fá skýringuna og getur breytt ljóðinu til að reyna aftur að "
 "fá það útgefið."
 
-#: poem/templates/poem/moderate.html:72
+#: poem/templates/poem/moderate.html:74
 msgid "Please be as respectful and understanding as possible."
 msgstr "Vinsamlegast sýndu alla þá nærgætni og skilning sem þú getur."
 
-#: poem/templates/poem/moderate.html:75
+#: poem/templates/poem/moderate.html:77
 msgid "Confirm rejection"
 msgstr "Staðfesta höfnun"
 
-#: poem/templates/poem/moderate.html:77
+#: poem/templates/poem/moderate.html:79
 msgid "You must provide a reason for the rejection."
 msgstr "Þú verður að gefa upp ástæðu fyrir höfnun."
 
