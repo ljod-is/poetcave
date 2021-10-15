@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-15 19:54+0000\n"
+"POT-Creation-Date: 2021-10-15 20:05+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -122,10 +122,8 @@ msgstr "Vinsamlegast opnaðu eftirfarandi síðu og veldu nýtt lykilorð:"
 
 #: core/templates/core/user/mail/password_reset_body.html:85
 #: core/templates/core/user/mail/password_reset_body.txt:9
-#, fuzzy
-#| msgid "New password"
 msgid "Reset password"
-msgstr "Nýtt lykilorð"
+msgstr "Endursetja lykilorð"
 
 #: core/templates/core/user/mail/password_reset_body.html:89
 #: core/templates/core/user/mail/password_reset_body.txt:11
