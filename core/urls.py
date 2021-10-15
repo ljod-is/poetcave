@@ -27,8 +27,8 @@ urlpatterns = [
         RegistrationView.as_view(
             form_class=RegistrationForm,
             template_name='core/user/registration/register.html',
-            email_body_template = 'user/mail/activation_body.txt',
-            email_subject_template = 'user/mail/activation_subject.txt',
+            email_body_template = 'core/user/mail/activation_body.txt',
+            email_subject_template = 'core/user/mail/activation_subject.txt',
             success_url=reverse_lazy('registration_complete')
         ),
         name='register'
