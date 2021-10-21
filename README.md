@@ -27,7 +27,7 @@ Features that differ from the original are only different because they must be u
 - [x] Daily poem displayed on front page.
 - [x] Bookmarks
 - [x] Poem approval/rejection.
-- [ ] Send email to author upon editorial decision.
+- [x] Send email to author upon editorial decision.
 
 ### Critiques
 - [ ] CRUD for critiques.
