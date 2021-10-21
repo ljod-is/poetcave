@@ -3,9 +3,11 @@ from django.db import models
 from django.db import transaction
 from django.db.models import Prefetch
 from django.db.models import Q
+from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+from django_mdmail import send_mail
 
 
 class AuthorQuerySet(models.QuerySet):
@@ -163,6 +165,23 @@ class Poem(models.Model):
             # for easy access.
             self.editorial = editorial
             self.save()
+
+        # Notify user about decision.
+        self.explain_editorial_decision_by_mail()
+
+    def explain_editorial_decision_by_mail(self):
+        # NOTE: This assumes only one user per author. See Author model.
+        recipients = [self.author.user.email]
+
+        # TODO: Flagrantly violating DRY here. Not worth convoluting yet.
+        if self.editorial.status == 'rejected':
+            subject = render_to_string('poem/mail/poem_rejected_subject.txt', {'poem': self}).replace('\n', '').replace('\r', '')
+            message = render_to_string('poem/mail/poem_rejected.md', {'poem': self})
+            send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, recipients)
+        elif self.editorial.status == 'approved':
+            subject = render_to_string('poem/mail/poem_approved_subject.txt', {'poem': self}).replace('\n', '').replace('\r', '')
+            message = render_to_string('poem/mail/poem_approved.md', {'poem': self})
+            send_mail(subject, message, settings.DEFAULT_FROM_EMAIL, recipients)
 
     def __str__(self):
         return '%s - %s' % (self.name, self.author)
