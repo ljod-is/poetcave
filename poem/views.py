@@ -315,7 +315,7 @@ def poems_search(request):
 
 
 @login_required
-def poems_moderate(request):
+def poems_moderate(request, poem_id=None):
     if not request.user.is_moderator:
         raise PermissionDenied
 
@@ -351,22 +351,25 @@ def poems_moderate(request):
         # Redirect so that browser won't want to re-post on reload.
         return redirect(reverse('poems_moderate'))
 
-    # The randomness factor is to reduce the likelyhood of two moderators
-    # working on the same poem at the same time. We're just utilizing the
-    # same query for checking the count of poems left, and fetching a random
-    # one of them.
     poems = poem = Poem.objects.filter(
         editorial__status='pending'
     ).exclude(
         author=None
     ).select_related(
         'author'
-    ).order_by(
-        '?'
     )
 
-    # Get the poem that we'll want the moderator's opinion on.
-    poem = poems.first()
+    # Moderators may pick a specific poem to moderate, for example by
+    # request, but are otherwise given one at random.
+    if poem_id is not None:
+        try:
+            poem = poems.get(id=poem_id)
+        except Poem.DoesNotExist:
+            raise Http404
+    else:
+        # The randomness factor is to reduce the likelyhood of two moderators
+        # working on the same poem at the same time.
+        poem = poems.order_by('?').first()
 
     ctx = {
         'poem_count': poems.count(),
