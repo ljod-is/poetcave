@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-15 20:05+0000\n"
+"POT-Creation-Date: 2021-10-21 18:23+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -467,23 +467,23 @@ msgstr "Lýsigögn ljóða"
 msgid "Material"
 msgstr ""
 
-#: poem/models.py:201
+#: poem/models.py:220
 msgid "Unpublished"
 msgstr "Óútgefið"
 
-#: poem/models.py:204
+#: poem/models.py:223
 msgid "Trashed"
 msgstr "Í ruslafötu"
 
-#: poem/models.py:207
+#: poem/models.py:226
 msgid "Pending approval"
 msgstr "Bíður samþykktar"
 
-#: poem/models.py:210
+#: poem/models.py:229
 msgid "Rejected"
 msgstr "Hafnað"
 
-#: poem/models.py:213
+#: poem/models.py:232
 msgid "Approved"
 msgstr "Samþykkt"
 
@@ -554,6 +554,86 @@ msgstr "Ertu viss um að þú viljir afkalla útgáfu þessa ljóðs?"
 #: poem/templates/poem/side.control.html:96
 msgid "Unpublish"
 msgstr "Afturkalla"
+
+#: poem/templates/poem/mail/poem_approved.html:79
+#, python-format
+msgid ""
+"Happily, one of your poems, named \"%(poem_name)s\" has been\n"
+"   <strong>\n"
+"    approved\n"
+"   </strong>\n"
+"   by one of our moderators."
+msgstr ""
+"Gleðilega hefur ljóð þitt, nefnt „%(poem_name)s“ verið <strong>samþykkt</"
+"strong> af ritstjórn."
+
+#: poem/templates/poem/mail/poem_approved.html:86
+#: poem/templates/poem/mail/poem_approved.txt:8
+msgid "Everyone can now read it, in all its glory, at our website:"
+msgstr "Allir geta nú lesið það, í allri sinni dýrð, á vefnum okkar:"
+
+#: poem/templates/poem/mail/poem_approved.txt:6
+#, python-format
+msgid ""
+"Happily, one of your poems, named \"%(poem_name)s\" has been **approved** by "
+"one of our moderators."
+msgstr ""
+"Gleðilega hefur ljóð þitt, nefnt „%(poem_name)s“ verið **samþykkt** af "
+"ritstjórn."
+
+#: poem/templates/poem/mail/poem_approved_subject.txt:1
+#, python-format
+msgid "Poem approved with name: %(poem.name)s"
+msgstr "Ljóð samþykkt með nafninu: %(poem.name)s"
+
+#: poem/templates/poem/mail/poem_rejected.html:79
+#: poem/templates/poem/mail/poem_rejected.txt:6
+msgid ""
+"We appreciate you using our website for storing and sharing your poems. "
+"Unfortunately, not all poems can be accepted for public display on our "
+"website. That doesn't mean that such poems are bad, it just means that it "
+"doesn't fulfill the conditions that we have had to set for publicly "
+"displaying it on our website."
+msgstr ""
+"Okkur þykir vænt um að þú notir vefinn okkar til að geyma og deila ljóðunum "
+"þínum. Því miður eru ekki öll ljóð samþykkt til birtingar. Það þýðir ekki að "
+"slík ljóð séu slæm, heldur einungis að þau uppfylli ekki skilyrðin sem við "
+"höfum sett fyrir birtingu."
+
+#: poem/templates/poem/mail/poem_rejected.html:82
+#, python-format
+msgid ""
+"Unfortunately, one of your poems, named \"%(poem_name)s\" has been\n"
+"   <strong>\n"
+"    rejected\n"
+"   </strong>\n"
+"   by one of our moderators."
+msgstr ""
+"Því miður hefur einu af ljóðunum þínum, nefndu „%(poem_name)s“, verið "
+"<strong>hafnað</strong> af ritstjórn."
+
+#: poem/templates/poem/mail/poem_rejected.html:89
+#: poem/templates/poem/mail/poem_rejected.txt:10
+msgid ""
+"You can get more information on the matter by viewing your poem on our "
+"website, while logged in:"
+msgstr ""
+"Þú getur fengið frekari upplýsingar um ákvörðunina með því að fletta upp "
+"ljóðinu þínu á vefnum:"
+
+#: poem/templates/poem/mail/poem_rejected.txt:8
+#, python-format
+msgid ""
+"Unfortunately, one of your poems, named \"%(poem_name)s\" has been "
+"**rejected** by one of our moderators."
+msgstr ""
+"Því miður hefur einu af ljóðunum þínum, nefndu „%(poem_name)s“, verið "
+"**hafnað** af ritstjórn."
+
+#: poem/templates/poem/mail/poem_rejected_subject.txt:1
+#, python-format
+msgid "Poem rejected with name: %(poem.name)s"
+msgstr "Ljóði hafnað með nafninu: %(poem.name)s"
 
 #: poem/templates/poem/moderate.html:47
 msgid "Number of poems pending review"
