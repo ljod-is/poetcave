@@ -387,6 +387,11 @@ def poem(request, poem_id):
         # The specific poem being requested.
         poem = Poem.objects.select_related('author').visible_to(request.user).get(id=poem_id)
     except Poem.DoesNotExist:
+        # If the user isn't logged in, maybe that's the problem.
+        if not request.user.is_authenticated:
+            return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
+
+        # Poem genuinely doesn't exist or is unavailable to logged in user.
         raise Http404
 
     # Other poems by the same author.
