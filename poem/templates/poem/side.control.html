@@ -49,7 +49,7 @@
         <br />
 
         <div style="border: 1px dotted #999999; padding: 12px 12px 12px 12px;">
-            <p><em>„{{ poem.editorial.reason }}“</em></p>
+            <p><em>„{{ poem.editorial.reason|linebreaksbr }}“</em></p>
             <p style="text-align: right;">
             - {% include 'core/user/stub/list-item.html' with user=poem.editorial.user %}
             </p>
