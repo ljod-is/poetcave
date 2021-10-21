@@ -387,9 +387,14 @@ def poem(request, poem_id):
         # The specific poem being requested.
         poem = Poem.objects.select_related('author').visible_to(request.user).get(id=poem_id)
     except Poem.DoesNotExist:
-        # If the user isn't logged in, maybe that's the problem.
         if not request.user.is_authenticated:
+            # If the user isn't logged in, maybe that's the problem.
             return redirect('%s?next=%s' % (settings.LOGIN_URL, request.path))
+        elif request.user.is_moderator:
+            # If the user is a moderator, maybe a user is sending them a poem
+            # and asking them to moderate it.
+            if Poem.objects.filter(id=poem_id, editorial__status='pending').count() > 0:
+                return redirect(reverse('poems_moderate', args=(poem_id,)))
 
         # Poem genuinely doesn't exist or is unavailable to logged in user.
         raise Http404
