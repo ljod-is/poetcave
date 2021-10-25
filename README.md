@@ -52,6 +52,7 @@ Features that differ from the original are only different because they must be u
 - [x] Authors
 - [x] Users
 - [x] Terms and conditions
+- [ ] Day poem selection
 - [ ] Critiques
 
 ### Other
