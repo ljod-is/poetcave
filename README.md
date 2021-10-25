@@ -19,7 +19,7 @@ Features that differ from the original are only different because they must be u
 - [x] Terms and conditions.
 - [x] Personal data download.
 - [x] Account deletion.
-- [ ] Private paths (i.e. https://ljod.is/some-username)
+- [x] Private paths (i.e. https://ljod.is/some-username)
 
 ### Poems and authors
 - [x] CRUD for poems.
@@ -44,8 +44,8 @@ Features that differ from the original are only different because they must be u
 - [x] Poems
 - [x] Daily poems
 - [x] Bookmarks
+- [x] Private paths
 - [ ] News
-- [ ] Private paths
 
 ### Superuser administration
 - [x] Poems
