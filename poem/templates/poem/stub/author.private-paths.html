@@ -1,0 +1,10 @@
+{% load i18n %}
+{% load private_paths %}
+
+{% comment %}
+TODO: Missing page for explaining private paths and how to get one.
+{% endcomment %}
+{% with '#' as private_path_doc_path %}
+<strong class="einkaslod">{% blocktrans %}Users with a <a href="{{ private_path_doc_path }}">private path</a>{% endblocktrans %}</strong><br />
+{% endwith %}
+{% private_paths %}

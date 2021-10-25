@@ -10,3 +10,7 @@ Kíktu í <a href="{% url 'register' %}">nýskráninguna</a> ef þú vilt birta 
 Góða ljóðaskemmtun!
 
 {% endblock content %}
+
+{% block side %}
+{% include 'poem/stub/author.private-paths.html' %}
+{% endblock %}

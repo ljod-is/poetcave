@@ -5,6 +5,7 @@ from django.core.exceptions import PermissionDenied
 from django.db import transaction
 from django.forms import ValidationError
 from django.http import Http404
+from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.urls import reverse
@@ -207,13 +208,19 @@ def bookmark_delete(request, poem_id):
     return redirect(reverse('bookmarks'))
 
 
-def author(request, author_id):
-    try:
-        author = Author.objects.get(id=author_id)
-    except Author.DoesNotExist:
+def author(request, author_id=None, private_path=None):
+
+    # Figure out the author, regardless of whether it's being looked up by ID
+    # or private path.
+    if author_id is None and private_path is not None:
+        author = get_object_or_404(Author, private_path=private_path)
+    elif author_id is not None and private_path is None:
+        author = get_object_or_404(Author, id=author_id)
+    else:
+        # This shouldn't happen, but just in case.
         raise Http404
 
-    poems = Poem.objects.visible_to(request.user).filter(author_id=author_id)
+    poems = Poem.objects.visible_to(request.user).filter(author_id=author.id)
 
     ctx = {
         'author': author,

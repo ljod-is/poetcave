@@ -97,6 +97,8 @@ class Command(BaseCommand):
 
             self.import_bookmarks()
 
+            self.configure_private_paths()
+
         except KeyboardInterrupt:
             quit(1)
 
@@ -442,4 +444,58 @@ class Command(BaseCommand):
                     flush=True
                 )
                 bookmark.save()
+                print(' done')
+
+    def configure_private_paths(self):
+
+        # These were produced by shell scripting around in the original's
+        # website. It didn't make sense to create some fancy code to parse
+        # it, seeing that this is a one-time thing.
+        #
+        # What we "path" here is effectively a username, at least in most
+        # cases. The new website doesn't have that as a rule, but it seems to
+        # be more or less the tradition in the old website.
+        paths_to_author_ids = {
+            'miriam': 2851,
+            'steindor': 3119,
+            'baj': 68,
+            'gudny': 3427,
+            'hugskot': 925,
+            'hjorvarpetursson': 641,
+            #'stefan': 9, # Does not exist.
+            'selma': 1361,
+            'kristjanf': 2361,
+            'gunni': 117,
+            'johannaidunn': 2501,
+            'sigrunh': 115,
+            'thursi': 1339,
+            'skar': 670,
+            'ingibjorg': 1471,
+            'arnar': 1380,
+            'hildur': 536,
+            'sirry': 1408,
+            'stefanbheidarsson': 194,
+            'svarri': 1527,
+            'hjalti': 94,
+            'harhar': 1110,
+            'hm': 558,
+            'stefanf': 1553,
+            'sofus': 1961,
+            'david': 13,
+            'heida': 257,
+            'janus': 378,
+            'Toshiki': 364,
+            'solvifannar': 1687,
+        }
+
+        for private_path in paths_to_author_ids:
+            author_id = paths_to_author_ids[private_path]
+            try:
+                author = Author.objects.get(id=author_id)
+            except:
+                import ipdb; ipdb.set_trace()
+            if author.private_path is None:
+                print('Setting private path for author "%s"...' % author, end='', flush=True)
+                author.private_path = private_path
+                author.save()
                 print(' done')

@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.db import models
 from django.db import transaction
 from django.db.models import Prefetch
@@ -92,6 +93,10 @@ class Author(models.Model):
     year_dead = models.SmallIntegerField(null=True, blank=True)
     about = models.TextField(null=True, blank=True)
 
+    # A unique, private path for VIPs. Set by administrator.
+    # Example: https://poetcave.org/john-smith
+    private_path = models.CharField(max_length=150, unique=True, null=True, blank=True, validators=[UnicodeUsernameValidator()])
+
     # Author's associated user. This separation is done because there may be
     # authors without associated users and possibly users without associated
     # authors. It is also possible that a user may administer many authors in
@@ -115,7 +120,10 @@ class Author(models.Model):
             return self.name
 
     def get_absolute_url(self):
-        return reverse('author', args=(self.id,))
+        if self.private_path is not None:
+            return reverse('author', kwargs={'private_path': self.private_path})
+        else:
+            return reverse('author', kwargs={'author_id': self.id})
 
     class Meta:
         ordering = ['name', 'year_born']

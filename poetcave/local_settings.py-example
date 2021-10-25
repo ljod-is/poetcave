@@ -2,6 +2,14 @@
 INSTANCE_NAME = 'PoetCave'
 INSTANCE_DOMAIN = 'poetcave.org'
 INSTANCE_WEB = 'https://www.%s' % INSTANCE_DOMAIN
+# `INSTANCE_FANCY_URL` is for displaying links to the website in a fancy way,
+# typically with a "www." and without a protocol prefix ("https://").
+# Example uses:
+# 1. when displaying links regardless of which domain the user is visiting,
+# 2. when the protocol prefix is unwanted,
+# 3. for displaying non-English characters while retaining strictly English
+#    characters in the URL itself.
+INSTANCE_FANCY_URL = 'www.poetcave.org'
 
 # Contact-related
 CONTACT_EMAIL = 'poetcave@poetcave.org'
