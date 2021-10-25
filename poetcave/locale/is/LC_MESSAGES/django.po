@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-21 18:23+0000\n"
+"POT-Creation-Date: 2021-10-25 10:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -467,23 +467,23 @@ msgstr "Lýsigögn ljóða"
 msgid "Material"
 msgstr ""
 
-#: poem/models.py:220
+#: poem/models.py:228
 msgid "Unpublished"
 msgstr "Óútgefið"
 
-#: poem/models.py:223
+#: poem/models.py:231
 msgid "Trashed"
 msgstr "Í ruslafötu"
 
-#: poem/models.py:226
+#: poem/models.py:234
 msgid "Pending approval"
 msgstr "Bíður samþykktar"
 
-#: poem/models.py:229
+#: poem/models.py:237
 msgid "Rejected"
 msgstr "Hafnað"
 
-#: poem/models.py:232
+#: poem/models.py:240
 msgid "Approved"
 msgstr "Samþykkt"
 
@@ -836,6 +836,11 @@ msgstr "Setja bókamerki"
 #: poem/templates/poem/side.more-from-author.html:6
 msgid "Poems by"
 msgstr "Ljóð eftir"
+
+#: poem/templates/poem/stub/author.private-paths.html:8
+#, python-format
+msgid "Users with a <a href=\"%(private_path_doc_path)s\">private path</a>"
+msgstr "Notendur með <a href=\"%(private_path_doc_path)s\">einkaslóð</a>"
 
 #: poem/templates/poem/stub/poem.in-listing.html:4
 msgid "by"
