@@ -1,6 +1,6 @@
 {% load i18n %}
 
-[<a href="{% url 'bookmark_add' poem.id %}">{% trans 'Place bookmark' %}</a>]
+<button href="{% url 'bookmark_add' poem.id %}">{% trans 'Place bookmark' %}</button>
 <br /><br />
 
 {% trans 'Poems by' %} <strong>{{ poem.author.name_dative }}</strong>
