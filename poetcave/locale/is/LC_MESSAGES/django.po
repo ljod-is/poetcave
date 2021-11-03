@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-10-25 10:07+0000\n"
+"POT-Creation-Date: 2021-11-03 15:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -467,6 +467,14 @@ msgstr "Lýsigögn ljóða"
 msgid "Material"
 msgstr ""
 
+#: poem/forms.py:46
+msgid "A poem has already been designated to the given date."
+msgstr ""
+
+#: poem/forms.py:50
+msgid "This poem is already queued as a daily poem."
+msgstr ""
+
 #: poem/models.py:228
 msgid "Unpublished"
 msgstr "Óútgefið"
@@ -521,6 +529,7 @@ msgstr "Umfjöllun (valfrjálst)"
 
 #: poem/templates/poem/control/add.html:34
 #: poem/templates/poem/control/delete.html:17
+#: poem/templates/poem/side.daypoem-control.html:27
 msgid "OK"
 msgstr "Í lagi"
 
@@ -528,6 +537,7 @@ msgstr "Í lagi"
 #: poem/templates/poem/control/delete.html:18
 #: poem/templates/poem/control/unpublish.html:15
 #: poem/templates/poem/moderate.html:78
+#: poem/templates/poem/side.daypoem-control.html:28
 msgid "Cancel"
 msgstr "Hætta við"
 
@@ -829,11 +839,74 @@ msgstr ""
 msgid "Untrash"
 msgstr "Endurheimta"
 
+#: poem/templates/poem/side.daypoem-control.html:11
+#, python-format
+msgid ""
+"This poem is upcoming as the <strong>daily poem</strong> on <strong>%(day)s</"
+"strong>."
+msgstr "Þetta ljóð hefur verið valið <strong>ljóð dagsins</strong> þann <strong>%(day)s</strong>."
+
+#: poem/templates/poem/side.daypoem-control.html:13
+#: poem/templates/poem/side.daypoem-control.html:34
+msgid "Today"
+msgstr "Í dag"
+
+#: poem/templates/poem/side.daypoem-control.html:18
+msgid "Unqueue"
+msgstr "Taka úr biðröð"
+
+#: poem/templates/poem/side.daypoem-control.html:24
+msgid ""
+"Are you sure that you want to remove this poem from the daily poem queue?"
+msgstr "Ertu viss um að þú viljir fjarlægja þetta ljóð úr biðröð til ljóðs dagsins?"
+
+#: poem/templates/poem/side.daypoem-control.html:25
+msgid ""
+"Its current selected date will not have its daily poem until one is selected "
+"again."
+msgstr "Núverandi fyrirhuguð dagsetning mun ekki hafa skilgreint ljóð dagsins þar til ljóð hefur aftur verið valið fyrir hana."
+
+#: poem/templates/poem/side.daypoem-control.html:32
+#, python-format
+msgid ""
+"The next empty slot for the daily poem is at <strong>%(next_available)s</"
+"strong>."
+msgstr "Næsta lausa dagsetning fyrir ljóð dagsins er <strong>%(next_available)s</strong>."
+
+#: poem/templates/poem/side.daypoem-control.html:38
+msgid ""
+"Press the following button to select this poem as the daily poem for that "
+"date."
+msgstr "Smelltu á eftirfarandi takka til þess að velja þetta ljóð sem ljóð þess dags."
+
+#: poem/templates/poem/side.daypoem-control.html:46
+msgid "Errors"
+msgstr "Villur"
+
+#: poem/templates/poem/side.daypoem-control.html:49
+msgid "Queue"
+msgstr "Setja í biðröð"
+
+#: poem/templates/poem/side.daypoem-control.html:55
+msgid ""
+"This poem was selected as the daily poem in the past, on the following dates:"
+msgstr "Þetta ljóð hefur áður verið ljóð dagsins, á eftirfarandi dagsetningum:"
+
+#: poem/templates/poem/side.daypoem-control.html:63
+msgid ""
+"Past daily poems may be selected again, unless they are already waiting in "
+"queue."
+msgstr "Fyrri ljóð dagsins má gera að ljóðum dagsins aftur, nema þau séu nú þegar í biðröð."
+
 #: poem/templates/poem/side.more-from-author.html:3
 msgid "Place bookmark"
 msgstr "Setja bókamerki"
 
-#: poem/templates/poem/side.more-from-author.html:6
+#: poem/templates/poem/side.more-from-author.html:4
+msgid "Set daily poem"
+msgstr "Setja ljóð dagsins"
+
+#: poem/templates/poem/side.more-from-author.html:7
 msgid "Poems by"
 msgstr "Ljóð eftir"
 
