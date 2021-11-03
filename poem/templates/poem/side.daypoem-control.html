@@ -1,0 +1,65 @@
+{% load i18n %}
+{% load daypoem %}
+
+{% comment %}
+    The form instance given to this template represents the next `DayPoem` of the poem in two, similar ways.
+    1. When it has already been saved to the database, it represents the next date that the poem has been selected as the daily poem.
+    2. When it has **not** been saved to the database, it represents the next **available** date for daily poem.
+{% endcomment %}
+{% if form.instance.pk %}
+    {% with form.instance.day as day %}
+    {% blocktrans %}This poem is upcoming as the <strong>daily poem</strong> on <strong>{{ day }}</strong>.{% endblocktrans %}
+    {% if day|is_today %}
+        ({% trans 'Today' %})
+    {% endif %}
+    {% endwith %}
+
+    <br /><br />
+    <button id="button-unset-daypoem">{% trans 'Unqueue' %}</button>
+    <div id="panel-confirm-unset-daypoem" style="display: none;">
+        <form method="post">
+        {% csrf_token %}
+        <input type="hidden" name="{{ form.poem.html_name}}" value="{{ form.poem.value }}" />
+        <input type="hidden" name="{{ form.day.html_name }}" value="" />
+        {% trans 'Are you sure that you want to remove this poem from the daily poem queue?' %}
+        {% trans 'Its current selected date will not have its daily poem until one is selected again.' %}
+        <br /><br />
+        <button>{% trans 'OK' %}</button>
+        <button type="button" id="button-cancel-unset-daypoem">{% trans 'Cancel' %}</button>
+        </form>
+    </div>
+{% else %}
+    {% blocktrans %}The next empty slot for the daily poem is at <strong>{{ next_available }}</strong>.{% endblocktrans %}
+    {% if next_available|is_today %}
+        ({% trans 'Today' %})
+    {% endif %}
+    <br /><br />
+
+    {% trans 'Press the following button to select this poem as the daily poem for that date.' %}
+
+    <br /><br />
+    <form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="{{ form.poem.html_name}}" value="{{ form.poem.value }}" />
+    <input type="hidden" name="{{ form.day.html_name }}" value="{{ form.instance.day.isoformat }}" />
+    {% if form.day.errors %}
+        {% trans 'Errors' %}:
+        {{ form.day.errors }}
+    {% endif %}
+    <button>{% trans 'Queue' %}</button>
+    </form>
+{% endif %}
+
+{% if previous_daypoems %}
+    <hr />
+    {% trans 'This poem was selected as the daily poem in the past, on the following dates:' %}
+    <ul>
+    {% for previous_daypoem in previous_daypoems %}
+        <li>
+            {{ previous_daypoem.day|date }}
+        </li>
+    {% endfor %}
+    </ul>
+    {% trans 'Past daily poems may be selected again, unless they are already waiting in queue.' %}
+{% endif %}
+

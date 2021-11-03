@@ -19,6 +19,7 @@ urlpatterns = [
     path('poems/newest/', views.poems_newest, name='poems_newest'),
     path('poems/daypoems/<int:year>/', views.poems_daypoems, name='poems_daypoems'),
     path('poems/daypoems/', views.poems_daypoems, name='poems_daypoems'),
+    path('poems/daypoem/set/<int:poem_id>/', views.poem_set_daypoem, name='poem_set_daypoem'),
     path('poems/by-author/<str:letter>/', views.poems_by_author, name='poems_by_author'),
     path('poems/by-author/', views.poems_by_author, name='poems_by_author'),
     path('poems/search/', views.poems_search, name='poems_search'),

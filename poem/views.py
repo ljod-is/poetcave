@@ -10,6 +10,8 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.utils import timezone
+from django.utils.dateparse import parse_date
+from poem.forms import DayPoemForm
 from poem.forms import PoemForm
 from poem.models import Author
 from poem.models import Bookmark
@@ -272,6 +274,85 @@ def poems_daypoems(request, year=None):
         'listing_type': 'daypoems',
     }
     return render(request, 'poem/poems.html', ctx)
+
+
+@login_required
+def poem_set_daypoem(request, poem_id):
+
+    if not request.user.is_moderator:
+        raise PermissionDenied
+
+    # Make sure that the poem in question makes sense.
+    try:
+        poem = Poem.objects.get(id=poem_id, editorial__status='approved')
+    except Poem.DoesNotExist:
+        raise Http404
+
+    today = timezone.now().date()
+
+    # Iterate through already existing future daypoems and check if the
+    # currently attempted `next_available` is actually not available. If it's
+    # not available, we try the day after that and loop. When we hit an
+    # attempt that doesn't correspond to the next existing daypoem entry, we
+    # determine that day to be the next available day and break the loop.
+    #
+    # This means that if already existing daypoems have available space
+    # between them, that space will be utilized.
+    #
+    # When we've gone through all existing future daypoems, the loop will end
+    # with the next available date being the last iteration, plus one day.
+    next_available = today # Initial attempt is today.
+    daypoems = DayPoem.objects.filter(day__gte=next_available).order_by('day')
+    for daypoem in daypoems:
+        if daypoem.day == next_available:
+            next_available += timedelta(days=1)
+        else:
+            break
+
+    # Check if poem is already a future day's poem. If so, then we don't want
+    # to add a new DayPoem with the same poem. (See template.)
+    daypoem = DayPoem.objects.filter(poem_id=poem.id, day__gte=today).first()
+    if daypoem is None:
+        # If not, we'll create a basic DayPoem object for the poem, with the
+        # next available date as the default date.
+        #
+        # Note that this object may both be used in the template to inform
+        # the user about the next available date, but also as the object that
+        # gets saved if the user decides to select the poem as the daily poem
+        # for the given date, although some of this data is then retrieved
+        # from the post submission (see below). It is created here once for
+        # viewing the template, and then again when the form is posted.
+        daypoem = DayPoem(
+            poem=poem,
+            day=next_available,
+            editorial_user=request.user,
+            editorial_timing=timezone.now()
+        )
+
+    # Merely to inform the user. Nothing prevents us from selecting a poem
+    # that was already selected in the past, merely from selecting a poem
+    # that has already been selected for the future.
+    previous_daypoems = DayPoem.objects.filter(poem_id=poem.id, day__lt=today)
+
+    form = DayPoemForm(instance=daypoem)
+    if request.method == 'POST':
+        form = DayPoemForm(request.POST, instance=daypoem)
+        if form.is_valid():
+            # If the designated day is None, it means that the `DailyPoem`
+            # should be removed. This is configured in the HTML form.
+            if form.instance.day is None:
+                form.instance.delete();
+            else:
+                form.save()
+            return redirect(reverse('poem_set_daypoem', args=[poem_id]))
+
+    ctx = {
+        'form': form,
+        'poem': poem,
+        'previous_daypoems': previous_daypoems,
+        'next_available': next_available,
+    }
+    return render(request, 'poem/control/set_daypoem.html', ctx)
 
 
 def poems_by_author(request, letter=None):

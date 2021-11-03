@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block javascript %}
+<script language="javascript" type="text/javascript">
+    $(document).ready(function() {
+
+        $('#button-unset-daypoem').click(function() {
+            $('#button-unset-daypoem').hide();
+            $('#panel-confirm-unset-daypoem').show();
+        });
+
+        $('#button-cancel-unset-daypoem').click(function() {
+            $('#panel-confirm-unset-daypoem').hide();
+            $('#button-unset-daypoem').show();
+        });
+
+    });
+</script>
+{% endblock %}
+
+{% block sign %}{{ poem.name }}{% endblock %}
+
+{% block content %}
+
+    {% include 'poem/stub/poem.display.html' %}
+
+{% endblock %}
+
+{% block side %}
+
+    {% include 'poem/side.daypoem-control.html' %}
+
+{% endblock %}

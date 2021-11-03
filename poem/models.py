@@ -203,7 +203,7 @@ class Poem(models.Model):
 
 class DayPoem(models.Model):
     poem = models.ForeignKey('Poem', related_name='daypoems', on_delete=models.CASCADE)
-    day = models.DateField()
+    day = models.DateField(blank=True)
 
     editorial_user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.SET_NULL)
     editorial_timing = models.DateTimeField(auto_now_add=True, null=True, blank=True)

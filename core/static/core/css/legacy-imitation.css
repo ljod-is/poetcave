@@ -20,6 +20,8 @@ table td.control { padding-left: 20px; }
 input, button { border-width: 1px; }
 textarea { border-width: 1px; }
 
+ul.errorlist { margin-top: 0px; list-style: none; color: #dd0000; }
+
 .markdown h1 { font-family: Verdana; font-size: 10px; padding: 0px; margin: 0px; }
 .markdown h2 { font-family: Verdana; font-size: 10px; padding: 0px; margin: 0px; font-weight: normal; font-style: italic; }
 .markdown p { padding-bottom: 13px; }
