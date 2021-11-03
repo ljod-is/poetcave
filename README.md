@@ -28,10 +28,8 @@ Features that differ from the original are only different because they must be u
 - [x] Bookmarks
 - [x] Poem approval/rejection.
 - [x] Send email to author upon editorial decision.
-
-### Critiques
-- [ ] CRUD for critiques.
-- [ ] Critique approval/rejection.
+- [x] Daily poem selection (next available)
+- [ ] Daily poem selection (specific date)
 
 ### News and mailing list
 - [ ] CRUD for news (by administrator).
@@ -52,9 +50,16 @@ Features that differ from the original are only different because they must be u
 - [x] Authors
 - [x] Users
 - [x] Terms and conditions
-- [ ] Day poem selection
-- [ ] Critiques
 
 ### Other
 - [x] Static pages (FAQ, about, etc.)
 - [x] List of superusers and moderators.
+
+# Phase 2
+
+## Future features
+- [ ] Standard rejections in poem rejection, for example for spelling and language.
+- [ ] Set daily poem at approval of poem.
+- [ ] Everyday users able to suggest daily poem.
+- [ ] Ability to link to poem-related news and coverages externally.
+- [ ] Push-notifications for daily poem.
