@@ -459,7 +459,7 @@ class Command(BaseCommand):
             'miriam': 2851,
             'steindor': 3119,
             'baj': 68,
-            'gudny': 3427,
+            #'gudny': 3427, # Not on original website.
             'hugskot': 925,
             'hjorvarpetursson': 641,
             #'stefan': 9, # Does not exist.
