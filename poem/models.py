@@ -121,7 +121,7 @@ class Author(models.Model):
 
     def get_absolute_url(self):
         if self.private_path is not None:
-            return reverse('author', kwargs={'private_path': self.private_path})
+            return reverse('author_private_path', kwargs={'private_path': self.private_path})
         else:
             return reverse('author', kwargs={'author_id': self.id})
 

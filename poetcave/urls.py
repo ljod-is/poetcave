@@ -38,5 +38,5 @@ urlpatterns = [
     #
     # For this reason, this URL config is placed here instead of in the
     # `poem` app, even though that's what it organizationally belongs.
-    path('<str:private_path>/', author, name='author')
+    path('<str:private_path>/', author, name='author_private_path')
 ]
