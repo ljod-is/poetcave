@@ -189,10 +189,17 @@ class Command(BaseCommand):
                 user.id = row['id']
 
                 # Technical details.
+                # Some users in the existing data have confused "." for a
+                # ",", which we correct here.
                 user.username = row['user']
-                user.email = row['email']
+                user.email = row['email'].replace(',is', '.is').replace(',com', '.com')
                 user.is_superuser = user.is_staff = row['user'] in superusers
                 user.is_moderator = int(row['admin']) > 0
+
+                # Handle cases where people have added extra information to
+                # the email field which doesn't belong there
+                if ', ' in user.email:
+                    user.email = user.email[0:user.email.find(', ')]
 
                 # Personal details.
                 user.contact_name = row['fullname']
