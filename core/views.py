@@ -2,6 +2,7 @@ import frontmatter
 import json
 import os
 import zipfile
+from article.models import Article
 from core.forms import ProfileForm
 from core.forms import RegistrationForm
 from datetime import datetime
@@ -31,10 +32,15 @@ def main(request):
 
     # Check for daily poem.
     poem = Poem.objects.filter(daypoems__day=timezone.now().date()).first()
-    if poem is not None:
-        return render(request, 'poem/daypoem.html', {'poem': poem })
 
-    return render(request, 'core/main.html')
+    articles = Article.objects.all()[0:3]
+
+    ctx = {
+        # Will be None if no daily poem.
+        'poem': poem,
+        'articles': articles,
+    }
+    return render(request, 'core/main.html', ctx)
 
 
 def team(request):

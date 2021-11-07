@@ -1,16 +1,25 @@
 {% extends 'base.html' %}
 
+{% block sign %}
+    {% if poem %}{{ poem.name }}{% else %}{{ INSTANCE_NAME }}{% endif %}
+{% endblock %}
+
 {% block content %}
+    {% if poem %}
+        {% include 'poem/stub/poem.display.html' %}
+    {% else %}
 
-Ljóð.is er opinn og ókeypis ljóðavefur fyrir alla sem vilja lesa ljóð eftir aðra eða birta sín eigin ljóð. Á vefnum er að finna glæný ljóð í þúsundatali en einnig ljóðaperlur eftir gamla meistara.<br /><br />
+        Ljóð.is er opinn og ókeypis ljóðavefur fyrir alla sem vilja lesa ljóð eftir aðra eða birta sín eigin ljóð. Á vefnum er að finna glæný ljóð í þúsundatali en einnig ljóðaperlur eftir gamla meistara.<br /><br />
 
-Kíktu í <a href="{% url 'poems' %}">ljóðasafnið</a> ef þú vilt leita og lesa.<br />
-Kíktu í <a href="{% url 'register' %}">nýskráninguna</a> ef þú vilt birta þín eigin ljóð.<br /><br />
+        Kíktu í <a href="{% url 'poems' %}">ljóðasafnið</a> ef þú vilt leita og lesa.<br />
+        Kíktu í <a href="{% url 'register' %}">nýskráninguna</a> ef þú vilt birta þín eigin ljóð.<br /><br />
 
-Góða ljóðaskemmtun!
+        Góða ljóðaskemmtun!
 
+    {% endif %}
 {% endblock content %}
 
 {% block side %}
-{% include 'poem/stub/author.private-paths.html' %}
+    {% include 'article/side.latest.html' %}
+    {% include 'poem/stub/author.private-paths.html' %}
 {% endblock %}

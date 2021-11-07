@@ -1,0 +1,11 @@
+{% load i18n %}
+
+<b>{% trans 'News' %}</b><br>
+
+{% for article in articles %}
+    <a href="#">{{ article.name }}</a><br>
+    {{ article.description }}<br><br>
+{% endfor %}
+
+<a href="#">Sjá allar fréttir</a><br>
+<br /><br />
