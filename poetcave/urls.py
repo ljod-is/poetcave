@@ -23,6 +23,7 @@ from poem.views import author
 urlpatterns = [
     path('', include('core.urls')),
     path('', include('poem.urls')),
+    path('', include('article.urls')),
 
     path('admin/', admin.site.urls),
 

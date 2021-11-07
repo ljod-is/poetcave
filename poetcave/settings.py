@@ -32,6 +32,7 @@ INSTALLED_APPS = [
 
     'core',
     'poem',
+    'article',
 
     'termsandconditions',
     'django_markdown2',

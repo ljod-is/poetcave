@@ -6,6 +6,8 @@ feature-complete, this script should be deleted.
 There's a bit more hard-coding here than usual for this reason. This will
 never become general-purpose.
 '''
+from article.models import Article
+
 from datetime import datetime
 from datetime import date
 
@@ -96,6 +98,8 @@ class Command(BaseCommand):
             self.import_day_poem()
 
             self.import_bookmarks()
+
+            self.import_articles()
 
             self.configure_private_paths()
 
@@ -452,6 +456,38 @@ class Command(BaseCommand):
                 )
                 bookmark.save()
                 print(' done')
+
+    def import_articles(self):
+        with self.connection.cursor() as cursor:
+            existing_article_ids = ','.join([str(i) for i in Article.objects.all().values_list('id', flat=True)]) or '0'
+
+            cursor.execute('''
+                SELECT
+                    `id`,
+                    `fyrirsogn`,
+                    `utdrattur`,
+                    `efni`
+                FROM
+                    `frettir`
+                WHERE
+                    `trashed` = 0
+                    AND `id` NOT IN (%s)
+            ''' % existing_article_ids)
+
+            for row in dictfetchall(cursor):
+                article = Article()
+                article.id = row['id']
+                article.name = row['fyrirsogn']
+                article.description = row['utdrattur']
+                article.body = row['efni']
+                article.editorial_status = 'published'
+
+                print('Saving news article "%s"...' % row['fyrirsogn'], end='', flush=True)
+                article.save()
+                print(' done')
+
+                # We don't have `editorial_timing` information. Articles will
+                # just have to be ordered according to descending ID.
 
     def configure_private_paths(self):
 
