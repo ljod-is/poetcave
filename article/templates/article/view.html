@@ -8,6 +8,9 @@
         var $div_article_delete = $('#div-article-delete');
         var $btn_article_delete = $('#btn-article-delete');
         var $btn_article_delete_cancel = $('#btn-article-delete-cancel');
+        var $div_article_unpublish = $('#div-article-unpublish');
+        var $btn_article_unpublish = $('#btn-article-unpublish');
+        var $btn_article_unpublish_cancel = $('#btn-article-unpublish-cancel');
 
         $btn_article_delete.click(function() {
             $btn_article_delete.hide();
@@ -17,6 +20,16 @@
         $btn_article_delete_cancel.click(function() {
             $div_article_delete.hide();
             $btn_article_delete.show();
+        });
+
+        $btn_article_unpublish.click(function() {
+            $btn_article_unpublish.hide();
+            $div_article_unpublish.show();
+        });
+
+        $btn_article_unpublish_cancel.click(function() {
+            $div_article_unpublish.hide();
+            $btn_article_unpublish.show();
         });
     });
 </script>
@@ -47,6 +60,31 @@
             <button type="button" id="btn-article-delete-cancel">{% trans 'Cancel' %}</button>
             </form>
         </div>
+
+        <hr />
+
+        {% if article.editorial_status == 'published' %}
+            <p>{% trans 'This news article is already published.' %}</p>
+            <p>{% trans 'Press the following article to withdraw its publication.' %}</p>
+            <button type="button" id="btn-article-unpublish">{% trans 'Unpublish' %}</button>
+            <div id="div-article-unpublish" style="display: none;">
+                <form action="{% url 'article_publish' article.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="editorial_status" value="unpublished" />
+                    <p>{% trans 'Are you sure you want to unpublish this news article? This action cannot be undone.' %}</p>
+                    <button>{% trans 'Unpublish' %}</button>
+                    <button type="button" id="btn-article-unpublish-cancel">{% trans 'Cancel' %}</button>
+                </form>
+            </div>
+        {% elif article.editorial_status == 'unpublished' %}
+            <p>{% trans 'This news article has not yet been published.' %}</p>
+            <p>{% trans 'Press the following article to publish it and make it public.' %}</p>
+            <form action="{% url 'article_publish' article.id %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="editorial_status" value="published" />
+                <button>{% trans 'Publish' %}</button>
+            </form>
+        {% endif %}
 
     {% endif %}
 {% endblock %}

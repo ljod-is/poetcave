@@ -33,7 +33,11 @@ def main(request):
     # Check for daily poem.
     poem = Poem.objects.filter(daypoems__day=timezone.now().date()).first()
 
-    articles = Article.objects.visible_to(request.user)[0:settings.NEWEST_ARTICLE_COUNT]
+    articles = Article.objects.visible_to(
+        request.user
+    ).filter(
+        editorial_status='published'
+    )[0:settings.NEWEST_ARTICLE_COUNT]
 
     ctx = {
         # Will be None if no daily poem.
