@@ -17,8 +17,11 @@ from django.db import connections
 from django.db import transaction
 from django.db.models import Count
 from django.utils import timezone
+from django.utils.html import strip_tags
 
 from core.models import User
+
+from html import unescape
 
 from poem.models import Author
 from poem.models import Bookmark
@@ -458,6 +461,53 @@ class Command(BaseCommand):
                 print(' done')
 
     def import_articles(self):
+
+        def deal_with_html(content):
+            '''
+            Here we do our best to deal with old HTML, problem being that it
+            could be formatted in a number of different ways.
+
+            Either reporters or administrators will just have to manually
+            change the content when it gets boggled up too badly.
+            '''
+
+            # Make it meaningful.
+            try:
+                content = content.decode('utf-8')
+            except UnicodeDecodeError:
+                # Heh. Yeah. Sorry.
+                content = content.decode('iso-8859-1')
+
+            # Unescape HTML.
+            content = unescape(content)
+
+            # Replace HTML breaks with newlines.
+            content = content.replace('<br>', '\n')
+            content = content.replace('<BR>', '\n')
+
+            # Remove excessive newlines.
+            while content.find('\n\n') > -1:
+                content = content.replace('\n\n', '\n')
+
+            # Remove HTMl altogether.
+            content = strip_tags(content)
+
+            # Remove white-space in the beginning of each line.
+            # Regex was taking more time than it's worth, as usual.
+            newcontent = ''
+            for line in content.split('\n'):
+                while line.find(' ') == 0:
+                    line = line[1:]
+                newcontent += line + '\n'
+            content = newcontent
+
+            # Remove preceding or trailing whitespce.
+            content = content.strip()
+
+            # We now have content compatible with markdown, although without
+            # styling. We're just going to have to live with that.
+            return content
+
         with self.connection.cursor() as cursor:
             existing_article_ids = ','.join([str(i) for i in Article.objects.all().values_list('id', flat=True)]) or '0'
 
@@ -478,8 +528,8 @@ class Command(BaseCommand):
                 article = Article()
                 article.id = row['id']
                 article.name = row['fyrirsogn']
-                article.description = row['utdrattur']
-                article.body = row['efni']
+                article.description = unescape(row['utdrattur'])
+                article.body = deal_with_html(row['efni'])
                 article.editorial_status = 'published'
 
                 print('Saving news article "%s"...' % row['fyrirsogn'], end='', flush=True)
