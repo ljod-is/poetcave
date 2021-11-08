@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-08 19:38+0000\n"
+"POT-Creation-Date: 2021-11-08 21:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -26,15 +26,121 @@ msgstr "Óútgefið"
 msgid "Published"
 msgstr "Útgefið"
 
+#: article/templates/article/control/add.html:4
+msgid "Edit news article"
+msgstr ""
+
+#: article/templates/article/control/add.html:4
+msgid "Add news article"
+msgstr ""
+
+#: article/templates/article/control/add.html:9
+msgid ""
+"Note that this news article has already been published, and will "
+"automatically be unpublished if it is edited, requiring republication."
+msgstr "Athugið að vegna þess að þessi fréttagrein hefur þegar verið gefin út, verður hún sjálfkrafa dregin til baka við breytingu og mun þurfa endurútgáfu til að verða aftur opinberlega sýnileg."
+
+#: article/templates/article/control/add.html:17
+#: poem/templates/poem/control/add.html:13
+msgid "Title"
+msgstr "Titill"
+
+#: article/templates/article/control/add.html:24
+#: poem/templates/poem/control/add.html:27
+msgid "Description (optional)"
+msgstr "Umfjöllun (valfrjálst)"
+
+#: article/templates/article/control/add.html:31
+#: poem/templates/poem/control/add.html:20
+msgid "Body"
+msgstr "Texti"
+
+#: article/templates/article/control/add.html:38
+#: article/templates/article/view.html:59
+#: poem/templates/poem/control/add.html:34
+#: poem/templates/poem/control/delete.html:17
+#: poem/templates/poem/side.daypoem-control.html:27
+msgid "OK"
+msgstr "Í lagi"
+
+#: article/templates/article/control/add.html:39
+#: article/templates/article/view.html:60
+#: article/templates/article/view.html:76
+#: poem/templates/poem/control/add.html:35
+#: poem/templates/poem/control/delete.html:18
+#: poem/templates/poem/control/unpublish.html:15
+#: poem/templates/poem/moderate.html:78
+#: poem/templates/poem/side.daypoem-control.html:28
+msgid "Cancel"
+msgstr "Hætta við"
+
 #: article/templates/article/list.html:4
 #: article/templates/article/side.latest.html:3
-#: article/templates/article/view.html:5
+#: article/templates/article/view.html:38
 msgid "News"
 msgstr "Fréttir"
 
 #: article/templates/article/list.html:9
 msgid "Add"
 msgstr "Bæta við"
+
+#: article/templates/article/view.html:49
+#: poem/templates/poem/side.control.html:28
+#: poem/templates/poem/side.control.html:83
+msgid "Edit"
+msgstr "Breyta"
+
+#: article/templates/article/view.html:50
+#: poem/templates/poem/side.control.html:29
+#: poem/templates/poem/side.control.html:84
+#: poem/templates/poem/side.control.html:108
+msgid "Delete"
+msgstr "Eyða"
+
+#: article/templates/article/view.html:57
+msgid ""
+"Are you sure that you want to permanently delete this news article? This "
+"action cannot be undone."
+msgstr ""
+"Ertu viss um að þú viljir eyða þessari frétt? Ekki er hægt að taka þessa "
+"aðgerð til baka."
+
+#: article/templates/article/view.html:67
+msgid "This news article is already published."
+msgstr "Þessi fréttagrein hefur þegar verið birt."
+
+#: article/templates/article/view.html:68
+msgid "Press the following button to withdraw its publication."
+msgstr ""
+"Smelltu á eftirfarandi takka til þess að afturkalla birtinguna."
+
+#: article/templates/article/view.html:69
+#: article/templates/article/view.html:75
+#: poem/templates/poem/control/unpublish.html:14
+#: poem/templates/poem/side.control.html:41
+#: poem/templates/poem/side.control.html:96
+msgid "Unpublish"
+msgstr "Afturkalla"
+
+#: article/templates/article/view.html:74
+msgid ""
+"Are you sure you want to unpublish this news article? This action cannot be "
+"undone."
+msgstr ""
+"Ertu viss um að afturkalla birtingu þessarar fréttagreinar? Þessa aðgerð er ekki hægt að taka til baka."
+
+#: article/templates/article/view.html:80
+msgid "This news article has not yet been published."
+msgstr "Þessi fréttagrein hefur ekki enn verið birt."
+
+#: article/templates/article/view.html:81
+msgid "Press the following button to publish it and make it public."
+msgstr "Smelltu á eftirfarandi takka til þess að gefa hana út og gera opinberlega aðgengilega."
+
+#: article/templates/article/view.html:85
+#: poem/templates/poem/side.control.html:20
+msgid "Publish"
+msgstr "Gefa út"
 
 #: core/forms.py:15
 msgid "Email address is already in use."
@@ -178,7 +284,7 @@ msgstr ""
 "netfang hingað inn að neðan, smellið á \"Senda\", og nýja lykilorðið ætti að "
 "koma innan örfárra mínútna í mesta lagi."
 
-#: core/templates/core/user/password_reset/reset.html:21 core/views.py:246
+#: core/templates/core/user/password_reset/reset.html:21 core/views.py:250
 msgid "Email"
 msgstr ""
 
@@ -315,7 +421,7 @@ msgstr ""
 msgid "Contact us"
 msgstr "Hafðu samband"
 
-#: core/templates/core/user/team/user.html:8 core/views.py:247
+#: core/templates/core/user/team/user.html:8 core/views.py:251
 msgid "Name"
 msgstr "Nafn"
 
@@ -421,67 +527,67 @@ msgstr ""
 "Athugasemdum eða spurningum varðandi persónuvernd eða notkunarskilmála má "
 "beina á netfangið <a href=\"mailto:%(CONTACT_EMAIL)s\">%(CONTACT_EMAIL)s</a>."
 
-#: core/views.py:136
+#: core/views.py:140
 msgid "Password updated."
 msgstr "Lykilorð uppfært."
 
-#: core/views.py:149
+#: core/views.py:153
 msgid "Profile updated."
 msgstr "Notandaupplýsingar uppfærðar."
 
-#: core/views.py:245
+#: core/views.py:249
 msgid "Username"
 msgstr "Notandanafn"
 
-#: core/views.py:248
+#: core/views.py:252
 msgid "Address"
 msgstr "Heimilisfang"
 
-#: core/views.py:249
+#: core/views.py:253
 msgid "Postal code"
 msgstr "Póstnúmer"
 
-#: core/views.py:250
+#: core/views.py:254
 msgid "Place"
 msgstr "Staður"
 
-#: core/views.py:251
+#: core/views.py:255
 msgid "Phone"
 msgstr "Sími"
 
-#: core/views.py:252
+#: core/views.py:256
 msgid "Last updated"
 msgstr "Síðast uppfært"
 
-#: core/views.py:253
+#: core/views.py:257
 msgid "Author name"
 msgstr "Höfundanafn"
 
-#: core/views.py:254
+#: core/views.py:258
 msgid "Author name (accusative)"
 msgstr "Höfundanafn (þolfalli)"
 
-#: core/views.py:255
+#: core/views.py:259
 msgid "Author birth-year"
 msgstr "Höfundur fæddist"
 
-#: core/views.py:256
+#: core/views.py:260
 msgid "Author death-year"
 msgstr "Höfundur lést"
 
-#: core/views.py:257
+#: core/views.py:261
 msgid "About"
 msgstr "Um"
 
-#: core/views.py:278
+#: core/views.py:282
 msgid "User data"
 msgstr "Notandagögn"
 
-#: core/views.py:282
+#: core/views.py:286
 msgid "Poems"
 msgstr "Ljóð"
 
-#: core/views.py:315
+#: core/views.py:319
 msgid "Poem metadata"
 msgstr "Lýsigögn ljóða"
 
@@ -533,32 +639,6 @@ msgstr "Meira um höfund"
 msgid "Edit poem"
 msgstr "Breyta ljóði"
 
-#: poem/templates/poem/control/add.html:13
-msgid "Title"
-msgstr "Titill"
-
-#: poem/templates/poem/control/add.html:20
-msgid "Body"
-msgstr "Texti"
-
-#: poem/templates/poem/control/add.html:27
-msgid "Description (optional)"
-msgstr "Umfjöllun (valfrjálst)"
-
-#: poem/templates/poem/control/add.html:34
-#: poem/templates/poem/control/delete.html:17
-#: poem/templates/poem/side.daypoem-control.html:27
-msgid "OK"
-msgstr "Í lagi"
-
-#: poem/templates/poem/control/add.html:35
-#: poem/templates/poem/control/delete.html:18
-#: poem/templates/poem/control/unpublish.html:15
-#: poem/templates/poem/moderate.html:78
-#: poem/templates/poem/side.daypoem-control.html:28
-msgid "Cancel"
-msgstr "Hætta við"
-
 #: poem/templates/poem/control/delete.html:9
 msgid "Are you sure you wish to delete this poem?"
 msgstr "Ertu viss um að þú viljir eyða þessu ljóði?"
@@ -576,12 +656,6 @@ msgstr "Afturkalla útgáfu"
 #: poem/templates/poem/control/unpublish.html:9
 msgid "Are you sure you wish to unpublish this poem?"
 msgstr "Ertu viss um að þú viljir afkalla útgáfu þessa ljóðs?"
-
-#: poem/templates/poem/control/unpublish.html:14
-#: poem/templates/poem/side.control.html:41
-#: poem/templates/poem/side.control.html:96
-msgid "Unpublish"
-msgstr "Afturkalla"
 
 #: poem/templates/poem/mail/poem_approved.html:79
 #, python-format
@@ -749,27 +823,12 @@ msgstr ""
 "Þegar þú ákveður að gefa það út, verður það yfirfarið af ritstjórn áður en "
 "það er birt á vefnum."
 
-#: poem/templates/poem/side.control.html:20
-msgid "Publish"
-msgstr "Gefa út"
-
 #: poem/templates/poem/side.control.html:24
 msgid ""
 "You can also <strong>edit</strong> or <strong>delete</strong> it if you wish."
 msgstr ""
 "Þú getur einnig <strong>breytt</strong> eða <strong>eytt</strong> því ef þú "
 "vilt."
-
-#: poem/templates/poem/side.control.html:28
-#: poem/templates/poem/side.control.html:83
-msgid "Edit"
-msgstr "Breyta"
-
-#: poem/templates/poem/side.control.html:29
-#: poem/templates/poem/side.control.html:84
-#: poem/templates/poem/side.control.html:108
-msgid "Delete"
-msgstr "Eyða"
 
 #: poem/templates/poem/side.control.html:33
 msgid "It is currently <strong>awaiting approval</strong> by an editor."

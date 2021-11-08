@@ -65,7 +65,7 @@
 
         {% if article.editorial_status == 'published' %}
             <p>{% trans 'This news article is already published.' %}</p>
-            <p>{% trans 'Press the following article to withdraw its publication.' %}</p>
+            <p>{% trans 'Press the following button to withdraw its publication.' %}</p>
             <button type="button" id="btn-article-unpublish">{% trans 'Unpublish' %}</button>
             <div id="div-article-unpublish" style="display: none;">
                 <form action="{% url 'article_publish' article.id %}" method="post">
@@ -78,7 +78,7 @@
             </div>
         {% elif article.editorial_status == 'unpublished' %}
             <p>{% trans 'This news article has not yet been published.' %}</p>
-            <p>{% trans 'Press the following article to publish it and make it public.' %}</p>
+            <p>{% trans 'Press the following button to publish it and make it public.' %}</p>
             <form action="{% url 'article_publish' article.id %}" method="post">
                 {% csrf_token %}
                 <input type="hidden" name="editorial_status" value="published" />
