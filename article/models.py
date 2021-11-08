@@ -1,8 +1,22 @@
 from django.conf import settings
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 
+
+class ArticleQuerySet(models.QuerySet):
+    # Limits articles to those that the given user has access to. Reporters
+    # have access to them all, but others only have access to published ones.
+    def visible_to(self, user):
+        if user.is_authenticated and user.is_reporter:
+            return self
+        else:
+            return self.filter(editorial_status='published')
+
+
 class Article(models.Model):
+    objects = ArticleQuerySet.as_manager()
+
     EDITORIAL_STATUS_CHOICES = [
         ('unpublished', _('Unpublished')),
         ('published', _('Published')),
@@ -18,6 +32,9 @@ class Article(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('article', kwargs={'article_id': self.id})
 
     class Meta:
         # ID is used in ordering also because news articles on the old

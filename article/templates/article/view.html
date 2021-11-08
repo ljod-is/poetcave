@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load md2 %}
+
+{% block sign %}{% trans 'News' %}{% endblock %}
+
+{% block content %}
+
+<strong>{{ article.name }}</strong><br/>
+<em>{{ article.description }}</em><br />
+<br />
+{{ article.body|markdown }}
+
+{% endblock %}

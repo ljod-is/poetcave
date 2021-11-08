@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block sign %}{% trans 'News' %}{% endblock %}
+
+{% block content %}
+
+    {% if user.is_reporter %}
+        <button href="#">{% trans 'Add' %}</button>
+        <br /><br />
+    {% endif %}
+
+    <table>
+    {% for article in articles %}
+        <tr>
+            <td><a href="{{ article.get_absolute_url }}">{{ article.name }}</a></td>
+            {% if user.is_reporter %}
+                <td style="white-space: nowrap; text-align: right; padding-left: 12px;">{{ article.get_editorial_status_display }}</td>
+            {% endif %}
+        </tr>
+    {% endfor %}
+    </table>
+
+{% endblock %}

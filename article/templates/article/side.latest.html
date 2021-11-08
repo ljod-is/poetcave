@@ -3,9 +3,9 @@
 <b>{% trans 'News' %}</b><br>
 
 {% for article in articles %}
-    <a href="#">{{ article.name }}</a><br>
+    <a href="{{ article.get_absolute_url }}">{{ article.name }}</a><br>
     {{ article.description }}<br><br>
 {% endfor %}
 
-<a href="#">Sjá allar fréttir</a><br>
+<a href="{% url 'articles' %}">Sjá allar fréttir</a><br>
 <br /><br />

@@ -28,9 +28,14 @@
             <a href="{% url 'logout' %}">{% trans 'Logout' %}</a>
         </div>
 
-        {% if user.is_moderator %}
+        {% if user.is_moderator or user.is_reporter %}
             <div class="nav-section">
-                <a href="{% url 'poems_moderate' %}">{% trans 'Moderate poems' %}</a>
+                {% if user.is_moderator %}
+                    <a href="{% url 'poems_moderate' %}">{% trans 'Moderate poems' %}</a>
+                {% endif %}
+                {% if user.is_reporter %}
+                    <a href="{% url 'articles' %}">{% trans 'Manage news' %}</a>
+                {% endif %}
             </div>
         {% endif %}
 

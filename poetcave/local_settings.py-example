@@ -39,3 +39,4 @@ EMAIL_SUBJECT_PREFIX = '[%s] ' % INSTANCE_NAME
 
 # Functionality configuration.
 NEWEST_COUNT = 25 # Number of "newest" poems.
+NEWEST_ARTICLE_COUNT = 3 # Number of newest

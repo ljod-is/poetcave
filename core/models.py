@@ -17,5 +17,8 @@ class User(AbstractUser):
     # Moderators approve or reject poems.
     is_moderator = models.BooleanField(default=False)
 
+    # Reporters publish news.
+    is_reporter = models.BooleanField(default=False)
+
     def get_absolute_url(self):
         return reverse('user', args=(self.username,))
