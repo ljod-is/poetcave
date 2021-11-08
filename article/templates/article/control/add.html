@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block sign %}{% if form.instance.id %}{% trans 'Edit news article' %}{% else %}{% trans 'Add news article' %}{% endif %}{% endblock %}
+
+{% block content %}
+
+<form method="post">
+{% csrf_token %}
+<table>
+    <tr>
+        <td>
+            {% trans 'Title' %}:<br>
+            <input type="text" size="40" id="id_name" name="name" value="{{ form.name.value|default:'' }}" maxlength="{{ form.name.field.max_length }}" autofocus="" />
+            <label for="id_name" class="error">{% for error in form.name.errors %}{{ error }}<br />{% endfor %}</label>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            {% trans 'Description (optional)' %}:<br>
+            <textarea name="description" id="id_description" cols="40" rows="3">{{ form.description.value|default:'' }}</textarea>
+            <label for="id_description" class="error">{% for error in form.description.errors %}{{ error }}<br />{% endfor %}</label>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            {% trans 'Body' %}:<br>
+            <textarea name="body" id="id_body" cols="40" rows="20">{{ form.body.value|default:'' }}</textarea>
+            <label for="id_body" class="error">{% for error in form.body.errors %}{{ error }}<br />{% endfor %}</label>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2" class="center">
+            <button type="submit">{% trans 'OK' %}</button>
+            <button type="button" href="{% if form.instance.id %}{% url 'article' form.instance.id %}{% else %}{% url 'articles' %}{% endif %}" value="{% trans 'Cancel' %}">{% trans 'Cancel' %}</button>
+        </td>
+    </tr>
+</table>
+</form>
+
+{% endblock %}

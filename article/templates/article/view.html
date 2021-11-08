@@ -2,13 +2,51 @@
 {% load i18n %}
 {% load md2 %}
 
+{% block javascript %}
+<script language="javascript" type="text/javascript">
+    $(document).ready(function() {
+        var $div_article_delete = $('#div-article-delete');
+        var $btn_article_delete = $('#btn-article-delete');
+        var $btn_article_delete_cancel = $('#btn-article-delete-cancel');
+
+        $btn_article_delete.click(function() {
+            $btn_article_delete.hide();
+            $div_article_delete.show();
+        });
+
+        $btn_article_delete_cancel.click(function() {
+            $div_article_delete.hide();
+            $btn_article_delete.show();
+        });
+    });
+</script>
+{% endblock %}
+
 {% block sign %}{% trans 'News' %}{% endblock %}
 
 {% block content %}
+    <strong>{{ article.name }}</strong><br/>
+    <em>{{ article.description }}</em><br />
+    <br />
+    {{ article.body|markdown }}
+{% endblock %}
 
-<strong>{{ article.name }}</strong><br/>
-<em>{{ article.description }}</em><br />
-<br />
-{{ article.body|markdown }}
+{% block side %}
+    {% if user.is_reporter %}
+        <button href="{% url 'article_edit' article.id %}">{% trans 'Edit' %}</button>
+        <button id="btn-article-delete" type="button">{% trans 'Delete' %}</button>
 
+        <br /><br />
+
+        <div id="div-article-delete" style="display: none;">
+            <form action="{% url 'article_delete' article.id %}" method="post">
+            {% csrf_token %}
+            {% trans 'Are you sure that you want to permanently delete this news article? This action cannot be undone.' %}
+            <br /><br />
+            <button>{% trans 'OK' %}</button>
+            <button type="button" id="btn-article-delete-cancel">{% trans 'Cancel' %}</button>
+            </form>
+        </div>
+
+    {% endif %}
 {% endblock %}

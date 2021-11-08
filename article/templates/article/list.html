@@ -6,7 +6,7 @@
 {% block content %}
 
     {% if user.is_reporter %}
-        <button href="#">{% trans 'Add' %}</button>
+        <button href="{% url 'article_add' %}">{% trans 'Add' %}</button>
         <br /><br />
     {% endif %}
 
