@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-11-03 15:12+0000\n"
+"POT-Creation-Date: 2021-11-08 19:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,24 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);\n"
+
+#: article/models.py:21 poem/models.py:228
+msgid "Unpublished"
+msgstr "Óútgefið"
+
+#: article/models.py:22
+msgid "Published"
+msgstr "Útgefið"
+
+#: article/templates/article/list.html:4
+#: article/templates/article/side.latest.html:3
+#: article/templates/article/view.html:5
+msgid "News"
+msgstr "Fréttir"
+
+#: article/templates/article/list.html:9
+msgid "Add"
+msgstr "Bæta við"
 
 #: core/forms.py:15
 msgid "Email address is already in use."
@@ -137,7 +155,7 @@ msgstr "Breyta lykilorði"
 #: core/templates/core/user/password_reset/reset.html:4
 #: core/templates/core/user/password_reset/reset_confirm.html:4
 #: core/templates/core/user/password_reset/reset_requested.html:4
-#: core/templates/left-navigation.html:51
+#: core/templates/left-navigation.html:56
 msgid "Forgotten password"
 msgstr "Gleymt lykilorð"
 
@@ -160,7 +178,7 @@ msgstr ""
 "netfang hingað inn að neðan, smellið á \"Senda\", og nýja lykilorðið ætti að "
 "koma innan örfárra mínútna í mesta lagi."
 
-#: core/templates/core/user/password_reset/reset.html:21 core/views.py:240
+#: core/templates/core/user/password_reset/reset.html:21 core/views.py:246
 msgid "Email"
 msgstr ""
 
@@ -297,7 +315,7 @@ msgstr ""
 msgid "Contact us"
 msgstr "Hafðu samband"
 
-#: core/templates/core/user/team/user.html:8 core/views.py:241
+#: core/templates/core/user/team/user.html:8 core/views.py:247
 msgid "Name"
 msgstr "Nafn"
 
@@ -360,15 +378,19 @@ msgstr "Heimasvæði"
 msgid "Logout"
 msgstr "Útskrá"
 
-#: core/templates/left-navigation.html:33
+#: core/templates/left-navigation.html:34
 msgid "Moderate poems"
 msgstr "Samþykkja ljóð"
 
-#: core/templates/left-navigation.html:57
+#: core/templates/left-navigation.html:37
+msgid "Manage news"
+msgstr "Fréttastjórn"
+
+#: core/templates/left-navigation.html:62
 msgid "Authors"
 msgstr "Höfundar"
 
-#: core/templates/left-navigation.html:68
+#: core/templates/left-navigation.html:73
 msgid "Users of ljóð.is"
 msgstr "Notendur ljóð.is"
 
@@ -399,67 +421,67 @@ msgstr ""
 "Athugasemdum eða spurningum varðandi persónuvernd eða notkunarskilmála má "
 "beina á netfangið <a href=\"mailto:%(CONTACT_EMAIL)s\">%(CONTACT_EMAIL)s</a>."
 
-#: core/views.py:130
+#: core/views.py:136
 msgid "Password updated."
 msgstr "Lykilorð uppfært."
 
-#: core/views.py:143
+#: core/views.py:149
 msgid "Profile updated."
 msgstr "Notandaupplýsingar uppfærðar."
 
-#: core/views.py:239
+#: core/views.py:245
 msgid "Username"
 msgstr "Notandanafn"
 
-#: core/views.py:242
+#: core/views.py:248
 msgid "Address"
 msgstr "Heimilisfang"
 
-#: core/views.py:243
+#: core/views.py:249
 msgid "Postal code"
 msgstr "Póstnúmer"
 
-#: core/views.py:244
+#: core/views.py:250
 msgid "Place"
 msgstr "Staður"
 
-#: core/views.py:245
+#: core/views.py:251
 msgid "Phone"
 msgstr "Sími"
 
-#: core/views.py:246
+#: core/views.py:252
 msgid "Last updated"
 msgstr "Síðast uppfært"
 
-#: core/views.py:247
+#: core/views.py:253
 msgid "Author name"
 msgstr "Höfundanafn"
 
-#: core/views.py:248
+#: core/views.py:254
 msgid "Author name (accusative)"
 msgstr "Höfundanafn (þolfalli)"
 
-#: core/views.py:249
+#: core/views.py:255
 msgid "Author birth-year"
 msgstr "Höfundur fæddist"
 
-#: core/views.py:250
+#: core/views.py:256
 msgid "Author death-year"
 msgstr "Höfundur lést"
 
-#: core/views.py:251
+#: core/views.py:257
 msgid "About"
 msgstr "Um"
 
-#: core/views.py:272
+#: core/views.py:278
 msgid "User data"
 msgstr "Notandagögn"
 
-#: core/views.py:276
+#: core/views.py:282
 msgid "Poems"
 msgstr "Ljóð"
 
-#: core/views.py:309
+#: core/views.py:315
 msgid "Poem metadata"
 msgstr "Lýsigögn ljóða"
 
@@ -474,10 +496,6 @@ msgstr ""
 #: poem/forms.py:50
 msgid "This poem is already queued as a daily poem."
 msgstr ""
-
-#: poem/models.py:228
-msgid "Unpublished"
-msgstr "Óútgefið"
 
 #: poem/models.py:231
 msgid "Trashed"
@@ -844,7 +862,9 @@ msgstr "Endurheimta"
 msgid ""
 "This poem is upcoming as the <strong>daily poem</strong> on <strong>%(day)s</"
 "strong>."
-msgstr "Þetta ljóð hefur verið valið <strong>ljóð dagsins</strong> þann <strong>%(day)s</strong>."
+msgstr ""
+"Þetta ljóð hefur verið valið <strong>ljóð dagsins</strong> þann <strong>"
+"%(day)s</strong>."
 
 #: poem/templates/poem/side.daypoem-control.html:13
 #: poem/templates/poem/side.daypoem-control.html:34
@@ -858,26 +878,32 @@ msgstr "Taka úr biðröð"
 #: poem/templates/poem/side.daypoem-control.html:24
 msgid ""
 "Are you sure that you want to remove this poem from the daily poem queue?"
-msgstr "Ertu viss um að þú viljir fjarlægja þetta ljóð úr biðröð til ljóðs dagsins?"
+msgstr ""
+"Ertu viss um að þú viljir fjarlægja þetta ljóð úr biðröð til ljóðs dagsins?"
 
 #: poem/templates/poem/side.daypoem-control.html:25
 msgid ""
 "Its current selected date will not have its daily poem until one is selected "
 "again."
-msgstr "Núverandi fyrirhuguð dagsetning mun ekki hafa skilgreint ljóð dagsins þar til ljóð hefur aftur verið valið fyrir hana."
+msgstr ""
+"Núverandi fyrirhuguð dagsetning mun ekki hafa skilgreint ljóð dagsins þar "
+"til ljóð hefur aftur verið valið fyrir hana."
 
 #: poem/templates/poem/side.daypoem-control.html:32
 #, python-format
 msgid ""
 "The next empty slot for the daily poem is at <strong>%(next_available)s</"
 "strong>."
-msgstr "Næsta lausa dagsetning fyrir ljóð dagsins er <strong>%(next_available)s</strong>."
+msgstr ""
+"Næsta lausa dagsetning fyrir ljóð dagsins er <strong>%(next_available)s</"
+"strong>."
 
 #: poem/templates/poem/side.daypoem-control.html:38
 msgid ""
 "Press the following button to select this poem as the daily poem for that "
 "date."
-msgstr "Smelltu á eftirfarandi takka til þess að velja þetta ljóð sem ljóð þess dags."
+msgstr ""
+"Smelltu á eftirfarandi takka til þess að velja þetta ljóð sem ljóð þess dags."
 
 #: poem/templates/poem/side.daypoem-control.html:46
 msgid "Errors"
@@ -896,7 +922,9 @@ msgstr "Þetta ljóð hefur áður verið ljóð dagsins, á eftirfarandi dagset
 msgid ""
 "Past daily poems may be selected again, unless they are already waiting in "
 "queue."
-msgstr "Fyrri ljóð dagsins má gera að ljóðum dagsins aftur, nema þau séu nú þegar í biðröð."
+msgstr ""
+"Fyrri ljóð dagsins má gera að ljóðum dagsins aftur, nema þau séu nú þegar í "
+"biðröð."
 
 #: poem/templates/poem/side.more-from-author.html:3
 msgid "Place bookmark"
@@ -918,6 +946,9 @@ msgstr "Notendur með <a href=\"%(private_path_doc_path)s\">einkaslóð</a>"
 #: poem/templates/poem/stub/poem.in-listing.html:4
 msgid "by"
 msgstr "eftir"
+
+#~ msgid "Article control"
+#~ msgstr "Fréttastjórn"
 
 #~ msgid "Editorial"
 #~ msgstr "Ritstjórn"
