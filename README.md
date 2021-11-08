@@ -32,7 +32,7 @@ Features that differ from the original are only different because they must be u
 - [ ] Daily poem selection (specific date)
 
 ### News and mailing list
-- [ ] CRUD for news (by administrator).
+- [ ] CRUD for news (by reporter).
 - [ ] Ability to sign-up/sign-off mailing list.
 - [ ] Automatic sending of news to mailing list.
 
@@ -43,7 +43,7 @@ Features that differ from the original are only different because they must be u
 - [x] Daily poems
 - [x] Bookmarks
 - [x] Private paths
-- [ ] News
+- [x] News
 
 ### Superuser administration
 - [x] Poems
