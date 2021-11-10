@@ -296,10 +296,10 @@ def retrieve_data_download(request):
         # Write poems' metadata.
         poems_meta_fields = [
             'about',
-            'editorial__status',
-            'editorial__user',
-            'editorial__timing',
-            'editorial__reason',
+            'editorial.status',
+            'editorial.user',
+            'editorial.timing',
+            'editorial.reason',
             'date_created',
             'date_updated',
         ]
@@ -307,7 +307,14 @@ def retrieve_data_download(request):
         for poem in poems:
             poem_meta = {}
             for fieldname in poems_meta_fields:
-                fieldvalue = getattr(poem, fieldname)
+                if '.' in fieldname:
+                    # We support **one** level down for sub-fields, because
+                    # it's not worth abstracting any more than that.
+                    # Feel free to improve.
+                    loc = fieldname.find('.')
+                    fieldvalue = getattr(getattr(poem, fieldname[:loc]), fieldname[loc+1:])
+                else:
+                    fieldvalue = getattr(poem, fieldname)
                 if type(fieldvalue) is datetime:
                     fieldvalue = fieldvalue.strftime('%Y-%m-%d.%H-%M-%S')
                 if type(fieldvalue) is str:
