@@ -6,7 +6,9 @@
 
         <a href="{% url 'main' %}">{% trans 'Daily poem' %}</a>
         <a href="{% url 'poems' %}">{% trans 'Poem collection' %}</a>
-        <a href="http://www.ljod.is/index.php/page/page_list/umsagnir">{% trans 'Reviews' %}</a>
+        {% comment %}
+        <a href="#">{% trans 'Reviews' %}</a>
+        {% endcomment %}
 
     </div>
 
@@ -14,8 +16,10 @@
 
         <a href="{% url 'about' %}">{% trans 'FAQ' %}</a>
         <a href="{% url 'team' %}">{% trans 'Contact us' %}</a>
+        {% comment %}
         <a href="/lists/">{% trans 'Mailing list' %}</a>
         <a href="#">{% trans 'Links' %}</a>
+        {% endcomment %}
         <a href="{% url 'register' %}">{% trans 'New account' %}</a>
 
     </div>
