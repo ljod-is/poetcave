@@ -6,7 +6,11 @@ In the first phase, we will simply recreate the website's functionality with the
 
 Features that differ from the original are only different because they must be updated to fit a new paradigm. One example of that is how a poem's status is handled. This is fundamentally different between the old version and the new, so some changes in that area will already be visible to users once Phase 1 is completed.
 
+Note that interface design goals are excluded from this document.
+
 # Phase 1
+
+**From beginning of rewriting until roughly November 16th 2021.**
 
 *"CRUD" stands for Create/Read/Update/Delete and refers to the ability to apply those operations on the entity in question.*
 
@@ -31,7 +35,7 @@ Features that differ from the original are only different because they must be u
 - [x] Daily poem selection (next available)
 - [ ] Daily poem selection (specific date)
 
-### News and mailing list
+### News
 - [x] CRUD for news (by reporter).
 
 ### Data import
@@ -55,9 +59,13 @@ Features that differ from the original are only different because they must be u
 
 # Phase 2
 
-## Future features
+**From roughly November 16th 2021 onward.**
+
+## Features (uncategorized)
+- [ ] Automatic login on password-reset.
 - [ ] Standard rejections in poem rejection, for example for spelling and language.
 - [ ] Set daily poem at approval of poem.
 - [ ] Everyday users able to suggest daily poem.
 - [ ] Ability to link to poem-related news and coverages externally.
 - [ ] Push-notifications for daily poem.
+- [ ] Email address automatic as username.
