@@ -583,10 +583,7 @@ class Command(BaseCommand):
 
         for private_path in paths_to_author_ids:
             author_id = paths_to_author_ids[private_path]
-            try:
-                author = Author.objects.get(id=author_id)
-            except:
-                import ipdb; ipdb.set_trace()
+            author = Author.objects.get(id=author_id)
             if author.private_path is None:
                 print('Setting private path for author "%s"...' % author, end='', flush=True)
                 author.private_path = private_path
