@@ -24,6 +24,7 @@ from django_registration.backends.activation.views import RegistrationView as Ba
 from core.models import User
 from markdown2 import markdown
 from poem.forms import AuthorForm
+from poem.models import Author
 from poem.models import Poem
 from tempfile import TemporaryDirectory
 
@@ -39,10 +40,14 @@ def main(request):
         editorial_status='published'
     )[0:settings.NEWEST_ARTICLE_COUNT]
 
+    # Authors with private paths.
+    private_path_authors = Author.objects.exclude(private_path=None)
+
     ctx = {
         # Will be None if no daily poem.
         'poem': poem,
         'articles': articles,
+        'private_path_authors': private_path_authors,
     }
     return render(request, 'core/main.html', ctx)
 
