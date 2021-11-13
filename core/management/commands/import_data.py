@@ -201,8 +201,7 @@ class Command(BaseCommand):
                 # ",", which we correct here.
                 user.username = row['user']
                 user.email = row['email'].replace(',is', '.is').replace(',com', '.com')
-                user.is_superuser = user.is_staff = row['user'] in superusers
-                user.is_moderator = int(row['admin']) > 0
+                user.is_superuser = user.is_staff = user.is_moderator = user.is_reporter = row['user'] in superusers
 
                 # Handle cases where people have added extra information to
                 # the email field which doesn't belong there
