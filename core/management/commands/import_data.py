@@ -104,7 +104,8 @@ class Command(BaseCommand):
 
             self.import_articles()
 
-            self.configure_private_paths()
+            # Not importing this after all.
+            #self.configure_private_paths()
 
         except KeyboardInterrupt:
             quit(1)
