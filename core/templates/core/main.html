@@ -9,6 +9,11 @@
         {% include 'poem/stub/poem.display.html' %}
     {% else %}
 
+        {% if frontpage_article %}
+            {% include 'article/stub/article.view.html' with article=frontpage_article %}
+            <hr />
+        {% endif %}
+
         Ljóð.is er opinn og ókeypis ljóðavefur fyrir alla sem vilja lesa ljóð eftir aðra eða birta sín eigin ljóð. Á vefnum er að finna glæný ljóð í þúsundatali en einnig ljóðaperlur eftir gamla meistara.<br /><br />
 
         Kíktu í <a href="{% url 'poems' %}">ljóðasafnið</a> ef þú vilt leita og lesa.<br />

@@ -40,6 +40,15 @@ def main(request):
         editorial_status='published'
     )[0:settings.NEWEST_ARTICLE_COUNT]
 
+    # Set news article to display if no daily poem.
+    frontpage_article = None
+    if poem is None:
+        frontpage_article = Article.objects.filter(
+            editorial_status='published',
+            editorial_timing__gte=timezone.now().replace(hour=0, minute=0, second=0),
+            editorial_timing__lte=timezone.now().replace(hour=23, minute=59, second=59)
+        ).first()
+
     # Authors with private paths.
     private_path_authors = Author.objects.exclude(private_path=None)
 
@@ -47,6 +56,7 @@ def main(request):
         # Will be None if no daily poem.
         'poem': poem,
         'articles': articles,
+        'frontpage_article': frontpage_article,
         'private_path_authors': private_path_authors,
     }
     return render(request, 'core/main.html', ctx)

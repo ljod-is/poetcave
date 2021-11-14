@@ -38,10 +38,7 @@
 {% block sign %}{% trans 'News' %}{% endblock %}
 
 {% block content %}
-    <strong>{{ article.name }}</strong><br/>
-    <em>{{ article.description }}</em><br />
-    <br />
-    {{ article.body|markdown }}
+    {% include 'article/stub/article.view.html' %}
 {% endblock %}
 
 {% block side %}
