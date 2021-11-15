@@ -1,122 +1,212 @@
-body, td, div,P {
-	color: #505050;
-	font-size: 10px;
-	font-family: Verdana;
-	padding: 0px 0px 0px 0px;
-	margin: 0px 0px 0px 0px;
+/*
+
+TODO: Adopt `scss`.
+
+Color theme:
+- Light grey: #c2c2c2
+- Dark grey: #999999
+- White: #ffffff
+- Text: #505050;
+- Links: #7b5029
+
+Fonts:
+- Regular: CrimsonText
+- Control: NotoSans
+
+*/
+
+@font-face {
+	font-family: "MainFont";
+	src: url("/static/core/fnt/Vollkorn/static/Vollkorn-Regular.ttf");
 }
 
-a {
-	color: #7b5029;
+@font-face {
+	font-family: "ControlFont";
+	src: url("/static/core/fnt/NotoSans/NotoSans-Regular.ttf");
 }
 
-form {
-	margin: 0px 0px 0px 0px;
+@font-face {
+	font-family: "ControlFont-Bold";
+	src: url("/static/core/fnt/NotoSans/NotoSans-Bold.ttf");
 }
 
-input {
-	border-width: 1px;
-}
+body { margin: 0px; border-top: 10px solid #999999; color: #505050; font-size: 16px; font-family: "MainFont"; letter-spacing: 0.7px; line-height: 26px; }
 
-textarea {
-	border-width: 1px;
-}
+a { color: #7b5029; }
 
-input.button {
-	font-size: 10px;
-	font-weight: bold;
-	border-style: solid;
-	border-width: 1px;
-	border-color: #000000;
-	background: #999999;
-	color: #ffffff;
-}
+form { margin: 0px 0px 0px 0px; }
 
-.smalltext {
-	font-size: 9px;
-}
+p { padding-bottom: 12px; }
 
-.small {
-}
+table { padding: 0px; margin: 0px; border-collapse: collapse; }
+table th { font-size: 10px; font-weight: bold; padding: 0px 3px 0px 3px; text-align: left; }
+table th:first-child { padding-left: 0px; }
+table td.control { padding-left: 20px; }
+
+input, textarea { font-family: "MainFont"; border-width: 1px; padding: 4px; }
+button { font-family: "ControlFont"; border-width: 1px; font-size: 16px; }
+input[type="button"] { font-family: "ControlFont"; border-width: 1px; font-size: 16px; }
+
+.copyright { font-size: 10px; text-align: center; padding-top: 12px; }
 
 .date {
 	background: #999999;
 	text-align: center;
 	padding: 1px 1px 2px 1px;
 	color: #ffffff;
-	font-size: 10;
+	font-size: 12px;
 	font-weight: bold;
 }
 
-.nav {
-	color: #ffffff;
-	background: #999999;
-	font-family: Verdana;
-	font-size: 9px;
-	padding: 1px 1px 0px 0px;
-}
-.author {
-	font-style: italic;
-	text-align: right;
+.error { color: #dd0000; }
+
+.main { float: left; width: 500px; margin-top: 24px; }
+.side { float: left; width: 500px; padding-left: 80px; }
+
+/*
+The following CSS is to imitate the look and feel of the legacy website so that
+we can use modern HTML but still retain the old look and feel.
+
+It also contains styling for things that are either new or changed from the
+original design, such as the poem approval process. Such things need
+re-designing anyway.
+
+When we get to the design phase, once we're feature-complete with regard to
+the old website, this file should be completely replaced.
+*/
+
+ul.errorlist { margin-top: 0px; list-style: none; color: #dd0000; }
+
+.center { text-align: center; }
+
+.markdown h1 { font-family: "MainFont"; font-size: 10px; padding: 0px; margin: 0px; }
+.markdown h2 { font-family: "MainFont"; font-size: 10px; padding: 0px; margin: 0px; font-weight: normal; font-style: italic; }
+.markdown p { padding-bottom: 13px; }
+
+.logo-container {
+	float: left;
+	border: 1px solid red;
 }
 
-.poem {
+@media screen and (min-width: 765px) {
+	.logo-container { width: 500px; border: 0px solid blue; }
 }
 
-.boxtext {
+@media screen and (min-width: 1015px) {
+	.logo-container { width: 750px; border: 0px solid purple; }
+}
+
+@media screen and (min-width: 1265px) {
+	.logo-container { width: 1000px; border: 0px solid green; }
+}
+
+@media screen and (min-width: 1765px) {
+	.logo-container { width: 1500px; border: 0px solid orange; }
+}
+
+@media screen and (min-width: 765px) and (max-width: 1265px) {
+	.side { padding-left: 0px; border-top: 1px solid #999999; margin-top: 32px; padding-top: 32px; }
+}
+
+.logo {
+	float: left;
+	width: 175px;
+	padding-top: 5px;
+}
+
+.sign {
+	border-top: 1px solid #999999;
+	border-bottom: 1px solid #999999;
+	padding: 0px 0px 0px 0px;
+	width: 300px;
+	margin-bottom: 16px;
+
 	text-align: center;
 	font-weight: bold;
 	color: #7b5029;
-	padding: 2px 2px 2px 2px;
+
 }
 
-.error {
-	color: #dd0000;
+.sign img { margin-top: 3px; }
+
+/* Decoration */
+
+.decor-light-thick {
+	background: #ffffff;
+	height: 10px;
 }
 
-.calendarday {
-	width: 25px;
-	height: 15px;
+.decor-light-thin {
+	background: #ffffff;
+	height: 5px;
+}
+
+.decor-dark-thin {
+	background: #999999;
+	height: 5px;
+}
+
+/* Left-side navigation */
+
+.nav-container {
+	float: left;
+	width: 250px;
+	height: 100%;
+}
+
+.nav {
+	padding-top: 128px;
+	float: left;
+	width: 150px;
+	border-right: 1px solid #999999;
+	height: 100%;
+}
+
+.nav-section {
+    border-top: 1px solid #999999;
+    padding: 8px 0px 4px 0px;
+}
+
+.nav-links a {
+	background-color: #999999;
+    display: block;
+    font-family: "ControlFont-Bold";
+    font-size: 12px;
+    font-weight: bold;
+	line-height: 16px;
+
+    text-align: left;
+    color: #ffffff;
+    text-decoration: none;
+    height: 12pt;
+
+    margin: 0px 0px 4px 0px;
+    padding: 4px 0px 4px 12px;
+}
+
+.nav-login {
 	text-align: center;
-	background: #c0c0c0;
-	color: #000000;
-}
-a.calendarday {
-	color: #000000;
+	padding-bottom: 12px;
 }
 
-.calendardayselected {
-	width: 25px;
-	height: 15px;
+.nav-login button {
+	margin-top: 8px;
+}
+
+.nav-authors-header {
 	text-align: center;
-	background: #a0a0a0;
-	color: #000000;
-}
-a.calendardayselected {
-	color: #000000;
 }
 
-.calendartoday {
-	width: 25px;
-	height: 15px;
-	text-align: center;
-	background: #303030;
-	color: #c0c0c0;
-}
-.calendartoday {
-	color: #c0c0c0;
+.nav-authors {
+	padding: 0px 16px 0px 16px;
+	text-align: justify;
 }
 
-.calendarempty {
-	background: #e0e0e0;
-}
+.nav-authors a { text-decoration: none; }
 
-.calendarweekday {
-	text-align: center;
-	background: #000000;
-	color: #f0f0f0;
-	padding: 0px 2px 0px 2px;
-}
-.einkaslod {
-line-height : 12pt;
-}
+.poem-author { font-style: italic; text-align: right; }
+.poem-about { font-style: italic; text-align: right; }4
+
+.poem-moderate-control form { display: inline; }
+.poem-moderate-control textarea { width: 100%; }
+.poem-moderate-control .rejection-reason-required-error { display: none; }

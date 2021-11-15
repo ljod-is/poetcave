@@ -1,0 +1,8 @@
+{% load static %}
+
+<div class="logo-container">
+    <div class="logo">
+        <a href="{% url 'main' %}"><img src="{% static 'oldsite/images/logo_stort.gif' %}"  border="0"><img src="{% static 'oldsite/images/09_stort.gif' %}" border="0"></a>
+        <div class="date">{% now 'DATE_FORMAT' %}</div>
+    </div>
+</div>

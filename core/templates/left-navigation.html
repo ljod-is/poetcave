@@ -1,81 +1,88 @@
 {% load i18n %}
+<div class="nav-container">
 
-<div class="nav-links">
+    <div class="decor-light-thick"></div>
+    <div class="decor-dark-thin"></div>
+    <div class="decor-light-thin"></div>
+    <div class="decor-dark-thin"></div>
 
-    <div class="nav-section">
+    <div class="nav">
+        <div class="nav-links">
 
-        <a href="{% url 'main' %}">{% trans 'Daily poem' %}</a>
-        <a href="{% url 'poems' %}">{% trans 'Poem collection' %}</a>
-        {% comment %}
-        <a href="#">{% trans 'Reviews' %}</a>
-        {% endcomment %}
+            <div class="nav-section">
 
-    </div>
+                <a href="{% url 'main' %}">{% trans 'Daily poem' %}</a>
+                <a href="{% url 'poems' %}">{% trans 'Poem collection' %}</a>
+                {% comment %}
+                <a href="#">{% trans 'Reviews' %}</a>
+                {% endcomment %}
 
-    <div class="nav-section">
+            </div>
 
-        <a href="{% url 'about' %}">{% trans 'FAQ' %}</a>
-        <a href="{% url 'team' %}">{% trans 'Contact us' %}</a>
-        {% comment %}
-        <a href="/lists/">{% trans 'Mailing list' %}</a>
-        <a href="#">{% trans 'Links' %}</a>
-        {% endcomment %}
-        <a href="{% url 'register' %}">{% trans 'New account' %}</a>
+            <div class="nav-section">
 
-    </div>
+                <a href="{% url 'about' %}">{% trans 'FAQ' %}</a>
+                <a href="{% url 'team' %}">{% trans 'Contact us' %}</a>
+                {% comment %}
+                <a href="/lists/">{% trans 'Mailing list' %}</a>
+                <a href="#">{% trans 'Links' %}</a>
+                {% endcomment %}
+                <a href="{% url 'register' %}">{% trans 'New account' %}</a>
 
-    {% if user.is_authenticated %}
-        <div class="nav-section">
-            <a href="{% url 'bookmarks' %}">{% trans 'Bookmarks' %}</a>
-            <a href="{% url 'profile' %}">{% trans 'Me' %}</a>
-            <a href="{% url 'author' user.author.id %}">{% trans 'Homestead' %}</a>
-            <a href="{% url 'logout' %}">{% trans 'Logout' %}</a>
+            </div>
+
+            {% if user.is_authenticated %}
+                <div class="nav-section">
+                    <a href="{% url 'bookmarks' %}">{% trans 'Bookmarks' %}</a>
+                    <a href="{% url 'profile' %}">{% trans 'Me' %}</a>
+                    <a href="{% url 'author' user.author.id %}">{% trans 'Homestead' %}</a>
+                    <a href="{% url 'logout' %}">{% trans 'Logout' %}</a>
+                </div>
+
+                {% if user.is_moderator or user.is_reporter %}
+                    <div class="nav-section">
+                        {% if user.is_moderator %}
+                            <a href="{% url 'poems_moderate' %}">{% trans 'Moderate poems' %}</a>
+                        {% endif %}
+                        {% if user.is_reporter %}
+                            <a href="{% url 'articles' %}">{% trans 'Manage news' %}</a>
+                        {% endif %}
+                    </div>
+                {% endif %}
+
+            {% endif %}
+
         </div>
 
-        {% if user.is_moderator or user.is_reporter %}
-            <div class="nav-section">
-                {% if user.is_moderator %}
-                    <a href="{% url 'poems_moderate' %}">{% trans 'Moderate poems' %}</a>
-                {% endif %}
-                {% if user.is_reporter %}
-                    <a href="{% url 'articles' %}">{% trans 'Manage news' %}</a>
-                {% endif %}
+
+        {% if not user.is_authenticated %}
+        <div class="nav-section">
+            <div class="nav-login">
+                <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                Notandi<br />
+                <input type="text" name="username" size="10"><br />
+                Lykilorð<br />
+                <input type="password" name="password" size="10" /><br />
+                <button>{% trans 'Log in' %}</button><br />
+                <button type="button" href="{% url 'password_reset' %}">{% trans 'Forgotten password' %}</button>
+                </form>
             </div>
+        </div>
         {% endif %}
 
-    {% endif %}
+        <div class="nav-section">
+            <div class="nav-authors">
+                <div class="nav-authors-header">{% trans 'Authors' %}:</div>
+                {% for letter in letters %}
+                    <a href="{% url 'poems_by_author' letter %}">{{ letter }}</a>
+                {% endfor %}
+            </div>
+
+            <div class="copyright">
+                <b>©</b>{% trans 'Users of ljóð.is' %}
+            </div>
+        </div>
+    </div>
 
 </div>
-
-<div class="nav-section">
-
-    {% if not user.is_authenticated %}
-        <form action="{% url 'login' %}" method="post">
-        {% csrf_token %}
-        Notandi<br />
-        <input type="text" name="username" size="10"><br />
-        Lykilorð<br />
-        <input type="password" name="password" size="10" /><br />
-        <input type="submit" value="Innskrá" /><br />
-        [ <a href="{% url 'password_reset' %}">{% trans 'Forgotten password' %}</a> ]
-        </form>
-        <br />
-    {% endif %}
-
-    <div style="text-align: center;">
-        {% trans 'Authors' %}:
-    </div>
-    <div style="text-align: justify; padding: 0px 16px 0px 16px;">
-        {% for letter in letters %}
-            <a href="{% url 'poems_by_author' letter %}">{{ letter }}</a>
-        {% endfor %}
-        <br />
-        <br />
-    </div>
-
-    <div class="smalltext">
-        <b>©</b>{% trans 'Users of ljóð.is' %}
-    </div>
-</div>
-
-

@@ -3,193 +3,41 @@
 
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<link href="{% static 'oldsite/css/poetry.css' %}" rel="stylesheet">
-<link href="{% static 'core/css/legacy-imitation.css' %}" rel="stylesheet" />
-<title>Ljóð.is</title>
-<link rel="stylesheet" href="{% static 'oldsite/cms/css/screen.css' %}" type="text/css" media="screen" />
-<style type="text/css">
-.dialog {
-    background: #f0f0f0;
-    position: absolute;
-    left: 200px;
-    top: 170px;
-    border-width: 1px;
-    border-color: #000000;
-    border-style: solid;
-    padding: 8px 8px 8px 8px;
-    width: 300px;
-}
-</style>
-
-
-
+    <title>Ljóð.is</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="{% static 'oldsite/css/poetry.css' %}" rel="stylesheet">
 </head>
-<body background="{% static 'oldsite/images/alki.gif' %}">
+<body>
 
-<!-- main container starts here -->
-<div id="main_container" style="background-image:url('{% static 'oldsite/images/alki.gif' %}');">
+{% include 'left-navigation.html' %}
 
-    <!-- content wrapper starts here -->
-    <div class="content_wrapper">
+{% include 'logo.html' %}
 
-<table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
-    <tr>
-        <td valign="top" >
-            <table width="100%" height="100%" border="0" cellpadding="0" cellspacing="0">
-                <tr>
-                    <td valign="top" width="190">
-                        <table width="190"border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td bgcolor="#999999"><img src="{% static 'oldsite/images/spacer.gif' %}" width="6" height="10"></td>
-                            </tr>
-                            <tr>
-                                <td bgcolor="#FFFFFF"><img src="{% static 'oldsite/images/spacer.gif' %}" width="6" height="10"></td>
-                            </tr>
-                            <tr>
-                                <td bgcolor="#999999"><img src="{% static 'oldsite/images/spacer.gif' %}" width="6" height="5"></td>
-                            </tr>
-                            <tr>
-                                <td bgcolor="#FFFFFF"><img src="{% static 'oldsite/images/spacer.gif' %}" width="5" height="5"></td>
-                            </tr>
-                            <tr>
-                                <td bgcolor="#999999"><img src="{% static 'oldsite/images/spacer.gif' %}" width="6" height="5"></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                                                        <span class="small">
-                                    <br><br><br><br><br>
-                                                                        </span>
-                                </td>
-                            </tr>
-                        </table>
-                        <br>
-                    </td>
-                    <td width="175"  height="110"   align="center" valign="top">
-                        <table width="175" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td bgcolor="#999999"><img src="{% static 'oldsite/images/spacer.gif' %}" width="6" height="10"></td>
-                            </tr>
-                            <tr>
-                                <td bgcolor="#FFFFFF" align="left" valign="top"><img src="{% static 'oldsite/images/spacer.gif' %}" width="5" height="6"></td>
-                            </tr>
-                            <tr>
-                                <td><a href="{% url 'main' %}"><img src="{% static 'oldsite/images/logo_stort.gif' %}"  border="0"><img src="{% static 'oldsite/images/08_stort.gif' %}" border="0"></a></td>
-                            </tr>
-                            <tr>
-                                <td class="date">{% now 'DATE_FORMAT' %}</td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                            </tr>
-                            <tr>
-                                <td>&nbsp;</td>
-                            </tr>
-                        </table>
-                    </td>
+<div class="main">
 
-
-
-                    <td width="100%" align="left" valign="top">
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td bgcolor="#999999" colspan="2"><img src="{% static 'oldsite/images/spacer.gif' %}" width="6" height="10"></td>
-                            </tr>
-                            <tr>
-                              <td bgcolor="#FFFFFF" colspan="2"><img src="{% static 'oldsite/images/spacer.gif' %}" width="5" height="6"></td>
-                            </tr>
-                            <tr>
-
-
-                            <td width="732" >
-
-                                 </td>
-                          </tr>
-
-                      </table>
-                      {% comment %}
-                      <a href="http://www.leturprent.is/"><img src="{% static 'oldsite/leturprent.jpg' %}" style="margin-left:300px;margin-top:10px;"></a>
-                      {% endcomment %}
-                    </td>
-
-
-
-                </tr>
-                <tr>
-                    <td style="vertical-align: top;" colspan="3">
-                        <table border="0" cellpadding="0" cellspacing="0">
-                            <tr>
-                                <td style="text-align: center; vertical-align: top; width: 100;">
-                                    {% include 'left-navigation.html' %}
-                                </td>
-                                <td style="vertical-align: top; width: 400; padding: 0px 0px 0px 90px;margin-bottom:0px;">
-                                    <table width="175" border="0" cellspacing="0" cellpadding="0" bgcolor="#FFFFFF">
-                                        <tr>
-                                            <td colspan="3"><img src="{% static 'oldsite/images/fyrirsogn_bordi.gif' %}" width="175" height="1"></td>
-                                        </tr>
-                                        <tr>
-                                            <td width="12" align="left" valign="middle"><img src="{% static 'oldsite/images/fyrirsogn_kassi.gif' %}" width="10" height="12"></td>
-                                            <td class="boxtext" width="151">{% block sign %}Ljóð.is{% endblock %}</td>
-                                            <td width="12" align="right"><img src="{% static 'oldsite/images/fyrirsogn_kassi.gif' %}" width="10" height="12"></td>
-                                        </tr>
-                                        <tr valign="top">
-                                            <td colspan="3"><img src="{% static 'oldsite/images/fyrirsogn_bordi.gif' %}" width="175" height="1"></td>
-                                        </tr>
-                                    </table><br>
-                                    {% if messages %}
-                                    <span class="message">
-                                        {% for message in messages %}
-                                            <p>{{ message }}</p>
-                                        {% endfor %}
-                                    </span>
-                                    {% endif %}
-                                    <span class="error"></span>
-
-<table border="0" cellpadding="0" cellspacing="0">
-    <tr>
-        <td>
-            <span class="poem">
-                {% block content %}{% endblock %}
-            </span><br><br>
-        </td>
-    </tr>
-    <tr>
-        <td class="author"><br></td>
-    </tr>
-</table>
-
-
-
-</td>
-<td style="vertical-align: top; width: 380px;">
-
-    {% block side %}{% endblock %}
-
-</td>
-</tr>
-</table>
-
-    <br>
-
-
-        </td>
-    </tr>
-
-
-    </table>
-        </td>
-            </tr>
-    </table>
-
-
+    <div class="sign-container">
+        <div class="sign">
+            <img src="{% static 'core/img/cube.png' %}" style="float: left;" />
+            {% block sign %}Ljóð.is{% endblock %}
+            <img src="{% static 'core/img/cube.png' %}" style="float: right;" />
+        </div>
     </div>
-    <!-- content wrapper starts here -->
 
-    <!-- spacer -->
-    <div class="spacer"></div>
+    {% if messages %}
+        <span class="message">
+            {% for message in messages %}
+                <p>{{ message }}</p>
+            {% endfor %}
+        </span>
+    {% endif %}
+
+    {% block content %}{% endblock %}
 
 </div>
-<!-- main container ends here -->
+
+<div class="side">
+    {% block side %}{% endblock %}
+</div>
 
 <script language="javascript" type="text/javascript" src="{% static 'core/js/jquery/jquery-3.6.0.min.js' %}"></script>
 <script language="javascript" type="text/javascript" src="{% static 'core/js/legacy-imitation.js' %}"></script>
