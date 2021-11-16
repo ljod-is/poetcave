@@ -109,7 +109,7 @@ class Author(models.Model):
     # largely unnecessarily. If we want to create a ManyToManyField
     # relationship later, it will be a different field. The value in this
     # field means that the User and corresponding Author are the same person.
-    user = models.OneToOneField('core.User', null=True, related_name='author', on_delete=models.SET_NULL)
+    user = models.OneToOneField('core.User', null=True, blank=True, related_name='author', on_delete=models.SET_NULL)
 
     date_updated = models.DateTimeField(auto_now=True, null=True, blank=True)
 
