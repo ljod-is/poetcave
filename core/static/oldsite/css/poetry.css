@@ -204,8 +204,8 @@ ul.errorlist { margin-top: 0px; list-style: none; color: #dd0000; }
 
 .nav-authors a { text-decoration: none; }
 
-.poem-author { font-style: italic; text-align: right; }
-.poem-about { font-style: italic; text-align: right; margin-top: 18px; }
+.poem-author { font-style: italic; text-align: right; margin-top: 24px; }
+.poem-about { font-style: italic; text-align: left; margin-top: 24px; }
 
 .poem-moderate-control form { display: inline; }
 .poem-moderate-control textarea { width: 100%; }
