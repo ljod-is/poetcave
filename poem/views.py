@@ -265,7 +265,7 @@ def poems_daypoems(request, year=None):
         poem__editorial__status='approved',
         day__gte=year_begin,
         day__lte=year_end
-    )
+    ).filter(day__lte=today)
 
     ctx = {
         'years': years,
