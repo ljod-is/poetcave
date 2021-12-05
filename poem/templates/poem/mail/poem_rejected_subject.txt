@@ -1,1 +1,1 @@
-{% load i18n %}{% blocktrans %}Poem rejected with name: {{ poem.name }}{% endblocktrans %}
+{% load i18n %}{% with poem.name as poem_name %}{% blocktrans %}Poem rejected with name: {{ poem_name }}{% endblocktrans %}{% endwith %}
