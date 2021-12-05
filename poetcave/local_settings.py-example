@@ -37,6 +37,9 @@ EMAIL_USE_SSL = False
 DEFAULT_FROM_EMAIL = '%s <no-reply@%s>' % (INSTANCE_NAME, INSTANCE_DOMAIN)
 EMAIL_SUBJECT_PREFIX = '[%s] ' % INSTANCE_NAME
 
+# Matomo counter. Leave empty to disable.
+MATOMO_URL = ''
+
 # Functionality configuration.
 NEWEST_COUNT = 25 # Number of "newest" poems.
 NEWEST_ARTICLE_COUNT = 3 # Number of newest

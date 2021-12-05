@@ -7,4 +7,5 @@ def globals(request):
         'INSTANCE_FANCY_URL': settings.INSTANCE_FANCY_URL,
         'NEWEST_COUNT': settings.NEWEST_COUNT,
         'CONTACT_EMAIL': settings.CONTACT_EMAIL,
+        'MATOMO_URL': settings.MATOMO_URL,
     }
