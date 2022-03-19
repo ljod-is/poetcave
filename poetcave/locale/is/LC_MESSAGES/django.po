@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-12-05 17:28+0000\n"
+"POT-Creation-Date: 2022-03-19 09:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -89,14 +89,14 @@ msgstr "Bæta við"
 
 #: article/templates/article/view.html:46
 #: poem/templates/poem/side.control.html:28
-#: poem/templates/poem/side.control.html:83
+#: poem/templates/poem/side.control.html:81
 msgid "Edit"
 msgstr "Breyta"
 
 #: article/templates/article/view.html:47
 #: poem/templates/poem/side.control.html:29
-#: poem/templates/poem/side.control.html:84
-#: poem/templates/poem/side.control.html:108
+#: poem/templates/poem/side.control.html:82
+#: poem/templates/poem/side.control.html:106
 msgid "Delete"
 msgstr "Eyða"
 
@@ -120,7 +120,7 @@ msgstr "Smelltu á eftirfarandi takka til þess að afturkalla birtinguna."
 #: article/templates/article/view.html:72
 #: poem/templates/poem/control/unpublish.html:14
 #: poem/templates/poem/side.control.html:41
-#: poem/templates/poem/side.control.html:96
+#: poem/templates/poem/side.control.html:94
 msgid "Unpublish"
 msgstr "Afturkalla"
 
@@ -440,6 +440,7 @@ msgid "Administrator"
 msgstr "Umsjónarmaður"
 
 #: core/templates/core/user/team/user.html:14
+#: poem/templates/poem/moderate-rejected.html:13
 msgid "Moderator"
 msgstr "Ritstjóri"
 
@@ -731,6 +732,19 @@ msgstr ""
 msgid "Poem rejected with name: %(poem_name)s"
 msgstr "Ljóði hafnað með nafninu: %(poem_name)s"
 
+#: poem/templates/poem/moderate-rejected.html:4
+#: poem/templates/poem/moderate.html:84
+msgid "Review rejected poems"
+msgstr "Endurskoða hafnanir"
+
+#: poem/templates/poem/moderate-rejected.html:14
+msgid "timing"
+msgstr "tímasetning"
+
+#: poem/templates/poem/moderate-rejected.html:22
+msgid "Poem moderation"
+msgstr "Ritstjórn ljóða"
+
 #: poem/templates/poem/moderate.html:47
 msgid "Number of poems pending review"
 msgstr "Fjöldi ljóða sem bíða yfirlestrar"
@@ -766,6 +780,16 @@ msgstr "Staðfesta höfnun"
 #: poem/templates/poem/moderate.html:79
 msgid "You must provide a reason for the rejection."
 msgstr "Þú verður að gefa upp ástæðu fyrir höfnun."
+
+#: poem/templates/poem/moderate.html:90
+msgid "This poem has already been rejected on the following grounds:"
+msgstr "Þessu ljóði hefur þegar verið hafnað á eftirfarandi forsendum:"
+
+#: poem/templates/poem/moderate.html:94
+msgid ""
+"By approving or rejecting the poem at this point, your decision will "
+"supercede the previous decision."
+msgstr "Með því að samþykkja eða hafna ljóðinu núna, tekurðu nýja ákvörðun sem ógildir þá fyrri."
 
 #: poem/templates/poem/poems.html:23
 #, python-format
@@ -844,11 +868,11 @@ msgstr ""
 "Því miður var því <strong>hafnað</strong> við yfirlestur ritstjórnar með "
 "eftirfarandi skilaboðum:"
 
-#: poem/templates/poem/side.control.html:59
+#: poem/templates/poem/side.control.html:57
 msgid "You may edit it and try publishing it again, if you wish."
 msgstr "Þú getur breytt því og reynt að gefa það út aftur, ef þú vilt."
 
-#: poem/templates/poem/side.control.html:65
+#: poem/templates/poem/side.control.html:63
 msgid ""
 "It was unfortunately <strong>rejected</strong> at a time when we did not "
 "require editors to explain why."
@@ -856,7 +880,7 @@ msgstr ""
 "Því miður var því <strong>hafnað</strong> við yfirlestur ritstjórnar áður en "
 "kveðið var á um að sú ákvörðun skyldi alltaf útskýrð."
 
-#: poem/templates/poem/side.control.html:69
+#: poem/templates/poem/side.control.html:67
 msgid ""
 "In such cases, the reason was typically the poem being in a different "
 "language than the website is intended for, or bad spelling. But honestly, we "
@@ -866,7 +890,7 @@ msgstr ""
 "tungumáli en því sem vefnum er ætlað, eða stafsetningarvillur. Raunin er sú "
 "að við vitum það ekki."
 
-#: poem/templates/poem/side.control.html:73
+#: poem/templates/poem/side.control.html:71
 #, python-format
 msgid ""
 "Please feel free to contact us at <a href=\"mailto:%(CONTACT_EMAIL)s:\">"
@@ -877,11 +901,11 @@ msgstr ""
 "%(CONTACT_EMAIL)s:\">%(CONTACT_EMAIL)s</a> ef þér þykja þessar ástæður "
 "ósennilegar. Við erum algerlega reiðubúin til að skoða málið frekar."
 
-#: poem/templates/poem/side.control.html:77
+#: poem/templates/poem/side.control.html:75
 msgid "Alternatively, you can edit your poem and try publishing it again."
 msgstr "Að öðrum kosti geturðu breytt ljóðinu og reynt að gefa það út aftur."
 
-#: poem/templates/poem/side.control.html:88
+#: poem/templates/poem/side.control.html:86
 msgid ""
 "It has been <strong>approved</strong> and is <strong>publicly visible</"
 "strong>."
@@ -889,16 +913,16 @@ msgstr ""
 "Það hefur verið <strong>samþykkt</strong> og er <strong>birt opinberlega</"
 "strong>."
 
-#: poem/templates/poem/side.control.html:92
+#: poem/templates/poem/side.control.html:90
 msgid "If you wish to edit or delete it, you must first unpublish it."
 msgstr "Ef þú vilt breyta því eða eyða, þarftu fyrst að afturkalla útgáfuna."
 
-#: poem/templates/poem/side.control.html:100
+#: poem/templates/poem/side.control.html:98
 msgid "This poem as been <strong>trashed</strong> (hopefully by you)."
 msgstr ""
 "Þetta ljóð hefur verið <strong>sett í ruslið</strong> (vonandi af þér)."
 
-#: poem/templates/poem/side.control.html:104
+#: poem/templates/poem/side.control.html:102
 msgid ""
 "Please confirm by <strong>deleting</strong> it, or <strong>untrashing</"
 "strong> it otherwise."
@@ -906,7 +930,7 @@ msgstr ""
 "Vinsamlegast staðfestu með því að <strong>eyða</strong> því, en "
 "<strong>endurheimtu</strong> það ellegar."
 
-#: poem/templates/poem/side.control.html:109
+#: poem/templates/poem/side.control.html:107
 msgid "Untrash"
 msgstr "Endurheimta"
 
@@ -999,6 +1023,11 @@ msgstr "Notendur með <a href=\"%(private_path_doc_path)s\">einkaslóð</a>"
 #: poem/templates/poem/stub/poem.in-listing.html:4
 msgid "by"
 msgstr "eftir"
+
+#, fuzzy
+#~| msgid "Confirm rejection"
+#~ msgid "Review poem rejections"
+#~ msgstr "Staðfesta höfnun"
 
 #~ msgid "Reviews"
 #~ msgstr "Umsagnir"
