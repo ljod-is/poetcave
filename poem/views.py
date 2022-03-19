@@ -446,23 +446,23 @@ def poems_moderate(request, poem_id=None):
         'editorial'
     )
 
+    pending_poems = poems.filter(editorial__status='pending')
+
     # Moderators may pick a specific poem to moderate, for example by
     # request, but are otherwise given one at random.
     if poem_id is not None:
         # The rejection of a poem may be revised by another moderator, while rejected poems are not considered during general moderation.
-        poems = poems.filter(editorial__status__in=['pending', 'rejected'])
         try:
-            poem = poems.get(id=poem_id)
+            poem = Poem.objects.get(editorial__status__in=['pending', 'rejected'], id=poem_id)
         except Poem.DoesNotExist:
             raise Http404
     else:
-        poems = poems.filter(editorial__status='pending')
         # The randomness factor is to reduce the likelyhood of two moderators
         # working on the same poem at the same time.
-        poem = poems.order_by('?').first()
+        poem = pending_poems.order_by('?').first()
 
     ctx = {
-        'poem_count': poems.count(),
+        'poem_count': pending_poems.count(),
         'poem': poem,
     }
     return render(request, 'poem/moderate.html', ctx)
