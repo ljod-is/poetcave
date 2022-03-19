@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block sign %}{% trans 'Review rejected poems' %}{% endblock %}
+
+{% block content %}
+
+{% for poem in poems %}
+    <p>
+        <a href="{% url 'poem' poem.id %}">{{ poem }}</a>
+        <br />
+        <small>
+            {% trans 'Moderator' %}: <a href="{{ poem.editorial.user.get_absolute_url }}">{{ poem.editorial.user.contact_name }}</a>,
+            {% trans 'timing' %}: {{ poem.editorial.timing }}.
+        </small>
+    </p>
+{% endfor %}
+
+{% endblock %}
+
+{% block side %}
+<button type="button" href="{% url 'poems_moderate' %}">{% trans 'Poem moderation' %}</button>
+{% endblock %}

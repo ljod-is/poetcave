@@ -80,6 +80,23 @@ $(document).ready(function() {
             </form>
         </div>
 
+        <div>
+            <button type="button" href="{% url 'poems_moderate_rejected' %}">{% trans 'Review rejected poems' %}</button>
+        </div>
+
+        {% if poem.editorial.status == 'rejected' %}
+        {% with poem.editorial.user.contact_name as contact_name %}
+        <div>
+            <p><strong>{% blocktrans %}This poem has already been rejected on the following grounds:{% endblocktrans %}</strong></p>
+
+            {% include 'poem/stub/poem.reason-quote.html' %}
+
+            <p>{% trans 'By approving or rejecting the poem at this point, your decision will supercede the previous decision.' %}
+
+        </div>
+        {% endwith %}
+        {% endif %}
+
     </div>
 
 {% endblock %}

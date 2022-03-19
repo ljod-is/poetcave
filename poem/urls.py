@@ -16,6 +16,7 @@ urlpatterns = [
     path('poems/author/<int:author_id>/', views.author, name='author'),
     path('poems/moderate/<int:poem_id>/', views.poems_moderate, name='poems_moderate'),
     path('poems/moderate/', views.poems_moderate, name='poems_moderate'),
+    path('poems/moderate/rejected', views.poems_moderate_rejected, name='poems_moderate_rejected'),
     path('poems/newest/', views.poems_newest, name='poems_newest'),
     path('poems/daypoems/<int:year>/', views.poems_daypoems, name='poems_daypoems'),
     path('poems/daypoems/', views.poems_daypoems, name='poems_daypoems'),

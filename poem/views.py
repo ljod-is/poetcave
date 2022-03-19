@@ -413,7 +413,7 @@ def poems_moderate(request, poem_id=None):
 
         # Manage `poem_id`, making sure it's a proper ID (and an integer).
         try:
-            poem = Poem.objects.get(id=int(poem_id), editorial__status='pending')
+            poem = Poem.objects.get(id=int(poem_id), editorial__status__in=['pending', 'rejected'])
         except Poem.DoesNotExist:
             # This will only happen when requesting a poem that does not
             # exist, or one that has been handled by another moderator by
@@ -439,22 +439,24 @@ def poems_moderate(request, poem_id=None):
         # Redirect so that browser won't want to re-post on reload.
         return redirect(reverse('poems_moderate'))
 
-    poems = poem = Poem.objects.filter(
-        editorial__status='pending'
-    ).exclude(
+    poems = poem = Poem.objects.exclude(
         author=None
     ).select_related(
-        'author'
+        'author',
+        'editorial'
     )
 
     # Moderators may pick a specific poem to moderate, for example by
     # request, but are otherwise given one at random.
     if poem_id is not None:
+        # The rejection of a poem may be revised by another moderator, while rejected poems are not considered during general moderation.
+        poems = poems.filter(editorial__status__in=['pending', 'rejected'])
         try:
             poem = poems.get(id=poem_id)
         except Poem.DoesNotExist:
             raise Http404
     else:
+        poems = poems.filter(editorial__status='pending')
         # The randomness factor is to reduce the likelyhood of two moderators
         # working on the same poem at the same time.
         poem = poems.order_by('?').first()
@@ -464,6 +466,23 @@ def poems_moderate(request, poem_id=None):
         'poem': poem,
     }
     return render(request, 'poem/moderate.html', ctx)
+
+
+@login_required
+def poems_moderate_rejected(request):
+    if not request.user.is_moderator:
+        raise PermissionDenied
+
+    poems = Poem.objects.select_related(
+        'editorial'
+    ).filter(
+        editorial__status='rejected'
+    )
+
+    ctx = {
+        'poems': poems,
+    }
+    return render(request, 'poem/moderate-rejected.html', ctx)
 
 
 def poems(request):
@@ -481,7 +500,7 @@ def poem(request, poem_id):
         elif request.user.is_moderator:
             # If the user is a moderator, maybe a user is sending them a poem
             # and asking them to moderate it.
-            if Poem.objects.filter(id=poem_id, editorial__status='pending').count() > 0:
+            if Poem.objects.filter(id=poem_id, editorial__status__in=['pending', 'rejected']).count() > 0:
                 return redirect(reverse('poems_moderate', args=(poem_id,)))
 
         # Poem genuinely doesn't exist or is unavailable to logged in user.
