@@ -12,3 +12,6 @@ __pycache__
 
 # IDE stuff.
 /.vscode
+
+# Data not for publication.
+/data
