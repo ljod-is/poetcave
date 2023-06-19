@@ -1,6 +1,6 @@
 from core.models import User
 from django import forms
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 from django_registration.forms import RegistrationForm as BaseRegistrationForm
 
 # A custom email form field which checks if the email address is already
