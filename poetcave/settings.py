@@ -184,14 +184,6 @@ DATABASES = {
         'USER': DATABASE_USER,
         'PASSWORD': DATABASE_PASSWORD,
     },
-    # These are hard-coded because they will never change, and in fact will be
-    # removed once the data has been imported.
-    'old': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ljod_db',
-        'USER': DATABASE_USER,
-        'PASSWORD': DATABASE_PASSWORD
-    },
 }
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
