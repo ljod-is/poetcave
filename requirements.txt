@@ -1,4 +1,4 @@
-django
+django=3.2.19
 django_registration
 django-termsandconditions
 django-markdown2
