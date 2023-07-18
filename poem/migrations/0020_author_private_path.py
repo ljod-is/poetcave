@@ -5,15 +5,20 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('poem', '0019_auto_20210816_1802'),
+        ("poem", "0019_auto_20210816_1802"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='author',
-            name='private_path',
-            field=models.CharField(blank=True, max_length=150, null=True, unique=True, validators=[django.contrib.auth.validators.UnicodeUsernameValidator()]),
+            model_name="author",
+            name="private_path",
+            field=models.CharField(
+                blank=True,
+                max_length=150,
+                null=True,
+                unique=True,
+                validators=[django.contrib.auth.validators.UnicodeUsernameValidator()],
+            ),
         ),
     ]

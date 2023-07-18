@@ -6,16 +6,21 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('poem', '0021_alter_daypoem_day'),
+        ("poem", "0021_alter_daypoem_day"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='author',
-            name='user',
-            field=models.OneToOneField(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='author', to=settings.AUTH_USER_MODEL),
+            model_name="author",
+            name="user",
+            field=models.OneToOneField(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="author",
+                to=settings.AUTH_USER_MODEL,
+            ),
         ),
     ]

@@ -21,12 +21,10 @@ from django.urls import path
 from poem.views import author
 
 urlpatterns = [
-    path('', include('core.urls')),
-    path('', include('poem.urls')),
-    path('', include('article.urls')),
-
-    path('admin/', admin.site.urls),
-
+    path("", include("core.urls")),
+    path("", include("poem.urls")),
+    path("", include("article.urls")),
+    path("admin/", admin.site.urls),
     # This **must** come after **all** other paths, because otherwise a
     # private path that exists will override an existing system path, and a
     # private path that does not exist, will result in a 404 error for
@@ -39,5 +37,5 @@ urlpatterns = [
     #
     # For this reason, this URL config is placed here instead of in the
     # `poem` app, even though that's what it organizationally belongs.
-    path('<str:private_path>/', author, name='author_private_path')
+    path("<str:private_path>/", author, name="author_private_path"),
 ]

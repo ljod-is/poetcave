@@ -4,15 +4,24 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('poem', '0016_auto_20210806_1225'),
+        ("poem", "0016_auto_20210806_1225"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='poem',
-            name='editorial_status',
-            field=models.CharField(choices=[('unpublished', 'Unpublished'), ('trashed', 'Trashed'), ('pending', 'Pending approval'), ('rejected', 'Rejected'), ('approved', 'Approved')], default='unpublished', max_length=20),
+            model_name="poem",
+            name="editorial_status",
+            field=models.CharField(
+                choices=[
+                    ("unpublished", "Unpublished"),
+                    ("trashed", "Trashed"),
+                    ("pending", "Pending approval"),
+                    ("rejected", "Rejected"),
+                    ("approved", "Approved"),
+                ],
+                default="unpublished",
+                max_length=20,
+            ),
         ),
     ]

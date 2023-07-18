@@ -11,22 +11,21 @@ class AuthorAdmin(admin.ModelAdmin):
 
 @admin.register(Poem)
 class PoemAdmin(admin.ModelAdmin):
-    list_display = ['name', 'author', 'editorial']
-    list_filter = ['editorial__status']
-    search_fields = ['name', 'body', 'about', 'author__name']
+    list_display = ["name", "author", "editorial"]
+    list_filter = ["editorial__status"]
+    search_fields = ["name", "body", "about", "author__name"]
     fieldsets = [
-        [_('Material'), {
-            'fields': [
-                'name',
-                'body',
-                'about',
-                'author'
-            ],
-        }],
+        [
+            _("Material"),
+            {
+                "fields": ["name", "body", "about", "author"],
+            },
+        ],
     ]
 
     def get_queryset(self, request):
-        return super(PoemAdmin, self).get_queryset(request).select_related(
-            'author',
-            'editorial'
+        return (
+            super(PoemAdmin, self)
+            .get_queryset(request)
+            .select_related("author", "editorial")
         )

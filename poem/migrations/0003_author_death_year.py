@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('poem', '0002_poem'),
+        ("poem", "0002_poem"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='author',
-            name='death_year',
+            model_name="author",
+            name="death_year",
             field=models.SmallIntegerField(blank=True, null=True),
         ),
     ]

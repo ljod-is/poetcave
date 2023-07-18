@@ -6,29 +6,55 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('poem', '0009_auto_20210221_1822'),
+        ("poem", "0009_auto_20210221_1822"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='poem',
-            options={'ordering': ['-editorial_timing', '-public_timing']},
+            name="poem",
+            options={"ordering": ["-editorial_timing", "-public_timing"]},
         ),
         migrations.CreateModel(
-            name='DayPoem',
+            name="DayPoem",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('day', models.DateField()),
-                ('editorial_timing', models.DateTimeField(auto_now_add=True, null=True)),
-                ('editorial_user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
-                ('poem', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='poem.poem')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("day", models.DateField()),
+                (
+                    "editorial_timing",
+                    models.DateTimeField(auto_now_add=True, null=True),
+                ),
+                (
+                    "editorial_user",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "poem",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE, to="poem.poem"
+                    ),
+                ),
             ],
             options={
-                'ordering': ['-editorial_timing', '-poem__editorial_timing', '-poem__public_timing'],
-                'unique_together': {('poem', 'day')},
+                "ordering": [
+                    "-editorial_timing",
+                    "-poem__editorial_timing",
+                    "-poem__public_timing",
+                ],
+                "unique_together": {("poem", "day")},
             },
         ),
     ]

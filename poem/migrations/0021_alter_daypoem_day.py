@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('poem', '0020_author_private_path'),
+        ("poem", "0020_author_private_path"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='daypoem',
-            name='day',
+            model_name="daypoem",
+            name="day",
             field=models.DateField(blank=True),
         ),
     ]

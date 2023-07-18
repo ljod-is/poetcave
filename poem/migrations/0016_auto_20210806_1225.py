@@ -4,43 +4,52 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('poem', '0015_alter_poem_editorial_status'),
+        ("poem", "0015_alter_poem_editorial_status"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='daypoem',
-            options={'ordering': ['-editorial_timing', '-poem__editorial_timing']},
+            name="daypoem",
+            options={"ordering": ["-editorial_timing", "-poem__editorial_timing"]},
         ),
         migrations.AlterModelOptions(
-            name='poem',
-            options={'ordering': ['-editorial_timing']},
+            name="poem",
+            options={"ordering": ["-editorial_timing"]},
         ),
         migrations.RemoveField(
-            model_name='poem',
-            name='public',
+            model_name="poem",
+            name="public",
         ),
         migrations.RemoveField(
-            model_name='poem',
-            name='public_timing',
+            model_name="poem",
+            name="public_timing",
         ),
         migrations.RemoveField(
-            model_name='poem',
-            name='publicly_visible',
+            model_name="poem",
+            name="publicly_visible",
         ),
         migrations.RemoveField(
-            model_name='poem',
-            name='trashed',
+            model_name="poem",
+            name="trashed",
         ),
         migrations.RemoveField(
-            model_name='poem',
-            name='trashed_timing',
+            model_name="poem",
+            name="trashed_timing",
         ),
         migrations.AlterField(
-            model_name='poem',
-            name='editorial_status',
-            field=models.CharField(choices=[('unpublished', 'Unpublished'), ('trashed', 'Trashed'), ('pending', 'Pending approval'), ('rejected', 'Hafnað'), ('approved', 'Samþykkt')], default='pending', max_length=20),
+            model_name="poem",
+            name="editorial_status",
+            field=models.CharField(
+                choices=[
+                    ("unpublished", "Unpublished"),
+                    ("trashed", "Trashed"),
+                    ("pending", "Pending approval"),
+                    ("rejected", "Hafnað"),
+                    ("approved", "Samþykkt"),
+                ],
+                default="pending",
+                max_length=20,
+            ),
         ),
     ]

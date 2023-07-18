@@ -5,32 +5,36 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('poem', '0001_initial'),
-        ('core', '0002_auto_20201209_1827'),
+        ("poem", "0001_initial"),
+        ("core", "0002_auto_20201209_1827"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='user',
-            name='about',
+            model_name="user",
+            name="about",
         ),
         migrations.RemoveField(
-            model_name='user',
-            name='birth_year',
+            model_name="user",
+            name="birth_year",
         ),
         migrations.RemoveField(
-            model_name='user',
-            name='name',
+            model_name="user",
+            name="name",
         ),
         migrations.RemoveField(
-            model_name='user',
-            name='name_dative',
+            model_name="user",
+            name="name_dative",
         ),
         migrations.AddField(
-            model_name='user',
-            name='author',
-            field=models.OneToOneField(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='user', to='poem.author'),
+            model_name="user",
+            name="author",
+            field=models.OneToOneField(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="user",
+                to="poem.author",
+            ),
         ),
     ]

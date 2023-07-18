@@ -4,6 +4,7 @@ from django_middleware_global_request.middleware import get_request
 
 register = template.Library()
 
+
 # A template tag to replace `url` for when we don't have access to the
 # request inside the template.
 @register.simple_tag()

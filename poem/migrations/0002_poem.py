@@ -6,25 +6,46 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('poem', '0001_initial'),
+        ("poem", "0001_initial"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Poem',
+            name="Poem",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=50)),
-                ('body', models.TextField()),
-                ('description', models.TextField(blank=True, null=True)),
-                ('public', models.BooleanField(default=False)),
-                ('approved', models.BooleanField(default=False)),
-                ('approved_timing', models.DateTimeField(auto_now=True)),
-                ('approved_by', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
-                ('author', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='poems', to='poem.author')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=50)),
+                ("body", models.TextField()),
+                ("description", models.TextField(blank=True, null=True)),
+                ("public", models.BooleanField(default=False)),
+                ("approved", models.BooleanField(default=False)),
+                ("approved_timing", models.DateTimeField(auto_now=True)),
+                (
+                    "approved_by",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "author",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="poems",
+                        to="poem.author",
+                    ),
+                ),
             ],
         ),
     ]

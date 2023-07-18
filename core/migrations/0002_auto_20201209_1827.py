@@ -4,40 +4,39 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('core', '0001_initial'),
+        ("core", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='user',
-            name='about',
+            model_name="user",
+            name="about",
             field=models.TextField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='user',
-            name='birth_year',
+            model_name="user",
+            name="birth_year",
             field=models.SmallIntegerField(blank=True, null=True),
         ),
         migrations.AlterField(
-            model_name='user',
-            name='contact_address',
+            model_name="user",
+            name="contact_address",
             field=models.CharField(blank=True, max_length=100, null=True),
         ),
         migrations.AlterField(
-            model_name='user',
-            name='contact_phone',
+            model_name="user",
+            name="contact_phone",
             field=models.CharField(blank=True, max_length=30, null=True),
         ),
         migrations.AlterField(
-            model_name='user',
-            name='contact_place',
+            model_name="user",
+            name="contact_place",
             field=models.CharField(blank=True, max_length=100, null=True),
         ),
         migrations.AlterField(
-            model_name='user',
-            name='contact_postal_code',
+            model_name="user",
+            name="contact_postal_code",
             field=models.CharField(blank=True, max_length=3, null=True),
         ),
     ]

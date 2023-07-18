@@ -6,54 +6,93 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('poem', '0018_alter_poem_options'),
+        ("poem", "0018_alter_poem_options"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='daypoem',
-            options={'ordering': ['-editorial_timing', '-poem__editorial__timing']},
+            name="daypoem",
+            options={"ordering": ["-editorial_timing", "-poem__editorial__timing"]},
         ),
         migrations.AlterModelOptions(
-            name='poem',
-            options={'ordering': ['-editorial__status', '-editorial__timing']},
+            name="poem",
+            options={"ordering": ["-editorial__status", "-editorial__timing"]},
         ),
         migrations.RemoveField(
-            model_name='poem',
-            name='editorial_reason',
+            model_name="poem",
+            name="editorial_reason",
         ),
         migrations.RemoveField(
-            model_name='poem',
-            name='editorial_status',
+            model_name="poem",
+            name="editorial_status",
         ),
         migrations.RemoveField(
-            model_name='poem',
-            name='editorial_timing',
+            model_name="poem",
+            name="editorial_timing",
         ),
         migrations.RemoveField(
-            model_name='poem',
-            name='editorial_user',
+            model_name="poem",
+            name="editorial_user",
         ),
         migrations.CreateModel(
-            name='EditorialDecision',
+            name="EditorialDecision",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('status', models.CharField(choices=[('unpublished', 'Unpublished'), ('trashed', 'Trashed'), ('pending', 'Pending approval'), ('rejected', 'Rejected'), ('approved', 'Approved')], default='unpublished', max_length=20)),
-                ('timing', models.DateTimeField(blank=True, null=True)),
-                ('reason', models.TextField(blank=True, null=True)),
-                ('poem', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='editorial_history', to='poem.poem')),
-                ('user', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "status",
+                    models.CharField(
+                        choices=[
+                            ("unpublished", "Unpublished"),
+                            ("trashed", "Trashed"),
+                            ("pending", "Pending approval"),
+                            ("rejected", "Rejected"),
+                            ("approved", "Approved"),
+                        ],
+                        default="unpublished",
+                        max_length=20,
+                    ),
+                ),
+                ("timing", models.DateTimeField(blank=True, null=True)),
+                ("reason", models.TextField(blank=True, null=True)),
+                (
+                    "poem",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="editorial_history",
+                        to="poem.poem",
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'ordering': ['-timing'],
+                "ordering": ["-timing"],
             },
         ),
         migrations.AddField(
-            model_name='poem',
-            name='editorial',
-            field=models.OneToOneField(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='current_poem', to='poem.editorialdecision'),
+            model_name="poem",
+            name="editorial",
+            field=models.OneToOneField(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="current_poem",
+                to="poem.editorialdecision",
+            ),
         ),
     ]

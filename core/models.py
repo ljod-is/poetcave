@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.urls import reverse
 
+
 class User(AbstractUser):
     # Fields beginning with `contact_` are only intende for use by
     # administrators, not for displaying on the web.
@@ -21,4 +22,4 @@ class User(AbstractUser):
     is_reporter = models.BooleanField(default=False)
 
     def get_absolute_url(self):
-        return reverse('user', args=(self.username,))
+        return reverse("user", args=(self.username,))

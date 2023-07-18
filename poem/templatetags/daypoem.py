@@ -6,6 +6,7 @@ from poem.models import DayPoem
 
 register = template.Library()
 
+
 @register.filter()
 def is_today(dt):
     return dt is not None and dt == timezone.now().date()

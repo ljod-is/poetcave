@@ -4,15 +4,14 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('poem', '0012_bookmark'),
+        ("poem", "0012_bookmark"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='poem',
-            name='publicly_visible',
+            model_name="poem",
+            name="publicly_visible",
             field=models.BooleanField(default=False),
         ),
     ]
