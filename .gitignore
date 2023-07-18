@@ -12,6 +12,7 @@ __pycache__
 
 # IDE stuff.
 /.vscode
+/Session.vim
 
 # Data not for publication.
 /data
