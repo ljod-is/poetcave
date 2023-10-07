@@ -1,4 +1,4 @@
-from core.api import api
+from poetcave.api import api
 from django.contrib import admin
 from django.urls import include
 from django.urls import path
