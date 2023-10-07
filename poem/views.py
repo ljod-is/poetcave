@@ -212,9 +212,13 @@ def author(request, author_id=None, private_path=None):
 
 
 def poems_newest(request):
-    poems = Poem.objects.select_related("author").filter(editorial__status="approved")[
-        :25
-    ]
+    poems = Poem.objects.select_related(
+        "author"
+    ).filter(
+        editorial__status="approved"
+    ).exclude(
+        editorial__timing=None
+    )[:25]
 
     ctx = {
         "poems": poems,
