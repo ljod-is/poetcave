@@ -1,10 +1,10 @@
 from core.models import User
 from django.contrib.auth import login as user_login
 from django.core.exceptions import PermissionDenied
-from ninja import NinjaAPI
+from ninja import Router
 from ninja import Schema
 
-api = NinjaAPI()
+router = Router()
 
 
 class LoginRequestSchema(Schema):
@@ -21,7 +21,7 @@ class UserSchema(Schema):
     contact_phone: str
 
 
-@api.post("login/", response=UserSchema)
+@router.post("login/", response=UserSchema)
 def login(request, input: LoginRequestSchema):
     try:
         user = User.objects.get(email=input.email)
