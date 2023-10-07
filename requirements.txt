@@ -6,3 +6,4 @@ django-mdmail
 django-middleware-global-request
 python-frontmatter
 markdown2
+django-ninja
