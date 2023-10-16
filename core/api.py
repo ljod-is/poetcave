@@ -1,10 +1,15 @@
 from core.models import User
 from django.contrib.auth import login as user_login
-from django.core.exceptions import PermissionDenied
 from ninja import Router
 from ninja import Schema
 
 router = Router()
+
+
+def permission_denied_response(error_message: str = "Unauthorized"):
+    return 401, {
+        "error_message": error_message,
+    }
 
 
 class LoginRequestSchema(Schema):
@@ -21,7 +26,11 @@ class UserSchema(Schema):
     contact_phone: str
 
 
-@router.post("login/", response=UserSchema)
+class ErrorSchema(Schema):
+    error_message: str
+
+
+@router.post("login/", response={200: UserSchema, 401: ErrorSchema})
 def login(request, input: LoginRequestSchema):
     try:
         user = User.objects.get(email=input.email)
@@ -36,6 +45,6 @@ def login(request, input: LoginRequestSchema):
                 "contact_phone": user.contact_phone,
             }
 
-        raise PermissionDenied
+        return permission_denied_response("Login failed")
     except User.DoesNotExist:
-        raise PermissionDenied
+        return permission_denied_response("Login failed")
