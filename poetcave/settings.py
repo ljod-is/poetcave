@@ -50,6 +50,7 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "termsandconditions.middleware.TermsAndConditionsRedirectMiddleware",
+    "core.middleware.api_exception_middleware",
 ]
 
 ROOT_URLCONF = "poetcave.urls"
