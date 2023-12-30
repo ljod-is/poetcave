@@ -8,7 +8,7 @@ class User(AbstractUser):
     # administrators, not for displaying on the web.
     contact_name = models.CharField(max_length=100)
     contact_address = models.CharField(max_length=100, null=True, blank=True)
-    contact_postal_code = models.CharField(max_length=3, null=True, blank=True)
+    contact_postal_code = models.CharField(max_length=10, null=True, blank=True)
     contact_place = models.CharField(max_length=100, null=True, blank=True)
     contact_phone = models.CharField(max_length=30, null=True, blank=True)
 
